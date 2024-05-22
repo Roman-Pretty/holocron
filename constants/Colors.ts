@@ -7,6 +7,9 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 export const Colors = {
+  global: {
+    slate900: '#0f172a'
+  },
   light: {
     text: '#11181C',
     background: '#fff',
