@@ -20,7 +20,7 @@ const SpecializationItem = ({ specialization, selectedSpecialization, setSelecte
             </View>
             <View className='mt-[2vh] flex-row items-start'>
                 <Ionicons size={16} name='checkmark-circle-outline' color="white" />
-                <Text className='text-white text-sm pl-2'><Text className='font-bold'>Skills:</Text> {specialization.skills.join(', ')}</Text>
+                <Text className='text-white text-sm pl-2 max-w-[84vw]'><Text className='font-bold '>Skills:</Text> {specialization.skills.join(', ')}</Text>
             </View>
             {selectedSpecialization && selectedSpecialization.name === specialization.name ?
                 <Button title={`Selected ${specialization.name}`} disabled className='mt-[3vh] border-slate-600 border-2' /> :

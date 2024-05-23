@@ -39,24 +39,20 @@ const SkillItem = ({ index, skill, career, specialization, xp, checkedCareerSkil
     }
 
     return (
-        <View className={`${index % 2 === 1 ? 'bg-slate-800 ' : 'bg-slate-700'} px-[1vw] py-[2vh]`}>
-            <View className='flex flex-row w-full justify-between'>
-                <View className='w-[18vw] h-[18vw] bg-slate-900 border-2 border-slate-800 rounded-full flex items-center justify-center'>
-                    <Text className='text-white text-4xl font-[Elektra]'>{level}</Text>
-                </View>
-                <View>
-                    <View className='border-b-2 mb-[1vh] border-slate-500 flex-row justify-between'>
-                        <Text className='text-white text-xl font-[Elektra] capitalize'>{skill.name}</Text>
-                        {(career && career.skills.includes(skill.name) || specialization && specialization.skills.includes(skill.name)) && <Ionicons name='checkmark-circle-outline' color="white" size={20} />}
-                    </View>
-                    <View className='flex-row w-[64vw]'>
-                        <Button title='Decrease' className='mr-[1vw]' onPress={decreaseLevel}
-                            disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name]) && skill.level <= 1 ? true : skill.level <= 0 ? true : false}
-                        />
-                        <Button title='Increase' className='ml-[1vw]' onPress={increaseLevel}
-                            disabled={skill.level >= 2} />
-                    </View>
-                </View>
+        <View className={`${index % 2 === 1 ? 'bg-slate-800 ' : 'bg-slate-700'} px-[2vw] py-[2vh] flex-row`}>
+            <View className='flex flex-row w-[60%] justify-start items-center'>
+                <Text className='text-white text-sm font-[Elektra] capitalize w-[68%]'>{skill.name} ({skill.characteristic.name.substring(0, 3)})</Text>
+                <Text className='text-white text-xl font-[Elektra] pl-[1vw] pr-[2vw] pt-1'>{level}</Text>
+                {(career && career.skills.includes(skill.name) || specialization && specialization.skills.includes(skill.name)) && <Ionicons name='checkmark-circle-outline' color="white" size={18} />}
+            </View>
+            <View className='flex flex-row w-[40%] justify-between items-center'>
+                <Button title='-' className='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
+                disabledClassName='border-2 border-slate-600'
+                    disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name]) && skill.level <= 1 ? true : skill.level <= 0 ? true : false}
+                />
+                <Button title='+' className='ml-[1vw] border-slate-400 bg-slate-500' onPress={increaseLevel}
+                disabledClassName='border-2 border-slate-600'
+                    disabled={skill.level >= 2} />
             </View>
         </View>
     )

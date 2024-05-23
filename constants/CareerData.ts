@@ -101,7 +101,87 @@ export default [
             }
         ],
         forceSensitive: false
+    },
+    {
+        "name": "Colonist",
+        "desc": "Versatile individuals from the Core Worlds, skilled in diplomacy and problem-solving.",
+        "longDesc": "Colonists bring knowledge and social skills honed in the Core Worlds to the diverse challenges of the Outer Rim. Whether seeking opportunities or exploiting their talents for personal gain, they navigate the fringe with charisma and intellect.",
+        "skills": [
+            "Charm",
+            "Deception",
+            "Core Worlds",
+            "Education",
+            "Lore",
+            "Leadership",
+            "Negotiation",
+            "Streetwise"
+        ],
+        "image": require('@/assets/images/careers/colonist.png'),
+        "specializations": [
+            {
+                "name": "Doctor",
+                "desc": "Skilled healers in high demand, offering medical expertise and resilience.",
+                "skills": [
+                    "Cool",
+                    "Education",
+                    "Medicine",
+                    "Resilience"
+                ]
+            },
+            {
+                "name": "Entrepreneur",
+                "desc": "Visionaries driving innovation and enterprise with negotiation and discipline.",
+                "skills": [
+                    "Discipline",
+                    "Education",
+                    "Underworld",
+                    "Negotiation"
+                ]
+            },
+            {
+                "name": "Marshal",
+                "desc": "Law enforcers adept at coercion and vigilant in pursuit of justice.",
+                "skills": [
+                    "Coercion",
+                    "Underworld",
+                    "Ranged (Light)",
+                    "Vigilance"
+                ]
+            },
+            {
+                "name": "Performer",
+                "desc": "Entertainers captivating audiences with charm, deception, and physical prowess.",
+                "skills": [
+                    "Charm",
+                    "Coordination",
+                    "Deception",
+                    "Melee"
+                ]
+            },
+            {
+                "name": "Politico",
+                "desc": "Masters of persuasion and leadership, shaping destinies with words and influence.",
+                "skills": [
+                    "Charm",
+                    "Coercion",
+                    "Deception",
+                    "Core Worlds"
+                ]
+            },
+            {
+                "name": "Scholar",
+                "desc": "Seekers of knowledge, wielding expertise in exploration and perception.",
+                "skills": [
+                    "Outer Rim",
+                    "Underworld",
+                    "Xenology",
+                    "Perception"
+                ]
+            }
+        ],
+        forceSensitive: false
     }
+    
     
     
 ];

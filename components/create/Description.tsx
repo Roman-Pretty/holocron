@@ -2,6 +2,8 @@ import LabelledTextInput from '@/components/form/LabelledTextInput';
 import React from 'react';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import PortraitInput from '../form/PortraitInput';
+import { ImageSourcePropType } from 'react-native';
+import { SetStateAction } from 'react';
 
 interface DescriptionProps {
     name: string;
@@ -10,12 +12,14 @@ interface DescriptionProps {
     setHomeworld: (homeworld: string) => void;
     description: string;
     setDescription: (description: string) => void;
+    portrait: ImageSourcePropType | undefined;
+    setPortrait: React.Dispatch<SetStateAction<ImageSourcePropType>>;
 }
 
-const Description = ({ name, setName, homeworld, setHomeworld, description, setDescription }: DescriptionProps) => {
+const Description = ({ name, setName, homeworld, setHomeworld, description, setDescription, portrait, setPortrait }: DescriptionProps) => {
     return (
         <KeyboardAwareScrollView extraHeight={120}>
-            <PortraitInput />
+            <PortraitInput portrait={portrait} setPortrait={setPortrait} />
             <LabelledTextInput
                 title='Name'
                 setText={setName}

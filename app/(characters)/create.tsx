@@ -10,6 +10,8 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import * as Progress from 'react-native-progress'
 import { BRAWN, AGILITY, INTELLECT, CUNNING, WILLPOWER, PRESENCE } from '@/constants/Characteristics'
+import { ImageSourcePropType } from 'react-native'
+import Summary from '@/components/create/Summary'
 
 const create = () => {
 
@@ -28,6 +30,7 @@ const create = () => {
     const [checkedSpecializationSkills, setCheckedSpecializationSkills] = React.useState<{ [key: string]: boolean }>({});
     const [characteristics, setCharacteristics] = React.useState<Characteristic[]>([]);
     const [skills, setSkills] = React.useState<Skill[]>([]);
+    const [portrait, setPortrait] = React.useState<ImageSourcePropType>(require('@/assets/images/species/aqualish_0.png'));
 
     function assignCareer(c: Career) {
         setCareer(c);
@@ -117,6 +120,7 @@ const create = () => {
             </View>
             <View className='h-[64vh] my-[2vh]'>
                 {currentIndex === 0 && <Description
+                    portrait={portrait} setPortrait={setPortrait}
                     name={name} setName={setName}
                     homeworld={homeworld} setHomeworld={setHomeworld}
                     description={description} setDescription={setDescription}
@@ -124,23 +128,25 @@ const create = () => {
                 {currentIndex === 1 && <Species selectedSpecies={species} setSelectedSpecies={assignSpecies} />}
                 {currentIndex === 2 && <Career selectedCareer={career} setSelectedCareer={assignCareer} />}
                 {currentIndex === 3 && <Specialization selectedCareer={career} selectedSpecialization={specialization} setSelectedSpecialization={assignSpecialization} />}
-                {currentIndex === 4 && <FreeSkills skills={skills} species={species} selectedCareer={career} selectedSpecialization={specialization} checkedCareerSkills={checkedCareerSkills}
+                {currentIndex === 4 && <FreeSkills xp={xp} setXP={setXP} skills={skills} species={species} selectedCareer={career} selectedSpecialization={specialization} checkedCareerSkills={checkedCareerSkills}
                     setCheckedCareerSkills={setCheckedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} setCheckedSpecializationSkills={setCheckedSpecializationSkills} />}
                 {currentIndex === 5 && <Characteristics characteristics={characteristics} setCharacteristics={setCharacteristics} xp={xp} setXp={setXP} species={species} />}
                 {currentIndex === 6 && <Skills skills={skills} setSkills={setSkills} xp={xp} setXp={setXP} career={career} specialization={specialization}
                 checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
+                {currentIndex === 7 && <Summary name={name} homeworld={homeworld} description={description} species={species} career={career} specialization={specialization} characteristics={characteristics} skills={skills} portrait={portrait} />}
             </View>
             <View className='flex-row w-full justify-evenly'>
 
                 <Button title='Back' className='mr-1' onPress={() => { setCurrentIndex(currentIndex - 1) }} disabled={currentIndex === 0}
                 />
+                {currentIndex === PAGES ? <Button title='Confirm' className='ml-1' onPress={() => console.log('create')} /> :
                 <Button title='Next' className='ml-1' onPress={() => { setCurrentIndex(currentIndex + 1) }}
                     disabled={
                         (currentIndex === 1 && species === null) ||
                         (currentIndex === 2 && career === null) ||
                         (currentIndex === 3 && specialization === null) ||
                         currentIndex === PAGES}
-                />
+                />}
             </View>
         </View>
     )

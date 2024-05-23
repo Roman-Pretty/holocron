@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import Checkbox from 'expo-checkbox';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
@@ -12,6 +13,8 @@ interface FreeSkillsProps {
     checkedSpecializationSkills: { [key: string]: boolean };
     setCheckedSpecializationSkills: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
     skills: Skill[];
+    xp: number;
+    setXP: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FreeSkills = ({
@@ -23,6 +26,8 @@ const FreeSkills = ({
     checkedSpecializationSkills,
     setCheckedSpecializationSkills,
     skills,
+    xp,
+    setXP
 }: FreeSkillsProps) => {
 
     const maxCareerSkills = species && species.species === 'Droid' ? 6 : selectedCareer && selectedCareer.forceSensitive ? 3 : 4;
@@ -34,10 +39,10 @@ const FreeSkills = ({
     const handleCareerCheckboxChange = (s: string) => {
         setCheckedCareerSkills(prevState => {
             if (prevState[s]) {
-                //TODO: Accomodate for if the player has already assigned skills
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level -= 1;
+                
                 }
                 return {
                     ...prevState,
@@ -47,6 +52,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level += 1;
+                   
                 }
                 return {
                     ...prevState,
@@ -63,6 +69,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level -= 1;
+                  
                 }
                 return {
                     ...prevState,
@@ -72,6 +79,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level += 1;
+                    
                 }
                 return {
                     ...prevState,
@@ -98,18 +106,29 @@ const FreeSkills = ({
                     </Text>
                 </View>
 
-                {selectedCareer && selectedCareer.skills.map((skill, index) => (
-                    <Pressable 
-                        onPress={() => handleCareerCheckboxChange(skill)}
-                        key={index} className='flex flex-row items-center py-[0.4vh]'>
-                        <Checkbox
-                            color='#94a3b8'
-                            onValueChange={() => handleCareerCheckboxChange(skill)}
-                            value={checkedCareerSkills[skill] || false}
-                        />
-                        <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
-                    </Pressable>
-                ))}
+                {selectedCareer && selectedCareer.skills.map((skill, index) => {
+
+                    if (skills.find(s => s.name === skill)?.level === 2 && !checkedCareerSkills[skill]) {
+                        return (
+                            <View key={index} className='flex flex-row items-center'>
+                                <Ionicons name='ban' color='#94a3b8' size={22} />
+                                <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                                <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>(Already Max Level)</Text>
+                            </View>
+                        )
+                    }
+                    return (
+                        <Pressable
+                            onPress={() => handleCareerCheckboxChange(skill)}
+                            key={index} className='flex flex-row items-center py-[0.4vh]'>
+                            <Checkbox
+                                color={'#94a3b8'}
+                                onValueChange={() => handleCareerCheckboxChange(skill)}
+                                value={checkedCareerSkills[skill] || false}
+                            />
+                            <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                        </Pressable>)
+                })}
 
                 <View className='flex flex-row justify-between items-center pt-[2vh]'>
                     <Text className='text-slate-200 font-[Elektra] text-xl'>
@@ -121,7 +140,7 @@ const FreeSkills = ({
                 </View>
 
                 {selectedSpecialization && selectedSpecialization.skills.map((skill, index) => (
-                    <Pressable 
+                    <Pressable
                         onPress={() => handleSpecializationCheckboxChange(skill)}
                         key={index} className='flex flex-row items-center py-[0.4vh]'>
                         <Checkbox

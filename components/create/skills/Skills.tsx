@@ -36,9 +36,19 @@ const Skills = ({ skills, setSkills, career, specialization, checkedCareerSkills
                 renderItem={({ item, index }) => {
                     if (item.type === 'title') {
                         return (
+                            <>
                             <Text className={`text-slate-400 text-xl py-[2vh] font-[Elektra] ${index != 0 && 'pt-[4vh]'}`}>
                                 {item.text}
                             </Text>
+                            {/* <View className='flex flex-row'>
+                                <Text className='text-slate-100 text-md font-[Elektra] w-[38%]'>
+                                    Skill
+                                </Text>
+                                <Text className='text-slate-100 text-md font-[Elektra] pl-[1vw] pr-[2vw]'>
+                                    Level
+                                </Text>
+                            </View> */}
+                            </>
                         );
                     }
                     return (
