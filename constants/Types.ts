@@ -58,3 +58,32 @@ interface Species {
         specialAbilities: { name: string; desc: string; }[];
         speciesBonus: string;
 }
+
+interface Career {
+    name: string;
+    image: any;
+    desc: string;
+    longDesc: string;
+    skills: string[];
+    specializations: Specialization[];
+    forceSensitive: boolean;
+}
+
+interface Specialization {
+    name: string;
+    desc: string;
+    skills: string[];
+}
+
+interface Characteristic {
+    name: string;
+    level: number;
+    desc: string;
+}
+
+interface Skill {
+    name: string;
+    level: number;
+    characteristic: Characteristic;
+    career: boolean;
+}
