@@ -57,6 +57,8 @@ interface Species {
         startingXP: number;
         specialAbilities: { name: string; desc: string; }[];
         speciesBonus: string;
+        hasOptions?: boolean;
+        options?: { type: string; options: string[]; };
 }
 
 interface Career {

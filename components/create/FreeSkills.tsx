@@ -79,7 +79,6 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level += 1;
-                    
                 }
                 return {
                     ...prevState,

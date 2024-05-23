@@ -6,7 +6,7 @@ import FreeSkills from '@/components/create/FreeSkills'
 import Characteristics from '@/components/create/characteristics/Characteristics'
 import Skills from '@/components/create/skills/Skills'
 import Button from '@/components/form/Button'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Text, View } from 'react-native'
 import * as Progress from 'react-native-progress'
 import { BRAWN, AGILITY, INTELLECT, CUNNING, WILLPOWER, PRESENCE } from '@/constants/Characteristics'
@@ -19,6 +19,7 @@ const create = () => {
 
     const [currentIndex, setCurrentIndex] = React.useState(0)
 
+    //TODO: Rework Experience!
     const [name, setName] = React.useState('');
     const [homeworld, setHomeworld] = React.useState('');
     const [description, setDescription] = React.useState('');
@@ -29,8 +30,68 @@ const create = () => {
     const [checkedCareerSkills, setCheckedCareerSkills] = React.useState<{ [key: string]: boolean }>({});
     const [checkedSpecializationSkills, setCheckedSpecializationSkills] = React.useState<{ [key: string]: boolean }>({});
     const [characteristics, setCharacteristics] = React.useState<Characteristic[]>([]);
-    const [skills, setSkills] = React.useState<Skill[]>([]);
     const [portrait, setPortrait] = React.useState<ImageSourcePropType>(require('@/assets/images/species/aqualish_0.png'));
+
+    const [skills, setSkills] = React.useState<Skill[]>(
+        [
+            { name: 'Brawl', level: 0, characteristic: BRAWN, career: false },
+            { name: 'Gunnery', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Lightsaber', level: 0, characteristic: BRAWN, career: false },
+            { name: 'Melee', level: 0, characteristic: BRAWN, career: false },
+            { name: 'Ranged (Heavy)', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Ranged (Light)', level: 0, characteristic: AGILITY, career: false },
+
+            { name: 'Core Worlds', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Education', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Lore', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Outer Rim', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Underworld', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Warfare', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Xenology', level: 0, characteristic: INTELLECT, career: false },
+
+            { name: 'Astrogation', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Athletics', level: 0, characteristic: BRAWN, career: false },
+            { name: 'Charm', level: 0, characteristic: PRESENCE, career: false },
+            { name: 'Coercion', level: 0, characteristic: WILLPOWER, career: false },
+            { name: 'Computers', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Cool', level: 0, characteristic: PRESENCE, career: false },
+            { name: 'Coordination', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Deception', level: 0, characteristic: CUNNING, career: false },
+            { name: 'Discipline', level: 0, characteristic: WILLPOWER, career: false },
+            { name: 'Leadership', level: 0, characteristic: PRESENCE, career: false },
+            { name: 'Mechanics', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Medicine', level: 0, characteristic: INTELLECT, career: false },
+            { name: 'Negotiation', level: 0, characteristic: PRESENCE, career: false },
+            { name: 'Perception', level: 0, characteristic: CUNNING, career: false },
+            { name: 'Piloting (Planetary)', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Piloting (Space)', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Resilience', level: 0, characteristic: BRAWN, career: false },
+            { name: 'Skulduggery', level: 0, characteristic: CUNNING, career: false },
+            { name: 'Stealth', level: 0, characteristic: AGILITY, career: false },
+            { name: 'Streetwise', level: 0, characteristic: CUNNING, career: false },
+            { name: 'Survival', level: 0, characteristic: CUNNING, career: false },
+            { name: 'Vigilance', level: 0, characteristic: WILLPOWER, career: false }
+
+        ]
+    )
+
+    useEffect(() => {
+        for (const skill of skills) {
+            if (career && career.skills.includes(skill.name)) {
+                skill.career = true;
+            }
+            if (specialization && specialization.skills.includes(skill.name)) {
+                skill.career = true;
+            }
+            if (species && species.species === 'Cerean' &&
+                (skill.name === 'Core Worlds' || skill.name === 'Education' || skill.name === 'Lore' ||
+                    skill.name === 'Outer Rim' || skill.name === 'Underworld' || skill.name === 'Warfare' ||
+                    skill.name === 'Xenology')) {
+                skill.career = true;
+            }
+        }
+
+    }, [career, specialization, species])
 
     function assignCareer(c: Career) {
         setCareer(c);
@@ -42,45 +103,6 @@ const create = () => {
     function assignSpecialization(s: Specialization) {
         setSpecialization(s);
         setCheckedSpecializationSkills({});
-        setSkills([
-            {name: 'Brawl', level: 0, characteristic: BRAWN, career: (career && career.skills.includes('Brawl')) || (s.skills.includes('Brawl'))},
-            {name: 'Gunnery', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Gunnery')) || (s.skills.includes('Gunnery'))},
-            {name: 'Lightsaber', level: 0, characteristic: BRAWN, career: (career && career.skills.includes('Lightsaber')) || (s.skills.includes('Lightsaber'))},
-            {name: 'Melee', level: 0, characteristic: BRAWN, career: (career && career.skills.includes('Melee')) || (s.skills.includes('Melee'))},
-            {name: 'Ranged (Heavy)', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Ranged (Heavy)')) || (s.skills.includes('Ranged (Heavy)'))},
-            {name: 'Ranged (Light)', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Ranged (Light)')) || (s.skills.includes('Ranged (Light)'))},
-
-            {name: 'Core Worlds', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Core Worlds')) || (s.skills.includes('Core Worlds'))},
-            {name: 'Education', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Education')) || (s.skills.includes('Education'))},
-            {name: 'Lore', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Lore')) || (s.skills.includes('Lore'))},
-            {name: 'Outer Rim', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Outer Rim')) || (s.skills.includes('Outer Rim'))},
-            {name: 'Underworld', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Underworld')) || (s.skills.includes('Underworld'))},
-            {name: 'Warfare', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Warfare')) || (s.skills.includes('Warfare'))},
-            {name: 'Xenology', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Xenology')) || (s.skills.includes('Xenology'))},
-
-            {name: 'Astrogation', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Astrogation')) || (s.skills.includes('Astrogation'))},
-            {name: 'Athletics', level: 0, characteristic: BRAWN, career: (career && career.skills.includes('Athletics')) || (s.skills.includes('Athletics'))},
-            {name: 'Charm', level: 0, characteristic: PRESENCE, career: (career && career.skills.includes('Charm')) || (s.skills.includes('Charm'))},
-            {name: 'Coercion', level: 0, characteristic: WILLPOWER, career: (career && career.skills.includes('Coercion')) || (s.skills.includes('Coercion'))},
-            {name: 'Computers', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Computers')) || (s.skills.includes('Computers'))},
-            {name: 'Cool', level: 0, characteristic: PRESENCE, career: (career && career.skills.includes('Cool')) || (s.skills.includes('Cool'))},
-            {name: 'Coordination', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Coordination')) || (s.skills.includes('Coordination'))},
-            {name: 'Deception', level: 0, characteristic: CUNNING, career: (career && career.skills.includes('Deception')) || (s.skills.includes('Deception'))},
-            {name: 'Discipline', level: 0, characteristic: WILLPOWER, career: (career && career.skills.includes('Discipline')) || (s.skills.includes('Discipline'))},
-            {name: 'Leadership', level: 0, characteristic: PRESENCE, career: (career && career.skills.includes('Leadership')) || (s.skills.includes('Leadership'))},
-            {name: 'Mechanics', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Mechanics')) || (s.skills.includes('Mechanics'))},
-            {name: 'Medicine', level: 0, characteristic: INTELLECT, career: (career && career.skills.includes('Medicine')) || (s.skills.includes('Medicine'))},
-            {name: 'Negotiation', level: 0, characteristic: PRESENCE, career: (career && career.skills.includes('Negotiation')) || (s.skills.includes('Negotiation'))},
-            {name: 'Perception', level: 0, characteristic: CUNNING, career: (career && career.skills.includes('Perception')) || (s.skills.includes('Perception'))},
-            {name: 'Piloting (Planetary)', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Piloting (Planetary)')) || (s.skills.includes('Piloting (Planetary)'))},
-            {name: 'Piloting (Space)', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Piloting (Space)')) || (s.skills.includes('Piloting (Space)'))},
-            {name: 'Resilience', level: 0, characteristic: BRAWN, career: (career && career.skills.includes('Resilience')) || (s.skills.includes('Resilience'))},
-            {name: 'Skulduggery', level: 0, characteristic: CUNNING, career: (career && career.skills.includes('Skulduggery')) || (s.skills.includes('Skulduggery'))},
-            {name: 'Stealth', level: 0, characteristic: AGILITY, career: (career && career.skills.includes('Stealth')) || (s.skills.includes('Stealth'))},
-            {name: 'Streetwise', level: 0, characteristic: CUNNING, career: (career && career.skills.includes('Streetwise')) || (s.skills.includes('Streetwise'))},
-            {name: 'Survival', level: 0, characteristic: CUNNING, career: (career && career.skills.includes('Survival')) || (s.skills.includes('Survival'))},
-            {name: 'Vigilance', level: 0, characteristic: WILLPOWER, career: (career && career.skills.includes('Vigilance')) || (s.skills.includes('Vigilance'))}
-        ])
     }
 
     function assignSpecies(s: Species) {
@@ -94,7 +116,6 @@ const create = () => {
             { name: 'willpower', level: s.characteristics[4], desc: 'Discipline, self-control, mental fortitude, and faith.' },
             { name: 'presence', level: s.characteristics[5], desc: 'Moxie, charisma, confidence, and force of personality.' }
         ]);
-        //todo: set skills and characteristics
     }
 
     return (
@@ -132,7 +153,7 @@ const create = () => {
                     setCheckedCareerSkills={setCheckedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} setCheckedSpecializationSkills={setCheckedSpecializationSkills} />}
                 {currentIndex === 5 && <Characteristics characteristics={characteristics} setCharacteristics={setCharacteristics} xp={xp} setXp={setXP} species={species} />}
                 {currentIndex === 6 && <Skills skills={skills} setSkills={setSkills} xp={xp} setXp={setXP} career={career} specialization={specialization}
-                checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
+                    checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
                 {currentIndex === 7 && <Summary name={name} homeworld={homeworld} description={description} species={species} career={career} specialization={specialization} characteristics={characteristics} skills={skills} portrait={portrait} />}
             </View>
             <View className='flex-row w-full justify-evenly'>
@@ -140,13 +161,13 @@ const create = () => {
                 <Button title='Back' className='mr-1' onPress={() => { setCurrentIndex(currentIndex - 1) }} disabled={currentIndex === 0}
                 />
                 {currentIndex === PAGES ? <Button title='Confirm' className='ml-1' onPress={() => console.log('create')} /> :
-                <Button title='Next' className='ml-1' onPress={() => { setCurrentIndex(currentIndex + 1) }}
-                    disabled={
-                        (currentIndex === 1 && species === null) ||
-                        (currentIndex === 2 && career === null) ||
-                        (currentIndex === 3 && specialization === null) ||
-                        currentIndex === PAGES}
-                />}
+                    <Button title='Next' className='ml-1' onPress={() => { setCurrentIndex(currentIndex + 1) }}
+                        disabled={
+                            (currentIndex === 1 && species === null) ||
+                            (currentIndex === 2 && career === null) ||
+                            (currentIndex === 3 && specialization === null) ||
+                            currentIndex === PAGES}
+                    />}
             </View>
         </View>
     )

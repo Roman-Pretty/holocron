@@ -118,7 +118,12 @@ export default [
         strainThreshold: 11,
         startingXP: 100,
         specialAbilities: [{ name: 'Memnii', desc: 'Once per game session, a Caamasi may form a new memnis that encompasses one scene or encounter. At any time, a Caamasi may perfectly recall any memnis that he has formed or witnessed, or share it with another Caamasi or Force-sensitive.' }],
-        speciesBonus: 'Caamasi may start with one rank in Charm or Discipline.'
+        speciesBonus: 'Caamasi may start with one rank in Charm or Discipline.',
+        hasOptions: true,
+        options: {
+            type: 'skill',
+            options: ['Charm', 'Discipline']
+        }
     },
     {
         species: 'Cerean',

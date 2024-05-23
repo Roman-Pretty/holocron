@@ -43,7 +43,7 @@ const SkillItem = ({ index, skill, career, specialization, xp, checkedCareerSkil
             <View className='flex flex-row w-[60%] justify-start items-center'>
                 <Text className='text-white text-sm font-[Elektra] capitalize w-[68%]'>{skill.name} ({skill.characteristic.name.substring(0, 3)})</Text>
                 <Text className='text-white text-xl font-[Elektra] pl-[1vw] pr-[2vw] pt-1'>{level}</Text>
-                {(career && career.skills.includes(skill.name) || specialization && specialization.skills.includes(skill.name)) && <Ionicons name='checkmark-circle-outline' color="white" size={18} />}
+                {(skill.career) && <Ionicons name='checkmark-circle-outline' color="white" size={18} />}
             </View>
             <View className='flex flex-row w-[40%] justify-between items-center'>
                 <Button title='-' className='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
