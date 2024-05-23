@@ -4,26 +4,25 @@ import Button from '@/components/form/Button';
 
 interface CharacteristicItemProps {
     characteristic: Characteristic;
+    setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
     species: Species | null;
     index: number;
-    xp: number;
-    setXp: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const CharacteristicItem = ({ characteristic, species, index, xp, setXp }: CharacteristicItemProps) => {
+const CharacteristicItem = ({ characteristic, species, index, setCharacteristics }: CharacteristicItemProps) => {
 
     const [level, setLevel] = React.useState(characteristic.level);
 
     function increaseLevel() {
         setLevel(level + 1);
         characteristic.level += 1;
-        setXp(xp - (characteristic.level * 10));
+        setCharacteristics(prev => [...prev]);
     }
 
     function decreaseLevel() {
-        setXp(xp + (characteristic.level * 10));
         setLevel(level - 1);
         characteristic.level -= 1;
+        setCharacteristics(prev => [...prev]);
     }
 
     return (

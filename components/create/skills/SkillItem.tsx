@@ -10,32 +10,24 @@ interface SkillItemProps {
     checkedCareerSkills: { [key: string]: boolean };
     checkedSpecializationSkills: { [key: string]: boolean };
     index: number;
-    xp: number;
-    setXp: React.Dispatch<React.SetStateAction<number>>;
+    skills: Skill[];
+    setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
 }
 
-const SkillItem = ({ index, skill, career, specialization, xp, checkedCareerSkills, checkedSpecializationSkills, setXp }: SkillItemProps) => {
+const SkillItem = ({ index, skill, career, specialization, checkedCareerSkills, checkedSpecializationSkills, skills, setSkills }: SkillItemProps) => {
 
     const [level, setLevel] = React.useState(skill.level);
 
     function increaseLevel() {
         setLevel(level + 1);
         skill.level += 1;
-        if (career && career.skills.includes(skill.name)) {
-            setXp(xp - (skill.level * 5));
-            return
-        }
-        setXp((xp - 5) - (skill.level * 5));
+        setSkills(prev => [...prev]);
     }
 
     function decreaseLevel() {
-        if (career && career.skills.includes(skill.name)) {
-            setXp(xp + (skill.level * 5));
-        } else {
-            setXp((xp + 5) + (skill.level * 5));
-        }
         setLevel(level - 1);
         skill.level -= 1;
+        setSkills(prev => [...prev]);
     }
 
     return (

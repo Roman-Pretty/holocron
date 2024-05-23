@@ -10,8 +10,6 @@ interface SkillsProps {
     specialization: Specialization | null;
     checkedCareerSkills: { [key: string]: boolean };
     checkedSpecializationSkills: { [key: string]: boolean };
-    xp: number;
-    setXp: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Skills = ({ skills, setSkills, career, specialization, checkedCareerSkills, checkedSpecializationSkills, xp, setXp }: SkillsProps) => {
@@ -54,12 +52,12 @@ const Skills = ({ skills, setSkills, career, specialization, checkedCareerSkills
                     return (
                         <SkillItem
                             skill={item}
+                            skills={skills}
+                            setSkills={setSkills}
                             career={career}
                             specialization={specialization}
                             checkedCareerSkills={checkedCareerSkills}
                             checkedSpecializationSkills={checkedSpecializationSkills}
-                            xp={xp}
-                            setXp={setXp}
                             index={index}
                         />
                     );

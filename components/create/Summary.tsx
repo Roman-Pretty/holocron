@@ -7,9 +7,9 @@ interface SummaryProps {
   name: string;
   homeworld: string;
   description: string;
-  species: Species;
-  career: Career;
-  specialization: Specialization;
+  species: Species | null;
+  career: Career | null;
+  specialization: Specialization | null;
   characteristics: Characteristic[];
   skills: Skill[];
   portrait: ImageSourcePropType;
@@ -21,7 +21,7 @@ const Summary = ({ name, homeworld, description, species, career, specialization
       <View className='w-full rounded-xl bg-slate-700 items-center py-[2vh] relative'>
         <View className={`w-[16vw] h-[16vw] overflow-hidden rounded-full  border-2 border-slate-800 absolute top-2 right-2 rotate-12`}>
           <Image
-            source={career.image}
+            source={career?.image}
             resizeMode='contain'
             style={{ width: '100%', height: '100%' }}
           />
@@ -43,7 +43,7 @@ const Summary = ({ name, homeworld, description, species, career, specialization
         <View className='w-full flex flex-row justify-evenly pt-[2vh]'>
           <View className='flex flex-row items-center justify-center w-[20vw] overflow-hidden'>
             <Ionicons name='footsteps' size={16} color='white' />
-            <Text className='text-white font-[Elektra] text-xs pl-[1vw]'>{species.species}</Text>
+            <Text className='text-white font-[Elektra] text-xs pl-[1vw]'>{species?.species}</Text>
           </View>
           <View className='flex flex-row items-center justify-center w-[40vw] overflow-hidden'>
             <Ionicons name='planet' size={16} color='white' />
@@ -51,14 +51,14 @@ const Summary = ({ name, homeworld, description, species, career, specialization
           </View>
           <View className='flex flex-row items-center justify-center w-[20vw] overflow-hidden'>
             <Ionicons name='shield-half-outline' size={16} color='white' />
-            <Text className='text-white font-[Elektra] text-xs pl-[1vw]'>{specialization.name}</Text>
+            <Text className='text-white font-[Elektra] text-xs pl-[1vw]'>{specialization?.name}</Text>
           </View>
         </View>
       </View>
       <Text className='text-slate-400 font-[Elektra] text-lg pt-[4vh] pb-[1vh]'>Characteristics</Text>
       <View className='w-full flex flex-row flex-wrap items-center justify-evenly'>
         {characteristics.map((characteristic, index) => (
-          <View className='items-center'>
+          <View key={index} className='items-center'>
             <View className='w-[14vw] h-[14vw] rounded-full bg-slate-700 border-slate-600 flex justify-center items-center border-2'>
               <Text className='font-[Elektra] text-3xl text-white'>{characteristic.level}</Text>
             </View>

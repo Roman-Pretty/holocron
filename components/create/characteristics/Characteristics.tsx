@@ -6,11 +6,9 @@ interface CharacteristicsProps {
     characteristics: Characteristic[];
     setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
     species: Species | null;
-    xp: number;
-    setXp: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Characteristics = ({ characteristics, setCharacteristics, species, xp, setXp }: CharacteristicsProps) => {
+const Characteristics = ({ characteristics, setCharacteristics, species}: CharacteristicsProps) => {
 
 
     return (
@@ -18,7 +16,7 @@ const Characteristics = ({ characteristics, setCharacteristics, species, xp, set
             data={characteristics}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => (
-                <CharacteristicItem index={index} characteristic={item} species={species} xp={xp} setXp={setXp} />
+                <CharacteristicItem index={index} setCharacteristics={setCharacteristics} characteristic={item} species={species} />
             )}
         />
     );

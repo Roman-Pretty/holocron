@@ -13,8 +13,6 @@ interface FreeSkillsProps {
     checkedSpecializationSkills: { [key: string]: boolean };
     setCheckedSpecializationSkills: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
     skills: Skill[];
-    xp: number;
-    setXP: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const FreeSkills = ({
@@ -26,8 +24,6 @@ const FreeSkills = ({
     checkedSpecializationSkills,
     setCheckedSpecializationSkills,
     skills,
-    xp,
-    setXP
 }: FreeSkillsProps) => {
 
     const maxCareerSkills = species && species.species === 'Droid' ? 6 : selectedCareer && selectedCareer.forceSensitive ? 3 : 4;
