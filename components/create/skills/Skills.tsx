@@ -10,9 +10,10 @@ interface SkillsProps {
     specialization: Specialization | null;
     checkedCareerSkills: { [key: string]: boolean };
     checkedSpecializationSkills: { [key: string]: boolean };
+    species: Species | null;
 }
 
-const Skills = ({ skills, setSkills, career, specialization, checkedCareerSkills, checkedSpecializationSkills, xp, setXp }: SkillsProps) => {
+const Skills = ({ species, skills, setSkills, career, specialization, checkedCareerSkills, checkedSpecializationSkills, xp, setXp }: SkillsProps) => {
     // Function to add title elements to the skills array
     const skillsWithTitles = (skills) => {
         const updatedSkills = [...skills];
@@ -59,6 +60,7 @@ const Skills = ({ skills, setSkills, career, specialization, checkedCareerSkills
                             checkedCareerSkills={checkedCareerSkills}
                             checkedSpecializationSkills={checkedSpecializationSkills}
                             index={index}
+                            species={species}
                         />
                     );
                 }}

@@ -8,7 +8,8 @@ export default [
         strainThreshold: 10,
         startingXP: 95,
         specialAbilities: [{ name: 'Small Stature', desc: 'Aleena are Silhouette 0.' }],
-        speciesBonus: 'Aleena begin the game with one rank in Coordination and Durable 1.'
+        speciesBonus: 'Aleena begin the game with one rank in Coordination and Durable 1.',
+        bonusSkills: ['Coordination'],
     },
     {
         species: 'Anx',
@@ -30,7 +31,8 @@ export default [
         strainThreshold: 8,
         startingXP: 90,
         specialAbilities: [{ name: 'Underwater Breathing', desc: 'Aqualish can breathe underwater and on land.' }, {name: 'Environmental Conditions', desc: 'Aqualish may remove a setback die imposed due to environmental conditions.'}],
-        speciesBonus: 'Aqualish start with 1 point in both Brawl and Resilience.'
+        speciesBonus: 'Aqualish start with 1 point in both Brawl and Resilience.',
+        bonusSkills: ['Brawl', 'Resilience']
     },
     {
         species: 'Arcona',
@@ -41,7 +43,8 @@ export default [
         strainThreshold: 10,
         startingXP: 100,
         specialAbilities: [{ name: 'Environment', desc: 'Arcona may remove any setback die imposed due to arid or hot environmental conditions.' }, { name: 'Mood Readers.', desc: 'Arcona add one advantage to any Charm or Negotiation checks they make.' }],
-        speciesBonus: 'Arcona begin the game with one rank in Vigilance.'
+        speciesBonus: 'Arcona begin the game with one rank in Vigilance.',
+        bonusSkills: ['Vigilance']
     },
     {
         species: 'Arkanian',
@@ -52,7 +55,8 @@ export default [
         strainThreshold: 10,
         startingXP: 100,
         specialAbilities: [{ name: 'Dark Vision', desc: 'Arkanians may remove up to two setback die due to dark conditions.' }],
-        speciesBonus: 'Arkanians start with 1 skill in Medicine'
+        speciesBonus: 'Arkanians start with 1 skill in Medicine',
+        bonusSkills: ['Medicine']
     },
     {
         species: 'Balosar',
@@ -63,7 +67,8 @@ export default [
         strainThreshold: 10,
         startingXP: 100,
         specialAbilities: [{ name: 'Antennapalps', desc: 'Balosar add two advantage automatically to all Vigilance checks' }],
-        speciesBonus: 'Balosar start with 1 rank in Streetwise'
+        speciesBonus: 'Balosar start with 1 rank in Streetwise',
+        bonusSkills: ['Streetwise']
     },
     {
         species: 'Bardottan',
@@ -74,7 +79,8 @@ export default [
         strainThreshold: 10,
         startingXP: 105,
         specialAbilities: [{name: 'None', desc: 'Bardottans have no special abilities.'}],
-        speciesBonus: 'Bardottans start with one rank in Lore.'
+        speciesBonus: 'Bardottans start with one rank in Lore.',
+        bonusSkills: ['Lore']
     },
     {
         species: 'Besalisk',
@@ -85,7 +91,8 @@ export default [
         strainThreshold: 7,
         startingXP: 85,
         specialAbilities: [{ name: 'Additional Limbs', desc: 'Besalisks have four arms and gain an additional free maneuver per turn. They still may not perform more than two maneuvers per turn, however.' }],
-        speciesBonus: 'Besalisks start with one rank in Resilience.'
+        speciesBonus: 'Besalisks start with one rank in Resilience.',
+        bonusSkills: ['Resilience']
     },
     {
         species: 'Bith',
@@ -96,7 +103,8 @@ export default [
         strainThreshold: 10,
         startingXP: 100,
         specialAbilities: [{ name: 'Sensitive Hearing', desc: 'Bith add one advantage to all hearing-based Perception checks they make.' }, { name: 'Sensitive Hearing', desc: 'Bith suffer doubled strain from loud noises.' }],
-        speciesBonus: 'Bith start with one rank in Perception.'
+        speciesBonus: 'Bith start with one rank in Perception.',
+        bonusSkills: ['Perception']
     },
     {
         species: 'Bothan',
@@ -107,7 +115,8 @@ export default [
         strainThreshold: 11,
         startingXP: 100,
         specialAbilities: [{ name: 'None', desc: 'Bothans have no special abilities' }],
-        speciesBonus: 'Bothans start with one rank in Streetwise, and Convincing Demeanor 1.'
+        speciesBonus: 'Bothans start with one rank in Streetwise, and Convincing Demeanor 1.',
+        bonusSkills: ['Streetwise']
     },
     {
         species: 'Caamasi',
@@ -134,7 +143,8 @@ export default [
         strainThreshold: 13,
         startingXP: 90,
         specialAbilities: [{ name: 'None', desc: 'Cereans have no special abilities.' }],
-        speciesBonus: 'Cereans start with one rank in Vigilance, and may treat all Knowledge Skills as Career Skills.'
+        speciesBonus: 'Cereans start with one rank in Vigilance, and may treat all Knowledge Skills as Career Skills.',
+        bonusSkills: ['Vigilance']
     },
     {
         species: 'Chadra-Fan',
@@ -145,7 +155,8 @@ export default [
         strainThreshold: 11,
         startingXP: 90,
         specialAbilities: [{ name: 'Acute Senses', desc: 'Chadra-Fan may remove up to two setback die for any perception check they make.' }, { name: 'Reduced Silouette', desc: 'Chadra-Fan are Silhouette 0.' }],
-        speciesBonus: 'Chadra-Fan start with one rank in Mechanics.'
+        speciesBonus: 'Chadra-Fan start with one rank in Mechanics.',
+        bonusSkills: ['Mechanics']
     },
     {
         species: 'Chagrian',
@@ -156,7 +167,8 @@ export default [
         strainThreshold: 10,
         startingXP: 90,
         specialAbilities: [{ name: 'Amphibious', desc: 'Chagrians can breathe underwater without penalty and never suffer movement penalties for traveling through water.' }],
-        speciesBonus: 'Chagrians start with Knowledge Specialization 1 and one rank in Resilience.'
+        speciesBonus: 'Chagrians start with Knowledge Specialization 1 and one rank in Resilience.',
+        bonusSkills: ['Resilience']
     },
     {
         species: 'Chevin',
@@ -167,7 +179,8 @@ export default [
         strainThreshold: 11,
         startingXP: 80,
         specialAbilities: [{ name: 'Advanced Olfaction', desc: 'Chevin add 1 boost die to Perception checks involving the sense of smell.' }],
-        speciesBonus: 'Chevin start with Durable 1 and one rank in Negotiation.'
+        speciesBonus: 'Chevin start with Durable 1 and one rank in Negotiation.',
+        bonusSkills: ['Negotiation']
     },
     {
         species: 'Chiss',
@@ -178,7 +191,8 @@ export default [
         strainThreshold: 10,
         startingXP: 100,
         specialAbilities: [{ name: 'Infravision', desc: 'Chiss have adapted to be able to see in both the infrared and normal visual spectra. This enables Chiss characters to remove up to 1 setback die added to checks by lighting conditions.' }],
-        speciesBonus: 'Chiss start with one rank in Cool.'
+        speciesBonus: 'Chiss start with one rank in Cool.',
+        bonusSkills: ['Cool']
     },
     {
         species: 'Clawdite',
@@ -189,7 +203,8 @@ export default [
         strainThreshold: 9,
         startingXP: 95,
         specialAbilities: [{ name: 'Changeling', desc: 'As an action, may suffer 3 strain and make an Average (◆◆) Resilience check to change appearance to match a previously-observed silhouette 1 character. Observer must make an opposed Perception vs. Deception check to detect that something is amiss.' }],
-        speciesBonus: 'Clawdites start with Indistinguishable 1 and one rank in Resilience.'
+        speciesBonus: 'Clawdites start with Indistinguishable 1 and one rank in Resilience.',
+        bonusSkills: ['Resilience']
     },
     {
         species: 'Clone',
@@ -200,7 +215,8 @@ export default [
         strainThreshold: 11,
         startingXP: 100,
         specialAbilities: [{ name: 'None', desc: 'Clones have no special abilities.' }],
-        speciesBonus: 'Clones start with Physical Training 1 and one rank in both Warfare and Resilience.'
+        speciesBonus: 'Clones start with Physical Training 1 and one rank in both Warfare and Resilience.',
+        bonusSkills: ['Warfare', 'Resilience']
     },
     {
         species: 'Corellian Human',
@@ -211,7 +227,12 @@ export default [
         strainThreshold: 10,
         startingXP: 110,
         specialAbilities: [{ name: 'None', desc: 'Corellians have no special abilities.' }],
-        speciesBonus: "Corellian Humans may start with one rank in Piloting (Space) or Piloting (Planetary)."
+        speciesBonus: "Corellian Humans may start with one rank in Piloting (Space) or Piloting (Planetary).",
+        hasOptions: true,
+        options: {
+            type: 'skill',
+            options: ['Piloting (Space)', 'Piloting (Planetary)']
+        }
     },
     {
         species: 'Cosian',
@@ -222,7 +243,8 @@ export default [
         strainThreshold: 11,
         startingXP: 95,
         specialAbilities: [{ name: 'Strong Backed', desc: 'Cosians gain +5 to their encumbrance threshold.' }],
-        speciesBonus: 'Cosians start with one rank in Lore.'
+        speciesBonus: 'Cosians start with one rank in Lore.',
+        bonusSkills: ['Lore']
     },
     {
         species: 'Dathomirian',
@@ -233,7 +255,8 @@ export default [
         strainThreshold: 11,
         startingXP: 100,
         specialAbilities: [{ name: 'None', desc: 'Dathomirians have no special abilities.' }],
-        speciesBonus: 'Dathominians start with Outdoorsman 1 and one rank in both Coercion and Survival.'
+        speciesBonus: 'Dathominians start with Outdoorsman 1 and one rank in both Coercion and Survival.',
+        bonusSkills: ['Coercion', 'Survival']
     },
     {
         species: 'Devaronian',
@@ -244,7 +267,12 @@ export default [
         strainThreshold: 10,
         startingXP: 95,
         specialAbilities: [{ name: 'Resillient Metabolism', desc: 'Devaronians add 1 automatic success to all Resilience checks.' }],
-        speciesBonus: 'Devaronians may start with one rank in Deception or Survival.'
+        speciesBonus: 'Devaronians may start with one rank in Deception or Survival.',
+        hasOptions: true,
+        options: {
+            type: 'skill',
+            options: ['Deception', 'Survival']
+        }
     }
     
 ];

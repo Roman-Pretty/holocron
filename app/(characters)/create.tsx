@@ -80,62 +80,65 @@ const create = () => {
     )
 
     useEffect(() => {
-        const startingXP = species ? species.startingXP : 0;
-        let xp = startingXP;
-        if (species) {
-            for (const characteristic of characteristics) {
-                switch (characteristic.name) {
-                    case 'brawn':
-                        for (let i = species.characteristics[0]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
-                    case 'agility':
-                        for (let i = species.characteristics[1]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
-                    case 'intellect':
-                        for (let i = species.characteristics[2]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
-                    case 'cunning':
-                        for (let i = species.characteristics[3]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
-                    case 'willpower':
-                        for (let i = species.characteristics[4]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
-                    case 'presence':
-                        for (let i = species.characteristics[5]+1; i <= characteristic.level; i++) {
-                            xp -= i * 10;
-                        }
-                        break;
+        function calculateXP() {
+            const startingXP = species ? species.startingXP : 0;
+            let xp = startingXP;
+            if (species) {
+                for (const characteristic of characteristics) {
+                    switch (characteristic.name) {
+                        case 'brawn':
+                            for (let i = species.characteristics[0] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                        case 'agility':
+                            for (let i = species.characteristics[1] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                        case 'intellect':
+                            for (let i = species.characteristics[2] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                        case 'cunning':
+                            for (let i = species.characteristics[3] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                        case 'willpower':
+                            for (let i = species.characteristics[4] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                        case 'presence':
+                            for (let i = species.characteristics[5] + 1; i <= characteristic.level; i++) {
+                                xp -= i * 10;
+                            }
+                            break;
+                    }
                 }
-            }
-            for (const skill of skills) {
-                if (skill.level > 0) {
-                    let checked = (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0);
-                    if (skill.career) {
-                        for (let i = checked + 1; i <= skill.level; i++) {
-                            xp -= i * 5;
-                        }
-                    } else {
-                        for (let i = checked + 1; i <= skill.level; i++) {
-                            xp -= ((i * 5)+5);
+                for (const skill of skills) {
+                    if (skill.level > 0) {
+                        let checked = (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0) + (species.bonusSkills && species.bonusSkills.includes(skill.name) ? 1 : 0);
+                        if (skill.career) {
+                            for (let i = checked + 1; i <= skill.level; i++) {
+                                xp -= i * 5;
+                            }
+                        } else {
+                            for (let i = checked + 1; i <= skill.level; i++) {
+                                xp -= ((i * 5) + 5);
+                            }
                         }
                     }
                 }
+
+
             }
-
-
+            return xp;
         }
-        setExperience(xp);
-    }, [skills, species, characteristics, checkedCareerSkills, checkedSpecializationSkills])
+        setExperience(calculateXP());
+    }, [skills, characteristics, checkedCareerSkills, checkedSpecializationSkills])
 
     useEffect(() => {
         for (const skill of skills) {
@@ -154,6 +157,7 @@ const create = () => {
                         skill.career = false;
                     }
         }
+        setSkills([...skills]);
 
     }, [career, specialization, species])
 
@@ -207,6 +211,19 @@ const create = () => {
         setCheckedSpecializationSkills({});
     }, [specialization])
 
+    function changeSpecies(s: Species) {
+        skills.forEach(skill => {
+            if (species && species.bonusSkills && species.bonusSkills.includes(skill.name)) {
+                skill.level -= 1;
+            }
+            if (s && s.bonusSkills && s.bonusSkills.includes(skill.name)) {
+                skill.level += 1;
+            }
+        })
+        setSpecies(s);
+    }
+
+
     return (
         <View className='flex-1 bg-slate-900 p-6'>
             <View className=''>
@@ -235,13 +252,13 @@ const create = () => {
                     homeworld={homeworld} setHomeworld={setHomeworld}
                     description={description} setDescription={setDescription}
                 />}
-                {currentIndex === 1 && <Species selectedSpecies={species} setSelectedSpecies={setSpecies} />}
+                {currentIndex === 1 && <Species selectedSpecies={species} setSelectedSpecies={changeSpecies} />}
                 {currentIndex === 2 && <Career selectedCareer={career} setSelectedCareer={setCareer} />}
                 {currentIndex === 3 && <Specialization selectedCareer={career} selectedSpecialization={specialization} setSelectedSpecialization={setSpecialization} />}
                 {currentIndex === 4 && <FreeSkills skills={skills} species={species} selectedCareer={career} selectedSpecialization={specialization} checkedCareerSkills={checkedCareerSkills}
                     setCheckedCareerSkills={setCheckedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} setCheckedSpecializationSkills={setCheckedSpecializationSkills} />}
                 {currentIndex === 5 && <Characteristics characteristics={characteristics} setCharacteristics={setCharacteristics} species={species} />}
-                {currentIndex === 6 && <Skills skills={skills} setSkills={setSkills} career={career} specialization={specialization}
+                {currentIndex === 6 && <Skills species={species} skills={skills} setSkills={setSkills} career={career} specialization={specialization}
                     checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
                 {currentIndex === 7 && <Summary name={name} homeworld={homeworld} description={description} species={species} career={career} specialization={specialization} characteristics={characteristics} skills={skills} portrait={portrait} />}
             </View>

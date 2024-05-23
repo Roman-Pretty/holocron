@@ -14,7 +14,7 @@ const Species = ({selectedSpecies, setSelectedSpecies}: SpeciesProps) => {
             data={SpeciesData}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-                <SpeciesItem species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
+                <SpeciesItem  species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
             )}
             windowSize={3}
         />

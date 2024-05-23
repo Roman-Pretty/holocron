@@ -1,8 +1,8 @@
-import React from 'react';
-import { Image, Text, View, Modal, TouchableOpacity } from 'react-native';
-import SpeciesCharacteristic from './SpeciesCharacteristic';
-import { Ionicons } from '@expo/vector-icons';
 import Button from '@/components/form/Button';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Image, Modal, Text, TouchableOpacity, View } from 'react-native';
+import SpeciesCharacteristic from './SpeciesCharacteristic';
 
 interface SpeciesItemProps {
     species: Species;
@@ -45,12 +45,26 @@ const SpeciesItem = ({ species, selectedSpecies, setSelectedSpecies }: SpeciesIt
                     <SpeciesCharacteristic title='Willpower' level={species.characteristics[4]} />
                     <SpeciesCharacteristic title='Presence' level={species.characteristics[5]} />
                 </View>
+                <View className='mt-[2vh] flex-row items-start justify-between'>
+                    <View className='flex-row items-center'>
+                        <Ionicons size={16} name='heart-outline' color="white" />
+                        <Text className='text-white text-sm pl-1'><Text className=' font-bold'>WT:</Text> {species.woundThreshold} + Brawn</Text>
+                    </View>
+                    <View className='flex-row items-center'>
+                        <Ionicons size={16} name='flash-outline' color="white" />
+                        <Text className='text-white text-sm pl-1'><Text className=' font-bold'>ST:</Text> {species.strainThreshold} + Willpower</Text>
+                    </View>
+                    <View className='flex-row items-center'>
+                        <Ionicons size={16} name='star-outline' color="white" />
+                        <Text className='text-white text-sm pl-1'><Text className=' font-bold'>XP:</Text> {species.startingXP}</Text>
+                    </View>
+                </View>
                 <View className='mt-[2vh] flex-row items-start'>
                     <Ionicons size={16} name='information-circle-outline' color="white" />
                     <Text className='text-white text-sm pl-2'>{species.speciesBonus}</Text>
                 </View>
                 <View className='mt-[2vh] flex-row items-start'>
-                    <Ionicons size={16} name='shield-half-outline' color="white" />
+                    <Ionicons size={16} name='footsteps-outline' color="white" />
                     <View>
 
                         {species.specialAbilities.map((ability, index) => (
@@ -83,9 +97,9 @@ const SpeciesItem = ({ species, selectedSpecies, setSelectedSpecies }: SpeciesIt
                         </View>
                         <Text className='text-white pb-[4vh]'>{species.speciesBonus}</Text>
                         <View className='w-full flex flex-row justify-evenly'>
-                            {species.options?.type === "skill"                                
+                            {species.options?.type === "skill"
                                 && species.options?.options.map((option, index) => (
-                                    <Button className='mx-[0.5vw]' key={index} title={option} onPress={() => setModalVisible(!modalVisible)} />
+                                    <Button className='mx-[0.5vw]' key={index} title={option} onPress={() => {setModalVisible(!modalVisible)}} />
                                 ))}
                         </View>
                     </View>

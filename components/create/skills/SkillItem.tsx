@@ -12,9 +12,10 @@ interface SkillItemProps {
     index: number;
     skills: Skill[];
     setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
+    species: Species | null;
 }
 
-const SkillItem = ({ index, skill, career, specialization, checkedCareerSkills, checkedSpecializationSkills, skills, setSkills }: SkillItemProps) => {
+const SkillItem = ({ species, index, skill, career, specialization, checkedCareerSkills, checkedSpecializationSkills, skills, setSkills }: SkillItemProps) => {
 
     const [level, setLevel] = React.useState(skill.level);
 
@@ -31,7 +32,7 @@ const SkillItem = ({ index, skill, career, specialization, checkedCareerSkills, 
     }
 
     return (
-        <View className={`${index % 2 === 1 ? 'bg-slate-800 ' : 'bg-slate-700'} px-[2vw] py-[2vh] flex-row`}>
+        <View className={`${index % 2 === 1 ? 'bg-slate-800 ' : 'bg-slate-700'} px-[2vw] py-[1vh] flex-row`}>
             <View className='flex flex-row w-[60%] justify-start items-center'>
                 <Text className='text-white text-sm font-[Elektra] capitalize w-[68%]'>{skill.name} ({skill.characteristic.name.substring(0, 3)})</Text>
                 <Text className='text-white text-xl font-[Elektra] pl-[1vw] pr-[2vw] pt-1'>{level}</Text>
@@ -40,7 +41,7 @@ const SkillItem = ({ index, skill, career, specialization, checkedCareerSkills, 
             <View className='flex flex-row w-[40%] justify-between items-center'>
                 <Button title='-' className='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
                 disabledClassName='border-2 border-slate-600'
-                    disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name]) && skill.level <= 1 ? true : skill.level <= 0 ? true : false}
+                    disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name] || (species && species.bonusSkills && species.bonusSkills.includes(skill.name))) && skill.level <= (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0) + (species && species.bonusSkills && species.bonusSkills.includes(skill.name) ? 1 : 0) ? true : skill.level <= 0 ? true : false}
                 />
                 <Button title='+' className='ml-[1vw] border-slate-400 bg-slate-500' onPress={increaseLevel}
                 disabledClassName='border-2 border-slate-600'
