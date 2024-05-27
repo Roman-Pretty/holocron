@@ -8,9 +8,10 @@ interface SpeciesItemProps {
     species: Species;
     selectedSpecies: Species | null;
     setSelectedSpecies: (species: Species) => void;
+    setSelectedBonusSkill: (skill: string) => void;
 }
 
-const SpeciesItem = ({ species, selectedSpecies, setSelectedSpecies }: SpeciesItemProps) => {
+const SpeciesItem = ({ setSelectedBonusSkill, species, selectedSpecies, setSelectedSpecies }: SpeciesItemProps) => {
 
     const [modalVisible, setModalVisible] = React.useState(false);
 
@@ -99,7 +100,7 @@ const SpeciesItem = ({ species, selectedSpecies, setSelectedSpecies }: SpeciesIt
                         <View className='w-full flex flex-row justify-evenly'>
                             {species.options?.type === "skill"
                                 && species.options?.options.map((option, index) => (
-                                    <Button className='mx-[0.5vw]' key={index} title={option} onPress={() => {setModalVisible(!modalVisible)}} />
+                                    <Button className='mx-[0.5vw]' key={index} title={option} onPress={() => {setSelectedBonusSkill(option); setModalVisible(!modalVisible)}} />
                                 ))}
                         </View>
                     </View>

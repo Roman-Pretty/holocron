@@ -1,11 +1,13 @@
-interface Character {
+import { ImageSourcePropType } from 'react-native';
+
+export interface Character {
     key: number;
     data: {
         name: string;
         homeworld: string;
         description: string;
-        imageId: number;
-        species: string;
+        image: ImageSourcePropType;
+        species: Species;
         career: string;
         specializations: string[];
         exp: number;
@@ -19,18 +21,7 @@ interface Character {
             willpower: number;
             presence: number;
         };
-        skills: {
-            generalSkills: string[];
-            combatSkills: string[];
-            knowledgeSkills: string[];
-            socialSkills: string[];
-        };
-        overview: {
-            duty: string;
-            morality: string;
-            obligation: string;
-            credits: number;
-        };
+        skills: Skill[];
         wound: {
             current: number;
             threshold: number;
@@ -47,7 +38,7 @@ interface Character {
     };
 };
 
-interface Species {
+export interface Species {
         species: string;
         image: any;
         desc: string;
@@ -63,7 +54,7 @@ interface Species {
         options?: { type: string; options: string[]; };
 }
 
-interface Career {
+export interface Career {
     name: string;
     image: any;
     desc: string;
@@ -73,19 +64,19 @@ interface Career {
     forceSensitive: boolean;
 }
 
-interface Specialization {
+export interface Specialization {
     name: string;
     desc: string;
     skills: string[];
 }
 
-interface Characteristic {
+export interface Characteristic {
     name: string;
     level: number;
     desc: string;
 }
 
-interface Skill {
+export interface Skill {
     name: string;
     level: number;
     characteristic: Characteristic;

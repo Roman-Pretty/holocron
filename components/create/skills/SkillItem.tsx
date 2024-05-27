@@ -13,9 +13,10 @@ interface SkillItemProps {
     skills: Skill[];
     setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
     species: Species | null;
+    selectedBonusSkill: string | null;
 }
 
-const SkillItem = ({ species, index, skill, career, specialization, checkedCareerSkills, checkedSpecializationSkills, skills, setSkills }: SkillItemProps) => {
+const SkillItem = ({ selectedBonusSkill, species, index, skill, career, specialization, checkedCareerSkills, checkedSpecializationSkills, skills, setSkills }: SkillItemProps) => {
 
     const [level, setLevel] = React.useState(skill.level);
 
@@ -41,7 +42,7 @@ const SkillItem = ({ species, index, skill, career, specialization, checkedCaree
             <View className='flex flex-row w-[40%] justify-between items-center'>
                 <Button title='-' className='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
                 disabledClassName='border-2 border-slate-600'
-                    disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name] || (species && species.bonusSkills && species.bonusSkills.includes(skill.name))) && skill.level <= (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0) + (species && species.bonusSkills && species.bonusSkills.includes(skill.name) ? 1 : 0) ? true : skill.level <= 0 ? true : false}
+                    disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name] || (species && species.bonusSkills && species.bonusSkills.includes(skill.name)) || (selectedBonusSkill === skill.name)) && skill.level <= (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0) + (species && species.bonusSkills && species.bonusSkills.includes(skill.name) ? 1 : 0) + ((selectedBonusSkill === skill.name) ? 1 : 0) ? true : skill.level <= 0 ? true : false}
                 />
                 <Button title='+' className='ml-[1vw] border-slate-400 bg-slate-500' onPress={increaseLevel}
                 disabledClassName='border-2 border-slate-600'

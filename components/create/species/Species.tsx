@@ -6,15 +6,16 @@ import SpeciesItem from './SpeciesItem'
 interface SpeciesProps {
     selectedSpecies: Species | null;
     setSelectedSpecies: (species: Species) => void;
+    setSelectedBonusSkill: (skill: string) => void;
 }
 
-const Species = ({selectedSpecies, setSelectedSpecies}: SpeciesProps) => {
+const Species = ({selectedSpecies, setSelectedSpecies, setSelectedBonusSkill}: SpeciesProps) => {
     return (
         <FlatList
             data={SpeciesData}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
-                <SpeciesItem  species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
+                <SpeciesItem setSelectedBonusSkill={setSelectedBonusSkill} species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
             )}
             windowSize={3}
         />

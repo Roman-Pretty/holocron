@@ -106,6 +106,7 @@ const PortraitInput = ({ portrait, setPortrait }: PortraitInputProps) => {
                             numColumns={3}
                             horizontal={false}
                             showsHorizontalScrollIndicator={false}
+                            showsVerticalScrollIndicator={false}
                         />
 
                     </View>
