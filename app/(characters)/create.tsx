@@ -2,6 +2,8 @@ import { BACKGROUND } from "@/app/_layout";
 import Header from "@/components/create/Header";
 import PageContent from "@/components/create/PageContent";
 import Button from "@/components/form/Button";
+import CareerData from "@/constants/CareerData";
+import SpeciesData from "@/constants/SpeciesData";
 import {
   AGILITY,
   BRAWN,
@@ -16,6 +18,7 @@ import {
   Skill,
   Specialization,
   Species,
+  Character
 } from "@/constants/Types";
 import { saveCharacter } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
@@ -309,20 +312,36 @@ const CreateCharacter = () => {
   };
 
   const onSavePressed = () => {
-    const newCharacter = {
-      name,
-      description,
-      homeworld,
-      species,
-      career,
-      specialization,
-      characteristics,
-      skills,
-      experience,
-      portrait,
+    const newCharacter: Character = {
+      key: 0,
+      data: {
+        name,
+        homeworld,
+        description,
+        species: species ? species : SpeciesData[0],
+        exp: experience ? experience : 0,
+        career: career ? career : CareerData[0],
+        specializations: specialization ? [specialization.name] : [],
+        skills,
+        characteristics: {
+          brawn: characteristics[0].level,
+          agility: characteristics[1].level,
+          intellect: characteristics[2].level,
+          cunning: characteristics[3].level,
+          willpower: characteristics[4].level,
+          presence: characteristics[5].level,
+        },
+        image: portrait,
+
+        credits: 0,
+        inventory: [],
+        wound: { current: 0, threshold: species ? species.woundThreshold+species.characteristics[0] : 0 },
+        strain: { current: 0, threshold: species ? species.strainThreshold+species.characteristics[4] : 0 },
+        defense: { melee: 0, ranged: 0, soak: 0}
+      },
     };
     saveCharacter(newCharacter);
-    router.push("/");
+    router.replace("/");
   };
 
   return (

@@ -39,7 +39,7 @@ const Summary = ({
 }: SummaryProps) => {
   const screenWidth = Dimensions.get("window").width;
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Text className="text-heading3 font-[Elektra] text-2xl mt-[2vh]">
         Identity Card
       </Text>

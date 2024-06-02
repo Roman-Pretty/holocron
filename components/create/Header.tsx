@@ -62,7 +62,7 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
             }}
           />
         </View>
-        <View className="w-[20vw] pt-2.5 h-full absolute right-0 top-0">
+        <View className="w-[20vw] pt-2.5 h-full absolute right-0 top-0 mr-2">
           {experience !== null && species != null && (
             <Text className="text-heading1 text-right font-[Elektra]">
               XP: {experience}
