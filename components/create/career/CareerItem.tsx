@@ -1,7 +1,7 @@
 import Button from '@/components/form/Button';
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { Image, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
 import { Career } from '@/constants/Types';
@@ -13,6 +13,8 @@ interface SpeciesItemProps {
 }
 
 const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemProps) => {
+    const [loading, setLoading] = useState(true);
+
     return (
         <View className='w-full my-[2vh]'>
             <View className='flex-row items-start'>
@@ -25,10 +27,16 @@ const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemPr
             <View className='bg-heading3 p-3'>
                 <View className='flex flex-row items-center justify-start'>
                     <View className={`w-[28vw] h-[28vw] overflow-hidden rounded-full bg-white border-2 ${selectedCareer === career ? 'border-statblockbackground' : 'border-white'}`}>
+                        {loading && (
+                            <View className='w-full h-full items-center justify-center'>
+                            <ActivityIndicator size="small" color={Colors.global.heading3} />
+                            </View>
+                        )}
                         <Image
                             source={career.image}
                             resizeMode='contain'
                             style={{ width: '100%', height: '100%' }}
+                            onLoad={() => setLoading(false)}
                         />
                     </View>
                     <View>
@@ -55,4 +63,4 @@ const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemPr
     )
 }
 
-export default CareerItem
+export default CareerItem;

@@ -23,11 +23,13 @@ const Skills = ({ selectedBonusSkill, species, skills, setSkills, career, specia
         const updatedSkills = [...skills];
         // Inserting title elements at desired positions
         updatedSkills.splice(0, 0, { type: 'title', text: 'Combat Skills' });
-        updatedSkills.splice(6, 0, { type: 'footer' });
-        updatedSkills.splice(7, 0, { type: 'title', text: 'Knowledge Skills' });
-        updatedSkills.splice(16, 0, { type: 'footer' });
-        updatedSkills.splice(17, 0, { type: 'title', text: 'General Skills' });
-        updatedSkills.splice(40, 0, { type: 'footer' });
+        updatedSkills.splice(7, 0, { type: 'footer' });
+        updatedSkills.splice(8, 0, { type: 'title', text: 'Social Skills' });
+        updatedSkills.splice(14, 0, { type: 'footer' });
+        updatedSkills.splice(15, 0, { type: 'title', text: 'Knowledge Skills' });
+        updatedSkills.splice(23, 0, { type: 'footer' });
+        updatedSkills.splice(24, 0, { type: 'title', text: 'General Skills' });
+        updatedSkills.splice(42, 0, { type: 'footer' });
         return updatedSkills;
     };
 

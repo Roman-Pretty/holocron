@@ -1,7 +1,6 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { Colors } from '@/constants/Colors'
 import TriangleCorner from '@/components/shapes/TriangleCorner'
+import React from 'react'
+import { Text, View } from 'react-native'
 
 const SpeciesCharacteristic = ({ title, level }: { title: string, level: number }) => {
     return (

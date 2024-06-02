@@ -35,7 +35,7 @@ const SpecializationItem = ({ specialization, selectedSpecialization, setSelecte
                     <Text className='text-white text-sm pl-2 max-w-[84vw]'><Text className='font-bold '>Skills:</Text> {specialization.skills.join(', ')}</Text>
                 </View>
                 {selectedSpecialization && selectedSpecialization.name === specialization.name ?
-                    <Button title={`Selected ${specialization.name}`} disabled className='mt-[3vh] border-statblockbackground bg-white border-2' /> :
+                    <Button title={`Selected ${specialization.name}`} disabled className='mt-[3vh] bg-white' /> :
                     <Button title={`Select ${specialization.name}`} onPress={() => setSelectedSpecialization(specialization)} className='mt-[3vh] bg-statblockbackground' />}
             </View>
         </View>
