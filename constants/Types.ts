@@ -8,7 +8,7 @@ export interface Character {
         description: string;
         image: ImageSourcePropType;
         species: Species;
-        career: string;
+        career: Career;
         specializations: string[];
         exp: number;
         credits: number;

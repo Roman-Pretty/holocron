@@ -15,6 +15,7 @@ const Characteristics = ({ characteristics, setCharacteristics, species}: Charac
         <FlatList
             data={characteristics}
             keyExtractor={(item, index) => index.toString()}
+            showsVerticalScrollIndicator={false}
             renderItem={({ item, index }) => (
                 <CharacteristicItem index={index} setCharacteristics={setCharacteristics} characteristic={item} species={species} />
             )}

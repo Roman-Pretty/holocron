@@ -18,6 +18,7 @@ const Species = ({selectedSpecies, setSelectedSpecies, setSelectedBonusSkill}: S
                 <SpeciesItem setSelectedBonusSkill={setSelectedBonusSkill} species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
             )}
             windowSize={3}
+            showsVerticalScrollIndicator={false}
         />
     )
 }

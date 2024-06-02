@@ -8,7 +8,18 @@ const tintColorDark = '#fff';
 
 export const Colors = {
   global: {
-    slate900: '#0f172a'
+    slate900: '#0f172a',
+    heading1: '#876f2f',
+    heading2: '#09839b',
+    heading3: '#831a1f',
+    heading4: '#876f2f',
+    box: '#2f3d4a',
+    boxheading: '#c0bfbe',
+    statblockbackground: '#e6a134',
+    statblockornate: '#826430',
+    statblocktextbackground: '#841b22',
+    statblockthresholdbackground: '#826430',
+    bulletpoint: '#1fa9e1'
   },
   light: {
     text: '#11181C',

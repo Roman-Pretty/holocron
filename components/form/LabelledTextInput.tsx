@@ -1,9 +1,11 @@
 import { View, Text, TextInput } from 'react-native'
 import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
+import TriangleCorner from '../shapes/TriangleCorner';
+import {Colors} from '@/constants/Colors';
 
 interface TextInputProps {
-    
+
     /** Title that will be displayed above the text box.  */
     title: string;
     /** Placeholder text that will be displayed in the text box. */
@@ -20,7 +22,7 @@ interface TextInputProps {
     multiLine?: boolean;
 }
 
-const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconName, multiLine = false}: TextInputProps) => {
+const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconName, multiLine = false }: TextInputProps) => {
 
     function handleTextChange(text: string) {
         if (maxChar && text.length > maxChar) {
@@ -31,24 +33,32 @@ const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconNam
 
     return (
         <>
-            <Text className='text-slate-400 font-[Elektra]'>
-                {title}
-            </Text>
-            <View className={`flex-row rounded-md justify-between p-2 mb-[1.5vh] mt-[1vh] w-full ${!multiLine ? 'h-[4.5vh] items-start' : 'h-[14vh] items-end'} border-2 border-slate-700 bg-slate-900`}>
-            <TextInput
-            className='w-[75%] text-white h-full'
-            placeholderTextColor={'#94a3b8'}
-                onChangeText={handleTextChange}
-                value={text}
-                placeholder={placeholder}
-                multiline={multiLine}
-            />
-            {maxChar && <Text className='text-slate-200 font-semibold pt-0.5'>
-                {text.length}/{maxChar}
-            </Text>}
-            <Ionicons name={iconName as any} size={22} color="#fff" />
+            <View className='flex-row justify-start'>
+                <View className='bg-heading3 w-[40%] pl-2 pt-2'>
+                    <Text className='text-white font-[Elektra]'>
+                        {title}
+                    </Text>
+                </View>
+                <TriangleCorner style={{
+                    transform: [{ rotate: "-90deg"}],
+                    borderTopWidth: '24px', borderRightWidth: '24px', borderTopColor: Colors.global.heading3,
+                }} />
             </View>
-            
+            <View className={`flex-row justify-between p-2 mb-[1.5vh] w-full ${!multiLine ? 'h-[4.5vh] items-start' : 'h-[14vh] items-end'} border-2 border-heading3 bg-white`}>
+                <TextInput
+                    className='w-[75%] text-black h-full'
+                    placeholderTextColor={'#000'}
+                    onChangeText={handleTextChange}
+                    value={text}
+                    placeholder={placeholder}
+                    multiline={multiLine}
+                />
+                {maxChar && <Text className='text-black font-semibold pt-0.5'>
+                    {text.length}/{maxChar}
+                </Text>}
+                <Ionicons name={iconName as any} size={22} color="#000" />
+            </View>
+
         </>
     )
 }

@@ -3,6 +3,9 @@ import Checkbox from 'expo-checkbox';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Career, Skill, Species, Specialization } from '@/constants/Types';
+import { Colors } from '@/constants/Colors';
+import TriangleCorner from '@/components/shapes/TriangleCorner';
 
 interface FreeSkillsProps {
     species: Species | null;
@@ -38,7 +41,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level -= 1;
-                
+
                 }
                 return {
                     ...prevState,
@@ -48,7 +51,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level += 1;
-                   
+
                 }
                 return {
                     ...prevState,
@@ -65,7 +68,7 @@ const FreeSkills = ({
                 const skill = skills.find(skill => skill.name === s);
                 if (skill) {
                     skill.level -= 1;
-                  
+
                 }
                 return {
                     ...prevState,
@@ -87,65 +90,102 @@ const FreeSkills = ({
 
     return (
         <>
-            <Text className='text-white text-center font-[Elektra] text-xl pb-[4vh]'>
+            <Text className='text-box text-center font-[Elektra] text-xl pb-[4vh]'>
                 Selected skills may gain one free level at the start of the game.
             </Text>
 
-            <KeyboardAwareScrollView>
-                <View className='flex flex-row justify-between items-center'>
-                    <Text className='text-slate-200 font-[Elektra] text-xl'>
-                        Career Skills
-                    </Text>
-                    <Text className={`${careerSkillCount >= maxCareerSkills ? 'text-slate-500' : 'text-slate-200'} font-[Elektra] text-xl`}>
-                        {careerSkillCount}/{maxCareerSkills}
-                    </Text>
+            <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
+
+                <View className='w-full mb-[2vh]'>
+                    <View className='bg-box p-4'>
+                        <View className='flex flex-row justify-between items-center pb-[1vh] mb-[1vh] border-b-2 border-statblockbackground'>
+                            <Text className='text-white font-[Elektra] text-xl'>
+                                Career Skills
+                            </Text>
+                            <Text className={`${careerSkillCount >= maxCareerSkills ? 'text-statblockbackground' : 'text-white'} font-[Elektra] text-xl`}>
+                                {careerSkillCount}/{maxCareerSkills}
+                            </Text>
+                        </View>
+
+                        {selectedCareer && selectedCareer.skills.map((skill, index) => {
+
+                            if (skills.find(s => s.name === skill)?.level === 2 && !checkedCareerSkills[skill]) {
+                                return (
+                                    <View key={index} className='flex flex-row items-center'>
+                                        <Ionicons name='ban' color={Colors.global.statblockbackground} size={22} />
+                                        <Text className='text-white text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                                        <Text className='text-white text-lg pl-2 font-[Elektra]'>(Already Max Level)</Text>
+                                    </View>
+                                )
+                            }
+                            return (
+                                <Pressable
+                                    onPress={() => handleCareerCheckboxChange(skill)}
+                                    key={index} className='flex flex-row items-center py-[0.4vh]'>
+                                    <Checkbox
+                                        color={Colors.global.statblockbackground}
+                                        onValueChange={() => handleCareerCheckboxChange(skill)}
+                                        value={checkedCareerSkills[skill] || false}
+                                    />
+                                    <Text className='text-white text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                                </Pressable>)
+                        })}
+                    </View>
+                    <View className='flex-row justify-end'>
+                        <View className='bg-box w-[100%]'>
+                        </View>
+                        <TriangleCorner style={{
+                            transform: [{ rotate: "0deg" }],
+                            borderTopWidth: '28px', borderRightWidth: '28px', borderTopColor: Colors.global.box,
+                        }} />
+                    </View>
                 </View>
 
-                {selectedCareer && selectedCareer.skills.map((skill, index) => {
+                <View className='w-full mb-[2vh]'>
+                    <View className='bg-box p-4'>
+                        <View className='flex flex-row justify-between items-center pb-[1vh] mb-[1vh] border-b-2 border-statblockbackground'>
+                            <Text className='text-slate-200 font-[Elektra] text-xl'>
+                                Specialization Skills
+                            </Text>
+                            <Text className={`${specializationSkillCount >= maxSpecializationSkills ? 'text-statblockbackground' : 'text-white'} font-[Elektra] text-xl`}>
+                                {specializationSkillCount}/{maxSpecializationSkills}
+                            </Text>
+                        </View>
 
-                    if (skills.find(s => s.name === skill)?.level === 2 && !checkedCareerSkills[skill]) {
-                        return (
-                            <View key={index} className='flex flex-row items-center'>
-                                <Ionicons name='ban' color='#94a3b8' size={22} />
-                                <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
-                                <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>(Already Max Level)</Text>
-                            </View>
-                        )
-                    }
-                    return (
-                        <Pressable
-                            onPress={() => handleCareerCheckboxChange(skill)}
-                            key={index} className='flex flex-row items-center py-[0.4vh]'>
-                            <Checkbox
-                                color={'#94a3b8'}
-                                onValueChange={() => handleCareerCheckboxChange(skill)}
-                                value={checkedCareerSkills[skill] || false}
-                            />
-                            <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
-                        </Pressable>)
-                })}
+                        {selectedSpecialization && selectedSpecialization.skills.map((skill, index) => {
 
-                <View className='flex flex-row justify-between items-center pt-[2vh]'>
-                    <Text className='text-slate-200 font-[Elektra] text-xl'>
-                        Specialization Skills
-                    </Text>
-                    <Text className={`${specializationSkillCount >= maxSpecializationSkills ? 'text-slate-500' : 'text-slate-200'} font-[Elektra] text-xl`}>
-                        {specializationSkillCount}/{maxSpecializationSkills}
-                    </Text>
+                            if (skills.find(s => s.name === skill)?.level === 2 && !checkedSpecializationSkills[skill]) {
+                                return (
+                                    <View key={index} className='flex flex-row items-center'>
+                                        <Ionicons name='ban' color={Colors.global.statblockbackground} size={22} />
+                                        <Text className='text-white text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                                        <Text className='text-white text-lg pl-2 font-[Elektra]'>(Already Max Level)</Text>
+                                    </View>
+                                )
+                            }
+                            return (
+                                <Pressable
+                                    onPress={() => handleSpecializationCheckboxChange(skill)}
+                                    key={index} className='flex flex-row items-center py-[0.4vh]'>
+                                    <Checkbox
+                                        color={Colors.global.statblockbackground}
+                                        onValueChange={() => handleSpecializationCheckboxChange(skill)}
+                                        value={checkedSpecializationSkills[skill] || false}
+                                    />
+                                    <Text className='text-white text-lg pl-2 font-[Elektra]'>{skill}</Text>
+                                </Pressable>
+                            )
+                        })}
+                    </View>
+                    <View className='flex-row justify-end'>
+                        <View className='bg-box w-[100%]'>
+                        </View>
+                        <TriangleCorner style={{
+                            transform: [{ rotate: "0deg" }],
+                            borderTopWidth: '28px', borderRightWidth: '28px', borderTopColor: Colors.global.box,
+                        }} />
+                    </View>
                 </View>
-
-                {selectedSpecialization && selectedSpecialization.skills.map((skill, index) => (
-                    <Pressable
-                        onPress={() => handleSpecializationCheckboxChange(skill)}
-                        key={index} className='flex flex-row items-center py-[0.4vh]'>
-                        <Checkbox
-                            color='#94a3b8'
-                            onValueChange={() => handleSpecializationCheckboxChange(skill)}
-                            value={checkedSpecializationSkills[skill] || false}
-                        />
-                        <Text className='text-slate-400 text-lg pl-2 font-[Elektra]'>{skill}</Text>
-                    </Pressable>
-                ))}
             </KeyboardAwareScrollView>
         </>
     );

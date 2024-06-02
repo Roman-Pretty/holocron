@@ -14,7 +14,7 @@ export default function TabLayout() {
           fontFamily: 'Elektra',
         },
         headerStyle: {
-          backgroundColor: Colors.global.slate900,
+          backgroundColor: Colors.global.heading1,
         },
         headerRight: () => (
           <TouchableOpacity onPress={() => router.push('create' as never)}>
@@ -29,7 +29,7 @@ export default function TabLayout() {
           fontFamily: 'Elektra',
         },
         headerStyle: {
-          backgroundColor: Colors.global.slate900,
+          backgroundColor: Colors.global.heading2,
         },
         headerBackButtonMenuEnabled: true,
         headerBackTitleVisible: false,

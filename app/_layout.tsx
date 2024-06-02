@@ -7,6 +7,7 @@ import 'react-native-reanimated';
 import "../global.css";
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { ImageBackground } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,6 +18,7 @@ export default function RootLayout() {
     Elektra: require('../assets/fonts/Elektra.otf'),
     ITC: require('../assets/fonts/ITC.otf'),
     swrpg: require('../assets/fonts/swrpg.otf'),
+    teuton: require('../assets/fonts/Teuton Mager Bold Italic.otf'),
   });
 
   useEffect(() => {

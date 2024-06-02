@@ -9,11 +9,14 @@ import SpeciesComponent from '@/components/create/species/Species'
 import Button from '@/components/form/Button'
 import { AGILITY, BRAWN, CUNNING, INTELLECT, PRESENCE, WILLPOWER } from '@/constants/Characteristics'
 import React, { useEffect } from 'react'
-import { ImageSourcePropType, Text, View } from 'react-native'
+import { ImageSourcePropType, Text, View, ImageBackground } from 'react-native'
 import * as Progress from 'react-native-progress'
-import {loadCharacters, saveCharacter} from '@/storage/CharacterStorage'
+import { loadCharacters, saveCharacter } from '@/storage/CharacterStorage'
 import { router } from 'expo-router'
 import { Character, Skill, Species, Career, Specialization, Characteristic } from '@/constants/Types'
+import TriangleCorner from '@/components/shapes/TriangleCorner'
+import { Colors } from '@/constants/Colors'
+
 
 const create = () => {
 
@@ -280,63 +283,78 @@ const create = () => {
                 },
             }
         }
-    saveCharacter(character);
-    router.navigate('(characters)');
-}
+        saveCharacter(character);
+        router.navigate('(characters)');
+    }
 
-return (
-    <View className='flex-1 bg-slate-900 p-6'>
-        <View className=''>
-            <View className='flex flex-row justify-between'>
-                <View className='w-[20vw]' />
-                <Text className='text-2xl text-white font-[Elektra] text-center pb-[2vh]'>
-                    {currentIndex === 0 ? 'Description' :
-                        currentIndex === 1 ? 'Species' :
-                            currentIndex === 2 ? 'Career' :
-                                currentIndex === 3 ? 'Specialization' :
-                                    currentIndex === 4 ? 'Free Skills' :
-                                        currentIndex === 5 ? 'Characteristics' :
-                                            currentIndex === 6 ? 'Skills' :
-                                                'Summary'}
-                </Text>
-                <View className='w-[20vw] pt-2.5 h-full'>
-                    {species && <Text className='text-slate-400 text-right font-[Elektra]'>XP: {experience}</Text>}
+    return (
+        <ImageBackground source={require('@/assets/images/page/background.jpg')} style={{ flex: 1 }}>
+            <View className='flex-1 p-6'>
+                <View className='relative'>
+                    <View className='flex flex-row justify-center pb-[2vh]'>
+
+                        <View className='flex-row justify-center'>
+                            <TriangleCorner style={{
+                                transform: [{ rotate: "90deg" }],
+                                borderTopWidth: '32px', borderRightWidth: '32px', borderTopColor: Colors.global.heading1,
+                            }} />
+                            <View className='bg-heading1 px-2'>
+                                <Text className='text-2xl text-white font-[Elektra] text-center pt-0.5'>
+                                    {currentIndex === 0 ? 'Description' :
+                                        currentIndex === 1 ? 'Species' :
+                                            currentIndex === 2 ? 'Career' :
+                                                currentIndex === 3 ? 'Specialization' :
+                                                    currentIndex === 4 ? 'Free Skills' :
+                                                        currentIndex === 5 ? 'Characteristics' :
+                                                            currentIndex === 6 ? 'Skills' :
+                                                                'Summary'}
+                                </Text>
+                            </View>
+                            <TriangleCorner style={{
+                                transform: [{ rotate: "0deg" }],
+                                borderTopWidth: '32px', borderRightWidth: '32px', borderTopColor: Colors.global.heading1,
+                            }} />
+                        </View>
+
+                        <View className='w-[20vw] pt-2.5 h-full absolute right-0 top-0'>
+                            {species && <Text className='text-heading1 text-right font-[Elektra]'>XP: {experience}</Text>}
+                        </View>
+                    </View>
+                    <Progress.Bar progress={((currentIndex + 1) / (PAGES + 1))} animated color={Colors.global.heading1} width={null} />
+                </View>
+                <View className='h-[64vh] my-[2vh]'>
+                    {currentIndex === 0 && <Description
+                        portrait={portrait} setPortrait={setPortrait}
+                        name={name} setName={setName}
+                        homeworld={homeworld} setHomeworld={setHomeworld}
+                        description={description} setDescription={setDescription}
+                    />}
+                    {currentIndex === 1 && <SpeciesComponent selectedSpecies={species} setSelectedSpecies={changeSpecies} setSelectedBonusSkill={changeSelectedBonusSkill} />}
+                    {currentIndex === 2 && <CareerComponent selectedCareer={career} setSelectedCareer={setCareer} />}
+                    {currentIndex === 3 && <SpecializationComponent selectedCareer={career} selectedSpecialization={specialization} setSelectedSpecialization={setSpecialization} />}
+                    {currentIndex === 4 && <FreeSkills skills={skills} species={species} selectedCareer={career} selectedSpecialization={specialization} checkedCareerSkills={checkedCareerSkills}
+                        setCheckedCareerSkills={setCheckedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} setCheckedSpecializationSkills={setCheckedSpecializationSkills} />}
+                    {currentIndex === 5 && <CharacteristicsComponent characteristics={characteristics} setCharacteristics={setCharacteristics} species={species} />}
+                    {currentIndex === 6 && <SkillsComponent selectedBonusSkill={selectedBonusSkill} species={species} skills={skills} setSkills={setSkills} career={career} specialization={specialization}
+                        checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
+                    {currentIndex === 7 && <SummaryComponent name={name} homeworld={homeworld} description={description} species={species} career={career} specialization={specialization} characteristics={characteristics} skills={skills} portrait={portrait} />}
+                </View>
+                <View className='flex-row w-full justify-evenly'>
+
+                    <Button title='Back' className='mr-1' onPress={() => { setCurrentIndex(currentIndex - 1) }} disabled={currentIndex === 0}
+                    />
+                    {currentIndex === PAGES ? <Button title='Confirm' className='ml-1' onPress={() => save()} /> :
+                        <Button title='Next' className='ml-1' onPress={() => { setCurrentIndex(currentIndex + 1) }}
+                            disabled={
+                                (currentIndex === 1 && species === null) ||
+                                (currentIndex === 2 && career === null) ||
+                                (currentIndex === 3 && specialization === null) ||
+                                currentIndex === PAGES}
+                        />}
                 </View>
             </View>
-            <Progress.Bar progress={((currentIndex + 1) / (PAGES + 1))} animated color='white' width={null} />
-        </View>
-        <View className='h-[64vh] my-[2vh]'>
-            {currentIndex === 0 && <Description
-                portrait={portrait} setPortrait={setPortrait}
-                name={name} setName={setName}
-                homeworld={homeworld} setHomeworld={setHomeworld}
-                description={description} setDescription={setDescription}
-            />}
-            {currentIndex === 1 && <SpeciesComponent selectedSpecies={species} setSelectedSpecies={changeSpecies} setSelectedBonusSkill={changeSelectedBonusSkill} />}
-            {currentIndex === 2 && <CareerComponent selectedCareer={career} setSelectedCareer={setCareer} />}
-            {currentIndex === 3 && <SpecializationComponent selectedCareer={career} selectedSpecialization={specialization} setSelectedSpecialization={setSpecialization} />}
-            {currentIndex === 4 && <FreeSkills skills={skills} species={species} selectedCareer={career} selectedSpecialization={specialization} checkedCareerSkills={checkedCareerSkills}
-                setCheckedCareerSkills={setCheckedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} setCheckedSpecializationSkills={setCheckedSpecializationSkills} />}
-            {currentIndex === 5 && <CharacteristicsComponent characteristics={characteristics} setCharacteristics={setCharacteristics} species={species} />}
-            {currentIndex === 6 && <SkillsComponent selectedBonusSkill={selectedBonusSkill} species={species} skills={skills} setSkills={setSkills} career={career} specialization={specialization}
-                checkedCareerSkills={checkedCareerSkills} checkedSpecializationSkills={checkedSpecializationSkills} />}
-            {currentIndex === 7 && <SummaryComponent name={name} homeworld={homeworld} description={description} species={species} career={career} specialization={specialization} characteristics={characteristics} skills={skills} portrait={portrait} />}
-        </View>
-        <View className='flex-row w-full justify-evenly'>
-
-            <Button title='Back' className='mr-1' onPress={() => { setCurrentIndex(currentIndex - 1) }} disabled={currentIndex === 0}
-            />
-            {currentIndex === PAGES ? <Button title='Confirm' className='ml-1' onPress={() => save()} /> :
-                <Button title='Next' className='ml-1' onPress={() => { setCurrentIndex(currentIndex + 1) }}
-                    disabled={
-                        (currentIndex === 1 && species === null) ||
-                        (currentIndex === 2 && career === null) ||
-                        (currentIndex === 3 && specialization === null) ||
-                        currentIndex === PAGES}
-                />}
-        </View>
-    </View>
-)
+        </ImageBackground>
+    )
 }
 
 export default create
