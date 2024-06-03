@@ -5,7 +5,7 @@ import { Text, View } from 'react-native'
 const SpeciesCharacteristic = ({ title, level }: { title: string, level: number }) => {
     return (
         <View className='items-center w-[48px] pt-[1vh]'>
-            <View className='flex-row justify-center h-min'>
+            <View className='flex-row justify-center'>
 
                 <TriangleCorner style={{
                     transform: [{ rotate: "180deg" }],
@@ -24,7 +24,7 @@ const SpeciesCharacteristic = ({ title, level }: { title: string, level: number 
             <View className='bg-white  w-full h-[24px] items-center justify-center'>
                 <Text className='text-center text-black w-full font-[Elektra] text-2xl'>{level}</Text>
             </View>
-            <View className='flex-row justify-center h-min'>
+            <View className='flex-row justify-center'>
 
                 <TriangleCorner style={{
                     transform: [{ rotate: "90deg" }],

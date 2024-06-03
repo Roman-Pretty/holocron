@@ -18,15 +18,15 @@ import {
   Skill,
   Specialization,
   Species,
-  Character
+  Character,
 } from "@/constants/Types";
-import { saveCharacter } from "@/storage/CharacterStorage";
+import { saveCharacter, loadCharacters } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ImageBackground, ImageSourcePropType, View } from "react-native";
 
 const CreateCharacter = () => {
-  const PAGES = 7;
+  const PAGES = 8;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [name, setName] = useState("");
@@ -312,36 +312,49 @@ const CreateCharacter = () => {
   };
 
   const onSavePressed = () => {
-    const newCharacter: Character = {
-      key: 0,
-      data: {
-        name,
-        homeworld,
-        description,
-        species: species ? species : SpeciesData[0],
-        exp: experience ? experience : 0,
-        career: career ? career : CareerData[0],
-        specializations: specialization ? [specialization.name] : [],
-        skills,
-        characteristics: {
-          brawn: characteristics[0].level,
-          agility: characteristics[1].level,
-          intellect: characteristics[2].level,
-          cunning: characteristics[3].level,
-          willpower: characteristics[4].level,
-          presence: characteristics[5].level,
-        },
-        image: portrait,
+    async function save() {
+      const newCharacter: Character = {
+        key: (await loadCharacters()).length,
+        data: {
+          name,
+          homeworld,
+          description,
+          species: species ? species : SpeciesData[0],
+          exp: experience ? experience : 0,
+          career: career ? career : CareerData[0],
+          specializations: specialization ? [specialization.name] : [],
+          skills,
+          characteristics: {
+            brawn: characteristics[0].level,
+            agility: characteristics[1].level,
+            intellect: characteristics[2].level,
+            cunning: characteristics[3].level,
+            willpower: characteristics[4].level,
+            presence: characteristics[5].level,
+          },
+          image: portrait,
 
-        credits: 0,
-        inventory: [],
-        wound: { current: 0, threshold: species ? species.woundThreshold+species.characteristics[0] : 0 },
-        strain: { current: 0, threshold: species ? species.strainThreshold+species.characteristics[4] : 0 },
-        defense: { melee: 0, ranged: 0, soak: 0}
-      },
-    };
-    saveCharacter(newCharacter);
-    router.replace("/");
+          credits: 0,
+          inventory: [],
+          wound: {
+            current: 0,
+            threshold: species
+              ? species.woundThreshold + species.characteristics[0]
+              : 0,
+          },
+          strain: {
+            current: 0,
+            threshold: species
+              ? species.strainThreshold + species.characteristics[4]
+              : 0,
+          },
+          defense: { melee: 0, ranged: 0, soak: 0 },
+        },
+      };
+      saveCharacter(newCharacter);
+    }
+    save();
+    router.replace("index");
   };
 
   return (

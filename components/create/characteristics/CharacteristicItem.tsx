@@ -46,7 +46,7 @@ const CharacteristicItem = ({ characteristic, species, index, setCharacteristics
                     </View> */}
                     <View>
 
-                    <View className='flex-row justify-center h-min'>
+                    <View className='flex-row justify-center'>
 
                         <TriangleCorner style={{
                             transform: [{ rotate: "180deg" }],

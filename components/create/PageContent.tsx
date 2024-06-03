@@ -15,6 +15,7 @@ import {
 } from "@/constants/Types";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
+import TalentsComponent from "./talents/Talents";
 
 interface PageContentProps {
   currentIndex: number;
@@ -149,6 +150,13 @@ const PageContent = ({
         />
       );
     case 7:
+      return (
+        <TalentsComponent
+          setSpecialization={setSpecialization}
+          specialization={specialization}
+        />
+      );
+    case 8:
       return (
         <SummaryComponent
           name={name}

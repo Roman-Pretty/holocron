@@ -1,84 +1,106 @@
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType } from "react-native";
 
 export interface Character {
-    key: number;
-    data: {
-        name: string;
-        homeworld: string;
-        description: string;
-        image: ImageSourcePropType;
-        species: Species;
-        career: Career;
-        specializations: string[];
-        exp: number;
-        credits: number;
-        inventory: string[];
-        characteristics: {
-            brawn: number;
-            agility: number;
-            intellect: number;
-            cunning: number;
-            willpower: number;
-            presence: number;
-        };
-        skills: Skill[];
-        wound: {
-            current: number;
-            threshold: number;
-        };
-        strain: {
-            current: number;
-            threshold: number;
-        };
-        defense: {
-            melee: number;
-            ranged: number;
-            soak: number;
-        };
+  key: number;
+  data: {
+    name: string;
+    homeworld: string;
+    description: string;
+    image: ImageSourcePropType;
+    species: Species;
+    career: Career;
+    specializations: string[];
+    exp: number;
+    credits: number;
+    inventory: string[];
+    characteristics: {
+      brawn: number;
+      agility: number;
+      intellect: number;
+      cunning: number;
+      willpower: number;
+      presence: number;
     };
-};
+    skills: Skill[];
+    wound: {
+      current: number;
+      threshold: number;
+    };
+    strain: {
+      current: number;
+      threshold: number;
+    };
+    defense: {
+      melee: number;
+      ranged: number;
+      soak: number;
+    };
+  };
+}
 
 export interface Species {
-        species: string;
-        image: any;
-        desc: string;
-        characteristics: number[];
-        woundThreshold: number;
-        strainThreshold: number;
-        startingXP: number;
-        specialAbilities: { name: string; desc: string; }[];
-        speciesBonus: string;
+  species: string;
+  image: any;
+  desc: string;
+  characteristics: number[];
+  woundThreshold: number;
+  strainThreshold: number;
+  startingXP: number;
+  specialAbilities: { name: string; desc: string }[];
+  speciesBonus: string;
 
-        bonusSkills?: string[];
-        hasOptions?: boolean;
-        options?: { type: string; options: string[]; };
+  bonusSkills?: string[];
+  hasOptions?: boolean;
+  options?: { type: string; options: string[] };
 }
 
 export interface Career {
-    name: string;
-    image: any;
-    desc: string;
-    longDesc: string;
-    skills: string[];
-    specializations: Specialization[];
-    forceSensitive: boolean;
+  name: string;
+  image: any;
+  desc: string;
+  longDesc: string;
+  skills: string[];
+  specializations: Specialization[];
+  forceSensitive: boolean;
 }
 
 export interface Specialization {
-    name: string;
-    desc: string;
-    skills: string[];
+  name: string;
+  desc: string;
+  skills: string[];
+  talents: TalentTree;
 }
 
 export interface Characteristic {
-    name: string;
-    level: number;
-    desc: string;
+  name: string;
+  level: number;
+  desc: string;
 }
 
 export interface Skill {
-    name: string;
-    level: number;
-    characteristic: Characteristic;
-    career: boolean;
+  name: string;
+  level: number;
+  characteristic: Characteristic;
+  career: boolean;
+}
+
+export interface Talent {
+  name: string;
+  desc: string;
+  active?: boolean;
+  ranked?: boolean;
+  force?: boolean;
+}
+
+export interface TalentTree {
+  talents: {
+    talent: Talent;
+    cost: number;
+    purchased?: boolean;
+    position: { column: number; row: number };
+  }[];
+  path: {
+    start: { column: number; row: number };
+    end: { column: number; row: number };
+  }[];
 }

@@ -30,6 +30,8 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
       case 6:
         return "Skills";
       case 7:
+        return "Talents";
+      case 8:
         return "Summary";
       default:
         return "";
