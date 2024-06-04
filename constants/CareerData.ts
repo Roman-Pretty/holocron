@@ -157,6 +157,94 @@ export default [
               start: { column: 2, row: 3 },
               end: { column: 2, row: 2 },
             },
+            {
+              start: { column: 2, row: 1 },
+              end: { column: 3, row: 1 },
+            },
+            {
+              start: { column: 2, row: 2 },
+              end: { column: 3, row: 2 },
+            },
+            {
+              start: { column: 2, row: 4 },
+              end: { column: 3, row: 4 },
+            },
+            {
+              start: { column: 3, row: 2 },
+              end: { column: 4, row: 2 },
+            },
+            {
+              start: { column: 3, row: 3 },
+              end: { column: 4, row: 3 },
+            },
+            {
+              start: { column: 3, row: 4 },
+              end: { column: 4, row: 4 },
+            },
+            {
+              start: { column: 4, row: 1 },
+              end: { column: 5, row: 1 },
+            },
+            {
+              start: { column: 4, row: 3 },
+              end: { column: 5, row: 3 },
+            },
+            {
+              start: { column: 3, row: 1 },
+              end: { column: 3, row: 2 },
+            },
+            {
+              start: { column: 3, row: 2 },
+              end: { column: 3, row: 1 },
+            },
+            {
+              start: { column: 3, row: 2 },
+              end: { column: 3, row: 3 },
+            },
+            {
+              start: { column: 3, row: 3 },
+              end: { column: 3, row: 2 },
+            },
+            {
+              start: { column: 3, row: 3 },
+              end: { column: 3, row: 4 },
+            },
+            {
+              start: { column: 3, row: 4 },
+              end: { column: 3, row: 3 },
+            },
+        {
+            start: { column: 4, row: 1 },
+            end: { column: 4, row: 2 },
+          },
+          {
+            start: { column: 4, row: 2 },
+            end: { column: 4, row: 1 },
+          },
+          {
+            start: { column: 4, row: 2 },
+            end: { column: 4, row: 3 },
+          },
+          {
+            start: { column: 4, row: 3 },
+            end: { column: 4, row: 2 },
+          },
+          {
+            start: { column: 5, row: 2 },
+            end: { column: 5, row: 3 },
+          },
+          {
+            start: { column: 5, row: 3 },
+            end: { column: 5, row: 2 },
+          },
+          {
+            start: { column: 5, row: 3 },
+            end: { column: 5, row: 4 },
+          },
+          {
+            start: { column: 5, row: 4 },
+            end: { column: 5, row: 3 },
+          },
           ],
         },
       },

@@ -11,7 +11,7 @@ interface TalentsComponentProps {
 const TalentsComponent = ({ specialization, setSpecialization }: TalentsComponentProps) => {
   return (
     <ScrollView horizontal>
-      {[...Array(6)].map((_, i) => {
+      {[...Array(5)].map((_, i) => {
         return (
           <View className={`justify-between ${i != 5 && 'mr-[20vw]'}`}>
             {specialization?.talents?.talents
