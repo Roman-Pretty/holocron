@@ -11,24 +11,26 @@ interface TalentsComponentProps {
 const TalentsComponent = ({ specialization, setSpecialization }: TalentsComponentProps) => {
   return (
     <ScrollView horizontal>
-      {[...Array(5)].map((_, i) => {
+      {[...Array(6)].map((_, i) => {
         return (
-          <View className={`justify-between ${i != 5 && 'mr-[20vw]'}`}>
+          <View key={i} className={`justify-between ${i != 5 && 'mr-[20vw]'}`}>
             {specialization?.talents?.talents
               .filter((talent) => talent.position.column === i + 1)
               .map((talent, index) => {
                 return (
-                  <TalentItem
-                  setSpecialization={setSpecialization}
-                    talent={talent}
-                    specialization={specialization}
-                    key={index}
-                  />
+                    <TalentItem
+                      setSpecialization={setSpecialization}
+                      talent={talent}
+                      specialization={specialization}
+                      key={index}
+                    />
                 );
               })}
           </View>
+
         );
       })}
+
     </ScrollView>
   );
 };

@@ -97,17 +97,14 @@ const TalentItem = ({
     <TouchableOpacity
       onPress={() => updateTalent()}
       disabled={!isStartPurchased}
-      style={{ position: "relative", zIndex: -10 }}
     >
       <View
         className={`w-[60vw] ${!isStartPurchased ? "opacity-50" : ""}`}
-        style={{ position: "relative" }}
       >
-        <View className="flex-row">
+        <View className="flex-row" >
           <View
-            className={`flex-row ${
-              talent.talent.active ? " bg-heading3 " : " bg-box "
-            } p-2 items-center flex-1`}
+            className={`flex-row ${talent.talent.active ? " bg-heading3 " : " bg-box "
+              } p-2 items-center flex-1`}
             style={{ marginRight: -1 }}
           >
             <Ionicons
@@ -126,34 +123,33 @@ const TalentItem = ({
             </View>
           </View>
           {talent.talent.name.length < 18 ? (
-          <TriangleCorner
-            style={{
-              transform: [{ rotate: "-90deg" }],
-              borderTopWidth: 38,
-              borderRightWidth: 38,
-              borderTopColor: talent.talent.active ? Colors.global.heading3 : Colors.global.box,
-            }}
-          />) : <View className={`w-[38px] 2 ${
-            talent.talent.active ? "bg-heading3" : "bg-box"
-          }`}></View>}
+            <TriangleCorner
+              style={{
+                transform: [{ rotate: "-90deg" }],
+                borderTopWidth: 38,
+                borderRightWidth: 38,
+                borderTopColor: talent.talent.active ? Colors.global.heading3 : Colors.global.box,
+              }}
+            />) : <View className={`w-[38px] 2 ${talent.talent.active ? "bg-heading3" : "bg-box"
+              }`}></View>}
         </View>
         <View
-          className={`p-2 bg-white border-2 ${
-            active ? "border-heading3" : "border-box"
-          }`}
+          className={`p-2 bg-white border-2 ${active ? "border-heading3" : "border-box"
+            }`}
         >
           <TalentText text={talent.talent.desc} />
         </View>
-        {specialization?.talents.path.some(
+      </View>
+      {specialization?.talents.path.some(
           (path) =>
             path.end.column === talent.position.column + 1 &&
             path.end.row === talent.position.row &&
             path.start.column === talent.position.column &&
             path.start.row === talent.position.row
         ) && (
-          <View className="h-4 bg-gray-400 absolute w-[20vw] -right-[20vw] top-[50%]" />
-        )}
-
+            <View className="h-4 bg-gray-400 absolute w-[20vw] -right-[20vw] top-[50%]" />
+          )}
+          {/* TODO: Replace This! */}
         {specialization?.talents.path.some(
           (path) =>
             path.end.column === talent.position.column &&
@@ -161,9 +157,17 @@ const TalentItem = ({
             path.start.column === talent.position.column &&
             path.start.row === talent.position.row - 1
         ) && (
-          <View className="h-[2.5vh] bg-gray-400 absolute w-4 -top-[2.5vh] right-[50%]" />
-        )}
-      </View>
+            <View className="h-[2vh] bg-gray-400 w-4 -top-[2vh] right-[50%] absolute"/>
+          )}
+           {specialization?.talents.path.some(
+          (path) =>
+            path.end.column === talent.position.column &&
+            path.end.row === talent.position.row &&
+            path.start.column === talent.position.column &&
+            path.start.row === talent.position.row + 1
+        ) && (
+            <View className="h-[2vh] bg-gray-400 w-4 -bottom-[2vh] right-[50%] absolute"/>
+          )}
     </TouchableOpacity>
   );
 };
