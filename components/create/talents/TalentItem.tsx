@@ -15,6 +15,8 @@ interface TalentItemProps {
   specialization: Specialization | null;
   setSpecialization: (specialization: Specialization) => void;
   cost: number;
+  row: number;
+  col: number;
 }
 
 const TalentItem = ({
@@ -22,24 +24,68 @@ const TalentItem = ({
   specialization,
   setSpecialization,
   cost,
+  row,
+  col,
 }: TalentItemProps) => {
   const [purchasable, setPurchasable] = React.useState(false);
   const [purchased, setPurchased] = React.useState(false);
 
+  function togglePurchased() {
+    talent.purchased = !purchased;
+    if (specialization) {
+      setSpecialization({ ...specialization });
+    }
+    setPurchased(!purchased);
+  }
+
+  function isNodePointedTo() {
+    if (!specialization) {
+      return false;
+    }
+    if (col === 0) {
+      return true;
+    }
+    if (specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 && specialization.talents.talents[row + ((col - 1) * 4)].purchased) {
+      return true;
+    }
+    if (row > 0 && specialization.talents.vPath[col][row - 1] === 1 && specialization.talents.talents[(row + (col * 4)) - 1].purchased) {
+      return true;
+    }
+    if (row < 3 && specialization.talents.vPath[col][row] === 1 && specialization.talents.talents[(row + (col * 4)) + 1].purchased) {
+      return true;
+    }
+    return false;
+  }
+
   useEffect(() => {
-    setPurchasable(true);
+    if (specialization) {
+      if (isNodePointedTo()) {
+        setPurchasable(true);
+      } else {
+        setPurchasable(false);
+        if (purchased) {
+          togglePurchased();
+        }
+      }
+    }
+  }, [specialization, purchased]);
+
+  useEffect(() => {
+    if (talent.purchased) {
+      setPurchased(true);
+    }
   }, []);
 
   return (
     <TouchableOpacity
-      onPress={() => { }}
+      onPress={() => togglePurchased()}
       disabled={!purchasable}
     >
       <View
         className={"w-[60vw]"}
-        style={{opacity: 100}}
+        style={{ opacity: 100 }}
       >
-        <View className="flex-row " >
+        <View className="flex-row">
           <View
             className={`flex-row ${!purchasable ? "bg-gray-400" : talent.talent.active ? " bg-heading3 " : " bg-box "
               } p-2 items-center flex-1`}
@@ -68,8 +114,7 @@ const TalentItem = ({
                 borderRightWidth: 38,
                 borderTopColor: !purchasable ? "#9ca3af" : talent.talent.active ? Colors.global.heading3 : Colors.global.box,
               }}
-            />) : <View className={`w-[38px] 2 ${!purchasable ? "bg-gray-400" : talent.talent.active ? "bg-heading3" : "bg-box"
-              }`}></View>}
+            />) : <View className={`w-[38px] 2 ${!purchasable ? "bg-gray-400" : talent.talent.active ? "bg-heading3" : "bg-box"}`} />}
         </View>
         <View
           className={` p-2 bg-white border-2 ${!purchasable ? "border-gray-400" : talent.talent.active ? "border-heading3" : "border-box"

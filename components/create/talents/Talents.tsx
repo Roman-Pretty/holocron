@@ -32,22 +32,27 @@ const TalentsComponent = ({ specialization, setSpecialization }: TalentsComponen
                   cost={5 * (i + 1)}
                   setSpecialization={setSpecialization}
                   specialization={specialization}
+                  key={index}
+                  row={index}
+                  col={i}
                 />
               );
             })}
             {chunk.map((talent, index) => {
               return (
                 <>
-                  {specialization && specialization?.talents?.hPath[index + (4 * i)] === 1 &&
+                  {specialization && specialization?.talents?.hPath[index][i] === 1 &&
                     <View className={`h-[20px] w-[30vw] absolute -right-[20vw] ${index === 0 ? 'top-[10%]' : index === 1 ? 'top-[36%]' : index === 2 ? 'top-[64%]' : 'top-[90%]'
                       } bg-gray-400`}
                       style={{ zIndex: -1 }}
+                      key={index}
                     />
                   }
-                  {specialization && specialization?.talents?.vPath[index + (4 * i)] === 1 &&
-                    <View className={`w-[20px] h-[15vh] absolute right-[50%] ${index === 0 ? 'top-[20%]' : index === 1 ? 'top-[45%]' : 'top-[65%]'
+                  {specialization && specialization?.talents?.vPath[i][index] === 1 &&
+                    <View className={`w-[20px] h-[15vh] absolute right-[50%] ${index === 0 ? 'top-[10%]' : index === 1 ? 'top-[45%]' : 'top-[65%]'
                       } bg-gray-400`}
                       style={{ zIndex: -1 }}
+                      key={((index+1)*-1)}
                     />
                   }
                 </>

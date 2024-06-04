@@ -98,6 +98,6 @@ export interface TalentTree {
     purchased?: boolean;
     cost?: number
   }[];
-  hPath: number[],
-  vPath: number[],
+  hPath: number[][],
+  vPath: number[][],
 }

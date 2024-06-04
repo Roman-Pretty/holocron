@@ -28,6 +28,7 @@ export default [
         name: "Driver",
         desc: "Specialists in operating ground vehicles.",
         skills: ["Cool", "Gunnery", "Mechanics", "Piloting (Planetary)"],
+        talents: TalentTreeData.DRIVER,
       },
       {
         name: "Gunner",
