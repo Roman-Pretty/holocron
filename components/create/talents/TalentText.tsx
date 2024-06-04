@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const CustomText = ({ text }: { text: string }) => {
+const CustomText = ({ text, purchasable }: { text: string, purchasable: boolean }) => {
   const parts = text.split(
     /(\[setback\]|\[boost\]|\[advantage\]|\[difficulty\]|\[threat\]|\[failure\]|\[success\]|\[triumph\]|\[despair\])/g
   );
@@ -32,7 +32,7 @@ const CustomText = ({ text }: { text: string }) => {
   };
 
   return (
-    <Text className="text-sm">
+    <Text className="text-sm" style={{color: purchasable ? '#000' : '#9ca3af'}}>
       {parts.map((part, index) => (
         <React.Fragment key={index}>
           {getReplacement(part) || part}
