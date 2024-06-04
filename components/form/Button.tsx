@@ -16,8 +16,8 @@ const Button = ({ className, textClassName, disabledClassName, title, onPress, d
     if (disabled) {
         return (
             <View style={{flex: 1, padding: 0.5}}>
-                <View className={twMerge(twMerge("bg-slate-800 p-2 rounded-full flex flex-row items-center justify-center min-h-[4vh]", className), disabledClassName)}>
-                    <Text className={twMerge("text-md text-slate-600 text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
+                <View className={twMerge(twMerge("bg-heading3 p-2 flex flex-row items-center justify-center min-h-[4vh]", className), disabledClassName)}>
+                    <Text className={twMerge("text-md text-black text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
                 </View>
             </View>
         );
@@ -25,8 +25,8 @@ const Button = ({ className, textClassName, disabledClassName, title, onPress, d
 
     return (
         <TouchableOpacity onPress={onPress} style={{flex: 1, padding: 0.5}}>
-            <View className={twMerge("border-slate-700 bg-slate-800 border-2 p-2 rounded-full flex flex-row items-center justify-center min-h-[4vh]", className)}>
-                <Text className={twMerge("text-md text-slate-100 text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
+            <View className={twMerge(" bg-heading1 p-2 flex flex-row items-center justify-center min-h-[4vh]", className)}>
+                <Text className={twMerge("text-md text-white text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
             </View>
         </TouchableOpacity>
     );

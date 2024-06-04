@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Character } from '@/constants/Types';
 
 /**
  * Loads all Characters from local storage.
@@ -6,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  * @async
  * @returns {Promise<Character[]>}
  */
-export const loadCharacters = async () => {
+export const loadCharacters = async (): Promise<Character[]> => {
     try {
         const charactersJSON = await AsyncStorage.getItem('characters');
         if (charactersJSON !== null) {

@@ -4,6 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import PortraitItem from './PortraitItem';
 import { ImageSourcePropType } from 'react-native';
 import { SetStateAction } from 'react';
+import TriangleCorner from '../shapes/TriangleCorner';
+import { Colors } from '@/constants/Colors';
 
 const IMAGES = [
     require('@/assets/images/species/aleena_0.png'),
@@ -66,10 +68,18 @@ const PortraitInput = ({ portrait, setPortrait }: PortraitInputProps) => {
 
     return (
         <>
-            <Text className='text-slate-400 font-[Elektra]'>
-                Portrait
-            </Text>
-            <View className='border-2 border-slate-700  mb-[1.5vh] mt-[1vh] rounded-lg '>
+            <View className='flex-row justify-start'>
+                <View className='bg-heading3 w-[40%] pl-2 pt-2'>
+                    <Text className='text-white font-[Elektra]'>
+                        Portrait
+                    </Text>
+                </View>
+                <TriangleCorner style={{
+                    transform: [{ rotate: "-90deg" }],
+                    borderTopWidth: '24px', borderRightWidth: '24px', borderTopColor: Colors.global.heading3,
+                }} />
+            </View>
+            <View className=' mb-[1.5vh] border-2 border-heading3 bg-white'>
                 <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} >
                     <View className='h-[20vh] overflow-hidden'>
                         <Image
@@ -88,7 +98,7 @@ const PortraitInput = ({ portrait, setPortrait }: PortraitInputProps) => {
                     setModalVisible(!modalVisible);
                 }}
             >
-                <View className='flex-1 justify-center items-center' style={{backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+                <View className='flex-1 justify-center items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                     <View className='bg-slate-900 w-[90vw] px-[2vw] h-[80vh] rounded-3xl border-2 border-slate-700 items-center'>
                         <View className='w-full flex flex-row justify-between p-4'>
                             <Text className='text-white text-xl font-[Elektra]'>Select Portrait</Text>
@@ -97,7 +107,7 @@ const PortraitInput = ({ portrait, setPortrait }: PortraitInputProps) => {
                             </TouchableOpacity>
                         </View>
                         <FlatList
-                            data={IMAGES}                            
+                            data={IMAGES}
                             disableVirtualization={false}
                             initialNumToRender={3}
                             maxToRenderPerBatch={3}

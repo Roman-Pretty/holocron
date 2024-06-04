@@ -1,25 +1,52 @@
-import { View, Text, FlatList } from 'react-native'
-import React from 'react'
-import SpeciesData from '@/constants/SpeciesData'
-import SpeciesItem from './SpeciesItem'
+import SpeciesData from "@/constants/SpeciesData";
+import { Species } from "@/constants/Types";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, FlatList, View } from "react-native";
+import SpeciesItem from "./SpeciesItem";
 
 interface SpeciesProps {
-    selectedSpecies: Species | null;
-    setSelectedSpecies: (species: Species) => void;
-    setSelectedBonusSkill: (skill: string) => void;
+  selectedSpecies: Species | null;
+  setSelectedSpecies: (species: Species) => void;
+  setSelectedBonusSkill: (skill: string) => void;
 }
 
-const Species = ({selectedSpecies, setSelectedSpecies, setSelectedBonusSkill}: SpeciesProps) => {
+const SpeciesElement = ({
+  selectedSpecies,
+  setSelectedSpecies,
+  setSelectedBonusSkill,
+}: SpeciesProps) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
     return (
-        <FlatList
-            data={SpeciesData}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-                <SpeciesItem setSelectedBonusSkill={setSelectedBonusSkill} species={item} selectedSpecies={selectedSpecies} setSelectedSpecies={setSelectedSpecies} />
-            )}
-            windowSize={3}
-        />
-    )
-}
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="small" color="#000" />
+      </View>
+    );
+  }
 
-export default Species
+  return (
+    <FlatList
+      data={SpeciesData}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => (
+        <SpeciesItem
+          setSelectedBonusSkill={setSelectedBonusSkill}
+          species={item}
+          selectedSpecies={selectedSpecies}
+          setSelectedSpecies={setSelectedSpecies}
+        />
+      )}
+      windowSize={3}
+      showsVerticalScrollIndicator={false}
+    />
+  );
+};
+
+export default SpeciesElement;
