@@ -95,12 +95,9 @@ export interface Talent {
 export interface TalentTree {
   talents: {
     talent: Talent;
-    cost: number;
     purchased?: boolean;
-    position: { column: number; row: number };
+    cost?: number
   }[];
-  path: {
-    start: { column: number; row: number };
-    end: { column: number; row: number };
-  }[];
+  hPath: number[][],
+  vPath: number[][],
 }

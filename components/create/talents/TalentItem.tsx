@@ -9,106 +9,122 @@ import TalentText from "./TalentText";
 interface TalentItemProps {
   talent: {
     talent: Talent;
-    cost: number;
+    cost?: number;
     purchased?: boolean;
-    position: { column: number; row: number };
   };
   specialization: Specialization | null;
   setSpecialization: (specialization: Specialization) => void;
+  cost: number;
+  row: number;
+  col: number;
 }
 
 const TalentItem = ({
   talent,
   specialization,
   setSpecialization,
+  cost,
+  row,
+  col,
 }: TalentItemProps) => {
-  const [active, setActive] = React.useState(false);
-  const [isStartPurchased, setIsStartPurchased] = React.useState(false);
+  const [purchasable, setPurchasable] = React.useState(false);
+  const [purchased, setPurchased] = React.useState(false);
 
-  function getActivePointingTalents() {
-    if (!specialization) return false;
+  function togglePurchased() {
+    talent.purchased = !purchased;
+    if (specialization) {
+      setSpecialization({ ...specialization });
+    }
+    setPurchased(!purchased);
+  }
 
-    // Get all talents that point to the current talent
-    const pointingTalents = specialization.talents.path
-      .filter(
-        (path) =>
-          path.end.column === talent.position.column &&
-          path.end.row === talent.position.row
-      )
-      .map((path) =>
-        specialization.talents.talents.find(
-          (t) =>
-            t.position.column === path.start.column &&
-            t.position.row === path.start.row
-        )
-      );
+  function isNodePointedTo(row: number, col: number, visited: Set<string> = new Set()): boolean {
+    if (!specialization) {
+      return false;
+    }
 
-    // If no talents point to this talent, return true
-    if (pointingTalents.length === 0) {
+    if (col === 0) {
       return true;
     }
 
-    // Check if any of the pointing talents are active (purchased)
-    return pointingTalents.some((t) => t?.purchased);
+    const key = `${row},${col}`;
+    if (visited.has(key)) {
+      // Circular dependency detected
+      return false;
+    }
+
+    visited.add(key);
+
+    if (
+      specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 &&
+      specialization.talents.talents[row + ((col - 1) * 4)].purchased
+    ) {
+      if (isNodePointedTo(row, col - 1, visited)) {
+        return true;
+      }
+    }
+
+    if (
+      row > 0 &&
+      specialization.talents.vPath[col][row - 1] === 1 &&
+      specialization.talents.talents[(row + (col * 4)) - 1].purchased
+    ) {
+      if (isNodePointedTo(row - 1, col, visited)) {
+        return true;
+      }
+    }
+
+    if (
+      row < 3 &&
+      specialization.talents.vPath[col][row] === 1 &&
+      specialization.talents.talents[(row + (col * 4)) + 1].purchased
+    ) {
+      if (isNodePointedTo(row + 1, col, visited)) {
+        return true;
+      }
+    }
+
+    visited.delete(key); // Backtracking
+    return false;
   }
 
-  useEffect(() => {
-    if (specialization && !isStartPurchased) {
-      setSpecialization({
-        ...specialization,
-        talents: {
-          ...specialization?.talents,
-          talents: specialization?.talents?.talents?.map((t) =>
-            t.position === talent.position ? { ...t, purchased: false } : t
-          ),
-        },
-      });
-      setActive(false);
-    }
-  }, [isStartPurchased]);
 
   useEffect(() => {
-    setIsStartPurchased(getActivePointingTalents());
-  }, [specialization]);
+    if (specialization) {
+      if (isNodePointedTo(row, col)) {
+        setPurchasable(true);
+      } else {
+        setPurchasable(false);
+        if (purchased) {
+          togglePurchased();
+        }
+      }
+    }
+  }, [specialization, purchased]);
 
   useEffect(() => {
     if (talent.purchased) {
-      setActive(true);
+      setPurchased(true);
     }
-    setIsStartPurchased(getActivePointingTalents());
-  }, [talent.purchased]);
-
-  function updateTalent() {
-    if (!specialization) return;
-    setSpecialization({
-      ...specialization,
-      talents: {
-        ...specialization?.talents,
-        talents: specialization?.talents?.talents?.map((t) =>
-          t.position === talent.position ? { ...t, purchased: !t.purchased } : t
-        ),
-      },
-    });
-    setActive(!active);
-    setIsStartPurchased(getActivePointingTalents());
-  }
+  }, []);
 
   return (
     <TouchableOpacity
-      onPress={() => updateTalent()}
-      disabled={!isStartPurchased}
+      onPress={() => togglePurchased()}
+      disabled={!purchasable}
     >
       <View
-        className={`w-[60vw] ${!isStartPurchased ? "opacity-50" : ""}`}
+        className={"w-[60vw]"}
+        style={{ opacity: 100 }}
       >
-        <View className="flex-row" >
+        <View className="flex-row">
           <View
-            className={`flex-row ${talent.talent.active ? " bg-heading3 " : " bg-box "
+            className={`flex-row ${!purchasable ? "bg-gray-400" : talent.talent.active ? " bg-heading3 " : " bg-box "
               } p-2 items-center flex-1`}
             style={{ marginRight: -1 }}
           >
             <Ionicons
-              name={active ? "checkbox-sharp" : "square-sharp"}
+              name={purchased ? "checkbox-sharp" : "square-sharp"}
               size={24}
               color="white"
             />
@@ -117,7 +133,7 @@ const TalentItem = ({
                 {talent.talent.name}
               </Text>
               <Text className="text-sm font-[Elektra] pt-0.5 text-white">
-                {talent.cost}
+                {cost}
                 <Ionicons name="locate" size={8} color="white" />
               </Text>
             </View>
@@ -128,46 +144,17 @@ const TalentItem = ({
                 transform: [{ rotate: "-90deg" }],
                 borderTopWidth: 38,
                 borderRightWidth: 38,
-                borderTopColor: talent.talent.active ? Colors.global.heading3 : Colors.global.box,
+                borderTopColor: !purchasable ? "#9ca3af" : talent.talent.active ? Colors.global.heading3 : Colors.global.box,
               }}
-            />) : <View className={`w-[38px] 2 ${talent.talent.active ? "bg-heading3" : "bg-box"
-              }`}></View>}
+            />) : <View className={`w-[38px] 2 ${!purchasable ? "bg-gray-400" : talent.talent.active ? "bg-heading3" : "bg-box"}`} />}
         </View>
         <View
-          className={`p-2 bg-white border-2 ${active ? "border-heading3" : "border-box"
-            }`}
+          className={` p-2 bg-white border-2 ${!purchasable ? "border-gray-400" : talent.talent.active ? "border-heading3" : "border-box"
+            } min-h-[8vh] `}
         >
-          <TalentText text={talent.talent.desc} />
+          <TalentText text={talent.talent.desc} purchasable={purchasable} />
         </View>
       </View>
-      {specialization?.talents.path.some(
-          (path) =>
-            path.end.column === talent.position.column + 1 &&
-            path.end.row === talent.position.row &&
-            path.start.column === talent.position.column &&
-            path.start.row === talent.position.row
-        ) && (
-            <View className="h-4 bg-gray-400 absolute w-[20vw] -right-[20vw] top-[50%]" />
-          )}
-          {/* TODO: Replace This! */}
-        {specialization?.talents.path.some(
-          (path) =>
-            path.end.column === talent.position.column &&
-            path.end.row === talent.position.row &&
-            path.start.column === talent.position.column &&
-            path.start.row === talent.position.row - 1
-        ) && (
-            <View className="h-[2vh] bg-gray-400 w-4 -top-[2vh] right-[50%] absolute"/>
-          )}
-           {specialization?.talents.path.some(
-          (path) =>
-            path.end.column === talent.position.column &&
-            path.end.row === talent.position.row &&
-            path.start.column === talent.position.column &&
-            path.start.row === talent.position.row + 1
-        ) && (
-            <View className="h-[2vh] bg-gray-400 w-4 -bottom-[2vh] right-[50%] absolute"/>
-          )}
     </TouchableOpacity>
   );
 };

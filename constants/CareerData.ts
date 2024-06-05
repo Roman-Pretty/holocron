@@ -34,6 +34,7 @@ export default [
         name: "Gunner",
         desc: "Specialists in operating weapons on vehicles and starships.",
         skills: ["Discipline", "Gunnery", "Ranged (Heavy)", "Resilience"],
+        talents: TalentTreeData.GUNNER,
       },
     ],
     forceSensitive: false,
