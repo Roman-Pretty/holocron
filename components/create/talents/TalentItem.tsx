@@ -38,28 +38,60 @@ const TalentItem = ({
     setPurchased(!purchased);
   }
 
-  function isNodePointedTo() {
+  function isNodePointedTo(row: number, col: number, visited: Set<string> = new Set()): boolean {
     if (!specialization) {
       return false;
     }
+
     if (col === 0) {
       return true;
     }
-    if (specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 && specialization.talents.talents[row + ((col - 1) * 4)].purchased) {
-      return true;
+
+    const key = `${row},${col}`;
+    if (visited.has(key)) {
+      // Circular dependency detected
+      return false;
     }
-    if (row > 0 && specialization.talents.vPath[col][row - 1] === 1 && specialization.talents.talents[(row + (col * 4)) - 1].purchased) {
-      return true;
+
+    visited.add(key);
+
+    if (
+      specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 &&
+      specialization.talents.talents[row + ((col - 1) * 4)].purchased
+    ) {
+      if (isNodePointedTo(row, col - 1, visited)) {
+        return true;
+      }
     }
-    if (row < 3 && specialization.talents.vPath[col][row] === 1 && specialization.talents.talents[(row + (col * 4)) + 1].purchased) {
-      return true;
+
+    if (
+      row > 0 &&
+      specialization.talents.vPath[col][row - 1] === 1 &&
+      specialization.talents.talents[(row + (col * 4)) - 1].purchased
+    ) {
+      if (isNodePointedTo(row - 1, col, visited)) {
+        return true;
+      }
     }
+
+    if (
+      row < 3 &&
+      specialization.talents.vPath[col][row] === 1 &&
+      specialization.talents.talents[(row + (col * 4)) + 1].purchased
+    ) {
+      if (isNodePointedTo(row + 1, col, visited)) {
+        return true;
+      }
+    }
+
+    visited.delete(key); // Backtracking
     return false;
   }
 
+
   useEffect(() => {
     if (specialization) {
-      if (isNodePointedTo()) {
+      if (isNodePointedTo(row, col)) {
         setPurchasable(true);
       } else {
         setPurchasable(false);

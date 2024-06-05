@@ -233,6 +233,13 @@ const CreateCharacter = () => {
           }
         }
       }
+      if (specialization) {
+        specialization.talents.talents.forEach((talent, i) => {
+          if (talent.purchased) {
+            xp -= talent.cost ? talent.cost : Math.ceil((i + 1) / 4) * 5;
+          }
+        });
+      }
       return xp;
     }
     setExperience(calculateXP());
