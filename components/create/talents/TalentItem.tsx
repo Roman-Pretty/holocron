@@ -150,7 +150,7 @@ const TalentItem = ({
         </View>
         <View
           className={` p-2 bg-white border-2 ${!purchasable ? "border-gray-400" : talent.talent.active ? "border-heading3" : "border-box"
-            }`}
+            } min-h-[8vh] `}
         >
           <TalentText text={talent.talent.desc} purchasable={purchasable} />
         </View>

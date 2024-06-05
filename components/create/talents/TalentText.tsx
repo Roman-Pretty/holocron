@@ -32,7 +32,7 @@ const CustomText = ({ text, purchasable }: { text: string, purchasable: boolean 
   };
 
   return (
-    <Text className="text-sm" style={{color: purchasable ? '#000' : '#9ca3af'}}>
+    <Text className="text-xs" style={{color: purchasable ? '#000' : '#9ca3af'}}>
       {parts.map((part, index) => (
         <React.Fragment key={index}>
           {getReplacement(part) || part}

@@ -4,13 +4,13 @@ export const BEAST_RIDER =
 {
     talents: [
         { talent: TalentData.forager },
-        { talent: TalentData.tough },
+        { talent: TalentData.toughened },
         { talent: TalentData.outdoorsman },
         { talent: TalentData.BEASTWRANG, },
 
         { talent: TalentData.outdoorsman },
         { talent: TalentData.expertTracker },
-        { talent: TalentData.tough },
+        { talent: TalentData.toughened },
         { talent: TalentData.EXHANDLER, },
 
         { talent: TalentData.expertTracker, },
@@ -56,7 +56,7 @@ export const DRIVER = {
         { talent: TalentData.fullThrottleImproved, },
         { talent: TalentData.trickyTarget, },
         { talent: TalentData.fineTuning, },
-        { talent: TalentData.tough, },
+        { talent: TalentData.toughened, },
         { talent: TalentData.defensiveDriving, },
         { talent: TalentData.skilledJockey, },
         { talent: TalentData.naturalDriver, },
@@ -83,12 +83,49 @@ export const DRIVER = {
 
 export const GUNNER = {
     talents: [
+        { talent: TalentData.durable, },
+        {talent: TalentData.grit, },
+        {talent: TalentData.overwhelmDefenses, },
+        {talent: TalentData.debilitatingShot, },
+
+        {talent: TalentData.toughened, },
+        {talent: TalentData.brace, },
+        {talent: TalentData.spareClip, },
+        {talent: TalentData.trueAim, },
+        
+        {talent: TalentData.durable, },
+        {talent: TalentData.enduring, },
+        {talent: TalentData.juryRigged, },
+        {talent: TalentData.overwhelmDefenses, },
+
+        {talent: TalentData.toughened, },
+        {talent: TalentData.enduring, },
+        {talent: TalentData.brace, },
+        {talent: TalentData.exhaustPort, },
+
+        {talent: TalentData.heroicFortitude, },
+        {talent: TalentData.juryRigged, },
+        {talent: TalentData.dedication, },
+        {talent: TalentData.trueAim, },
     ],
-    vPath: []
+    vPath: [
+        [0,0,0],
+        [1,1,0],
+        [1,0,0],
+        [1,1,0],
+        [1,1,1],
+    ],
+    hPath: [
+        [1,0,1,1],
+        [0,1,0,1],
+        [1,1,1,0],
+        [1,1,1,1],
+    ]
 }
 
 
 export default {
     BEAST_RIDER,
-    DRIVER
+    DRIVER,
+    GUNNER
 }

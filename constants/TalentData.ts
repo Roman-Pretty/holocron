@@ -202,7 +202,7 @@ export const convincingDemeanor = {
 
 export const coordinatedAssualt = {
   name: "Coordinated Assault",
-  desc: "Take the Coordinated Assault maneuver; a number of engaged allies equal to Leadership ranks add [AD] to combat checks until beginning of the next turn. Range increases per rank of Coordinated Assault.",
+  desc: "Take the Coordinated Assault maneuver; a number of engaged allies equal to Leadership ranks add [advantage] to combat checks until beginning of the next turn. Range increases per rank of Coordinated Assault.",
   ranked: true,
   active: taManeuver
 }
@@ -244,7 +244,7 @@ export const deadlyAccuracy = {
 
 export const debilitatingShot = {
   name: "Debilitating Shot",
-  desc: "Upon successful attack with a starship or vehicle weapon, may spend [AD][AD] to reduce the maximum speed of the target by 1 until the end of the next round.",
+  desc: "Upon successful attack with a starship or vehicle weapon, may spend [advantage][advantage] to reduce the maximum speed of the target by 1 until the end of the next round.",
   ranked: false,
   active: taIncidental
 }
@@ -286,7 +286,7 @@ export const defensiveStance = {
 
 export const disorient = {
   name: "Disorient",
-  desc: "After hitting with combat check, may spend [AD][AD] to disorient target for number of rounds equal to ranks in Disorient.",
+  desc: "After hitting with combat check, may spend [advantage][advantage] to disorient target for number of rounds equal to ranks in Disorient.",
   ranked: true,
   active: taPassive
 }
@@ -538,7 +538,7 @@ export const insight = {
 
 export const inspiringRhetoric = {
   name: "Inspiring Rhetoric",
-  desc: "Take the Inspiring Rhetoric action; making an Average ([difficulty][difficulty]) Leadership check. Each [success], 1 ally within close range recovers 1 strain. Spend [AD] to cause 1 affected ally to recover 1 additional strain.",
+  desc: "Take the Inspiring Rhetoric action; making an Average ([difficulty][difficulty]) Leadership check. Each [success], 1 ally within close range recovers 1 strain. Spend [advantage] to cause 1 affected ally to recover 1 additional strain.",
   ranked: false,
   active: taAction
 }
@@ -678,7 +678,7 @@ export const masterDriver = {
 
 export const masterGrenadier = {
   name: "Master Grenadier",
-  desc: "Decrease the [AD] cost to activate the Blast quality on any weapon used by 1 to a minimum of 1.",
+  desc: "Decrease the [advantage] cost to activate the Blast quality on any weapon used by 1 to a minimum of 1.",
   ranked: false,
   active: taPassive
 }
@@ -860,7 +860,7 @@ export const overwhelmEmotions = {
 
 export const overwhelmDefenses = {
   name: "Overwhelm Defenses",
-  desc: "Upon unsuccessful attack with a starship or vehicle weapon, may spend [AD][AD] per rank of Overwhelm Defenses. Reduce the defense in the targeted zone by 1 for every [AD][AD] spent.",
+  desc: "Upon unsuccessful attack with a starship or vehicle weapon, may spend [advantage][advantage] per rank of Overwhelm Defenses. Reduce the defense in the targeted zone by 1 for every [advantage][advantage] spent.",
   ranked: true,
   active: taIncidental
 }
@@ -972,7 +972,7 @@ export const respectedScholar = {
 
 export const scathingTirade = {
   name: "Scathing Tirade",
-  desc: "Take a Scathing Tirade action; make an  Average ([difficulty][difficulty]) Coercion check. Each [success] causes one enemy in short range to suffer 1 strain. Spend [AD] to cause 1 affected enemy to suffer 1 additional strain.",
+  desc: "Take a Scathing Tirade action; make an  Average ([difficulty][difficulty]) Coercion check. Each [success] causes one enemy in short range to suffer 1 strain. Spend [advantage] to cause 1 affected enemy to suffer 1 additional strain.",
   ranked: false,
   active: taAction
 }
@@ -1000,7 +1000,7 @@ export const secondWind = {
 
 export const selectiveDetonation = {
   name: "Selective Detonation",
-  desc: "When using a weapon with the Blast quality spend [AD] to exclude 1 target that would be affected by the explosion, up to ranks in Selective Detonation.",
+  desc: "When using a weapon with the Blast quality spend [advantage] to exclude 1 target that would be affected by the explosion, up to ranks in Selective Detonation.",
   ranked: true,
   active: taIncidental
 }
@@ -1105,7 +1105,7 @@ export const soundInvestments = {
 
 export const spareClip = {
   name: "Spare Clip",
-  desc: "Cannot run out of ammo due to [DE]. Items with Limited Ammo quality run out of ammo as normal.",
+  desc: "Cannot run out of ammo due to [despair]. Items with Limited Ammo quality run out of ammo as normal.",
   ranked: false,
   active: taPassive
 }
@@ -1264,7 +1264,7 @@ export const touchOfFate = {
   active: taIncidental
 }
 
-export const tough = {
+export const toughened = {
   name: "Toughened",
   desc: "Gain +2 wound threshold.",
   ranked: true,
@@ -1434,7 +1434,7 @@ export const IMPDETIMP = {
 
 export const LOOM = {
   name: "Loom",
-  desc: "When an ally engaged with the character makes a successful Charm, Deception, or Negotiation check, the character adds [AD] per rank in Coercion to the ally's check.",
+  desc: "When an ally engaged with the character makes a successful Charm, Deception, or Negotiation check, the character adds [advantage] per rank in Coercion to the ally's check.",
   ranked: false,
   active: taPassive
 }
@@ -1469,7 +1469,7 @@ export const WALKWALK = {
 
 export const IDEALIST = {
   name: "Idealist",
-  desc: "Spend 1 stain to add an [AD] on a skill check.",
+  desc: "Spend 1 stain to add an [advantage] on a skill check.",
   ranked: true,
   active: taIncidental
 }
@@ -1497,7 +1497,7 @@ export const ANIMALBONDIMP = {
 
 export const ANIMALEMP = {
   name: "Animal Empathy",
-  desc: "When making checks to handle or tame animals, add [FO] no greater than Force rating to the check. Spend [FP] to add [success] or [AD] to the check.",
+  desc: "When making checks to handle or tame animals, add [FO] no greater than Force rating to the check. Spend [FP] to add [success] or [advantage] to the check.",
   ranked: false,
   active: taPassive
 }
@@ -1581,14 +1581,14 @@ export const CONTPLAN = {
 
 export const COUNTERST = {
   name: "Counterstrike",
-  desc: "When an attack misses the character and generates [DE] or [TH][TH], may upgrade next Lightsaber (Cunning) check against attacker during encounter once.",
+  desc: "When an attack misses the character and generates [despair] or [TH][TH], may upgrade next Lightsaber (Cunning) check against attacker during encounter once.",
   ranked: false,
   active: taPassive
 }
 
 export const DEFCIRCLE = {
   name: "Defensive Circle",
-  desc: "May take the Defensive Circle action, making a Hard ([difficulty][difficulty][difficulty]) Lightsaber (Intellect) check. The character, plus one ally within short range per [success], gains X defense until the beginning of next turn. X equals 1, plus 1 per [AD][AD].",
+  desc: "May take the Defensive Circle action, making a Hard ([difficulty][difficulty][difficulty]) Lightsaber (Intellect) check. The character, plus one ally within short range per [success], gains X defense until the beginning of next turn. X equals 1, plus 1 per [advantage][advantage].",
   ranked: false,
   active: taAction
 }
@@ -1630,7 +1630,7 @@ export const DUELTRAIN = {
 
 export const ENHLEAD = {
   name: "Enhanced Leader",
-  desc: "When making a Leadership check, add [FO] no greater than Force rating. Spend [FP] to add [success] or [AD] to the result.",
+  desc: "When making a Leadership check, add [FO] no greater than Force rating. Spend [FP] to add [success] or [advantage] to the result.",
   ranked: false,
   active: taPassive
 }
@@ -1644,14 +1644,14 @@ export const FALLAVAL = {
 
 export const FEINT = {
   name: "Feint",
-  desc: "Spend [TR] or [AD][AD][AD] generated on a missed melee attack to upgrade difficulty of opponent's next attack targeting character by ranks in Feint.",
+  desc: "Spend [TR] or [advantage][advantage][advantage] generated on a missed melee attack to upgrade difficulty of opponent's next attack targeting character by ranks in Feint.",
   ranked: true,
   active: taPassive
 }
 
 export const FORCEASSAULT = {
   name: "Force Assault",
-  desc: "Spend [TR] or [AD][AD][AD] on a missed Lightsaber (Willpower) combat check to immediately perform Move Force power action as maneuver.",
+  desc: "Spend [TR] or [advantage][advantage][advantage] on a missed Lightsaber (Willpower) combat check to immediately perform Move Force power action as maneuver.",
   ranked: false,
   active: taPassive
 }
@@ -1672,7 +1672,7 @@ export const FOREWARN = {
 
 export const HAWKSWOOP = {
   name: "Hawk Bat Swoop",
-  desc: "Take the Hawk Bat Swoop action. Perform a Lightsaber (Agility) combat check against target within short range, adding [FO] no greater than Force rating. Spend [FP] to engage target and spend [FP] to add [AD] to check.",
+  desc: "Take the Hawk Bat Swoop action. Perform a Lightsaber (Agility) combat check against target within short range, adding [FO] no greater than Force rating. Spend [FP] to engage target and spend [FP] to add [advantage] to check.",
   ranked: true,
   active: taAction
 }
@@ -1714,14 +1714,14 @@ export const INTUITIMP = {
 
 export const INTUITSHOT = {
   name: "Intuitive Shot",
-  desc: "When aimng a Ranged (Heavy) or Range (Light) combat check, add [FO] no greater than Force rating to the check. May spend [FP] to add [success] or [AD].",
+  desc: "When aimng a Ranged (Heavy) or Range (Light) combat check, add [FO] no greater than Force rating to the check. May spend [FP] to add [success] or [advantage].",
   ranked: false,
   active: taPassive
 }
 
 export const INTUITSTRIKE = {
   name: "Intuitive Strike",
-  desc: "When making a combat check with a planetary scale weapon, add [FO] no greater than Force rating to the check. Spend [FP][FP] to add [success] or [AD].",
+  desc: "When making a combat check with a planetary scale weapon, add [FO] no greater than Force rating to the check. Spend [FP][FP] to add [success] or [advantage].",
   ranked: false,
   active: taPassive
 }
@@ -1840,7 +1840,7 @@ export const PARRY = {
 
 export const PARRYIMP = {
   name: "Parry (Improved)",
-  desc: "When parrying a hit that generate [DE] or [TH][TH][TH], may hit attacker once with Lightsaber, Brawl, or Melee weapon (dealing base damage) after original attack resolves.",
+  desc: "When parrying a hit that generate [despair] or [TH][TH][TH], may hit attacker once with Lightsaber, Brawl, or Melee weapon (dealing base damage) after original attack resolves.",
   ranked: false,
   active: taIncidentalOOT
 }
@@ -1889,7 +1889,7 @@ export const REFLECT = {
 
 export const REFLECTIMP = {
   name: "Reflect (Improved)",
-  desc: "When reflecting a hit that generated [DE] or [TH][TH][TH] may hit one target in medium range with the same damage as the initial hit, after original attack resolves.",
+  desc: "When reflecting a hit that generated [despair] or [TH][TH][TH] may hit one target in medium range with the same damage as the initial hit, after original attack resolves.",
   ranked: false,
   active: taIncidentalOOT
 }
@@ -1924,7 +1924,7 @@ export const SABERTHROW = {
 
 export const SARSWEEP = {
   name: "Sarlacc Sweep",
-  desc: "Increase difficulty of Lightsaber check by 1 to perform Sarlacc Sweep action. May spend [AD][AD] to hit additional engaged targets.",
+  desc: "Increase difficulty of Lightsaber check by 1 to perform Sarlacc Sweep action. May spend [advantage][advantage] to hit additional engaged targets.",
   ranked: false,
   active: taAction
 }
@@ -1980,14 +1980,14 @@ export const STRATFORM = {
 
 export const SUMDJEM = {
   name: "Sum Djem",
-  desc: "May spend [TR] or [AD][AD] with a successful Lightsaber check to disarm opponent.",
+  desc: "May spend [TR] or [advantage][advantage] with a successful Lightsaber check to disarm opponent.",
   ranked: false,
   active: taPassive
 }
 
 export const TERRIFY = {
   name: "Terrify",
-  desc: "Take the Terrify action; make a Hard ([difficulty][difficulty][difficulty]) Coercion check, adding [FO] no greater than Force rating. Disorient one target within medium range per [success]. Spend [AD][AD] to extend duration and spend [FP] to immobilize affected target.",
+  desc: "Take the Terrify action; make a Hard ([difficulty][difficulty][difficulty]) Coercion check, adding [FO] no greater than Force rating. Disorient one target within medium range per [success]. Spend [advantage][advantage] to extend duration and spend [FP] to immobilize affected target.",
   ranked: false,
   active: taManeuver
 }
@@ -2008,7 +2008,7 @@ export const FORCEALLY = {
 
 export const UNITYASSAULT = {
   name: "Unity Assault",
-  desc: "If a missed combat check generates [TR] or [AD][AD][AD], may spend to perform Force power targeting allies as a maneuver.",
+  desc: "If a missed combat check generates [TR] or [advantage][advantage][advantage], may spend to perform Force power targeting allies as a maneuver.",
   ranked: false,
   active: taManeuver
 }
@@ -2022,7 +2022,7 @@ export const VALFACT = {
 
 export const BADCOP = {
   name: "Bad Cop",
-  desc: "May spend [AD][AD] from a Deception or Coercion check to upgrade ability of a single ally's subsequent Social Interaction check against the target a number of times equal to ranks in Bad Cop.",
+  desc: "May spend [advantage][advantage] from a Deception or Coercion check to upgrade ability of a single ally's subsequent Social Interaction check against the target a number of times equal to ranks in Bad Cop.",
   ranked: true,
   active: taPassive
 }
@@ -2071,7 +2071,7 @@ export const DECEPTAUNT = {
 
 export const GOODCOP = {
   name: "Good Cop",
-  desc: "May spend [AD][AD] from a Charm or Negotiation check to upgrade ability of a single ally's subsequent Social Interaction check against the target a number of times equal to ranks in Good Cop.",
+  desc: "May spend [advantage][advantage] from a Charm or Negotiation check to upgrade ability of a single ally's subsequent Social Interaction check against the target a number of times equal to ranks in Good Cop.",
   ranked: true,
   active: taPassive
 }
@@ -2106,7 +2106,7 @@ export const UNRELSKEP = {
 
 export const UNRELSKEPIMP = {
   name: "Unrelenting Skeptic (Improved)",
-  desc: "When targeted by a Deception check that fails, may spend 1 Destiny Point to add [DE] to results.",
+  desc: "When targeted by a Deception check that fails, may spend 1 Destiny Point to add [despair] to results.",
   ranked: false,
   active: taIncidental
 }
@@ -2211,7 +2211,7 @@ export const REINFRAME = {
 
 export const SHOWBOAT = {
   name: "Showboat",
-  desc: "When making a check in a starship or vehicle, may suffer 2 strain to gain [TR] on success or [DE] on failure.",
+  desc: "When making a check in a starship or vehicle, may suffer 2 strain to gain [TR] on success or [despair] on failure.",
   ranked: false,
   active: taIncidental
 }
@@ -2281,7 +2281,7 @@ export const DONTSHOOT = {
 
 export const DOUBLEORNOTHING = {
   name: "Double or Nothing",
-  desc: "Suffer 2 strain to perform the Double or Nothing incidental to increase the difficulty of the next check by one. Then, after canceling opposing symbols, double the amount of remaining [AD]",
+  desc: "Suffer 2 strain to perform the Double or Nothing incidental to increase the difficulty of the next check by one. Then, after canceling opposing symbols, double the amount of remaining [advantage]",
   ranked: false,
   active: taPassive
 }
@@ -2295,7 +2295,7 @@ export const DOUBLEORNOTHINGIMP = {
 
 export const DOUBLEORNOTHINGSUP = {
   name: "Double or Nothing (Supreme)",
-  desc: "When performing the Double or Nothing incidental, also double the number of [TR] and [DE].",
+  desc: "When performing the Double or Nothing incidental, also double the number of [TR] and [despair].",
   ranked: false,
   active: taPassive
 }
@@ -2316,7 +2316,7 @@ export const GUNSBLAZING = {
 
 export const JUSTKID = {
   name: "Just Kidding!",
-  desc: "Once per round as an incidental spend 1 Destiny Point to ignore [DE] generated on a social check by the character or any ally in short range.",
+  desc: "Once per round as an incidental spend 1 Destiny Point to ignore [despair] generated on a social check by the character or any ally in short range.",
   ranked: false,
   active: taIncidental
 }
@@ -2379,7 +2379,7 @@ export const CUTQUEST = {
 
 export const DISCREDIT = {
   name: "Discredit",
-  desc: "Once per encounter, take the Discredit action, make a Hard ([difficulty][difficulty][difficulty]) Deception check to upgrade the difficulty of one character's social checks once, plus once for every [AD][AD], until of the encounter.",
+  desc: "Once per encounter, take the Discredit action, make a Hard ([difficulty][difficulty][difficulty]) Deception check to upgrade the difficulty of one character's social checks once, plus once for every [advantage][advantage], until of the encounter.",
   ranked: false,
   active: taAction
 }
@@ -2421,7 +2421,7 @@ export const INFORM = {
 
 export const INTERJECT = {
   name: "Interjection",
-  desc: "After another character makes a social check, suffer 3 strain to take an interjection incidental make an Average ([difficulty][difficulty]) Vigilance check to add [success] or [FA] equal to [success], and [AD] or [TH] equal to [AD] to the check.",
+  desc: "After another character makes a social check, suffer 3 strain to take an interjection incidental make an Average ([difficulty][difficulty]) Vigilance check to add [success] or [FA] equal to [success], and [advantage] or [TH] equal to [advantage] to the check.",
   ranked: false,
   active: taIncidentalOOT
 }
@@ -2456,14 +2456,14 @@ export const POSSPINIMP = {
 
 export const RESEARCHIMP = {
   name: "Researcher (Improved)",
-  desc: "On a successful Knowledge check, character and allies gain automatic [AD] per rank of Researcher on checks to act on those facts until the end of his next turn.",
+  desc: "On a successful Knowledge check, character and allies gain automatic [advantage] per rank of Researcher on checks to act on those facts until the end of his next turn.",
   ranked: false,
   active: taPassive
 }
 
 export const SUPPEVI = {
   name: "Supporting Evidence",
-  desc: "When assisting an ally with a Charm, Deception, Leadership, or Negotiation check, add automatic [AD] per rank of Supporting Evidence.",
+  desc: "When assisting an ally with a Charm, Deception, Leadership, or Negotiation check, add automatic [advantage] per rank of Supporting Evidence.",
   ranked: true,
   active: taPassive
 }
@@ -2477,14 +2477,14 @@ export const THORASS = {
 
 export const TWISTWORD = {
   name: "Twisted Words",
-  desc: "When an incoming social check generates [TH][TH] or [DE], may suffer 1 strain as an incidental to inflict strain equal to ranks in Coercion on speaker.",
+  desc: "When an incoming social check generates [TH][TH] or [despair], may suffer 1 strain as an incidental to inflict strain equal to ranks in Coercion on speaker.",
   ranked: false,
   active: taIncidentalOOT
 }
 
 export const DRIVEBACK = {
   name: "Drive Back",
-  desc: "The Inquisitor may spend [TR] or [AD][AD][AD] on a missed Brawl, Melee, or Lightsaber combat check to force target to make a move maneuver in a direction of the Inquisitor's choice.",
+  desc: "The Inquisitor may spend [TR] or [advantage][advantage][advantage] on a missed Brawl, Melee, or Lightsaber combat check to force target to make a move maneuver in a direction of the Inquisitor's choice.",
   ranked: false,
   active: taPassive
 }
@@ -2505,7 +2505,7 @@ export const BALEGAZE = {
 
 export const BLINDSPOT = {
   name: "Blind Spot",
-  desc: "The character and allies within short range add automatic [AD] to combat checks they make while benefiting from cover.",
+  desc: "The character and allies within short range add automatic [advantage] to combat checks they make while benefiting from cover.",
   ranked: false,
   active: taPassive
 }
@@ -2519,14 +2519,14 @@ export const GRAPPLE = {
 
 export const NOESC = {
   name: "No Escape",
-  desc: "May spend [AD][AD] from a Coercion check or [TH][TH] from a foe's Discipline check; that target cannot perform a free maneuver during his next turn.",
+  desc: "May spend [advantage][advantage] from a Coercion check or [TH][TH] from a foe's Discipline check; that target cannot perform a free maneuver during his next turn.",
   ranked: false,
   active: taPassive
 }
 
 export const OVERBAL = {
   name: "Overbalance",
-  desc: "Whenever an enemy engaged with the character makes a combat check, after the attack is resolved, the character may spend [DE] or [TH][TH][TH] to stagger the attacker until the end of the attacker's next turn.",
+  desc: "Whenever an enemy engaged with the character makes a combat check, after the attack is resolved, the character may spend [despair] or [TH][TH][TH] to stagger the attacker until the end of the attacker's next turn.",
   ranked: false,
   active: taPassive
 }
@@ -2554,7 +2554,7 @@ export const PRESSHOT = {
 
 export const PROPAIM = {
   name: "Prophetic Aim",
-  desc: "While benefiting from an Aim maneuver, [DE] from the character's Ranged (Heavy) and Ranged (Light) checks cannot cause attacks to hit allies engaged with the target.",
+  desc: "While benefiting from an Aim maneuver, [despair] from the character's Ranged (Heavy) and Ranged (Light) checks cannot cause attacks to hit allies engaged with the target.",
   ranked: false,
   active: taPassive
 }
@@ -2568,7 +2568,7 @@ export const REINITEM = {
 
 export const SUPPRFIRE = {
   name: "Suppressing Fire",
-  desc: "The character and each ally within short range may spend [AD] on their failed combat checks to inflict one strain on the target per rank of Suppressing Fire. Each character can only activate this effect once per round.",
+  desc: "The character and each ally within short range may spend [advantage] on their failed combat checks to inflict one strain on the target per rank of Suppressing Fire. Each character can only activate this effect once per round.",
   ranked: true,
   active: taPassive
 }
@@ -2638,7 +2638,7 @@ export const READANYIMP = {
 
 export const THATHOWDONE = {
   name: "That's How It's Done",
-  desc: "May suffer 1 strain on successful skill check to add [AD] to the same skill check made by a number of allies equally to Willpower within short range during the next round.",
+  desc: "May suffer 1 strain on successful skill check to add [advantage] to the same skill check made by a number of allies equally to Willpower within short range during the next round.",
   ranked: true,
   active: taIncidental
 }
@@ -2680,7 +2680,7 @@ export const ENGREDUN = {
 
 export const EYEDET = {
   name: "Eye for Detail",
-  desc: "After making a Mechanics or Computers check, may suffer strain up to ranks in Eye for Detail to convert that many [success] to [AD].",
+  desc: "After making a Mechanics or Computers check, may suffer strain up to ranks in Eye for Detail to convert that many [success] to [advantage].",
   ranked: true,
   active: taIncidental
 }
@@ -2708,21 +2708,21 @@ export const MOREMACH = {
 
 export const OVERCHARGE = {
   name: "Overcharge",
-  desc: "Once per encounter, may use the Overcharge action. Make a Hard ([difficulty][difficulty][difficulty]) Mechanics check. On success one installed cybernetic provides additional benefits. On [DE], overcharged cybernetic shorts out.",
+  desc: "Once per encounter, may use the Overcharge action. Make a Hard ([difficulty][difficulty][difficulty]) Mechanics check. On success one installed cybernetic provides additional benefits. On [despair], overcharged cybernetic shorts out.",
   ranked: false,
   active: taAction
 }
 
 export const OVERCHARGEIMP = {
   name: "Overcharge (Improved)",
-  desc: "May spend [AD][AD] or [TR] from Overcharge action to immediately take another action.",
+  desc: "May spend [advantage][advantage] or [TR] from Overcharge action to immediately take another action.",
   ranked: false,
   active: taPassive
 }
 
 export const OVERCHARGESUP = {
   name: "Supreme Overcharge",
-  desc: "May perform the Overcharge action on any number of installed cybernetics. On [DE], one overcharged cybernetic shorts out.",
+  desc: "May perform the Overcharge action on any number of installed cybernetics. On [despair], one overcharged cybernetic shorts out.",
   ranked: false,
   active: taPassive
 }
@@ -2764,14 +2764,14 @@ export const DEATHBLOW = {
 
 export const ESSENKILL = {
   name: "Essential Kill",
-  desc: "When making a non-Gunnery combat check, the character may add [FO] no greater than his Force rating to the check. The character may spend [FP] to add [AD] or [FP][FP][FP] to add [TR] (character's choice) to the result.",
+  desc: "When making a non-Gunnery combat check, the character may add [FO] no greater than his Force rating to the check. The character may spend [FP] to add [advantage] or [FP][FP][FP] to add [TR] (character's choice) to the result.",
   ranked: false,
   active: taPassive
 }
 
 export const FORCECONN = {
   name: "Force Connection",
-  desc: "When the character performs a Survival or Knowledge(Xenology) skill check, he may roll [FO] no greater than his Force rating. The character may spend [FP] to add [success] or [AD] (character's choice) to the result.",
+  desc: "When the character performs a Survival or Knowledge(Xenology) skill check, he may roll [FO] no greater than his Force rating. The character may spend [FP] to add [success] or [advantage] (character's choice) to the result.",
   ranked: false,
   active: taPassive
 }
@@ -2785,21 +2785,21 @@ export const HARASS = {
 
 export const HOLNAV = {
   name: "Holistic Navigation",
-  desc: "When making an Astrogation skill check, the character may spend one Destiny Point to remove [DE], or to remove [TH] equal to his ranks in Perception.",
+  desc: "When making an Astrogation skill check, the character may spend one Destiny Point to remove [despair], or to remove [TH] equal to his ranks in Perception.",
   ranked: false,
   active: taIncidental
 }
 
 export const INTUITNAV = {
   name: "Intuitive Navigation",
-  desc: "When performing an Astrogation or Knowledge (Outer Rim) skill check, the character may roll [FO] no greater than his Force rating. The character may spend [FP] to ass [success] or [AD] (character's choice) to the result.",
+  desc: "When performing an Astrogation or Knowledge (Outer Rim) skill check, the character may roll [FO] no greater than his Force rating. The character may spend [FP] to ass [success] or [advantage] (character's choice) to the result.",
   ranked: false,
   active: taPassive
 }
 
 export const MARKDEATH = {
   name: "Marked for Death",
-  desc: "Take the Marked for Death maneuver; committing [FO]. Add [AD][AD] to combat checks against target while [FO] remains committed but cannot use this talent again until the original target is incapacitated or the session ends. ",
+  desc: "Take the Marked for Death maneuver; committing [FO]. Add [advantage][advantage] to combat checks against target while [FO] remains committed but cannot use this talent again until the original target is incapacitated or the session ends. ",
   ranked: false,
   active: taManeuver
 }
@@ -3002,14 +3002,14 @@ export const STRSMARTIMP = {
 
 export const SUPHUMAN = {
   name: "Superhuman Reflexes",
-  desc: "Once per session, after generating [DE] on a Piloting check cancel the [DE] and add [success] equal to ranks in Cool.",
+  desc: "Once per session, after generating [despair] on a Piloting check cancel the [despair] and add [success] equal to ranks in Cool.",
   ranked: false,
   active: taIncidental
 }
 
 export const HARDBOILED = {
   name: "Hard-Boiled",
-  desc: "When recovering strain after an encounter, may spend [AD] up to ranks in Hard-Boiled to recover 1 wound per [AD] spent.",
+  desc: "When recovering strain after an encounter, may spend [advantage] up to ranks in Hard-Boiled to recover 1 wound per [advantage] spent.",
   ranked: true,
   active: taPassive
 }
@@ -3149,7 +3149,7 @@ export const SKILLEDTEACH = {
 
 export const SUNDERIMP = {
   name: "Sunder (Improved)",
-  desc: "Each [AD] spent to activate a weapon's Sunder quality damages an item two steps, instead of one.",
+  desc: "Each [advantage] spent to activate a weapon's Sunder quality damages an item two steps, instead of one.",
   ranked: false,
   active: taPassive
 }
@@ -3184,7 +3184,7 @@ export const CONSTSPEC = {
 
 export const CREATDES = {
   name: "Creative Design",
-  desc: "As part of resolving a successful crafting check, the character may also apply a result equivalent to spending a number of [AD] equal to his ranks in Creative Design. The GM may then apply a result equivalent to spending that same number of [TH].",
+  desc: "As part of resolving a successful crafting check, the character may also apply a result equivalent to spending a number of [advantage] equal to his ranks in Creative Design. The GM may then apply a result equivalent to spending that same number of [TH].",
   ranked: true,
   active: taPassive
 }
@@ -3198,7 +3198,7 @@ export const DESPREP = {
 
 export const DESFLAW = {
   name: "Design Flaw",
-  desc: "When making a combat check with a personal scale weapon against a droid, may add [AD] equal to ranks of Design Flaw.",
+  desc: "When making a combat check with a personal scale weapon against a droid, may add [advantage] equal to ranks of Design Flaw.",
   ranked: true,
   active: taIncidental
 }
@@ -3226,7 +3226,7 @@ export const IMPPOS = {
 
 export const MASTDEMO = {
   name: "Master Demolitionist",
-  desc: "When resolving an attack from a personal explosive or ordnance weapon, may spend [AD] or [TR] to have the weapon's Blast quality act at short range, or medium if it already acts at short.",
+  desc: "When resolving an attack from a personal explosive or ordnance weapon, may spend [advantage] or [TR] to have the weapon's Blast quality act at short range, or medium if it already acts at short.",
   ranked: false,
   active: taAction
 }
@@ -3247,14 +3247,14 @@ export const REPPATCHSPEC = {
 
 export const SMARTHAND = {
   name: "Smart Handling",
-  desc: "Once per session, take the Smart Handling action; making a Hard ([difficulty][difficulty][difficulty]) Knowledge (Education) check. Until the start of the next round the ship's handling increases by 2 plus an amount equal to [AD] scored on the check to a maximum handling of +4.",
+  desc: "Once per session, take the Smart Handling action; making a Hard ([difficulty][difficulty][difficulty]) Knowledge (Education) check. Until the start of the next round the ship's handling increases by 2 plus an amount equal to [advantage] scored on the check to a maximum handling of +4.",
   ranked: false,
   active: taAction
 }
 
 export const WEAKFOUND = {
   name: "Weak Foundation",
-  desc: "Once per session may take the Weak Foundation action; make a Hard ([difficulty][difficulty][difficulty]) Knowledge (Warfare) check, if successful, for the remainder of the encounter the character and all allies add automatic [AD][AD] or [success] to all combat checks made targeting the identified fixed structure.",
+  desc: "Once per session may take the Weak Foundation action; make a Hard ([difficulty][difficulty][difficulty]) Knowledge (Warfare) check, if successful, for the remainder of the encounter the character and all allies add automatic [advantage][advantage] or [success] to all combat checks made targeting the identified fixed structure.",
   ranked: false,
   active: taAction
 }
@@ -3296,7 +3296,7 @@ export const IMPCONC = {
 
 export const OVERWAURA = {
   name: "Overwhelming Aura",
-  desc: "Commit [FO]. Add [AD] to social checks equal to [FO] committed. Add [TH] to equal [FO] committed to enemy social checks in short range.",
+  desc: "Commit [FO]. Add [advantage] to social checks equal to [FO] committed. Add [TH] to equal [FO] committed to enemy social checks in short range.",
   ranked: true,
   active: taManeuver
 }
@@ -3324,7 +3324,7 @@ export const SECRETLORE = {
 
 export const TRANSMOG = {
   name: "Transmogrify",
-  desc: "When making a crafting check, may add [FO] no greater than Force rating. Spend [FP] to add [success] and spend [FP][FP] to add [AD] to check.",
+  desc: "When making a crafting check, may add [FO] no greater than Force rating. Spend [FP] to add [success] and spend [FP][FP] to add [advantage] to check.",
   ranked: false,
   active: taIncidental
 }
@@ -3394,7 +3394,7 @@ export const POWPAIN = {
 
 export const SAPITHSUND = {
   name: "Sapith Sundering",
-  desc: "May add [FO] up to Force rating to Brawl checks; the attack gains the Sunder quality, and character may spend [FP] generated one the check as [AD] to activate the Sunder quality.",
+  desc: "May add [FO] up to Force rating to Brawl checks; the attack gains the Sunder quality, and character may spend [FP] generated one the check as [advantage] to activate the Sunder quality.",
   ranked: false,
   active: taIncidental
 }
@@ -3436,7 +3436,7 @@ export const CUNNPERSON = {
 
 export const EXHAUSTQUEST = {
   name: "Exhaustive Questioning",
-  desc: "Whenever a character makes a successful social skill check against a captured enemy within short range, may reduce that enemy s strain threshold by 2 for the remainder of the session and can spend [AD] to inflict 1 strain.",
+  desc: "Whenever a character makes a successful social skill check against a captured enemy within short range, may reduce that enemy s strain threshold by 2 for the remainder of the session and can spend [advantage] to inflict 1 strain.",
   ranked: false,
   active: taIncidental
 }
@@ -3471,7 +3471,7 @@ export const INSIDEKNOW = {
 
 export const INSIDEPERSON = {
   name: "Inside Person",
-  desc: "Once per session the character may spend a Destiny Point to establish he has been undercover in an identified enemy base or large vehicle. For the remainder of the session, add automatic [AD][AD] to checks he or his allies make that are associated with that location.",
+  desc: "Once per session the character may spend a Destiny Point to establish he has been undercover in an identified enemy base or large vehicle. For the remainder of the session, add automatic [advantage][advantage] to checks he or his allies make that are associated with that location.",
   ranked: false,
   active: taIncidental
 }
@@ -3513,21 +3513,21 @@ export const PILOTTRAIN = {
 
 export const RESISTQUEST = {
   name: "Resist Questioning",
-  desc: "When targeted by an opposed social skill check, the character may suffer 2 strain to perform the Resist Questioning out-of-turn incidental, adding [setback] to the check. If the check fails, may spend [DE] to indicate he has provided false information to foe.",
+  desc: "When targeted by an opposed social skill check, the character may suffer 2 strain to perform the Resist Questioning out-of-turn incidental, adding [setback] to the check. If the check fails, may spend [despair] to indicate he has provided false information to foe.",
   ranked: false,
   active: taIncidentalOOT
 }
 
 export const RESISTQUESTIMP = {
   name: "Resist Questioning (Improved)",
-  desc: "When one ally within short range is targeted by an opposed social skill check, the character may perform Resist Questioning to affect this check instead. If the check fails, may spend [DE] to indicate the ally provided false information to foe.",
+  desc: "When one ally within short range is targeted by an opposed social skill check, the character may perform Resist Questioning to affect this check instead. If the check fails, may spend [despair] to indicate the ally provided false information to foe.",
   ranked: false,
   active: taPassive
 }
 
 export const ADAPT = {
   name: "Adaptable",
-  desc: "When resolving a check that uses a skill in which they nave no ranks, the character may spend one Destiny Point to remove [DE] from the check or to remove [TH] equal to their ranks in Cool from the check.",
+  desc: "When resolving a check that uses a skill in which they nave no ranks, the character may spend one Destiny Point to remove [despair] from the check or to remove [TH] equal to their ranks in Cool from the check.",
   ranked: false,
   active: taIncidental
 }
@@ -3548,7 +3548,7 @@ export const ASSAULTDR = {
 
 export const BACKROOM = {
   name: "Backroom Deal",
-  desc: "Once per encounter, the character may take the Backroom Deal action, making a Hard ([difficulty][difficulty][difficulty]) Negotiation check. If the check succeeds the character (or player) reveals how their previously unknown dealings have a meaningful impact on the current scene or encounter. The nature of the revelation and its impact on the scene are ultimately subject to the GM's discretion, but they should give a significant advantage to the PCs. If the check fails and generates [DE], however, the GM may decide that the character's disastrously failed deal has negative repercussions.",
+  desc: "Once per encounter, the character may take the Backroom Deal action, making a Hard ([difficulty][difficulty][difficulty]) Negotiation check. If the check succeeds the character (or player) reveals how their previously unknown dealings have a meaningful impact on the current scene or encounter. The nature of the revelation and its impact on the scene are ultimately subject to the GM's discretion, but they should give a significant advantage to the PCs. If the check fails and generates [despair], however, the GM may decide that the character's disastrously failed deal has negative repercussions.",
   ranked: false,
   active: taAction
 }
@@ -3569,7 +3569,7 @@ export const BARRELIMP = {
 
 export const BARRELSUP = {
   name: "Barrel Roll (Supreme)",
-  desc: "When the character uses Barrel Roll to reduce the damage from a weapon with the Auto-fire, Blast, or Guided item qualities, they may spend [DE] or [TH][TH][TH] to inflict one hit on the attacker or another enemy vehicle or starship within close range after the initial attack resolves. The hit deals the base damage of the original attack.",
+  desc: "When the character uses Barrel Roll to reduce the damage from a weapon with the Auto-fire, Blast, or Guided item qualities, they may spend [despair] or [TH][TH][TH] to inflict one hit on the attacker or another enemy vehicle or starship within close range after the initial attack resolves. The hit deals the base damage of the original attack.",
   ranked: false,
   active: taPassive
 }
@@ -3583,7 +3583,7 @@ export const BEGLUCK = {
 
 export const CLANKILL = {
   name: "Clanker Killer",
-  desc: "Before rolling a combat check that targets a droid (including a droid vehicle or a vehicle piloted by a droid), the character may remove [boost] up to their ranks in Clanker Killer from the pool, and add an equal number of [success] or [AD] (in any combination) to the results.",
+  desc: "Before rolling a combat check that targets a droid (including a droid vehicle or a vehicle piloted by a droid), the character may remove [boost] up to their ranks in Clanker Killer from the pool, and add an equal number of [success] or [advantage] (in any combination) to the results.",
   ranked: true,
   active: taIncidental
 }
@@ -3604,7 +3604,7 @@ export const CONCOPTIMP = {
 
 export const EXCEEDSPEC = {
   name: "Exceed Specifications",
-  desc: "Before making a check using an item, the character may take the Exceed Specifications incidental, adding [boost] to the check. The GM may spend [TH][TH] on the check to damage the item one step, or [DE] to damage it beyond usability (see Table 5-4: Repairing Gear in any core rulebook). [TH] or [DE] may have additional consequences depending on the nature of the item, at the GM's discretion.",
+  desc: "Before making a check using an item, the character may take the Exceed Specifications incidental, adding [boost] to the check. The GM may spend [TH][TH] on the check to damage the item one step, or [despair] to damage it beyond usability (see Table 5-4: Repairing Gear in any core rulebook). [TH] or [despair] may have additional consequences depending on the nature of the item, at the GM's discretion.",
   ranked: false,
   active: taIncidental
 }
@@ -3618,7 +3618,7 @@ export const EXCEEDSPECIMP = {
 
 export const EXCEEDSPECSUP = {
   name: "Exceed Specifications (Supreme)",
-  desc: "If the character's check benefitting from the Exceed Specifications incidental generates [TR], they may damage the item one step to roll one additional [PR] and add it to the check results. If the check generates [DE] roll [CH] and add it to the check results.",
+  desc: "If the character's check benefitting from the Exceed Specifications incidental generates [TR], they may damage the item one step to roll one additional [PR] and add it to the check results. If the check generates [despair] roll [CH] and add it to the check results.",
   ranked: false,
   active: taIncidental
 }
@@ -3639,7 +3639,7 @@ export const FIREREADY = {
 
 export const FIRSTBRO = {
   name: "First Among Brothers",
-  desc: "When the character makes a check that does not result in any uncanceled [TH], add [AD] equal to the character's ranks in First Among Brothers to the check results. The character may only spend these additional [AD] to affect allied clones.",
+  desc: "When the character makes a check that does not result in any uncanceled [TH], add [advantage] equal to the character's ranks in First Among Brothers to the check results. The character may only spend these additional [advantage] to affect allied clones.",
   ranked: true,
   active: taPassive
 }
@@ -3674,7 +3674,7 @@ export const LATTHINK = {
 
 export const LEARNOPP = {
   name: "Learning Opportunity",
-  desc: "Once per round, the character may spend [AD][AD][AD] from a check they fail to upgrade the ability of their next check once.",
+  desc: "Once per round, the character may spend [advantage][advantage][advantage] from a check they fail to upgrade the ability of their next check once.",
   ranked: false,
   active: taIncidental
 }
@@ -3688,7 +3688,7 @@ export const LEVER = {
 
 export const MISSCRIT = {
   name: "Mission Critical",
-  desc: "Once per session after rolling a Piloting (Planetary) or Piloting (Space) check but before resolving it, the character may spend a Destiny Point to add [success] or [AD] to the results equal to their ranks in that skill. (The character may divide the results between [success] and [AD] In any combination.)",
+  desc: "Once per session after rolling a Piloting (Planetary) or Piloting (Space) check but before resolving it, the character may spend a Destiny Point to add [success] or [advantage] to the results equal to their ranks in that skill. (The character may divide the results between [success] and [advantage] In any combination.)",
   ranked: false,
   active: taIncidental
 }
@@ -3807,7 +3807,7 @@ export const TACTADV = {
 
 export const TACTADVIMP = {
   name: "Tactical Advance (Improved)",
-  desc: "The character may spend [AD][AD] from any check they make or [TH][TH] from a combat check targeting them to perform the Tactical Advance incidental (instead of suffering strain).",
+  desc: "The character may spend [advantage][advantage] from any check they make or [TH][TH] from a combat check targeting them to perform the Tactical Advance incidental (instead of suffering strain).",
   ranked: false,
   active: taIncidentalOOT
 }
@@ -3821,7 +3821,7 @@ export const TEMPLETR = {
 
 export const TRANSERR = {
   name: "Translation Error",
-  desc: "Once per encounter, the character may remove [DE] from the results of a social skill check they make.",
+  desc: "Once per encounter, the character may remove [despair] from the results of a social skill check they make.",
   ranked: false,
   active: taIncidental
 }
@@ -3880,7 +3880,7 @@ export const COMARMS = {
 
 export const IMPCOMARMS = {
   name: "Comrades in Arms (Improved)",
-  desc: "Spend [AD][AD][AD] or [TR] from Comrades in Arms check to also gain +1 soak or give one affected ally +1 soak.",
+  desc: "Spend [advantage][advantage][advantage] or [TR] from Comrades in Arms check to also gain +1 soak or give one affected ally +1 soak.",
   active: taPassive
 }
 
@@ -3893,19 +3893,19 @@ export const DISCLORE = {
 
 export const DISCSOUL = {
   name: "Disciplined Soul",
-  desc: "Spend one Destiny Point after making a Discipline check to spend a number of [TH] not exceeding ranks in Knowledge (Lore) as [AD].",
+  desc: "Spend one Destiny Point after making a Discipline check to spend a number of [TH] not exceeding ranks in Knowledge (Lore) as [advantage].",
   active: taIncidental
 }
 
 export const DISSTRIKE = {
   name: "Disorienting Strike",
-  desc: "After failing a Lightsaber combat check, may spend [AD][AD] or [TR] to disorient opponents for three rounds.",
+  desc: "After failing a Lightsaber combat check, may spend [advantage][advantage] or [TR] to disorient opponents for three rounds.",
   active: taPassive
 }
 
 export const DOUBLETALK = {
   name: "Double-Talk",
-  desc: "The character may spend [AD][AD] or [TR] from a successful Charm or Deception check to disorient a number of opponents within short range equal to his Presence for remainder of round and next two rounds.",
+  desc: "The character may spend [advantage][advantage] or [TR] from a successful Charm or Deception check to disorient a number of opponents within short range equal to his Presence for remainder of round and next two rounds.",
   active: taPassive
 }
 
@@ -3917,7 +3917,7 @@ export const EXTREACH = {
 
 export const FEARREP = {
   name: "Fearsome Rep",
-  desc: "Add automatic [AD] to the results of Coercion checks equal to ranks in Fearsome Rep.",
+  desc: "Add automatic [advantage] to the results of Coercion checks equal to ranks in Fearsome Rep.",
   ranked: true,
   active: taPassive
 }
@@ -3930,7 +3930,7 @@ export const FORMTAC = {
 
 export const IMPFORMTAC = {
   name: "Formation Tactics (Improved)",
-  desc: "The difficulty of Formation Tactics is reduced to Average ([difficulty][difficulty]). May spend [TR] or [AD][AD][AD][AD][AD][AD] to have effect last until the end of encounter.",
+  desc: "The difficulty of Formation Tactics is reduced to Average ([difficulty][difficulty]). May spend [TR] or [advantage][advantage][advantage][advantage][advantage][advantage] to have effect last until the end of encounter.",
   active: taManeuver
 }
 
@@ -3942,7 +3942,7 @@ export const INSPLEAD = {
 
 export const MOSTIMP = {
   name: "Most Impressive",
-  desc: "Spend [TR] from any skill check to allow a number of allies not exceeding the character's rating in Presence within short range to add automatic [AD] to their next check.",
+  desc: "Spend [TR] from any skill check to allow a number of allies not exceeding the character's rating in Presence within short range to add automatic [advantage] to their next check.",
   active: taIncidental
 }
 
@@ -3960,7 +3960,7 @@ export const PRIDEJOY = {
 
 export const IMPPRIDEJOY = {
   name: "Pride and Joy (Improved)",
-  desc: "While inside his Pride and Joy vessel, recover 1 additional strain whenever recovering strain and spend [AD] on checks made to recover strain to allow an ally also within the vessel to recover one strain.",
+  desc: "While inside his Pride and Joy vessel, recover 1 additional strain whenever recovering strain and spend [advantage] on checks made to recover strain to allow an ally also within the vessel to recover one strain.",
   active: taPassive
 }
 
@@ -3978,7 +3978,7 @@ export const PUSHASIDE = {
 
 export const SEENTHINGS = {
   name: "Seen A Lot of Things",
-  desc: "Whenever the character fails a Knowledge check, he may spend [AD][AD][AD] to roll the check again during his next turn.",
+  desc: "Whenever the character fails a Knowledge check, he may spend [advantage][advantage][advantage] to roll the check again during his next turn.",
   active: taPassive
 }
 
@@ -3990,7 +3990,7 @@ export const STEADYAIM = {
 
 export const TARGFIRE = {
   name: "Targeted Firepower",
-  desc: "Once per session may take Targeted Firepower action; identify one enemy target and make a Hard ([difficulty][difficulty][difficulty]) Knowledge (Warfare) check. If successful, for the rest of the encounter allies within short range of character add [AD] to attacks against target equal to [success] gained in the check.",
+  desc: "Once per session may take Targeted Firepower action; identify one enemy target and make a Hard ([difficulty][difficulty][difficulty]) Knowledge (Warfare) check. If successful, for the rest of the encounter allies within short range of character add [advantage] to attacks against target equal to [success] gained in the check.",
   active: taAction
 }
 
@@ -4002,13 +4002,13 @@ export const TEMPTRAIN = {
 
 export const TRUSTNO = {
   name: "Trust No One",
-  desc: "When targeted by a social check, may choose to suffer one strain to add automatic [FA] to the check. If the check fails with [DE], the character may immediately perform a maneuver as an out-of-turn incidental.",
+  desc: "When targeted by a social check, may choose to suffer one strain to add automatic [FA] to the check. If the check fails with [despair], the character may immediately perform a maneuver as an out-of-turn incidental.",
   active: taIncidentalOOT
 }
 
 export const BYBOOK = {
   name: "By the Book",
-  desc: "Once per encounter before making a combat check, the character may suffer two strain to add [AD] to the results equal to his ranks in By the Book.",
+  desc: "Once per encounter before making a combat check, the character may suffer two strain to add [advantage] to the results equal to his ranks in By the Book.",
   ranked: true,
   active: taIncidental
 }
@@ -4051,7 +4051,7 @@ export const TRUSTCAP = {
 
 export const PREPBOARD = {
   name: "Prepare to be Boarded!",
-  desc: "Once per encounter may take Prepare to be Boarded! action and make opposed Coercion vs. Discipline check against enemy ship captain. If successful, the enemy suffers 1 strain per uncanceled [success] and surrenders ship if he exceeds strain threshold. May also spend [TR] or [AD][AD][AD][AD] to inflict strain equal to ranks in Coercion.",
+  desc: "Once per encounter may take Prepare to be Boarded! action and make opposed Coercion vs. Discipline check against enemy ship captain. If successful, the enemy suffers 1 strain per uncanceled [success] and surrenders ship if he exceeds strain threshold. May also spend [TR] or [advantage][advantage][advantage][advantage] to inflict strain equal to ranks in Coercion.",
   active: taAction
 }
 
@@ -4236,7 +4236,7 @@ export default {
   timeToGoImproved,
   tinkerer,
   touchOfFate,
-  tough,
+  toughened,
   trickyTarget,
   trueAim,
   uncannyReactions,
