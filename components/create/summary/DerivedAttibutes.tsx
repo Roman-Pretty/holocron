@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Colors } from "@/constants/Colors";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
-import SpeciesCharacteristic from "@/components/create/species/SpeciesCharacteristic";
+import SpeciesCharacteristic from "@/components/create/species/SmallCharacteristic";
 import { Species, Characteristic } from "@/constants/Types";
 
 interface DerivedAttributesProps {

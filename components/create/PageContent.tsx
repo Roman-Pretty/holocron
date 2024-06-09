@@ -16,6 +16,7 @@ import {
 import React from "react";
 import { ImageSourcePropType } from "react-native";
 import TalentsComponent from "./talents/Talents";
+import Motivation from "./motivation/Motivation";
 
 interface PageContentProps {
   currentIndex: number;
@@ -102,12 +103,16 @@ const PageContent = ({
       );
     case 2:
       return (
+        <Motivation />
+      )
+    case 3:
+      return (
         <CareerComponent
           selectedCareer={career}
           setSelectedCareer={setCareer}
         />
       );
-    case 3:
+    case 4:
       return (
         <SpecializationComponent
           selectedCareer={career}
@@ -115,7 +120,7 @@ const PageContent = ({
           setSelectedSpecialization={setSpecialization}
         />
       );
-    case 4:
+    case 5:
       return (
         <FreeSkills
           skills={skills}
@@ -128,7 +133,7 @@ const PageContent = ({
           setCheckedSpecializationSkills={setCheckedSpecializationSkills}
         />
       );
-    case 5:
+    case 6:
       return (
         <CharacteristicsComponent
           characteristics={characteristics}
@@ -136,7 +141,7 @@ const PageContent = ({
           species={species}
         />
       );
-    case 6:
+    case 7:
       return (
         <SkillsComponent
           selectedBonusSkill={selectedBonusSkill}
@@ -149,14 +154,14 @@ const PageContent = ({
           checkedSpecializationSkills={checkedSpecializationSkills}
         />
       );
-    case 7:
+    case 8:
       return (
         <TalentsComponent
           setSpecialization={setSpecialization}
           specialization={specialization}
         />
       );
-    case 8:
+    case 9:
       return (
         <SummaryComponent
           name={name}

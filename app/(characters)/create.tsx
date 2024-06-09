@@ -26,7 +26,7 @@ import React, { useEffect, useState } from "react";
 import { ImageBackground, ImageSourcePropType, View } from "react-native";
 
 const CreateCharacter = () => {
-  const PAGES = 8;
+  const PAGES = 9;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [name, setName] = useState("");
@@ -421,8 +421,8 @@ const CreateCharacter = () => {
               onPress={onNextPressed}
               disabled={
                 (currentIndex === 1 && species === null) ||
-                (currentIndex === 2 && career === null) ||
-                (currentIndex === 3 && specialization === null) ||
+                (currentIndex === 3 && career === null) ||
+                (currentIndex === 4 && specialization === null) ||
                 currentIndex === PAGES
               }
               cName="ml-2"

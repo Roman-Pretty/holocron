@@ -1,50 +1,72 @@
-# Welcome to your Expo app 👋
+# 🌟 Holocron 🌟
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Holocron is a multiplatform app designed to manage SWRPG characters in FFG/Edge Studios games Edge of the Empire, Force and Destiny, and Age of Rebellion. It is coded in TypeScript using React Native and utilizes Nativewind for styling.
 
-## Get started
+## Features ✨
 
-1. Install dependencies
+- Character creation and customization
+- Ability to track character attributes, skills, and equipment
+- Integration with FFG/Edge Studios game mechanics
+- Cross-platform compatibility (iOS and Android)
+
+## Installation 🚀
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Roman-Pretty/holocron.git
+   ```
+
+2. Install dependencies:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Start the development server:
 
    ```bash
-    npx expo start
+   npm start
    ```
 
-In the output, you'll find options to open the app in a
+4. Follow the platform-specific instructions to run the app on your desired device.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Usage 🎮
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+1. Launch the Holocron app on your device.
 
-## Get a fresh project
+2. Create a new character or load an existing one.
 
-When you're ready, run:
+3. Customize your character's attributes, skills, and equipment.
 
-```bash
-npm run reset-project
-```
+4. Use the app to track your character's progress and manage their abilities.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Contributing 🤝
 
-## Learn more
+Contributions are welcome! If you'd like to contribute to Holocron, please follow these steps:
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Fork the repository.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+2. Create a new branch:
 
-## Join the community
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-Join our community of developers creating universal apps.
+3. Make your changes and commit them:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   ```bash
+   git commit -m "Add your commit message here"
+   ```
+
+4. Push your changes to your forked repository:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. Open a pull request on the main repository.
+
+## License 📝
+
+This project is licensed under the [MIT License](LICENSE).

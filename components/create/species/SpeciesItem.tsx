@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import SpeciesCharacteristic from "./SpeciesCharacteristic";
+import SpeciesCharacteristic from "./SmallCharacteristic";
 import { Species } from "@/constants/Types";
 import { Colors } from "@/constants/Colors";
 import TriangleCorner from "@/components/shapes/TriangleCorner";

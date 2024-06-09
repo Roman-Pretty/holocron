@@ -20,18 +20,20 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
       case 1:
         return "Species";
       case 2:
-        return "Career";
+        return "Motivation";
       case 3:
-        return "Specialization";
+        return "Career";
       case 4:
-        return "Free Skills";
+        return "Specialization";
       case 5:
-        return "Characteristics";
+        return "Free Skills";
       case 6:
-        return "Skills";
+        return "Characteristics";
       case 7:
-        return "Talents";
+        return "Skills";
       case 8:
+        return "Talents";
+      case 9:
         return "Summary";
       default:
         return "";

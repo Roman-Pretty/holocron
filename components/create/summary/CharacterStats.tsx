@@ -1,4 +1,4 @@
-import SpeciesCharacteristic from "@/components/create/species/SpeciesCharacteristic";
+import SpeciesCharacteristic from "@/components/create/species/SmallCharacteristic";
 import { Colors } from "@/constants/Colors";
 import { Characteristic } from "@/constants/Types";
 import React from "react";
