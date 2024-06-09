@@ -129,10 +129,10 @@ const TalentItem = ({
               color="white"
             />
             <View className="flex-row flex-1 justify-between items-center">
-              <Text className="text-sm font-[Elektra] text-white pl-1 pt-0.5 uppercase">
+              <Text className="text-xs font-[Elektra] text-white pl-1 pt-0.5 uppercase">
                 {talent.talent.name}
               </Text>
-              <Text className="text-sm font-[Elektra] pt-0.5 text-white">
+              <Text className="text-xs font-[Elektra] pt-0.5 text-white">
                 {cost}
                 <Ionicons name="locate" size={8} color="white" />
               </Text>
