@@ -42,6 +42,7 @@ const Skills = ({ selectedBonusSkill, species, skills, setSkills, career, specia
             <FlatList
                 data={skillsWithTitles(skills)}
                 keyExtractor={(item, index) => item.type === 'title' ? item.text : index.toString()}
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => {
                     if (item.type === 'title') {
                         return (

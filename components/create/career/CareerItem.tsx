@@ -56,8 +56,8 @@ const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemPr
                     <Text className='text-white text-sm pl-2'><Text className='font-bold'>Specializations:</Text> {career.specializations.map(specialization => specialization.name).join(', ')}</Text>
                 </View>
                 {selectedCareer && selectedCareer.name === career.name ?
-                    <Button title={`Selected ${career.name}`} disabled className='mt-[3vh] border-white bg-white border-2' /> :
-                    <Button title={`Select ${career.name}`} onPress={() => setSelectedCareer(career)} className='mt-[3vh] bg-statblockbackground' />}
+                    <Button title={`Selected ${career.name}`} disabled cName='mt-[3vh] border-white bg-white border-2' /> :
+                    <Button title={`Select ${career.name}`} onPress={() => setSelectedCareer(career)} cName='mt-[3vh] bg-statblockbackground' />}
             </View>
         </View>
     )

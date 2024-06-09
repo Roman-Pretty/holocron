@@ -3,15 +3,19 @@ import {
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
+import { Asset } from "expo-asset";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { Asset } from "expo-asset";
 import { useEffect } from "react";
-import "react-native-reanimated";
-import "../global.css";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 
 SplashScreen.preventAutoHideAsync();
 

@@ -78,7 +78,7 @@ const createcharacter = () => {
   }
 
   return (
-    <ImageBackground source={BACKGROUND} style={{ flex: 1, }} blurRadius={12}>
+    <ImageBackground source={BACKGROUND} style={{ flex: 1, }} blurRadius={12} resizeMode="cover">
       <SafeAreaView
         style={{ backgroundColor: "Colors.global.slate900", flex: 1 }}
       >

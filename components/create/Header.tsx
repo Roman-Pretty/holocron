@@ -45,8 +45,8 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
           <TriangleCorner
             style={{
               transform: [{ rotate: "90deg" }],
-              borderTopWidth: "32px",
-              borderRightWidth: "32px",
+              borderTopWidth: "34px",
+              borderRightWidth: "34px",
               borderTopColor: Colors.global.heading1,
             }}
           />
@@ -58,8 +58,8 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
           <TriangleCorner
             style={{
               transform: [{ rotate: "0deg" }],
-              borderTopWidth: "32px",
-              borderRightWidth: "32px",
+              borderTopWidth: "34px",
+              borderRightWidth: "34px",
               borderTopColor: Colors.global.heading1,
             }}
           />

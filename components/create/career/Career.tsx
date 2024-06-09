@@ -14,6 +14,7 @@ const CareerElement = ({ selectedCareer, setSelectedCareer }: CareerProps) => {
   return (
     <FlatList
       data={CareerData}
+      showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
         <CareerItem

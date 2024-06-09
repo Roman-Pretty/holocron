@@ -40,11 +40,11 @@ const SkillItem = ({ selectedBonusSkill, species, index, skill, career, speciali
                 {(skill.career) && <Ionicons name='checkmark' color="white" size={18} />}
             </View>
             <View className='flex flex-row w-[40%] justify-between items-center'>
-                <Button title='-' className='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
+                <Button title='-' cName='mr-[1vw] border-slate-400 bg-slate-500' onPress={decreaseLevel}
                 disabledClassName='border-2 border-slate-600 bg-slate-600'
                     disabled={(checkedCareerSkills[skill.name] || checkedSpecializationSkills[skill.name] || (species && species.bonusSkills && species.bonusSkills.includes(skill.name)) || (selectedBonusSkill === skill.name)) && skill.level <= (checkedCareerSkills[skill.name] ? 1 : 0) + (checkedSpecializationSkills[skill.name] ? 1 : 0) + (species && species.bonusSkills && species.bonusSkills.includes(skill.name) ? 1 : 0) + ((selectedBonusSkill === skill.name) ? 1 : 0) ? true : skill.level <= 0 ? true : false}
                 />
-                <Button title='+' className='ml-[1vw] border-slate-400 bg-slate-500' onPress={increaseLevel}
+                <Button title='+' cName='ml-[1vw] border-slate-400 bg-slate-500' onPress={increaseLevel}
                 disabledClassName='border-2 border-slate-600 bg-slate-600'
                     disabled={skill.level >= 2} />
             </View>

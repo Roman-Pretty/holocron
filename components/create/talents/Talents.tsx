@@ -21,7 +21,7 @@ const TalentsComponent = ({ specialization, setSpecialization }: TalentsComponen
   const talentChunks = chunkArray(specialization?.talents?.talents || [], 4);
 
   return (
-    <ScrollView horizontal>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {talentChunks.map((chunk, i) => {
         return (
           <View key={i} className={`justify-between ${i !== talentChunks.length - 1 && 'mr-[20vw]'}`}>

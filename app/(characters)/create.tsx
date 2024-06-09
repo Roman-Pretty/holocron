@@ -405,7 +405,7 @@ const CreateCharacter = () => {
             title="Back"
             onPress={onBackPressed}
             disabled={currentIndex === 0}
-            className="mr-2"
+            cName="mr-2"
             disabledClassName="mr-2"
           />
           {currentIndex < PAGES ? (
@@ -418,14 +418,14 @@ const CreateCharacter = () => {
                 (currentIndex === 3 && specialization === null) ||
                 currentIndex === PAGES
               }
-              className="ml-2"
+              cName="ml-2"
               disabledClassName="ml-2"
             />
           ) : (
             <Button
               title="Save"
               onPress={onSavePressed}
-              className="ml-2"
+              cName="ml-2"
               disabledClassName="ml-2"
             />
           )}
