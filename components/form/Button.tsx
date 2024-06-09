@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-nativ
 import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps extends TouchableOpacityProps {
-    className?: string;
+    cName?: string;
     textClassName?: string;
     disabledClassName?: string;
     title: string;
@@ -11,12 +11,12 @@ interface ButtonProps extends TouchableOpacityProps {
     disabled?: boolean;
 }
 
-const Button = ({ className, textClassName, disabledClassName, title, onPress, disabled=false } : ButtonProps) => {
+const Button = ({ cName, textClassName, disabledClassName, title, onPress, disabled=false } : ButtonProps) => {
 
     if (disabled) {
         return (
             <View style={{flex: 1, padding: 0.5}}>
-                <View className={twMerge(twMerge("bg-heading3 p-2 flex flex-row items-center justify-center min-h-[4vh]", className), disabledClassName)}>
+                <View className={twMerge(twMerge("bg-heading3 p-2 flex flex-row items-center justify-center min-h-[4vh]", cName), disabledClassName)}>
                     <Text className={twMerge("text-md text-black text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
                 </View>
             </View>
@@ -25,7 +25,7 @@ const Button = ({ className, textClassName, disabledClassName, title, onPress, d
 
     return (
         <TouchableOpacity onPress={onPress} style={{flex: 1, padding: 0.5}}>
-            <View className={twMerge(" bg-heading1 p-2 flex flex-row items-center justify-center min-h-[4vh]", className)}>
+            <View className={twMerge(" bg-heading1 p-2 flex flex-row items-center justify-center min-h-[4vh]", cName)}>
                 <Text className={twMerge("text-md text-white text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
             </View>
         </TouchableOpacity>

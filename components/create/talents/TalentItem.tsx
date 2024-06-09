@@ -142,8 +142,8 @@ const TalentItem = ({
             <TriangleCorner
               style={{
                 transform: [{ rotate: "-90deg" }],
-                borderTopWidth: 38,
-                borderRightWidth: 38,
+                borderTopWidth: 44,
+                borderRightWidth: 44,
                 borderTopColor: !purchasable ? "#9ca3af" : talent.talent.active ? Colors.global.heading3 : Colors.global.box,
               }}
             />) : <View className={`w-[38px] 2 ${!purchasable ? "bg-gray-400" : talent.talent.active ? "bg-heading3" : "bg-box"}`} />}

@@ -203,16 +203,16 @@ const Summary = ({
 
       <View className="w-full mb-[2vh]">
         <View className="flex-row justify-end">
-          <View className="bg-heading3 h-[28px] w-[100%]">
-            <Text className="pl-[38px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
+          <View className="bg-heading3 w-[100%]">
+            <Text className="pl-[52px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
               Characteristics
             </Text>
           </View>
           <TriangleCorner
             style={{
               transform: [{ rotate: "-90deg" }],
-              borderTopWidth: "28px",
-              borderRightWidth: "28px",
+              borderTopWidth: "40px",
+              borderRightWidth: "40px",
               borderTopColor: Colors.global.heading3,
             }}
           />
@@ -252,16 +252,16 @@ const Summary = ({
 {skills && skills?.filter((skill) => skill.level > 0).length > 0 && (
       <View className="w-full mb-[2vh]">
         <View className="flex-row justify-end">
-          <View className="bg-box h-[28px] w-[100%]">
-            <Text className="pl-[38px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
+        <View className="bg-box w-[100%]">
+            <Text className="pl-[52px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
               Improved Skills
             </Text>
           </View>
           <TriangleCorner
             style={{
               transform: [{ rotate: "-90deg" }],
-              borderTopWidth: "28px",
-              borderRightWidth: "28px",
+              borderTopWidth: "40px",
+              borderRightWidth: "40px",
               borderTopColor: Colors.global.box,
             }}
           />
@@ -292,16 +292,16 @@ const Summary = ({
 
       <View className="w-full mb-[2vh]">
         <View className="flex-row justify-end">
-          <View className="bg-heading3 h-[28px] w-[100%]">
-            <Text className="pl-[38px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
+        <View className="bg-heading3 w-[100%]">
+            <Text className="pl-[52px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
               Derived Attributes
             </Text>
           </View>
           <TriangleCorner
             style={{
               transform: [{ rotate: "-90deg" }],
-              borderTopWidth: "28px",
-              borderRightWidth: "28px",
+              borderTopWidth: "40px",
+              borderRightWidth: "40px",
               borderTopColor: Colors.global.heading3,
             }}
           />
@@ -337,19 +337,19 @@ const Summary = ({
         .length > 0 && (
         <View className="w-full my-[2vh]">
           <View className="flex-row justify-end">
-            <View className="bg-box h-[28px] w-[100%]">
-              <Text className="pl-[38px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
-                Purchased Talents
-              </Text>
-            </View>
-            <TriangleCorner
-              style={{
-                transform: [{ rotate: "-90deg" }],
-                borderTopWidth: "28px",
-                borderRightWidth: "28px",
-                borderTopColor: Colors.global.box,
-              }}
-            />
+          <View className="bg-box w-[100%]">
+            <Text className="pl-[52px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
+              Purchased Talents
+            </Text>
+          </View>
+          <TriangleCorner
+            style={{
+              transform: [{ rotate: "-90deg" }],
+              borderTopWidth: "40px",
+              borderRightWidth: "40px",
+              borderTopColor: Colors.global.box,
+            }}
+          />
           </View>
           <View className="bg-box p-3">
             <View className="flex-row">

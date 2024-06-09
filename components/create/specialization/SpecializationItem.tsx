@@ -16,12 +16,12 @@ const SpecializationItem = ({ specialization, selectedSpecialization, setSelecte
     return (
         <View className='w-full my-[2vh]'>
             <View className='flex-row justify-end'>
-                <View className='bg-heading2 h-[28px] w-[100%]'>
-                    <Text className='pl-[36px] pt-[8px] text-lg text-white font-[Elektra]'>{specialization.name}</Text>
+                <View className='bg-heading2  w-[100%]'>
+                    <Text className='pl-[52px] pt-[8px] text-lg text-white font-[Elektra]'>{specialization.name}</Text>
                 </View>
                 <TriangleCorner style={{
                     transform: [{ rotate: "-90deg" }],
-                    borderTopWidth: '28px', borderRightWidth: '28px', borderTopColor: Colors.global.heading2,
+                    borderTopWidth: '40px', borderRightWidth: '40px', borderTopColor: Colors.global.heading2,
                 }} />
             </View>
             <View className='bg-heading2 p-3'>
@@ -35,8 +35,8 @@ const SpecializationItem = ({ specialization, selectedSpecialization, setSelecte
                     <Text className='text-white text-sm pl-2 max-w-[84vw]'><Text className='font-bold '>Skills:</Text> {specialization.skills.join(', ')}</Text>
                 </View>
                 {selectedSpecialization && selectedSpecialization.name === specialization.name ?
-                    <Button title={`Selected ${specialization.name}`} disabled className='mt-[3vh] bg-white' /> :
-                    <Button title={`Select ${specialization.name}`} onPress={() => setSelectedSpecialization(specialization)} className='mt-[3vh] bg-statblockbackground' />}
+                    <Button title={`Selected ${specialization.name}`} disabled cName='mt-[3vh] bg-white' /> :
+                    <Button title={`Select ${specialization.name}`} onPress={() => setSelectedSpecialization(specialization)} cName='mt-[3vh] bg-statblockbackground' />}
             </View>
         </View>
     )

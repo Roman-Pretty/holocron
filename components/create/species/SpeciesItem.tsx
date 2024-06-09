@@ -150,13 +150,13 @@ const SpeciesItem = ({
             <Button
               title={`Selected ${species.species}`}
               disabled
-              className="mt-[3vh] bg-white"
+              cName="mt-[3vh] bg-white"
             />
           ) : (
             <Button
               title={`Select ${species.species}`}
               onPress={() => handleSelect()}
-              className="mt-[3vh] bg-statblockbackground"
+              cName="mt-[3vh] bg-statblockbackground"
             />
           )}
         </View>
@@ -191,7 +191,7 @@ const SpeciesItem = ({
               {species.options?.type === "skill" &&
                 species.options?.options.map((option, index) => (
                   <Button
-                    className="mx-[0.5vw]"
+                    cName="mx-[0.5vw]"
                     key={index}
                     title={option}
                     onPress={() => {
