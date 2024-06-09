@@ -35,6 +35,10 @@ export interface Character {
       ranged: number;
       soak: number;
     };
+    encumbrance: {
+      current: number;
+      threshold: number;
+    };
   };
 }
 

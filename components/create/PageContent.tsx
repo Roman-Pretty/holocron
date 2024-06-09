@@ -1,6 +1,6 @@
 import Description from "@/components/create/Description";
 import FreeSkills from "@/components/create/FreeSkills";
-import SummaryComponent from "@/components/create/Summary";
+import SummaryComponent from "@/components/create/summary/Summary";
 import CareerComponent from "@/components/create/career/Career";
 import CharacteristicsComponent from "@/components/create/characteristics/Characteristics";
 import SkillsComponent from "@/components/create/skills/Skills";

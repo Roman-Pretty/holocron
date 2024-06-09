@@ -340,22 +340,29 @@ const CreateCharacter = () => {
             presence: characteristics[5].level,
           },
           image: portrait,
-
-          credits: 0,
+          credits: 500,
           inventory: [],
+          encumbrance: { current: 0, threshold: characteristics[0].level + 5 },
           wound: {
             current: 0,
             threshold: species
-              ? species.woundThreshold + species.characteristics[0]
+              ? species.woundThreshold + characteristics[0].level
               : 0,
           },
           strain: {
             current: 0,
             threshold: species
-              ? species.strainThreshold + species.characteristics[4]
+              ? species.strainThreshold + characteristics[4].level
               : 0,
           },
-          defense: { melee: 0, ranged: 0, soak: 0 },
+          defense: {
+            melee: 0,
+            ranged: 0,
+            soak:
+              species?.species === "Droid"
+                ? characteristics[0].level + 1
+                : characteristics[0].level,
+          },
         },
       };
       saveCharacter(newCharacter);
