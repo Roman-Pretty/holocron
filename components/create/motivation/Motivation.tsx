@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { Switch, Text, View, ScrollView, TouchableOpacity } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
-import Slider from "@react-native-community/slider";
-import { Colors } from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
-import ObligationPicker from "./ObligationPicker";
+import { ScrollView, Text } from "react-native";
 import DutyPicker from "./DutyPicker";
 import GroupSizeSlider from "./GroupSizeSlider";
+import MoralityPicker from "./MoralityPicker";
+import ObligationPicker from "./ObligationPicker";
 
 interface Obligation {
   label: string;
@@ -20,6 +16,56 @@ interface Duty {
   value: string;
   desc: string;
 }
+
+interface Morality {
+  label: string;
+  value: string;
+}
+const MoralityStrengths: Morality[] = [
+  {
+    label: "Compassion",
+    value: "compassion",
+  },
+  {
+    label: "Courage",
+    value: "courage",
+  },
+  {
+    label: "Justice",
+    value: "justice",
+  },
+  {
+    label: "Temperance",
+    value: "temperance",
+  },
+  {
+    label: "Wisdom",
+    value: "wisdom",
+  },
+];
+
+const MoralityWeaknesses: Morality[] = [
+  {
+    label: "Anger",
+    value: "anger",
+  },
+  {
+    label: "Fear",
+    value: "fear",
+  },
+  {
+    label: "Hatred",
+    value: "hatred",
+  },
+  {
+    label: "Impulsiveness",
+    value: "impulsiveness",
+  },
+  {
+    label: "Vanity",
+    value: "vanity",
+  },
+];
 
 const Obligations: Obligation[] = [
   {
@@ -153,6 +199,7 @@ const Motivation = () => {
 
   const [obligationCost, setObligationCost] = useState(10);
   const [dutyCost, setDutyCost] = useState(10);
+  const [moralityCost, setMoralityCost] = useState(50);
 
   const [additionalObligation, setAdditionalObligation] = useState([
     false,
@@ -166,6 +213,13 @@ const Motivation = () => {
     false,
     false,
   ]);
+
+  const [selectedStrength, setSelectedStrength] = useState<Morality | null>(
+    null
+  );
+  const [selectedWeakness, setSelectedWeakness] = useState<Morality | null>(
+    null
+  );
 
   function updateGroupSize(index: number) {
     async function changeGroupSize(index: number) {
@@ -232,6 +286,16 @@ const Motivation = () => {
         setAdditionalDuty={setAdditionalDuty}
         calculateDutyCost={calculateDutyCost}
         dutyCost={dutyCost}
+      />
+      <MoralityPicker
+        morality={morality}
+        setMorality={setMorality}
+        strengths={MoralityStrengths}
+        setSelectedStrength={setSelectedStrength}
+        weaknesses={MoralityWeaknesses}
+        setSelectedWeakness={setSelectedWeakness}
+        moralityCost={moralityCost}
+        setMoralityCost={setMoralityCost}
       />
     </ScrollView>
   );
