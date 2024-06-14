@@ -1,14 +1,12 @@
-import { BACKGROUND } from "@/app/_layout";
 import CharacterCard from "@/components/CharacterCard";
+import ImageWrapper from "@/components/ImageWrapper";
 import Button from "@/components/form/Button";
 import { Character } from "@/constants/Types";
-import {
-  loadCharacters
-} from "@/storage/CharacterStorage";
+import { loadCharacters } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import {
-  Dimensions, ImageBackground,
+  Dimensions,
   SafeAreaView,
   ScrollView,
   Text,
@@ -46,7 +44,7 @@ const createcharacter = () => {
 
   if (!characters || characters.length <= 0) {
     return (
-      <ImageBackground source={BACKGROUND} style={{ flex: 1 }}>
+      <ImageWrapper>
         <SafeAreaView
           style={{ backgroundColor: "Colors.global.slate900", flex: 1 }}
         >
@@ -63,12 +61,12 @@ const createcharacter = () => {
             />
           </View>
         </SafeAreaView>
-      </ImageBackground>
+      </ImageWrapper>
     );
   }
 
   return (
-    <ImageBackground source={BACKGROUND} style={{ flex: 1, }} blurRadius={12} resizeMode="cover">
+    <ImageWrapper>
       <SafeAreaView
         style={{ backgroundColor: "Colors.global.slate900", flex: 1 }}
       >
@@ -84,7 +82,7 @@ const createcharacter = () => {
           ))}
         </ScrollView>
       </SafeAreaView>
-    </ImageBackground>
+    </ImageWrapper>
   );
 };
 

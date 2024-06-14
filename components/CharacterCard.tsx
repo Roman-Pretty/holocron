@@ -2,6 +2,7 @@ import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import { Character } from "@/constants/Types";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
@@ -122,7 +123,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                   color={Colors.global.heading3}
                 />
                 <Text className="text-heading3 font-[Elektra] text-md pl-1">
-                  500<Text className="font-[aurebesh]">$</Text>
+                  {char.data.credits}<Text className="font-[aurebesh]">$</Text>
                 </Text>
               </View>
             </View>
@@ -163,6 +164,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                 position: "absolute",
                 bottom: screenWidth * -0.1,
               }}
+              onPress={() => {router.push("(tabs)" as never)}}
             >
               <View className="border-2 border-white rounded-full p-6 bg-heading2">
                 <Ionicons name="play" size={32} color="#fff" />

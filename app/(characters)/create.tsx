@@ -1,9 +1,8 @@
-import { BACKGROUND } from "@/app/_layout";
+import ImageWrapper from "@/components/ImageWrapper";
 import Header from "@/components/create/Header";
 import PageContent from "@/components/create/PageContent";
 import Button from "@/components/form/Button";
 import CareerData from "@/constants/CareerData";
-import SpeciesData from "@/constants/SpeciesData";
 import {
   AGILITY,
   BRAWN,
@@ -12,18 +11,19 @@ import {
   PRESENCE,
   WILLPOWER,
 } from "@/constants/Characteristics";
+import SpeciesData from "@/constants/SpeciesData";
 import {
   Career,
+  Character,
   Characteristic,
   Skill,
   Specialization,
   Species,
-  Character,
 } from "@/constants/Types";
-import { saveCharacter, loadCharacters } from "@/storage/CharacterStorage";
+import { loadCharacters, saveCharacter } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ImageBackground, ImageSourcePropType, View } from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 
 const CreateCharacter = () => {
   const PAGES = 9;
@@ -372,7 +372,7 @@ const CreateCharacter = () => {
   };
 
   return (
-    <ImageBackground source={BACKGROUND} style={{ flex: 1 }}>
+    <ImageWrapper>
       <View className="h-full justify-center px-[2vw] py-1">
         <Header
           currentIndex={currentIndex}
@@ -438,7 +438,7 @@ const CreateCharacter = () => {
           )}
         </View>
       </View>
-    </ImageBackground>
+    </ImageWrapper>
   );
 };
 

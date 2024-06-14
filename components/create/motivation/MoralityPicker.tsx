@@ -58,7 +58,7 @@ const MoralityPicker = ({
             Force-sensitive character.
           </Text>
           <View className="pt-[1vh]">
-            <Text className="text-white font-[Elektra] text-lg">
+            <Text className="text-white font-[Elektra] text-md py-2">
               Emotional Strength
             </Text>
             <View className="w-full bg-white p-2 self-center">
@@ -78,7 +78,7 @@ const MoralityPicker = ({
             </View>
           </View>
           <View className="pt-[1vh]">
-            <Text className="text-white font-[Elektra] text-lg">
+            <Text className="text-white font-[Elektra] text-md py-2">
               Emotional Weakness
             </Text>
             <View className="w-full bg-white p-2 self-center">
@@ -98,7 +98,7 @@ const MoralityPicker = ({
             </View>
           </View>
           <View className="pt-[2vh]">
-            <Text className="text-white font-[Elektra] text-lg">Morality: {moralityCost}</Text>
+            <Text className="text-white font-[Elektra] text-md">Starting Morality: {moralityCost}</Text>
             <Slider
               style={{ width: "100%", height: 40 }}
               minimumValue={29}
