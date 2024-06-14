@@ -3,8 +3,10 @@ import { Colors } from "@/constants/Colors";
 import { Character } from "@/constants/Types";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import React from "react";
+import React, {useContext} from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { CharacterContext } from "@/contexts/CharacterContext";
+
 
 interface CharacterCardProps {
   screenWidth: number;
@@ -19,6 +21,14 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   index,
   seededRandom,
 }) => {
+
+  const {character, setCharacter} = useContext(CharacterContext);
+
+  function handleSelect() {
+    router.push("(tabs)" as never);
+    setCharacter(char);
+  }
+
   return (
     <View className="p-2">
       <View
@@ -164,7 +174,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                 position: "absolute",
                 bottom: screenWidth * -0.1,
               }}
-              onPress={() => {router.push("(tabs)" as never)}}
+              onPress={() => handleSelect()}
             >
               <View className="border-2 border-white rounded-full p-6 bg-heading2">
                 <Ionicons name="play" size={32} color="#fff" />

@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { router } from "expo-router";
@@ -15,12 +16,12 @@ export default function DrawerLayout() {
           headerTitle: "Character Sheet",
           headerTitleStyle: {
             fontFamily: "Elektra",
-            color: "#cbd5e1",
+            color: "#fff",
             borderBottomWidth: 0,
           },
           headerShadowVisible: false,
-          headerStyle: { backgroundColor: "#1e293b" },
-          headerTintColor: "#cbd5e1",
+          headerStyle: { backgroundColor: Colors.global.heading3 },
+          headerTintColor: "#fff",
           headerTitleAlign: "center",
           drawerIcon: ({ color }) => (
             <FontAwesome size={28} name="user" color={color} />
@@ -36,7 +37,7 @@ export default function DrawerLayout() {
 const DrawerComponent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView
-      style={{ backgroundColor: "#1e293b", }}
+      style={{ backgroundColor: Colors.global.heading3, }}
     >
       <Text className="text-center font-[Elektra] text-slate-300 text-xl pt-4 pb-6">
         Options
