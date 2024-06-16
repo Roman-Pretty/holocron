@@ -5,6 +5,7 @@ import { Text, View, Image, ScrollView } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import Stat from "@/components/character/Stat";
+import Defense from "@/components/character/Defense";
 
 const Page = () => {
   const { character } = useContext(CharacterContext);
@@ -49,18 +50,25 @@ const Page = () => {
             <Stat
               scale={18}
               borderWidth={1.6}
-              value={0}
-              max={14}
-              title="Wounds"
-              cName=""
+              value={character?.data.strain.current ?? 0}
+              max={character?.data.strain.threshold ?? 0}
+              title="Strain"
+              cName="mb-[4vh]"
+            />
+            <Defense
+              scale={18}
+              borderWidth={1.6}
+              melee={character?.data.defense.melee ?? 0}
+              ranged={character?.data.defense.ranged ?? 0}
+              soak={character?.data.defense.soak ?? 0}
             />
             <Stat
               scale={18}
               borderWidth={1.6}
-              value={0}
-              max={12}
-              title="Strain"
-              cName=""
+              value={character?.data.wound.current ?? 0}
+              max={character?.data.wound.threshold ?? 0}
+              title="Wounds"
+              cName="mb-[4vh]"
             />
           </View>
         </View>
