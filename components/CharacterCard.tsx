@@ -32,7 +32,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   return (
     <View className="p-2">
       <View
-        className="w-full border-t-2 border-x-2 border-heading3 p-2"
+        className="w-full border-t-2 border-x-2 border-heading3 p-2 bg-sky-300/20"
         style={{
           shadowColor: Colors.global.heading3,
           shadowOffset: {
@@ -92,7 +92,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         </View>
       </View>
 
-      <View className="flex-row">
+      <View className="flex-row bg-sky-300/20">
         <View
           className="border-l-2 border-heading3 px-2 pb-2 flex-1"
           style={{
@@ -123,7 +123,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                   color={Colors.global.heading3}
                 />
                 <Text className="text-heading3 font-semibold text-md pl-1">
-                  {char.data.specializations[0]}
+                  {char.data.specializations[0].name}
                 </Text>
               </View>
               <View className="flex-row items-center justify-start w-full overflow-hidden">

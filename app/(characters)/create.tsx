@@ -327,9 +327,9 @@ const CreateCharacter = () => {
           homeworld,
           description,
           species: species ? species : SpeciesData[0],
-          exp: experience ? experience : 0,
+          experience: { total: species?.startingXP ?? 0, available: experience},
           career: career ? career : CareerData[0],
-          specializations: specialization ? [specialization.name] : [],
+          specializations: specialization ? [specialization] : [],
           skills,
           characteristics: {
             brawn: characteristics[0].level,
@@ -368,7 +368,7 @@ const CreateCharacter = () => {
       saveCharacter(newCharacter);
     }
     save();
-    router.replace("index");
+    router.back();
   };
 
   return (

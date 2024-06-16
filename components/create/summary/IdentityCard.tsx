@@ -28,7 +28,7 @@ const IdentityCard = ({
   return (
     <>
       <View
-        className="w-full border-t-2 border-x-2 border-heading3 p-2"
+        className="w-full border-t-2 border-x-2 border-heading3 p-2 bg-sky-300/20"
         style={{
           shadowColor: Colors.global.heading3,
           shadowOffset: {
@@ -86,7 +86,7 @@ const IdentityCard = ({
         </View>
       </View>
 
-      <View className="flex-row ">
+      <View className="flex-row bg-sky-300/20">
         <View
           className="border-l-2 border-heading3 px-2 pb-2 flex-1"
           style={{

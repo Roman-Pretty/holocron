@@ -9,8 +9,11 @@ export interface Character {
     image: ImageSourcePropType;
     species: Species;
     career: Career;
-    specializations: string[];
-    exp: number;
+    specializations: Specialization[];
+    experience: {
+      total: number;
+      available: number;
+    }
     credits: number;
     inventory: string[];
     characteristics: {

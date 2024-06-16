@@ -65,25 +65,6 @@ export default function TabLayout() {
           tabBarLabelStyle: { fontFamily: "Elektra" },
         }}
       />
-
-      <Tabs.Screen
-        name="store"
-        options={{
-          title: "STORE",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="bag-handle" color={color} />
-          ),
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: Colors.global.heading3,
-            borderTopWidth: 0,
-          },
-          tabBarActiveTintColor: "#fff",
-          tabBarInactiveTintColor: Colors.global.boxheading,
-
-          tabBarLabelStyle: { fontFamily: "Elektra" },
-        }}
-      />
       <Tabs.Screen
         name="obligation"
         options={{
