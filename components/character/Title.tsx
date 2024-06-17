@@ -7,7 +7,7 @@ const Title = ({ title }: { title: string }) => {
   const size = 16;
   return (
     <View
-      className="w-2/3 self-center mt-2"
+      className="w-2/3 self-center"
       style={{
         shadowColor: "#000",
         shadowOffset: {
@@ -27,7 +27,7 @@ const Title = ({ title }: { title: string }) => {
               transform: [{ rotate: "180deg" }],
               borderTopWidth: size,
               borderRightWidth: size,
-              borderTopColor: Colors.global.box,
+              borderTopColor: Colors.global.neutral800,
             }}
           />
           <TriangleCorner
@@ -35,11 +35,11 @@ const Title = ({ title }: { title: string }) => {
               transform: [{ rotate: "90deg" }],
               borderTopWidth: size,
               borderRightWidth: size,
-              borderTopColor: Colors.global.box,
+              borderTopColor: Colors.global.neutral800,
             }}
           />
         </View>
-        <View className="bg-box flex-1 flex-row items-center justify-center">
+        <View className="bg-neutral-800 flex-1 flex-row items-center justify-center">
           <Text className="text-white text-left text-lg font-[Elektra] text-md">
             {title}
           </Text>
@@ -50,14 +50,14 @@ const Title = ({ title }: { title: string }) => {
               transform: [{ rotate: "-90deg" }],
               borderTopWidth: size,
               borderRightWidth: size,
-              borderTopColor: Colors.global.box,
+              borderTopColor: Colors.global.neutral800,
             }}
           />
           <TriangleCorner
             style={{
               borderTopWidth: size,
               borderRightWidth: size,
-              borderTopColor: Colors.global.box,
+              borderTopColor: Colors.global.neutral800,
             }}
           />
         </View>

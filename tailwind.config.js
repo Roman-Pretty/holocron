@@ -14,7 +14,10 @@ module.exports = {
         statblockornate: '#826430',
         statblocktextbackground: '#841b22',
         statblockthresholdbackground: '#826430',
-        bulletpoint: '#1fa9e1'
+        bulletpoint: '#1fa9e1',
+        fad: "#0d130c",
+        aor: "#b42429",
+        eote: "#612a17"
       }
     },
   },

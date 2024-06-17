@@ -19,7 +19,12 @@ export const Colors = {
     statblockornate: '#826430',
     statblocktextbackground: '#841b22',
     statblockthresholdbackground: '#826430',
-    bulletpoint: '#1fa9e1'
+    bulletpoint: '#1fa9e1',
+    fad: "#0d130c",
+    aor: "#b42429",
+    eote: "#612a17",
+    neutral800: "#262626",
+    orange800: '#9a3412'
   },
   light: {
     text: '#11181C',

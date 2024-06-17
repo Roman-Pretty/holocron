@@ -1,5 +1,4 @@
 import { Career } from "@/types/Types";
-import TalentData from "./TalentData";
 import TalentTreeData from "./TalentTreeData";
 export default [
   {
@@ -60,6 +59,7 @@ export default [
         name: "Assassin",
         desc: "Specializes in terminating targets quietly and efficiently.",
         skills: ["Melee", "Ranged (Heavy)", "Skulduggery", "Stealth"],
+        talents: TalentTreeData.ASSASSIN,
       },
     ],
     forceSensitive: false,

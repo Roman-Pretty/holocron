@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import Button from '@/components/form/Button';
 import { Ionicons } from '@expo/vector-icons';
+import { Career, Skill, Specialization, Species } from '@/types/Types';
 
 interface SkillItemProps {
     skill: Skill;
