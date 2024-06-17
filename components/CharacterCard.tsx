@@ -3,10 +3,10 @@ import { Colors } from "@/constants/Colors";
 import { Character } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import React, {useContext} from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import React, {useContext, useEffect, useState} from "react";
+import { Image, Text, Pressable, View } from "react-native";
 import { CharacterContext } from "@/contexts/CharacterContext";
-
+import * as Haptics from 'expo-haptics';
 
 interface CharacterCardProps {
   screenWidth: number;
@@ -24,15 +24,36 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
 
   const {character, setCharacter} = useContext(CharacterContext);
 
+  const [borderSize, setBorderSize] = useState(4);
+  const [buttonColor, setButtonColor] = useState('#374151');
+  const [navigate, setNavigate] = useState(false);
+
+  useEffect(() => {
+    if (navigate) {
+      setTimeout(() => {
+        router.push("(tabs)" as never);
+        setCharacter(char);
+        setNavigate(false);
+        setBorderSize(4);
+        setButtonColor('#374151');
+      }, 10); 
+    }
+  }, [navigate]);
+
   function handleSelect() {
-    router.push("(tabs)" as never);
-    setCharacter(char);
+    setBorderSize(2);
+    setButtonColor('#fff');
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success
+    )
+    setNavigate(true);
   }
+
 
   return (
     <View className="p-2">
       <View
-        className="w-full border-t-2 border-x-2 border-heading3 p-2 bg-sky-300/20"
+        className="w-full border-t-2 border-x-2  border-l-4 border-heading3 p-2 bg-sky-300/20"
         style={{
           shadowColor: Colors.global.heading3,
           shadowOffset: {
@@ -94,7 +115,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
 
       <View className="flex-row bg-sky-300/20">
         <View
-          className="border-l-2 border-heading3 px-2 pb-2 flex-1"
+          className="border-l-4 border-heading3 px-2 pb-2 flex-1"
           style={{
             shadowColor: Colors.global.heading3,
             shadowOffset: {
@@ -115,7 +136,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
                 style={{ width: "100%", height: "100%" }}
               />
             </View>
-            <View className="flex-1 ml-2 border-2 justify-evenly border-heading3 p-1">
+            <View className="flex-1 ml-2 border-2  justify-evenly border-heading3 p-1">
               <View className="flex-row items-center justify-start w-full overflow-hidden">
                 <Ionicons
                   name="hammer"
@@ -169,23 +190,23 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
             />
           </View>
           <View className="bg-gray-400 h-full flex-1 border-gray-600 border-r-2 border-t-2">
-            <TouchableOpacity
+            <Pressable
               style={{
                 position: "absolute",
                 bottom: screenWidth * -0.1,
               }}
-              onPress={() => handleSelect()}
+              onPress={() => {    setBorderSize(2); handleSelect();}}
             >
-              <View className="border-2 border-white rounded-full p-6 bg-heading2">
-                <Ionicons name="play" size={32} color="#fff" />
+              <View className={`border-2 border-b-${borderSize} border-l-${borderSize} border-gray-700 p-6 bg-gray-300/60`}>
+                <Ionicons name="play" size={32} color={buttonColor} />
               </View>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </View>
       </View>
 
       <View
-        className="bg-gray-400 w-full h-[16vw] border-x-2 border-b-2 border-gray-600 flex-row"
+        className="bg-gray-400 w-full h-[16vw] border-x-2 border-l-4 border-b-4 border-gray-600 flex-row"
         style={{ marginTop: -1, zIndex: -10 }}
       >
         <View className="border-t-2 border-gray-600 flex-1 p-3 justify-center">
