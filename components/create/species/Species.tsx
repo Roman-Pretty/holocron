@@ -1,8 +1,9 @@
 import SpeciesData from "@/constants/SpeciesData";
 import { Species } from "@/types/Types";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, FlatList, View, ViewToken } from "react-native";
 import SpeciesItem from "./SpeciesItem";
+import { useSharedValue } from "react-native-reanimated";
 
 interface SpeciesProps {
   selectedSpecies: Species | null;
@@ -15,7 +16,7 @@ const SpeciesElement = ({
   setSelectedSpecies,
   setSelectedBonusSkill,
 }: SpeciesProps) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,7 +26,7 @@ const SpeciesElement = ({
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="small" color="#000" />
       </View>
     );
@@ -43,7 +44,7 @@ const SpeciesElement = ({
           setSelectedSpecies={setSelectedSpecies}
         />
       )}
-      windowSize={3}
+      // windowSize={3}
       showsVerticalScrollIndicator={false}
     />
   );

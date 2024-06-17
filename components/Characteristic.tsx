@@ -103,8 +103,8 @@ const Stat = ({
           style={{ height: scale * 2, paddingBottom: scale / 2 }}
         />
         <Text
-          className="absolute font-[Elektra] text-black w-full text-center"
-          style={{ left: 0, top: scale + 2, fontSize: scale * 2}}
+          className="absolute font-[Elektra] text-slate-800 w-full text-center z-10"
+          style={{ left: 0, top: scale * 0.9, fontSize: scale * 2.8}}
         >
           {value}
         </Text>
@@ -128,7 +128,7 @@ const Stat = ({
         </View>
         <Text
           className="w-full text-center text-white uppercase font-[Elektra]"
-          style={{ fontSize: scale * 0.6, paddingTop: scale / 2 }}
+          style={{ fontSize: scale * 0.65, paddingTop: scale / 2 }}
         >
           {title}
         </Text>

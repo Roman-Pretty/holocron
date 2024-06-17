@@ -23,7 +23,7 @@ const KnowledgeSkills = () => {
         elevation: 9,
       }}
     >
-      <View className="mx-2 -mt-6 flex-row">
+      <View className="mx-[4] -mt-24 flex-row">
       <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],
@@ -46,19 +46,19 @@ const KnowledgeSkills = () => {
           }}
         />
       </View>
-      <View className="bg-orange-800 mx-2">
-        <View className="w-full p-2 flex-row">
+      <View className="bg-orange-800 mx-[4] pb-20 pt-2">
+      <View className="w-full p-2 flex-row">
           <Text className="text-white text-base font-[Elektra] text-start capitalize] w-5/12">
             Skill
           </Text>
-          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
-            Career
+          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-3/12">
+            Dice
           </Text>
           <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
             Level
           </Text>
-          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-3/12">
-            Dice
+          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
+            Career
           </Text>
         </View>
         {character?.data.skills.slice(11, 18).map((skill, index) => (
@@ -72,7 +72,7 @@ const KnowledgeSkills = () => {
           />
         ))}
       </View>
-      <View className="mx-2 flex-row">
+      <View className="mx-[4] flex-row">
       <TriangleCorner
           style={{
             transform: [{ rotate: "90deg" }],

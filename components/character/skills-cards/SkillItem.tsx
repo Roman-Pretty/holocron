@@ -96,17 +96,17 @@ const SkillItem = ({
             ({skill.characteristic.name.substring(0, 3)})
           </Text>
         </Text>
+        <Text className="text-white text-xl text-center w-3/12">
+          <DicePool skill={skill} characteristics={characteristics} />
+        </Text>
+        <Text className="text-white text-base text-center font-semibold w-2/12">
+          {level === 0 ? "-" : level}
+        </Text>
         <View className="w-2/12 items-center justify-center">
           {skill.career && (
             <Ionicons name="checkmark" color="white" size={18} />
           )}
         </View>
-        <Text className="text-white text-base text-center font-semibold w-2/12">
-          {level === 0 ? "-" : level}
-        </Text>
-        <Text className="text-white text-xl text-center w-3/12">
-          <DicePool skill={skill} characteristics={characteristics} />
-        </Text>
       </View>
     </View>
   );

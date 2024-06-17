@@ -3,7 +3,7 @@ import { Colors } from "@/constants/Colors";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import React, { useContext } from "react";
 import { Text, View } from "react-native";
-import Characteristic from "./Characteristic";
+import Characteristic from "../../Characteristic";
 
 const CombatSkills = () => {
   const { character } = useContext(CharacterContext);

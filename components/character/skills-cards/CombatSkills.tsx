@@ -24,7 +24,7 @@ const CombatSkills = () => {
       }}
     >
       <View className="mx-2 mt-[1vh] flex-row">
-      <TriangleCorner
+        <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],
             borderTopWidth: 38,
@@ -46,19 +46,19 @@ const CombatSkills = () => {
           }}
         />
       </View>
-      <View className="bg-heading3 mx-2">
+      <View className="bg-heading3 mx-2 pb-20 pt-2">
         <View className="w-full p-2 flex-row">
           <Text className="text-white text-base font-[Elektra] text-start capitalize] w-5/12">
             Skill
           </Text>
-          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
-            Career
+          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-3/12">
+            Dice
           </Text>
           <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
             Level
           </Text>
-          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-3/12">
-            Dice
+          <Text className="text-white text-base font-[Elektra] text-center capitalize] w-2/12">
+            Career
           </Text>
         </View>
         {character?.data.skills.slice(0, 6).map((skill, index) => (
@@ -73,7 +73,7 @@ const CombatSkills = () => {
         ))}
       </View>
       <View className="mx-2 flex-row">
-      <TriangleCorner
+        <TriangleCorner
           style={{
             transform: [{ rotate: "90deg" }],
             borderTopWidth: 38,
@@ -81,7 +81,7 @@ const CombatSkills = () => {
             borderTopColor: Colors.global.heading3,
           }}
         />
-        <View className="bg-heading3 flex-1 flex-row items-center justify-start pl-2"/>
+        <View className="bg-heading3 flex-1 flex-row items-center justify-start pl-2" />
         <TriangleCorner
           style={{
             transform: [{ rotate: "0deg" }],
@@ -90,8 +90,7 @@ const CombatSkills = () => {
             borderTopColor: Colors.global.heading3,
           }}
         />
-       
-        </View>
+      </View>
     </View>
   );
 };

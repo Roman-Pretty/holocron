@@ -19,7 +19,7 @@ const Page = () => {
   return (
     <ImageWrapper>
       <KeyboardAwareScrollView
-        showsVerticalScrollIndicator={true}
+        showsVerticalScrollIndicator={false}
         style={{ marginBottom: 8 }}
       >
         <Spacer />
