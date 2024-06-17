@@ -1,19 +1,23 @@
 import ImageWrapper from "@/components/ImageWrapper";
 import { CharacterContext } from "@/contexts/CharacterContext";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, Image, ScrollView } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import Stat from "@/components/character/Stat";
 import Defense from "@/components/character/Defense";
 import DataDisplay from "@/components/character/DataDisplay";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const Page = () => {
   const { character } = useContext(CharacterContext);
 
+  const [strain, setStrain] = useState(character?.data.strain.current ?? 0);
+  const [wounds, setWounds] = useState(character?.data.wound.current ?? 0);
+
   return (
     <ImageWrapper>
-      <ScrollView>
+      <KeyboardAwareScrollView>
         <View
           style={{
             shadowColor: "#000",
@@ -112,10 +116,11 @@ const Page = () => {
               <Stat
                 scale={18}
                 borderWidth={1.6}
-                value={character?.data.strain.current ?? 0}
+                value={strain}
                 max={character?.data.strain.threshold ?? 0}
                 title="Strain"
                 cName="mb-[6vh]"
+                setValue={setStrain}
               />
               <Defense
                 scale={18}
@@ -127,10 +132,11 @@ const Page = () => {
               <Stat
                 scale={18}
                 borderWidth={1.6}
-                value={character?.data.wound.current ?? 0}
+                value={wounds}
                 max={character?.data.wound.threshold ?? 0}
                 title="Wounds"
                 cName="mb-[6vh]"
+                setValue={setWounds}
               />
             </View>
           </View>
@@ -155,7 +161,7 @@ const Page = () => {
             />
           </View>
         </View>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </ImageWrapper>
   );
 };

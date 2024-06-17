@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TextInput } from "react-native";
 import React from "react";
 import TriangleCorner from "../shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
@@ -7,6 +7,7 @@ interface StatProps {
   scale: number;
   borderWidth: number;
   value: number;
+  setValue: (value: number) => void;
   max: number;
   title: string;
   cName?: string;
@@ -67,12 +68,21 @@ const Stat = ({
   scale,
   borderWidth,
   value = 0,
+  setValue,
   max = 0,
   title = "Wound",
   cName,
 }: StatProps) => {
+  const handleTextChange = (inputText: string) => {
+    // Validate input to allow only numeric values
+    const numericRegex = /^[0-9]*$/;
+    if (numericRegex.test(inputText)) {
+      setValue(Number(inputText));
+    }
+  };
+
   return (
-    <View className={cName}>
+    <View className={cName} style={{zIndex: -10}}>
       <Border scale={scale} borderWidth={borderWidth} />
       <View
         style={{
@@ -101,14 +111,22 @@ const Stat = ({
             }}
           />
         </View>
-        <View className="bg-white relative" style={{ height: scale * 1.5 }}>
-          <Text
-            className="absolute font-[Elektra] text-gray-500 w-full text-center"
-            style={{ left: 0, top: -scale / 2, fontSize: scale * 2 }}
-          >
-            {value}
-          </Text>
-        </View>
+
+        <View className=" bg-white" style={{ height: scale * 1.5,  paddingBottom: scale / 2}}/>
+        <TextInput
+          value={value >0 ? value.toString() : undefined}
+          onChangeText={handleTextChange}
+          keyboardType="numeric"
+          placeholder="0"
+          placeholderTextColor="#9ca3af"
+          allowFontScaling={false}
+          selectTextOnFocus={true}
+          maxLength={2}
+          className={`absolute font-[Elektra] text-gray-500 w-full text-center ${value >= max ? 'text-red-500' : 'text-gray-500'}
+          `}
+          style={{ left: 0, top: scale/2, fontSize: scale * 2 }}
+        >
+        </TextInput>
         <View className="bg-heading3" style={{ height: scale / 2 }} />
         <View className="flex-row relative">
           <TriangleCorner
