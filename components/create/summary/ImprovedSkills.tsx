@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import { Skill } from "@/constants/Types";
+import { Skill } from "@/types/Types";
 import React from "react";
 import { Text, View } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";

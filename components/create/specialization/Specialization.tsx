@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList } from "react-native";
 import SpecializationItem from "./SpecializationItem";
-import { Career, Specialization } from "@/constants/Types";
+import { Career, Specialization } from "@/types/Types";
 
 interface SpecializationProps {
   selectedCareer: Career | null;

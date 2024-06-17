@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-import TriangleCorner from "../shapes/TriangleCorner";
+import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 
 interface StatProps {

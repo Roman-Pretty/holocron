@@ -1,6 +1,6 @@
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
-import { Character } from "@/constants/Types";
+import { Character } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React, {useContext} from "react";

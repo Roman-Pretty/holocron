@@ -1,4 +1,4 @@
-import { Characteristic, Species } from "@/constants/Types";
+import { Characteristic, Species } from "@/types/Types";
 import React from "react";
 import { FlatList } from "react-native";
 import CharacteristicItem from "./CharacteristicItem";

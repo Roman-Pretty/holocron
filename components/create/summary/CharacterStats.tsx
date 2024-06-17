@@ -1,6 +1,6 @@
 import SpeciesCharacteristic from "@/components/create/species/SmallCharacteristic";
 import { Colors } from "@/constants/Colors";
-import { Characteristic } from "@/constants/Types";
+import { Characteristic } from "@/types/Types";
 import React from "react";
 import { Text, View } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";

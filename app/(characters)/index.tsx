@@ -1,7 +1,7 @@
 import CharacterCard from "@/components/CharacterCard";
 import ImageWrapper from "@/components/ImageWrapper";
 import Button from "@/components/form/Button";
-import { Character } from "@/constants/Types";
+import { Character } from "@/types/Types";
 import { loadCharacters, deleteAllCharacters } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Character } from '@/constants/Types';
+import { Character } from '@/types/Types';
 
 /**
  * Loads all Characters from local storage.

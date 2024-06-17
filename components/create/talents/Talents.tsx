@@ -1,4 +1,4 @@
-import { Specialization, Talent } from "@/constants/Types";
+import { Specialization, Talent } from "@/types/Types";
 import React from "react";
 import { ScrollView, View, Text } from "react-native";
 import TalentItem from "./TalentItem";

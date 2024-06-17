@@ -4,7 +4,7 @@ import {
   Skill,
   Specialization,
   Species,
-} from "@/constants/Types";
+} from "@/types/Types";
 import React from "react";
 import { Dimensions, ImageSourcePropType, ScrollView, Text } from "react-native";
 import CharacterStats from "./CharacterStats";

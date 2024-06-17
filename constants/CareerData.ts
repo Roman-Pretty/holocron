@@ -1,4 +1,4 @@
-import { Career } from "@/constants/Types";
+import { Career } from "@/types/Types";
 import TalentData from "./TalentData";
 import TalentTreeData from "./TalentTreeData";
 export default [

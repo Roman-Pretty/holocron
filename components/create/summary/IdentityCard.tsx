@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { ImageSourcePropType } from "react-native";
-import { Career, Species, Specialization } from "@/constants/Types";
+import { Career, Species, Specialization } from "@/types/Types";
 
 interface IdentityCardProps {
   name: string;

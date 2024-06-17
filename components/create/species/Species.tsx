@@ -1,5 +1,5 @@
 import SpeciesData from "@/constants/SpeciesData";
-import { Species } from "@/constants/Types";
+import { Species } from "@/types/Types";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import SpeciesItem from "./SpeciesItem";

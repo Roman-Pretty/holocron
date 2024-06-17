@@ -1,4 +1,4 @@
-import { Character } from '@/constants/Types';
+import { Character } from '@/types/Types';
 import { ReactNode, createContext, useState } from 'react';
 
 // CharacterProvider.js

@@ -12,7 +12,7 @@ import {
   Skill,
   Specialization,
   Species,
-} from "@/constants/Types";
+} from "@/types/Types";
 import React from "react";
 import { ImageSourcePropType } from "react-native";
 import TalentsComponent from "./talents/Talents";

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ActivityIndicator, Image, Text, View } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
-import { Career } from '@/constants/Types';
+import { Career } from '@/types/Types';
 
 interface SpeciesItemProps {
     career: Career;

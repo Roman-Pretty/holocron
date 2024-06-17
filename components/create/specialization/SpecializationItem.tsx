@@ -4,7 +4,7 @@ import React from 'react';
 import { Image, Text, View } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
-import { Specialization } from '@/constants/Types';
+import { Specialization } from '@/types/Types';
 
 interface SpeciesItemProps {
     specialization: Specialization;

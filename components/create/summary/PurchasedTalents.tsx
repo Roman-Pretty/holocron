@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Colors } from "@/constants/Colors";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
-import { Specialization } from "@/constants/Types";
+import { Specialization } from "@/types/Types";
 
 interface PurchasedTalentsProps {
   specialization: Specialization;

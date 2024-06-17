@@ -1,7 +1,7 @@
 import Button from "@/components/form/Button";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
-import { Characteristic, Species } from "@/constants/Types";
+import { Characteristic, Species } from "@/types/Types";
 import React from "react";
 import { Text, View } from "react-native";
 

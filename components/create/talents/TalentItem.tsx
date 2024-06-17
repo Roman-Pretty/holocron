@@ -1,6 +1,6 @@
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
-import { Specialization, Talent } from "@/constants/Types";
+import { Specialization, Talent } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect } from "react";
 import { Text, TouchableOpacity, View } from "react-native";

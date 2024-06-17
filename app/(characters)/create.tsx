@@ -20,7 +20,7 @@ import {
   Skill,
   Specialization,
   Species,
-} from "@/constants/Types";
+} from "@/types/Types";
 import { loadCharacters, saveCharacter } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";

@@ -2,7 +2,7 @@ import { View, Text, FlatList } from 'react-native';
 import React from 'react';
 import SkillItem from './SkillItem';
 import { Ionicons } from '@expo/vector-icons';
-import { Career, Skill, Specialization, Species } from '@/constants/Types';
+import { Career, Skill, Specialization, Species } from '@/types/Types';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
 

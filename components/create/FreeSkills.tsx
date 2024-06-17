@@ -3,7 +3,7 @@ import Checkbox from 'expo-checkbox';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Career, Skill, Species, Specialization } from '@/constants/Types';
+import { Career, Skill, Species, Specialization } from '@/types/Types';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
 

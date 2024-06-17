@@ -1,5 +1,5 @@
 import CareerData from "@/constants/CareerData";
-import { Career } from "@/constants/Types";
+import { Career } from "@/types/Types";
 import React from "react";
 import { FlatList } from "react-native";
 import CareerItem from "./CareerItem";

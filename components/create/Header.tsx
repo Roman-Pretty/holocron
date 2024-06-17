@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import * as Progress from "react-native-progress";
-import { Species } from "@/constants/Types";
+import { Species } from "@/types/Types";
 
 interface HeaderProps {
   currentIndex: number;
