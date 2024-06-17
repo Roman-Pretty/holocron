@@ -10,6 +10,7 @@ import CombatSkills from "@/components/character/skills-cards/CombatSkills";
 import SocialSkills from "@/components/character/skills-cards/SocialSkills";
 import KnowledgeSkills from "@/components/character/skills-cards/KnowledgeSkills";
 import GeneralSkills from "@/components/character/skills-cards/GeneralSkills";
+import CharacteristicsCard from "@/components/character/characteristics-card/CharacteristicsCard";
 
 const Spacer = () => <View className="h-[1.5vh]" />;
 
@@ -28,6 +29,7 @@ const Page = () => {
         <Spacer />
         <Spacer />
         <Title title="Characteristics" />
+        <CharacteristicsCard />
         <Spacer />
         <Spacer />
         <Title title="Skills" />

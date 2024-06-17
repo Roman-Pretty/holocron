@@ -23,7 +23,7 @@ const KnowledgeSkills = () => {
         elevation: 9,
       }}
     >
-      <View className="mx-2 mt-[1.5vh] flex-row">
+      <View className="mx-2 -mt-6 flex-row">
       <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],

@@ -7,7 +7,7 @@ const Title = ({ title }: { title: string }) => {
   const size = 16;
   return (
     <View
-      className="w-2/3 self-center"
+      className="w-2/3 self-center z-20"
       style={{
         shadowColor: "#000",
         shadowOffset: {
