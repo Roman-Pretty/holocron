@@ -296,6 +296,8 @@ const Motivation = () => {
         setSelectedWeakness={setSelectedWeakness}
         moralityCost={moralityCost}
         setMoralityCost={setMoralityCost}
+        obligation={obligation}
+        duty={duty}
       />
     </ScrollView>
   );
