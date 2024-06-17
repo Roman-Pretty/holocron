@@ -10,9 +10,10 @@ interface HeaderProps {
   experience: number | null;
   PAGES: number;
   species: Species | null;
+  credits: number | null;
 }
 
-const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
+const Header = ({ currentIndex, experience, PAGES, species, credits }: HeaderProps) => {
   const getPageTitle = () => {
     switch (currentIndex) {
       case 0:
@@ -70,6 +71,14 @@ const Header = ({ currentIndex, experience, PAGES, species }: HeaderProps) => {
           {experience !== null && species != null && (
             <Text className="text-heading1 text-right font-[Elektra]">
               XP: {experience}
+            </Text>
+          )}
+        </View>
+        <View className="w-[20vw] pt-2.5 h-full absolute left-0 top-0 ml-2">
+          {experience !== null && species != null && (
+            <Text className="text-heading1 text-left">
+              <Text className="font-[aurebesh]">$</Text>
+              <Text className="font-[Elektra]"> {credits}</Text>
             </Text>
           )}
         </View>

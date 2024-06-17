@@ -29,6 +29,7 @@ import { ImageSourcePropType, View } from "react-native";
 const CreateCharacter = () => {
   const PAGES = 9;
 
+  const [credits, setCredits] = useState(500);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [name, setName] = useState("");
   const [homeworld, setHomeworld] = useState("");
@@ -174,6 +175,33 @@ const CreateCharacter = () => {
   const [selectedWeakness, setSelectedWeakness] = useState<Morality | null>(
     null
   );
+
+  useEffect(() => {
+    function calculateCreds() {
+      let credits = 500;     
+      if (obligation) {
+        if (additionalObligation[2]) credits += 1000;
+        if (additionalObligation[3]) credits += 2500;
+      }
+      if (duty) {
+        if (additionalDuty[2]) credits += 1000;
+        if (additionalDuty[3]) credits += 2500;
+      }
+      if (morality && !duty && !obligation) {
+        if (moralityBonus === 1) credits += 2500;
+        if (moralityBonus === 2) credits += 1000;
+      }
+      return credits;
+    }
+    setCredits(calculateCreds());
+  }, [
+    additionalObligation,
+    additionalDuty,
+    moralityBonus,
+    morality,
+    duty,
+    obligation,
+  ]);
 
   useEffect(() => {
     function calculateXP() {
@@ -396,7 +424,7 @@ const CreateCharacter = () => {
             presence: characteristics[5].level,
           },
           image: portrait,
-          credits: 500,
+          credits: credits,
           inventory: [],
           encumbrance: { current: 0, threshold: characteristics[0].level + 5 },
           wound: {
@@ -444,6 +472,7 @@ const CreateCharacter = () => {
     <ImageWrapper>
       <View className="h-full justify-center px-[2vw] py-1">
         <Header
+          credits={credits}
           currentIndex={currentIndex}
           experience={experience}
           PAGES={PAGES}

@@ -121,24 +121,52 @@ export const Obligations: Obligation[] = [
 
 export const MoralityStrengths: Morality[] = [
   {
+    label: "Bravery",
+    value: "bravery",
+  },
+  {
+    label: "Love",
+    value: "love",
+  },
+  {
+    label: "Caution",
+    value: "caution",
+  },
+  {
+    label: "Enthusiasm",
+    value: "enthusiasm",
+  },
+  {
     label: "Compassion",
     value: "compassion",
   },
   {
-    label: "Courage",
-    value: "courage",
+    label: "Mercy",
+    value: "mercy",
+  },
+  {
+    label: "Curiosity",
+    value: "curiosity",
+  },
+  {
+    label: "Pride",
+    value: "pride",
+  },
+  {
+    label: "Independence",
+    value: "independence",
+  },
+  {
+    label: "Ambition",
+    value: "ambition",
   },
   {
     label: "Justice",
     value: "justice",
   },
   {
-    label: "Temperance",
-    value: "temperance",
-  },
-  {
-    label: "Wisdom",
-    value: "wisdom",
+    label: "Discipline",
+    value: "discipline",
   },
 ];
 
@@ -148,20 +176,48 @@ export const MoralityWeaknesses: Morality[] = [
     value: "anger",
   },
   {
+    label: "Jealousy",
+    value: "jealousy",
+  },
+  {
     label: "Fear",
     value: "fear",
+  },
+  {
+    label: "Recklessness",
+    value: "recklessness",
   },
   {
     label: "Hatred",
     value: "hatred",
   },
   {
-    label: "Impulsiveness",
-    value: "impulsiveness",
+    label: "Weakness",
+    value: "weakness",
   },
   {
-    label: "Vanity",
-    value: "vanity",
+    label: "Obsession",
+    value: "obsession",
+  },
+  {
+    label: "Arrogance",
+    value: "arrogance",
+  },
+  {
+    label: "Coldness",
+    value: "coldness",
+  },
+  {
+    label: "Greed",
+    value: "greed",
+  },
+  {
+    label: "Cruelty",
+    value: "cruelty",
+  },
+  {
+    label: "Obstinance",
+    value: "obstinance",
   },
 ];
 

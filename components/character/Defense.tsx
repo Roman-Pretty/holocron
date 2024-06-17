@@ -73,14 +73,26 @@ const Stat = ({
 }: DefenseProps) => {
   return (
     <View className="flex-row">
-      <View style={{marginVertical: scale*1.2}} className="py-1 px-2 bg-white border-y-4 border-l-4 rounded-l-lg relative">
-        <Text className="font-[Elektra] pt-1">
-          {ranged}
-        </Text>
-        <View className="absolute" style={{width: scale*2, bottom: -scale*0.8}}>
-        <Text className="font-[Elektra] text-white" style={{fontSize: scale*0.5, paddingLeft: scale * 0.2}}>
-          RGD
-        </Text>
+      <View
+        style={{
+          marginVertical: scale * 1.2,
+          borderLeftWidth: borderWidth * 2,
+          borderTopWidth: borderWidth * 2,
+          borderBottomWidth: borderWidth * 2,
+        }}
+        className="py-1 px-2 bg-white rounded-l-lg relative"
+      >
+        <Text className="font-[Elektra] pt-1">{ranged}</Text>
+        <View
+          className="absolute"
+          style={{ width: scale * 2, bottom: -scale * 0.8 }}
+        >
+          <Text
+            className="font-[Elektra] text-white"
+            style={{ fontSize: scale * 0.5, paddingLeft: scale * 0.2 }}
+          >
+            RGD
+          </Text>
         </View>
       </View>
       <View>
@@ -153,14 +165,26 @@ const Stat = ({
           </Text>
         </View>
       </View>
-      <View style={{marginVertical: scale*1.2}} className="py-1 px-2 bg-white border-y-4 border-r-4 rounded-r-lg relative">
-        <Text className="font-[Elektra] pt-1">
-          {melee}
-        </Text>
-        <View className="absolute" style={{width: scale*2, bottom: -scale*0.8}}>
-        <Text className="font-[Elektra] text-white" style={{fontSize: scale*0.5, paddingLeft: scale * 0.1}}>
-          MEL
-        </Text>
+      <View
+        style={{
+          marginVertical: scale * 1.2,
+          borderRightWidth: borderWidth * 2,
+          borderTopWidth: borderWidth * 2,
+          borderBottomWidth: borderWidth * 2,
+        }}
+        className="py-1 px-2 bg-white rounded-r-lg relative"
+      >
+        <Text className="font-[Elektra] pt-1">{melee}</Text>
+        <View
+          className="absolute"
+          style={{ width: scale * 2, bottom: -scale * 0.8 }}
+        >
+          <Text
+            className="font-[Elektra] text-white"
+            style={{ fontSize: scale * 0.5, paddingLeft: scale * 0.1 }}
+          >
+            MEL
+          </Text>
         </View>
       </View>
     </View>
