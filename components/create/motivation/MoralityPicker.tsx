@@ -21,6 +21,8 @@ interface MoralityProps {
   setSelectedWeakness: (strength: Morality | null) => void;
   setMoralityCost: (value: number) => void;
   moralityCost: number;
+  moralityBonus: number;
+  setMoralityBonus: (value: number) => void;
 }
 
 const MoralityPicker = ({
@@ -34,6 +36,8 @@ const MoralityPicker = ({
   moralityCost,
   obligation,
   duty,
+  moralityBonus,
+  setMoralityBonus,
 }: MoralityProps) => {
 
   return (
@@ -130,51 +134,39 @@ const MoralityPicker = ({
             <TouchableOpacity
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
+                setMoralityBonus(0);
               }}
             >
               <Text className={` text-black text-left w-[33%]`}>+10 Experience</Text>
               <Text className={` text-black text-center w-[33%]`}>-</Text>
               <View className="flex-row justify-end w-[33%]">
-                <Checkbox
-                  color={"#000"}
-                  onValueChange={() => {
-                  }}
-                  value={false}
-                />
+                <Ionicons name={moralityBonus === 0 ? "radio-button-on-outline" : "radio-button-off-outline"} size={24} color="#000" />
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity
               className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
               onPress={() => {
+                setMoralityBonus(1);
               }}
             >
               <Text className={` text-black text-center w-[33%] `}>-</Text>
               <Text className={` text-black text-center w-[33%]`}>+2500 Credits</Text>
               <View className="flex-row justify-end w-[33%]">
-                <Checkbox
-                  color={"#000"}
-                  onValueChange={() => {
-                  }}
-                  value={false}
-                />
+              <Ionicons name={moralityBonus === 1 ? "radio-button-on-outline" : "radio-button-off-outline"} size={24} color="#000" />
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
+                setMoralityBonus(2);
               }}
             >
               <Text className={` text-black text-left w-[33%]`}>+5 Experience</Text>
               <Text className={` text-black text-center w-[33%]`}>+1000 Credits</Text>
               <View className="flex-row justify-end w-[33%]">
-                <Checkbox
-                  color={"#000"}
-                  onValueChange={() => {
-                  }}
-                  value={false}
-                />
+                <Ionicons name={moralityBonus === 2 ? "radio-button-on-outline" : "radio-button-off-outline"} size={24} color="#000" />
               </View>
             </TouchableOpacity>
           </View>

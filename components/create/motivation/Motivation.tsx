@@ -213,6 +213,7 @@ const Motivation = () => {
     false,
     false,
   ]);
+  const [moralityBonus, setMoralityBonus] = useState(0);
 
   const [selectedStrength, setSelectedStrength] = useState<Morality | null>(
     null
@@ -298,6 +299,8 @@ const Motivation = () => {
         setMoralityCost={setMoralityCost}
         obligation={obligation}
         duty={duty}
+        moralityBonus={moralityBonus}
+        setMoralityBonus={setMoralityBonus}
       />
     </ScrollView>
   );
