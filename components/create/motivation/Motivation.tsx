@@ -14,40 +14,67 @@ import {
   Obligation,
 } from "@/constants/Motivations";
 
-const Motivation = () => {
-  const [obligation, setObligation] = useState(false);
-  const [duty, setDuty] = useState(false);
-  const [morality, setMorality] = useState(false);
-  const [groupSize, setGroupSize] = useState(4);
+interface MotivationProps {
+  obligation: boolean;
+  duty: boolean;
+  morality: boolean;
+  setObligation: (value: boolean) => void;
+  setDuty: (value: boolean) => void;
+  setMorality: (value: boolean) => void;
+  groupSize: number;
+  setGroupSize: (value: number) => void;
+  obligationCost: number;
+  setObligationCost: (value: number) => void;
+  dutyCost: number;
+  setDutyCost: (value: number) => void;
+  selectedObligation: Obligation | null;
+  setSelectedObligation: (value: Obligation | null) => void;
+  selectedDuty: Duty | null;
+  setSelectedDuty: (value: Duty | null) => void;
+  additionalObligation: boolean[];
+  setAdditionalObligation: (value: boolean[]) => void;
+  additionalDuty: boolean[];
+  setAdditionalDuty: (value: boolean[]) => void;
+  selectedStrength: Morality | null;
+  setSelectedStrength: (value: Morality | null) => void;
+  selectedWeakness: Morality | null;
+  setSelectedWeakness: (value: Morality | null) => void;
+  moralityCost: number;
+  setMoralityCost: (value: number) => void;
+  moralityBonus: number;
+  setMoralityBonus: (value: number) => void;
+}
 
-  const [selectedObligation, setSelectedObligation] =
-    useState<Obligation | null>(null);
-  const [selectedDuty, setSelectedDuty] = useState<Duty | null>(null);
-
-  const [obligationCost, setObligationCost] = useState(10);
-  const [dutyCost, setDutyCost] = useState(10);
-  const [moralityCost, setMoralityCost] = useState(50);
-
-  const [additionalObligation, setAdditionalObligation] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const [additionalDuty, setAdditionalDuty] = useState([
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const [moralityBonus, setMoralityBonus] = useState(0);
-
-  const [selectedStrength, setSelectedStrength] = useState<Morality | null>(
-    null
-  );
-  const [selectedWeakness, setSelectedWeakness] = useState<Morality | null>(
-    null
-  );
+const Motivation = ({
+  obligation,
+  duty,
+  morality,
+  setObligation,
+  setDuty,
+  setMorality,
+  groupSize,
+  setGroupSize,
+  obligationCost,
+  setObligationCost,
+  dutyCost,
+  setDutyCost,
+  selectedObligation,
+  setSelectedObligation,
+  selectedDuty,
+  setSelectedDuty,
+  additionalObligation,
+  setAdditionalObligation,
+  additionalDuty,
+  setAdditionalDuty,
+  selectedStrength,
+  setSelectedStrength,
+  selectedWeakness,
+  setSelectedWeakness,
+  moralityCost,
+  setMoralityCost,
+  moralityBonus,
+  setMoralityBonus,
+}: MotivationProps) => {
 
   function updateGroupSize(index: number) {
     async function changeGroupSize(index: number) {
@@ -128,6 +155,8 @@ const Motivation = () => {
         duty={duty}
         moralityBonus={moralityBonus}
         setMoralityBonus={setMoralityBonus}
+        selectedStrength={selectedStrength}
+        selectedWeakness={selectedWeakness}
       />
     </ScrollView>
   );

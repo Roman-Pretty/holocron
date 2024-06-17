@@ -66,6 +66,7 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
               }
               items={obligations}
               disabled={!obligation}
+              value={selectedObligation?.value}
               darkTheme
               Icon={() => <Ionicons name="chevron-down" size={24} color="#6b7280" />}
             />

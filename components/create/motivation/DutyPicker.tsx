@@ -54,8 +54,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
       {duty && (
         <>
           <Text className={`py-[1vh] text-white`}>
-            Rolled for each session, your duty represents a responsibility or
-            commitment your character must fulfill.
+            Ranked out of 100, your duty represents your reputation or loyalty to a specific organization.
           </Text>
           <View className="w-full bg-white p-2 self-center">
             <RNPickerSelect
@@ -65,6 +64,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
               items={duties}
               disabled={!duty}
               darkTheme
+              value={selectedDuty?.value}
               Icon={() => <Ionicons name="chevron-down" size={24} color="#6b7280" />}
             />
           </View>
@@ -79,8 +79,8 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
             <Text className={`font-[Elektra] text-lg pt-[2vh] text-white `}>Benefits</Text>
           </View>
           <Text className={`py-[1vh] text-white`}>
-            You may take on more duty for additional benefits, but you may only
-            take up to double your initial duty.
+            You may take on more duty for additional benefits, but you may not allow your duty to
+            go below 0.
           </Text>
           <View className="pt-[2vh]">
             <View className="flex-row justify-between bg-statblockbackground p-2">

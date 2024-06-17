@@ -17,6 +17,7 @@ import React from "react";
 import { ImageSourcePropType } from "react-native";
 import TalentsComponent from "./talents/Talents";
 import Motivation from "./motivation/Motivation";
+import { Morality, Obligation, Duty } from "@/constants/Motivations";
 
 interface PageContentProps {
   currentIndex: number;
@@ -50,6 +51,34 @@ interface PageContentProps {
   setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
   selectedBonusSkill: string | null;
   changeSelectedBonusSkill: (skill: string) => void;
+  obligation: boolean;
+  duty: boolean;
+  morality: boolean;
+  setObligation: (value: boolean) => void;
+  setDuty: (value: boolean) => void;
+  setMorality: (value: boolean) => void;
+  groupSize: number;
+  setGroupSize: (value: number) => void;
+  obligationCost: number;
+  setObligationCost: (value: number) => void;
+  dutyCost: number;
+  setDutyCost: (value: number) => void;
+  selectedObligation: Obligation | null;
+  setSelectedObligation: (value: Obligation | null) => void;
+  selectedDuty: Duty | null;
+  setSelectedDuty: (value: Duty | null) => void;
+  additionalObligation: boolean[];
+  setAdditionalObligation: (value: boolean[]) => void;
+  additionalDuty: boolean[];
+  setAdditionalDuty: (value: boolean[]) => void;
+  selectedStrength: Morality | null;
+  setSelectedStrength: (value: Morality | null) => void;
+  selectedWeakness: Morality | null;
+  setSelectedWeakness: (value: Morality | null) => void;
+  moralityCost: number;
+  setMoralityCost: (value: number) => void;
+  moralityBonus: number;
+  setMoralityBonus: (value: number) => void;
 }
 
 const PageContent = ({
@@ -78,6 +107,34 @@ const PageContent = ({
   characteristics,
   setCharacteristics,
   selectedBonusSkill,
+  obligation,
+  duty,
+  morality,
+  setObligation,
+  setDuty,
+  setMorality,
+  groupSize,
+  setGroupSize,
+  obligationCost,
+  setObligationCost,
+  dutyCost,
+  setDutyCost,
+  selectedObligation,
+  setSelectedObligation,
+  selectedDuty,
+  setSelectedDuty,
+  additionalObligation,
+  setAdditionalObligation,
+  additionalDuty,
+  setAdditionalDuty,
+  selectedStrength,
+  setSelectedStrength,
+  selectedWeakness,
+  setSelectedWeakness,
+  moralityCost,
+  setMoralityCost,
+  moralityBonus,
+  setMoralityBonus,
 }: PageContentProps) => {
   switch (currentIndex) {
     case 0:
@@ -103,7 +160,36 @@ const PageContent = ({
       );
     case 2:
       return (
-        <Motivation />
+        <Motivation 
+          obligation={obligation}
+          duty={duty}
+          morality={morality}
+          setObligation={setObligation}
+          setDuty={setDuty}
+          setMorality={setMorality}
+          groupSize={groupSize}
+          setGroupSize={setGroupSize}
+          obligationCost={obligationCost}
+          setObligationCost={setObligationCost}
+          dutyCost={dutyCost}
+          setDutyCost={setDutyCost}
+          selectedObligation={selectedObligation}
+          setSelectedObligation={setSelectedObligation}
+          selectedDuty={selectedDuty}
+          setSelectedDuty={setSelectedDuty}
+          additionalObligation={additionalObligation}
+          setAdditionalObligation={setAdditionalObligation}
+          additionalDuty={additionalDuty}
+          setAdditionalDuty={setAdditionalDuty}
+          selectedStrength={selectedStrength}
+          setSelectedStrength={setSelectedStrength}
+          selectedWeakness={selectedWeakness}
+          setSelectedWeakness={setSelectedWeakness}
+          moralityCost={moralityCost}
+          setMoralityCost={setMoralityCost}
+          moralityBonus={moralityBonus}
+          setMoralityBonus={setMoralityBonus}
+        />
       )
     case 3:
       return (

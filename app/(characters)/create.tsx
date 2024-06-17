@@ -3,6 +3,7 @@ import Header from "@/components/create/Header";
 import PageContent from "@/components/create/PageContent";
 import Button from "@/components/form/Button";
 import CareerData from "@/constants/CareerData";
+import { Obligation, Duty, Morality } from "@/constants/Motivations";
 import {
   AGILITY,
   BRAWN,
@@ -140,6 +141,40 @@ const CreateCharacter = () => {
     { name: "Vigilance", level: 0, characteristic: WILLPOWER, career: false },
   ]);
 
+  const [obligation, setObligation] = useState(false);
+  const [duty, setDuty] = useState(false);
+  const [morality, setMorality] = useState(false);
+  const [groupSize, setGroupSize] = useState(4);
+
+  const [selectedObligation, setSelectedObligation] =
+    useState<Obligation | null>(null);
+  const [selectedDuty, setSelectedDuty] = useState<Duty | null>(null);
+
+  const [obligationCost, setObligationCost] = useState(10);
+  const [dutyCost, setDutyCost] = useState(10);
+  const [moralityCost, setMoralityCost] = useState(50);
+
+  const [additionalObligation, setAdditionalObligation] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [additionalDuty, setAdditionalDuty] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [moralityBonus, setMoralityBonus] = useState(0);
+
+  const [selectedStrength, setSelectedStrength] = useState<Morality | null>(
+    null
+  );
+  const [selectedWeakness, setSelectedWeakness] = useState<Morality | null>(
+    null
+  );
+
   useEffect(() => {
     function calculateXP() {
       const startingXP = species ? species.startingXP : 0;
@@ -240,6 +275,18 @@ const CreateCharacter = () => {
           }
         });
       }
+      if (obligation) {
+        if (additionalObligation[0]) xp += 5;
+        if (additionalObligation[1]) xp += 10;
+      }
+      if (duty) {
+        if (additionalDuty[0]) xp += 5;
+        if (additionalDuty[1]) xp += 10;
+      }
+      if (morality && !duty && !obligation) {
+        if (moralityBonus === 0) xp += 10;
+        if (moralityBonus === 2) xp += 5;
+      }
       return xp;
     }
     setExperience(calculateXP());
@@ -249,6 +296,12 @@ const CreateCharacter = () => {
     checkedCareerSkills,
     checkedSpecializationSkills,
     selectedBonusSkill,
+    additionalObligation,
+    additionalDuty,
+    moralityBonus,
+    morality,
+    duty,
+    obligation
   ]);
 
   useEffect(() => {
@@ -327,7 +380,10 @@ const CreateCharacter = () => {
           homeworld,
           description,
           species: species ? species : SpeciesData[0],
-          experience: { total: species?.startingXP ?? 0, available: experience},
+          experience: {
+            total: species?.startingXP ?? 0,
+            available: experience,
+          },
           career: career ? career : CareerData[0],
           specializations: specialization ? [specialization] : [],
           skills,
@@ -406,6 +462,34 @@ const CreateCharacter = () => {
           characteristics={characteristics}
           setCharacteristics={setCharacteristics}
           selectedBonusSkill={selectedBonusSkill}
+          obligation={obligation}
+          setObligation={setObligation}
+          duty={duty}
+          setDuty={setDuty}
+          morality={morality}
+          setMorality={setMorality}
+          groupSize={groupSize}
+          setGroupSize={setGroupSize}
+          selectedObligation={selectedObligation}
+          setSelectedObligation={setSelectedObligation}
+          selectedDuty={selectedDuty}
+          setSelectedDuty={setSelectedDuty}
+          obligationCost={obligationCost}
+          dutyCost={dutyCost}
+          moralityCost={moralityCost}
+          setObligationCost={setObligationCost}
+          setDutyCost={setDutyCost}
+          setMoralityCost={setMoralityCost}
+          additionalObligation={additionalObligation}
+          setAdditionalObligation={setAdditionalObligation}
+          additionalDuty={additionalDuty}
+          setAdditionalDuty={setAdditionalDuty}
+          selectedStrength={selectedStrength}
+          setSelectedStrength={setSelectedStrength}
+          selectedWeakness={selectedWeakness}
+          setSelectedWeakness={setSelectedWeakness}
+          moralityBonus={moralityBonus}
+          setMoralityBonus={setMoralityBonus}
         />
         <View className="flex flex-row justify-between mt-[2vh] mb-[8vh]">
           <Button
@@ -421,6 +505,11 @@ const CreateCharacter = () => {
               onPress={onNextPressed}
               disabled={
                 (currentIndex === 1 && species === null) ||
+                (currentIndex === 2 && !obligation && !duty && !morality) ||
+                (obligation && selectedObligation === null) ||
+                (duty && selectedDuty === null) ||
+                (morality && selectedStrength === null) ||
+                (morality && selectedWeakness === null) ||
                 (currentIndex === 3 && career === null) ||
                 (currentIndex === 4 && specialization === null) ||
                 currentIndex === PAGES

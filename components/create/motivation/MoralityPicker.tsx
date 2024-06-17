@@ -16,7 +16,9 @@ interface MoralityProps {
   duty: boolean;
   setMorality: (value: boolean) => void;
   strengths: Morality[];
+  selectedStrength: Morality | null;
   setSelectedStrength: (strength: Morality | null) => void;
+  selectedWeakness: Morality | null;
   weaknesses: Morality[];
   setSelectedWeakness: (strength: Morality | null) => void;
   setMoralityCost: (value: number) => void;
@@ -38,6 +40,8 @@ const MoralityPicker = ({
   duty,
   moralityBonus,
   setMoralityBonus,
+  selectedStrength,
+  selectedWeakness,
 }: MoralityProps) => {
 
   return (
@@ -79,6 +83,7 @@ const MoralityPicker = ({
                 }
                 items={strengths}
                 disabled={!morality}
+                value={selectedStrength?.value}
                 darkTheme
                 Icon={() => (
                   <Ionicons name="chevron-down" size={24} color="#6b7280" />
@@ -99,6 +104,7 @@ const MoralityPicker = ({
                 }
                 items={weaknesses}
                 disabled={!morality}
+                value={selectedWeakness?.value}
                 darkTheme
                 Icon={() => (
                   <Ionicons name="chevron-down" size={24} color="#6b7280" />
