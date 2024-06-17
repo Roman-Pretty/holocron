@@ -160,7 +160,7 @@ const PageContent = ({
       );
     case 2:
       return (
-        <Motivation 
+        <Motivation
           obligation={obligation}
           duty={duty}
           morality={morality}
@@ -190,7 +190,7 @@ const PageContent = ({
           moralityBonus={moralityBonus}
           setMoralityBonus={setMoralityBonus}
         />
-      )
+      );
     case 3:
       return (
         <CareerComponent

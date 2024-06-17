@@ -42,6 +42,19 @@ export interface Character {
       current: number;
       threshold: number;
     };
+    obligation?: {
+      type: string;
+      value: number;
+    };
+    duty?: {
+      type: string;
+      value: number;
+    };
+    morality?: {
+      strength: string;
+      weakness: string;
+      value: number;
+    };
   };
 }
 

@@ -46,7 +46,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
         }}
       >
         <View className="flex-row h-[28vw]">
-          <View className="w-[28vw]  overflow-hidden border-2 border-heading3 p-2">
+          <View className="w-[28vw]  overflow-hidden border-2 border-heading3">
             <Image
               source={char.data.image}
               resizeMode="cover"

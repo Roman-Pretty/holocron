@@ -301,7 +301,7 @@ const CreateCharacter = () => {
     moralityBonus,
     morality,
     duty,
-    obligation
+    obligation,
   ]);
 
   useEffect(() => {
@@ -419,6 +419,19 @@ const CreateCharacter = () => {
                 ? characteristics[0].level + 1
                 : characteristics[0].level,
           },
+          obligation: obligation ? {
+            type: selectedObligation ? selectedObligation.value : "",
+            value: obligationCost,
+          } : undefined,
+          duty: duty ? {
+            type: selectedDuty ? selectedDuty.value : "",
+            value: dutyCost,
+          } : undefined,
+          morality: morality ? {
+            strength: selectedStrength ? selectedStrength.value : "",
+            weakness: selectedWeakness ? selectedWeakness.value : "",
+            value: moralityCost,
+          } : undefined,
         },
       };
       saveCharacter(newCharacter);

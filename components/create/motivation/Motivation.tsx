@@ -13,6 +13,7 @@ import {
   MoralityWeaknesses,
   Obligation,
 } from "@/constants/Motivations";
+import { Ionicons } from "@expo/vector-icons";
 
 interface MotivationProps {
   obligation: boolean;
@@ -75,7 +76,6 @@ const Motivation = ({
   moralityBonus,
   setMoralityBonus,
 }: MotivationProps) => {
-
   function updateGroupSize(index: number) {
     async function changeGroupSize(index: number) {
       await setGroupSize(index);
@@ -115,9 +115,12 @@ const Motivation = ({
   };
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Text className={`text-box text-lg text-center font-[Elektra]`}>
         You must select at least an Obligation, Duty, or Morality to continue.
+      </Text>
+      <Text className={`text-box/80 text-md text-center`}>
+        <Ionicons style={{marginTop: 18}} name="checkmark" size={16}/> It is recommended to choose <Text className="font-bold">either</Text> an Obligation or Duty, but you may play with both.,
       </Text>
       <GroupSizeSlider groupSize={groupSize} setGroupSize={updateGroupSize} />
       <ObligationPicker

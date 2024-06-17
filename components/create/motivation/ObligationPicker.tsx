@@ -3,12 +3,7 @@ import { View, Text, Switch, TouchableOpacity } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
 import Checkbox from 'expo-checkbox';
-
-interface Obligation {
-    label: string;
-    value: string;
-    desc: string;
-  }
+import { Obligation } from '@/constants/Motivations';
   
 interface ObligationPickerProps {
   obligations: Obligation[];
@@ -75,7 +70,7 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
           <Text className={`pt-[1vh] pb-[4vh] text-gray-200`}>
             {selectedObligation
               ? selectedObligation.desc
-              : "Select an obligation to read its description."}
+              : "Select an obligation to acquire it and read its description."}
           </Text>
 
           <View className="border-t-2 border-statblockbackground">

@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
-import { Ionicons } from '@expo/vector-icons';
-import Checkbox from 'expo-checkbox';
-
-interface Duty {
-    label: string;
-    value: string;
-    desc: string;
-  }
+import React, { useState } from "react";
+import { View, Text, Switch, TouchableOpacity } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
+import { Ionicons } from "@expo/vector-icons";
+import Checkbox from "expo-checkbox";
+import { Duty } from "@/constants/Motivations";
 
 interface DutyPickerProps {
   duties: Duty[];
@@ -36,7 +31,11 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
   return (
     <View className={`mb-[2vh] p-2 bg-[#ad252b]`}>
       <View className="flex-row justify-between">
-        <Text className={`text-xl font-[Elektra] ${duty ? "text-white" : "text-gray-300"}`}>
+        <Text
+          className={`text-xl font-[Elektra] ${
+            duty ? "text-white" : "text-gray-300"
+          }`}
+        >
           Duty
         </Text>
         <Switch
@@ -54,39 +53,58 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
       {duty && (
         <>
           <Text className={`py-[1vh] text-white`}>
-            Ranked out of 100, your duty represents your reputation or loyalty to a specific organization.
+            Ranked out of 100, your duty represents your reputation or loyalty
+            to a specific organization.
           </Text>
           <View className="w-full bg-white p-2 self-center">
             <RNPickerSelect
               onValueChange={(value) =>
-                setSelectedDuty(duties.find((item) => item.value === value) || null)
+                setSelectedDuty(
+                  duties.find((item) => item.value === value) || null
+                )
               }
               items={duties}
               disabled={!duty}
               darkTheme
               value={selectedDuty?.value}
-              Icon={() => <Ionicons name="chevron-down" size={24} color="#6b7280" />}
+              Icon={() => (
+                <Ionicons name="chevron-down" size={24} color="#6b7280" />
+              )}
             />
           </View>
 
           <Text className={`pt-[1vh] pb-[4vh] text-gray-200`}>
             {selectedDuty
               ? selectedDuty.desc
-              : "Select a duty to read its description."}
+              : "Select a duty to acquire it and read its description."}
           </Text>
 
           <View className="border-t-2 border-statblockbackground">
-            <Text className={`font-[Elektra] text-lg pt-[2vh] text-white `}>Benefits</Text>
+            <Text className={`font-[Elektra] text-lg pt-[2vh] text-white `}>
+              Benefits
+            </Text>
           </View>
           <Text className={`py-[1vh] text-white`}>
-            You may take on more duty for additional benefits, but you may not allow your duty to
-            go below 0.
+            You may take on more duty for additional benefits, but you may not
+            allow your duty to go below 0.
           </Text>
           <View className="pt-[2vh]">
             <View className="flex-row justify-between bg-statblockbackground p-2">
-              <Text className={`font-[Elektra] text-white text-lg text-left w-[33%]`}>Benefit</Text>
-              <Text className={`font-[Elektra] text-white text-lg text-center w-[33%]`}>Cost</Text>
-              <Text className={`font-[Elektra] text-white text-lg text-right w-[33%]`}>Selected</Text>
+              <Text
+                className={`font-[Elektra] text-white text-lg text-left w-[33%]`}
+              >
+                Benefit
+              </Text>
+              <Text
+                className={`font-[Elektra] text-white text-lg text-center w-[33%]`}
+              >
+                Cost
+              </Text>
+              <Text
+                className={`font-[Elektra] text-white text-lg text-right w-[33%]`}
+              >
+                Selected
+              </Text>
             </View>
 
             <TouchableOpacity
@@ -100,7 +118,9 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                 ]);
               }}
             >
-              <Text className={` text-black text-left w-[33%]`}>+5 Experience</Text>
+              <Text className={` text-black text-left w-[33%]`}>
+                +5 Experience
+              </Text>
               <Text className={` text-black text-center w-[33%]`}>-5 Duty</Text>
               <View className="flex-row justify-end w-[33%]">
                 <Checkbox
@@ -129,8 +149,12 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                 ]);
               }}
             >
-              <Text className={` text-black text-left w-[33%]`}>+10 Experience</Text>
-              <Text className={` text-black text-center w-[33%]`}>-10 Duty</Text>
+              <Text className={` text-black text-left w-[33%]`}>
+                +10 Experience
+              </Text>
+              <Text className={` text-black text-center w-[33%]`}>
+                -10 Duty
+              </Text>
               <View className="flex-row justify-end w-[33%]">
                 <Checkbox
                   color={"#000"}
@@ -158,7 +182,9 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                 ]);
               }}
             >
-              <Text className={` text-black text-left w-[33%]`}>+1000 Credits</Text>
+              <Text className={` text-black text-left w-[33%]`}>
+                +1000 Credits
+              </Text>
               <Text className={` text-black text-center w-[33%]`}>-5 Duty</Text>
               <View className="flex-row justify-end w-[33%]">
                 <Checkbox
@@ -187,8 +213,12 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                 ]);
               }}
             >
-              <Text className={` text-black text-left w-[33%]`}>+2500 Credits</Text>
-              <Text className={` text-black text-center w-[33%]`}>-10 Duty</Text>
+              <Text className={` text-black text-left w-[33%]`}>
+                +2500 Credits
+              </Text>
+              <Text className={` text-black text-center w-[33%]`}>
+                -10 Duty
+              </Text>
               <View className="flex-row justify-end w-[33%]">
                 <Checkbox
                   color={"#000"}

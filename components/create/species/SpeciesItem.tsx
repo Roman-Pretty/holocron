@@ -54,7 +54,7 @@ const SpeciesItem = ({
         <View className="bg-box p-3">
           <View className="flex flex-row items-center justify-start">
             <View
-              className={`w-[28vw] h-[28vw] overflow-hidden rounded-full bg-white border-2 ${selectedSpecies === species ? "border-statblockbackground" : "border-box"}`}
+              className={`w-[28vw] h-[28vw] overflow-hidden rounded-full bg-slate-900/80 border-2 ${selectedSpecies === species ? "border-white" : "border-box"}`}
             >
               {loading && (
                 <View className="w-full h-full flex items-center justify-center">
@@ -77,7 +77,9 @@ const SpeciesItem = ({
               </Text>
             </View>
           </View>
-          <View className="w-full flex flex-row justify-between items-center flex-wrap border-b-2 border-statblockbackground pb-[1.5vh] mt-[1.5vh]">
+          <View className={`w-full flex flex-row justify-between items-center flex-wrap border-b-2 pb-[1.5vh] mt-[1.5vh]
+          ${selectedSpecies === species ? "border-white" : "border-slate-900/80"}
+          `}>
             <SpeciesCharacteristic
               title="Brawn"
               level={species.characteristics[0]}
@@ -156,7 +158,7 @@ const SpeciesItem = ({
             <Button
               title={`Select ${species.species}`}
               onPress={() => handleSelect()}
-              cName="mt-[3vh] bg-statblockbackground"
+              cName="mt-[3vh] bg-slate-900/80"
             />
           )}
         </View>
