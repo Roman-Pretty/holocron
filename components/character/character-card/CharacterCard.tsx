@@ -4,7 +4,7 @@ import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import { saveCharacter } from "@/storage/CharacterStorage";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
 
 const CharacterCard = () => {

@@ -8,13 +8,17 @@ import { Modal, TouchableOpacity, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import { useContext } from "react";
+import { saveCharacter } from "@/storage/CharacterStorage";
+import { CriticalInjuries } from "@/constants/CriticalInjuries";
 
 const EffectsCard = () => {
-  const { character } = useContext(CharacterContext);
+  const { character, setCharacter } = useContext(CharacterContext);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(0);
-  const [criticalHits, setCriticalHits] = useState(character?.data.criticalInjuries);
+  const [criticalHits, setCriticalHits] = useState(
+    character?.data.criticalInjuries
+  );
   const size = 24;
 
   const handleCriticalHitPress = async () => {
@@ -22,7 +26,24 @@ const EffectsCard = () => {
     setModalVisible(true);
   };
 
-  function takeCriticalHit(modifier: number) {}
+  async function takeCriticalHit(modifier: number) {
+    if (!character || !character.data.criticalInjuries) return;
+    const updatedCharacter = { ...character };
+    let randomNumber = Math.floor(Math.random() * 20);
+    randomNumber += 1;
+    const injuries = Number(character.data.criticalInjuries.length * 2);
+    const total = randomNumber + Number(modifier / 5) + injuries;
+
+    updatedCharacter.data.criticalInjuries.push(CriticalInjuries[total-1]);
+    
+    try {
+      await saveCharacter(updatedCharacter);
+      setCriticalHits(updatedCharacter.data.criticalInjuries);
+      console.log("Critical injury added successfully!");
+    } catch (error) {
+      console.log("Error adding critical injury:", error);
+    }
+  }
 
   return (
     <View className="w-full self-center z-20 mt-1 shadow-lg">
