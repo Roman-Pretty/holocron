@@ -6,7 +6,7 @@ import { DrawerContentComponentProps, DrawerContentScrollView, DrawerItem } from
 import { router } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import React, { useContext } from "react";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -72,10 +72,26 @@ const DrawerComponent = (props: DrawerContentComponentProps) => {
           )}
           labelStyle={{ color: "#cbd5e1", fontFamily: "Elektra" }}
           onPress={() => {
-            if(character) {
-              deleteCharacter(character?.key);
+            if (character) {
+              Alert.alert(
+                "Delete Character",
+                `Are you sure you want to delete ${character?.data.name}? This action cannot be undone.`,
+                [
+                  {
+                    text: "Cancel",
+                    style: "cancel",
+                  },
+                  {
+                    text: "Delete",
+                    style: "destructive",
+                    onPress: () => {
+                      deleteCharacter(character?.key);
+                      router.push("(characters)" as never);
+                    },
+                  },
+                ]
+              );
             }
-            router.push("(characters)" as never);
           }}
         />
       </SafeAreaView>
