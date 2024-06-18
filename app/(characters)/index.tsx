@@ -3,15 +3,17 @@ import ImageWrapper from "@/components/ImageWrapper";
 import Button from "@/components/form/Button";
 import { Character } from "@/types/Types";
 import { loadCharacters, deleteAllCharacters } from "@/storage/CharacterStorage";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import { useEffect, useState } from "react";
 import {
+  ActivityIndicator,
   Dimensions,
   SafeAreaView,
   ScrollView,
   Text,
   View
 } from "react-native";
+import { Colors } from "@/constants/Colors";
 
 const createcharacter = () => {
   const screenWidth = Dimensions.get("window").width;
@@ -30,17 +32,35 @@ const createcharacter = () => {
   }
 
   const [characters, setCharacters] = useState<Character[]>();
+  const [loading, setLoading] = useState<boolean>(true);
 
   async function getChars() {
     return await loadCharacters();
   }
 
-  useEffect(() => {
+  useFocusEffect(() => {
     // deleteAllCharacters();
     getChars().then((chars) => {
       setCharacters(chars);
+      setLoading(false);
     });
-  }, []);
+  });
+
+  if (loading) {
+    return (
+      <ImageWrapper>
+        <SafeAreaView
+          style={{ backgroundColor: "Colors.global.slate900", flex: 1 }}
+        >
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <ActivityIndicator size="small" color={Colors.global.box} />
+          </View>
+        </SafeAreaView>
+      </ImageWrapper>
+    )
+  }
 
   if (!characters || characters.length <= 0) {
     return (

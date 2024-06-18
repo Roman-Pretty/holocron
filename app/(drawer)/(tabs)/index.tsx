@@ -28,6 +28,7 @@ const Page = () => {
         <Title title="Overview" />
         <CharacterCard />
         <Spacer />
+        <Spacer />
         <Title title="Effects" />
         <EffectsCard />
         <Spacer />

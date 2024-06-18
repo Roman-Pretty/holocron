@@ -1,10 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import {
-  FontAwesome,
-  FontAwesome6,
-  Ionicons,
-  Feather,
-} from "@expo/vector-icons/";
+import { Ionicons } from "@expo/vector-icons/";
 
 import { Tabs } from "expo-router";
 import React from "react";
@@ -17,7 +12,7 @@ export default function TabLayout() {
         options={{
           title: "CHARACTER",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="user" color={color} />
+            <Ionicons size={28} name="person" color={color} />
           ),
           headerShown: false,
           tabBarStyle: {
@@ -52,7 +47,7 @@ export default function TabLayout() {
         options={{
           title: "INVENTORY",
           tabBarIcon: ({ color }) => (
-            <FontAwesome size={28} name="book" color={color} />
+            <Ionicons size={28} name="book" color={color} />
           ),
           headerShown: false,
           tabBarStyle: {
@@ -70,7 +65,7 @@ export default function TabLayout() {
         options={{
           title: "OBLIGATION",
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 size={28} name="dice" color={color} />
+            <Ionicons size={28} name="dice" color={color} />
           ),
           headerShown: false,
           tabBarStyle: {

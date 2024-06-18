@@ -6,10 +6,15 @@ import * as Haptics from "expo-haptics";
 import React, { useState } from "react";
 import { Modal, TouchableOpacity, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import { CharacterContext } from "@/contexts/CharacterContext";
+import { useContext } from "react";
 
 const EffectsCard = () => {
+  const { character } = useContext(CharacterContext);
+
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(0);
+  const [criticalHits, setCriticalHits] = useState(character?.data.criticalInjuries);
   const size = 24;
 
   const handleCriticalHitPress = async () => {
@@ -17,9 +22,7 @@ const EffectsCard = () => {
     setModalVisible(true);
   };
 
-  function takeCriticalHit(modifier: number) {
-
-  }
+  function takeCriticalHit(modifier: number) {}
 
   return (
     <View className="w-full self-center z-20 mt-1 shadow-lg">

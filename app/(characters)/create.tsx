@@ -461,6 +461,8 @@ const CreateCharacter = () => {
             weakness: selectedWeakness ? selectedWeakness.value : "",
             value: moralityCost,
           } : undefined,
+          criticalInjuries: [],
+          statusEffects: [],
         },
       };
       saveCharacter(newCharacter);

@@ -55,7 +55,21 @@ export interface Character {
       weakness: string;
       value: number;
     };
+    criticalInjuries: CriticalInjury[]
+    statusEffects: StatusEffect[];
   };
+}
+
+export interface StatusEffect {
+  name: string;
+  level: number;
+  desc: string;
+}
+
+export interface CriticalInjury {
+  name: string;
+  severity: number;
+  desc: string;
 }
 
 export interface Species {

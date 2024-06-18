@@ -82,3 +82,20 @@ export const deleteAllCharacters = async () => {
       console.log('Error deleting characters:', error);
     }
   };
+
+/**
+ * Deletes a Character from local storage.
+ *  
+ * @async
+ * @param {number} characterKey
+ * @returns {Promise<void>}
+ */
+export const deleteCharacter = async (characterKey: number) => {
+    try {
+        const characters = await loadCharacters();
+        const newCharacters = characters.filter((char: Character) => char.key !== characterKey);
+        await AsyncStorage.setItem('characters', JSON.stringify(newCharacters));
+    } catch (error) {
+        console.log('Error deleting character:', error);
+    }
+}  
