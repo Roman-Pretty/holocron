@@ -23,7 +23,7 @@ const GeneralSkills = () => {
         elevation: 9,
       }}
     >
-      <View className="mx-[2] -mt-24 flex-row">
+      <View className="-mt-24 flex-row">
       <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],
@@ -46,7 +46,7 @@ const GeneralSkills = () => {
           }}
         />
       </View>
-      <View className="bg-box mx-[2] pt-2">
+      <View className="bg-box  pt-2">
       <View className="w-full p-2 flex-row">
           <Text className="text-white text-base font-[Elektra] text-start capitalize] w-5/12">
             Skill
@@ -72,7 +72,7 @@ const GeneralSkills = () => {
           />
         ))}
       </View>
-      <View className="mx-[2] flex-row">
+      <View className=" flex-row">
       <TriangleCorner
           style={{
             transform: [{ rotate: "90deg" }],

@@ -23,7 +23,7 @@ const CombatSkills = () => {
         elevation: 9,
       }}
     >
-      <View className="mx-2 mt-[1vh] flex-row">
+      <View className=" mt-1 flex-row">
         <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],
@@ -46,7 +46,7 @@ const CombatSkills = () => {
           }}
         />
       </View>
-      <View className="bg-heading3 mx-2 pb-20 pt-2">
+      <View className="bg-heading3  pb-20 pt-2">
         <View className="w-full p-2 flex-row">
           <Text className="text-white text-base font-[Elektra] text-start capitalize] w-5/12">
             Skill
@@ -72,7 +72,7 @@ const CombatSkills = () => {
           />
         ))}
       </View>
-      <View className="mx-2 flex-row">
+      <View className=" flex-row">
         <TriangleCorner
           style={{
             transform: [{ rotate: "90deg" }],

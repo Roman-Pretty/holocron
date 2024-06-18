@@ -61,7 +61,7 @@ const CharacterCard = () => {
         elevation: 9,
       }}
     >
-      <View className="mx-2 mt-2 flex-row">
+      <View className=" mt-2 flex-row">
         <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],
@@ -84,7 +84,7 @@ const CharacterCard = () => {
           }}
         />
       </View>
-      <View className="mx-2 bg-box relative">
+      <View className=" bg-box relative">
         <View className=" h-[1px] bg-white mx-[30vw]" />
         <Text className="text-white text-center text-xs font-[Elektra] p-2 pt-1">
           {character?.data.species.species}{" "}
@@ -171,7 +171,7 @@ const CharacterCard = () => {
         </View>
       </View>
 
-      <View className="mx-2 flex-row -z-10">
+      <View className=" flex-row -z-10">
         <TriangleCorner
           style={{
             transform: [{ rotate: "90deg" }],

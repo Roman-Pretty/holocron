@@ -2,6 +2,7 @@ import ImageWrapper from "@/components/ImageWrapper";
 import Title from "@/components/character/Title";
 import CharacterCard from "@/components/character/character-card/CharacterCard";
 import CharacteristicsCard from "@/components/character/characteristics-card/CharacteristicsCard";
+import EffectsCard from "@/components/character/effects-card/EffectsCard";
 import CombatSkills from "@/components/character/skills-cards/CombatSkills";
 import GeneralSkills from "@/components/character/skills-cards/GeneralSkills";
 import KnowledgeSkills from "@/components/character/skills-cards/KnowledgeSkills";
@@ -21,12 +22,17 @@ const Page = () => {
       <KeyboardAwareScrollView
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 8 }}
+        contentContainerStyle={{ paddingHorizontal: 8 }}
       >
         <Spacer />
         <Title title="Overview" />
         <CharacterCard />
         <Spacer />
+        <Title title="Effects" />
+        <EffectsCard />
         <Spacer />
+        <Spacer />
+
         <Title title="Characteristics" />
         <CharacteristicsCard />
         <Spacer />

@@ -4,6 +4,7 @@ import PageContent from "@/components/create/PageContent";
 import Button from "@/components/form/Button";
 import CareerData from "@/constants/CareerData";
 import { Obligation, Duty, Morality } from "@/constants/Motivations";
+import * as Haptics from 'expo-haptics';
 import {
   AGILITY,
   BRAWN,
@@ -464,6 +465,9 @@ const CreateCharacter = () => {
       };
       saveCharacter(newCharacter);
     }
+    Haptics.notificationAsync(
+      Haptics.NotificationFeedbackType.Success
+    )
     save();
     router.back();
   };
