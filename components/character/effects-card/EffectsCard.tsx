@@ -102,7 +102,7 @@ const EffectsCard = () => {
         onRequestClose={() => setModalVisible(false)}
       >
         <View className="flex-1 justify-center items-center mt-6 px-8 bg-black/50">
-          <View className="bg-statblockbackground  border-statblocktextbackground p-2 items-center shadow-md w-full rounded-lg">
+          <View className="bg-neutral-800  border-statblocktextbackground p-2 items-center shadow-md w-full rounded-lg">
             <Text className="text-xl text-center text-white font-[Elektra]">
               Critical Hit!
             </Text>
@@ -144,7 +144,7 @@ const EffectsCard = () => {
             </Text>
             <View className="flex-row justify-between w-full">
               <TouchableOpacity
-                className="p-2 mx-1 flex-1 bg-statblockornate"
+                className="p-2 mx-1 flex-1 bg-box/80"
                 onPress={() => {
                   setModalVisible(false);
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);

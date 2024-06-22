@@ -11,6 +11,7 @@ import * as Haptics from "expo-haptics";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import { useContext } from "react";
 import { saveCharacter } from "@/storage/CharacterStorage";
+import { Ionicons } from "@expo/vector-icons";
 
 const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -75,6 +76,10 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
                   d
                 </Text>
               ))}
+              {crit.severity >= 5 &&
+                    <Ionicons name="skull" size={12} color="white" />
+                    }
+                    
         </View>
       </TouchableOpacity>
 
@@ -85,7 +90,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
         onRequestClose={closeModal}
       >
         <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="w-3/4 bg-neutral-800 p-5 rounded-lg shadow-lg items-center">
+          <View className="w-5/6 bg-neutral-800 p-5 rounded-lg shadow-lg items-center">
             <View className="flex-row items-center justify-start w-full  border-white border-b-2 mb-3 pb-3">
               <View className="w-[22vw] h-[22vw] mb-2">
                 <Image
