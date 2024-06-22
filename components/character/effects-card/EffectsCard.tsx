@@ -4,7 +4,7 @@ import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import React, { useState } from "react";
-import { Modal, TouchableOpacity, Text, View } from "react-native";
+import { Modal, Pressable, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import { useContext } from "react";
@@ -143,7 +143,7 @@ const EffectsCard = () => {
               Modifiers from existing hits are already applied.
             </Text>
             <View className="flex-row justify-between w-full">
-              <TouchableOpacity
+              <Pressable
                 className="p-2 mx-1 flex-1 bg-box/80"
                 onPress={() => {
                   setModalVisible(false);
@@ -151,8 +151,8 @@ const EffectsCard = () => {
                 }}
               >
                 <Text className="text-white font-bold text-center">Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </Pressable>
+              <Pressable
                 className="p-2 bg-heading3 flex-1 mx-1"
                 onPress={() => {
                   setModalVisible(false);
@@ -166,7 +166,7 @@ const EffectsCard = () => {
                 <Text className="text-white font-bold text-center">
                   Take Hit
                 </Text>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
         </View>

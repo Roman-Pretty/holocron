@@ -28,7 +28,7 @@ export default function DrawerLayout() {
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           drawerIcon: ({ color }) => (
-            <Ionicons size={28} name="person-outline" color={color} />
+            <Ionicons size={28} name="menu" color={color} />
           ),
           drawerLabelStyle: { fontFamily: "Elektra" },
         }}
@@ -47,16 +47,16 @@ const DrawerComponent = (props: DrawerContentComponentProps) => {
       contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}
     >
       <View>
-        <Text className="text-center font-[Elektra] text-slate-300 text-xl pt-4 pb-6">
+        <Text className="text-center font-[Elektra] text-white text-xl pt-4 pb-6">
           Options
         </Text>
         <DrawerItem
           label={"Change Character"}
           icon={({ color, size }) => (
-            <Ionicons name="people" size={size} color={"#cbd5e1"} />
+            <Ionicons name="people" size={size} color={"#fff"} />
           )}
           labelStyle={{
-            color: "#cbd5e1",
+            color: "#fff",
             fontFamily: "Elektra",
           }}
           onPress={() => {
@@ -68,9 +68,9 @@ const DrawerComponent = (props: DrawerContentComponentProps) => {
         <DrawerItem
           label={"Delete Character"}
           icon={({ color, size }) => (
-            <Ionicons name="trash" size={size} color={"#cbd5e1"} />
+            <Ionicons name="trash" size={size} color={"#fff"} />
           )}
-          labelStyle={{ color: "#cbd5e1", fontFamily: "Elektra" }}
+          labelStyle={{ color: "#fff", fontFamily: "Elektra" }}
           onPress={() => {
             if (character) {
               Alert.alert(

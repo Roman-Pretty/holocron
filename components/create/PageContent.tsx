@@ -79,6 +79,7 @@ interface PageContentProps {
   setMoralityCost: (value: number) => void;
   moralityBonus: number;
   setMoralityBonus: (value: number) => void;
+  handleSnapPress: (index: number) => void;
 }
 
 const PageContent = ({
@@ -135,11 +136,13 @@ const PageContent = ({
   setMoralityCost,
   moralityBonus,
   setMoralityBonus,
+  handleSnapPress,
 }: PageContentProps) => {
   switch (currentIndex) {
     case 0:
       return (
         <Description
+          handleSnapPress={handleSnapPress}
           portrait={portrait}
           setPortrait={setPortrait}
           name={name}

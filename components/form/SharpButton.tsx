@@ -1,15 +1,28 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { View, Text, Pressable } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 
-const SharpButton = ({ title, onPress }: { title: string, onPress: () => void }) => {
+const SharpButton = ({ title, onPress }: { title: string; onPress: () => void }) => {
   const size = 16;
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handlePressIn = () => {
+    setIsPressed(true);
+  };
+
+  const handlePressOut = () => {
+    setIsPressed(false);
+  };
+
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View
-        className="w-[40vw] self-center z-20"
-        style={{
+    <Pressable
+      onPress={onPress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      style={({ pressed }) => [
+        {
+          opacity: pressed ? 0.5 : 1,
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
@@ -17,10 +30,11 @@ const SharpButton = ({ title, onPress }: { title: string, onPress: () => void })
           },
           shadowOpacity: 0.32,
           shadowRadius: 5.46,
-
           elevation: 9,
-        }}
-      >
+        },
+      ]}
+    >
+      <View className="w-[40vw] self-center z-20">
         <View className="flex-row">
           <View>
             <TriangleCorner
@@ -64,7 +78,7 @@ const SharpButton = ({ title, onPress }: { title: string, onPress: () => void })
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

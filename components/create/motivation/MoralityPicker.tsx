@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Slider from "@react-native-community/slider";
 import Checkbox from "expo-checkbox";
 import React from "react";
-import { Switch, Text, TouchableOpacity, View } from "react-native";
+import { Switch, Text, Pressable, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { Morality } from "@/constants/Motivations";
 
@@ -149,7 +149,7 @@ const MoralityPicker = ({
                 </Text>
               </View>
 
-              <TouchableOpacity
+              <Pressable
                 className="flex-row justify-between py-[1vh] px-2 bg-white"
                 onPress={() => {
                   setMoralityBonus(0);
@@ -170,9 +170,9 @@ const MoralityPicker = ({
                     color="#000"
                   />
                 </View>
-              </TouchableOpacity>
+              </Pressable>
 
-              <TouchableOpacity
+              <Pressable
                 className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
                 onPress={() => {
                   setMoralityBonus(1);
@@ -193,9 +193,9 @@ const MoralityPicker = ({
                     color="#000"
                   />
                 </View>
-              </TouchableOpacity>
+              </Pressable>
 
-              <TouchableOpacity
+              <Pressable
                 className="flex-row justify-between py-[1vh] px-2 bg-white"
                 onPress={() => {
                   setMoralityBonus(2);
@@ -218,7 +218,7 @@ const MoralityPicker = ({
                     color="#000"
                   />
                 </View>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           )}
         </>

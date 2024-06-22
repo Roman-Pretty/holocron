@@ -5,6 +5,7 @@ import Button from "@/components/form/Button";
 import CareerData from "@/constants/CareerData";
 import { Obligation, Duty, Morality } from "@/constants/Motivations";
 import * as Haptics from 'expo-haptics';
+import PortraitSelect from "@/components/form/PortraitSelect";
 import {
   AGILITY,
   BRAWN,
@@ -24,8 +25,9 @@ import {
 } from "@/types/Types";
 import { loadCharacters, saveCharacter } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { ImageSourcePropType, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ImageSourcePropType, KeyboardAvoidingView, View } from "react-native";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
 
 const CreateCharacter = () => {
   const PAGES = 9;
@@ -176,6 +178,22 @@ const CreateCharacter = () => {
   const [selectedWeakness, setSelectedWeakness] = useState<Morality | null>(
     null
   );
+
+  const sheetRef = useRef<BottomSheet>(null);
+  sheetRef.current?.close();
+
+  const snapPoints = useMemo(() => ["60%"], []);
+
+  // callbacks
+  const handleSheetChange = useCallback((index: number) => {
+    console.log("handleSheetChange", index);
+  }, []);
+  const handleSnapPress = useCallback((index: number) => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close();
+  }, []);
 
   useEffect(() => {
     function calculateCreds() {
@@ -476,6 +494,9 @@ const CreateCharacter = () => {
 
   return (
     <ImageWrapper>
+      <KeyboardAvoidingView
+      behavior="position"
+      >
       <View className="h-full justify-center px-[2vw] py-1">
         <Header
           credits={credits}
@@ -538,8 +559,9 @@ const CreateCharacter = () => {
           setSelectedWeakness={setSelectedWeakness}
           moralityBonus={moralityBonus}
           setMoralityBonus={setMoralityBonus}
+          handleSnapPress={handleSnapPress}
         />
-        <View className="flex flex-row justify-between mt-[2vh] mb-[8vh]">
+        <View className="flex flex-row justify-between mt-[2vh] pb-[8vh]">
           <Button
             title="Back"
             onPress={onBackPressed}
@@ -574,7 +596,16 @@ const CreateCharacter = () => {
             />
           )}
         </View>
+    <PortraitSelect
+      handleSnapPress={handleSnapPress}
+      handleClosePress={handleClosePress}
+      handleSelect={setPortrait}
+      handleSheetChange={handleSheetChange}
+      sheetRef={sheetRef}
+      snapPoints={snapPoints}
+    />
       </View>
+    </KeyboardAvoidingView>
     </ImageWrapper>
   );
 };

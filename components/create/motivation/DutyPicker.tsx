@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Switch, TouchableOpacity } from "react-native";
+import { View, Text, Switch, Pressable } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
@@ -107,7 +107,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
               </Text>
             </View>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
                 setAdditionalDuty([
@@ -136,9 +136,9 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                   value={additionalDuty[0]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
               onPress={() => {
                 setAdditionalDuty([
@@ -169,9 +169,9 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                   value={additionalDuty[1]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
                 setAdditionalDuty([
@@ -200,9 +200,9 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                   value={additionalDuty[2]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
               onPress={() => {
                 setAdditionalDuty([
@@ -233,7 +233,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
                   value={additionalDuty[3]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
             <View className="self-end">
               <Text className="text-white font-[Elektra] py-[2vh]">
                 Total Duty: {calculateDutyCost()}/100

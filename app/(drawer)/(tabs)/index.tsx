@@ -9,8 +9,8 @@ import KnowledgeSkills from "@/components/character/skills-cards/KnowledgeSkills
 import SocialSkills from "@/components/character/skills-cards/SocialSkills";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import React, { useContext } from "react";
-import { View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAvoidingView, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 const Spacer = () => <View className="h-[1.5vh]" />;
 
@@ -19,8 +19,10 @@ const Page = () => {
 
   return (
     <ImageWrapper>
-      <KeyboardAwareScrollView
-        showsVerticalScrollIndicator={false}
+      <KeyboardAvoidingView
+      behavior="position"
+      >
+      <ScrollView
         style={{ marginBottom: 8 }}
         contentContainerStyle={{ paddingHorizontal: 8 }}
       >
@@ -43,7 +45,8 @@ const Page = () => {
         <SocialSkills />
         <KnowledgeSkills />
         <GeneralSkills />
-      </KeyboardAwareScrollView>
+      </ScrollView>
+      </KeyboardAvoidingView>
     </ImageWrapper>
   );
 };

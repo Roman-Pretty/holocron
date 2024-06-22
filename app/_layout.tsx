@@ -13,6 +13,7 @@ import { CharacterProvider } from "@/contexts/CharacterContext";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 import { NativeWindStyleSheet } from "nativewind";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -54,6 +55,7 @@ export default function RootLayout() {
   }
 
   return (
+    <GestureHandlerRootView>
     <CharacterProvider>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
@@ -63,5 +65,6 @@ export default function RootLayout() {
         </Stack>
       </ThemeProvider>
     </CharacterProvider>
+    </GestureHandlerRootView>
   );
 }

@@ -14,7 +14,6 @@ export const loadCharacters = async (): Promise<Character[]> => {
             const characters = JSON.parse(charactersJSON);
             return characters;
         } else {
-            console.log('Characters data not found.');
             return [];
         }
     } catch (error) {

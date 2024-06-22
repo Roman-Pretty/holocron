@@ -2,8 +2,8 @@ import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import { Specialization, Talent } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useEffect } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, Pressable, View, ActivityIndicator } from "react-native";
 import TalentText from "./TalentText";
 
 interface TalentItemProps {
@@ -27,8 +27,9 @@ const TalentItem = ({
   row,
   col,
 }: TalentItemProps) => {
-  const [purchasable, setPurchasable] = React.useState(false);
-  const [purchased, setPurchased] = React.useState(false);
+  const [purchasable, setPurchasable] = useState(false);
+  const [purchased, setPurchased] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   function togglePurchased() {
     talent.purchased = !purchased;
@@ -88,7 +89,6 @@ const TalentItem = ({
     return false;
   }
 
-
   useEffect(() => {
     if (specialization) {
       if (isNodePointedTo(row, col)) {
@@ -109,27 +109,33 @@ const TalentItem = ({
   }, []);
 
   return (
-    <TouchableOpacity
-      onPress={() => togglePurchased()}
+    <Pressable
+      onPressIn={() => setLoading(true)}
+      onPressOut={() => setLoading(false)}
+      onPress={() => {
+        togglePurchased();
+        setLoading(false);
+      }}
       disabled={!purchasable}
     >
-      <View
-        className={"w-[60vw]"}
-        style={{ opacity: 100 }}
-      >
+      <View className={"w-[60vw]"} style={{ opacity: 100 }}>
         <View className="flex-row">
           <View
             className={`flex-row ${!purchasable ? "bg-gray-400" : talent.talent.active ? " bg-heading3 " : " bg-box "
               } p-2 items-center flex-1`}
             style={{ marginRight: -1 }}
           >
-            <Ionicons
-              name={purchased ? "checkbox-sharp" : "square-sharp"}
-              size={24}
-              color="white"
-            />
-            <View className="flex-row flex-1 justify-between items-center">
-              <Text className="text-xs font-[Elektra] text-white pl-1 pt-0.5 uppercase">
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Ionicons
+                name={purchased ? "checkbox-sharp" : "square-sharp"}
+                size={20}
+                color="white"
+              />
+            )}
+            <View className="flex-row flex-1 justify-between items-center z-20">
+              <Text className="text-xs font-[Elektra] text-white pl-1.5 pt-0.5 uppercase z-20">
                 {talent.talent.name}
               </Text>
               <Text className="text-xs font-[Elektra] pt-0.5 text-white">
@@ -138,15 +144,15 @@ const TalentItem = ({
               </Text>
             </View>
           </View>
-          {talent.talent.name.length < 18 ? (
             <TriangleCorner
               style={{
                 transform: [{ rotate: "-90deg" }],
-                borderTopWidth: 44,
-                borderRightWidth: 44,
+                borderTopWidth: talent.talent.name.length < 18 ? 44 : 50,
+                borderRightWidth: talent.talent.name.length < 18 ? 44 : 50,
                 borderTopColor: !purchasable ? "#9ca3af" : talent.talent.active ? Colors.global.heading3 : Colors.global.box,
+                zIndex: -10
               }}
-            />) : <View className={`w-[38px] 2 ${!purchasable ? "bg-gray-400" : talent.talent.active ? "bg-heading3" : "bg-box"}`} />}
+            />
         </View>
         <View
           className={` p-2 bg-white border-2 ${!purchasable ? "border-gray-400" : talent.talent.active ? "border-heading3" : "border-box"
@@ -155,7 +161,7 @@ const TalentItem = ({
           <TalentText text={talent.talent.desc} purchasable={purchasable} />
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

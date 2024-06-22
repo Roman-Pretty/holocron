@@ -1,19 +1,23 @@
 import React from 'react';
-import { Image, View, TouchableOpacity } from 'react-native';
+import { Image, View, Pressable, ImageSourcePropType } from 'react-native';
 
 interface PortraitItemProps {
     image: any;
-    handleSelect: (image: string) => void;
+    handleSelect: (image: ImageSourcePropType) => void;
 }
 
-const PortraitItem = ({ image, handleSelect } : PortraitItemProps) => {
-
+const PortraitItem = ({ image, handleSelect }: PortraitItemProps) => {
     return (
-        <TouchableOpacity
-        onPress={() => handleSelect(image)}
+        <Pressable
+            onPress={() => handleSelect(image)}
+            style={({ pressed }) => [
+                {
+                    opacity: pressed ? 0.5 : 1,
+                },
+            ]}
         >
-            <View className='rounded-3xl bg-slate-800 border-2 border-slate-700 m-1'>
-                <View className='w-[24vw] h-[24vw] overflow-hidden rounded-3xl'>
+            <View className='rounded-lg bg-white shadow-black shadow-sm  m-1'>
+                <View className='w-[24vw] h-[24vw] overflow-hidden rounded-lg'>
                     <Image
                         source={image}
                         resizeMode='cover'
@@ -21,8 +25,8 @@ const PortraitItem = ({ image, handleSelect } : PortraitItemProps) => {
                     />
                 </View>
             </View>
-        </TouchableOpacity>
-    )
+        </Pressable>
+    );
 }
 
-export default PortraitItem
+export default PortraitItem;

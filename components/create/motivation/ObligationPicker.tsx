@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Switch, TouchableOpacity } from 'react-native';
+import { View, Text, Switch, Pressable } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
 import Checkbox from 'expo-checkbox';
@@ -87,7 +87,7 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
               <Text className={`font-[Elektra] text-white text-lg text-right w-[33%]`}>Selected</Text>
             </View>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
                 setAdditionalObligation([
@@ -114,9 +114,9 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
                   value={additionalObligation[0]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
               onPress={() => {
                 setAdditionalObligation([
@@ -143,9 +143,9 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
                   value={additionalObligation[1]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-white"
               onPress={() => {
                 setAdditionalObligation([
@@ -172,9 +172,9 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
                   value={additionalObligation[2]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
 
-            <TouchableOpacity
+            <Pressable
               className="flex-row justify-between py-[1vh] px-2 bg-gray-200"
               onPress={() => {
                 setAdditionalObligation([
@@ -201,7 +201,7 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
                   value={additionalObligation[3]}
                 />
               </View>
-            </TouchableOpacity>
+            </Pressable>
             <View className="self-end">
               <Text className="text-white font-[Elektra] py-[2vh]">
                 Total Obligation: {calculateObligationCost()}/{obligationCost * 2}

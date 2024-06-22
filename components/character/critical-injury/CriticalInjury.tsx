@@ -1,7 +1,7 @@
 import {
   View,
   Text,
-  TouchableOpacity,
+  Pressable,
   Image,
   Modal,
 } from "react-native";
@@ -53,7 +53,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
 
   return (
     <>
-      <TouchableOpacity
+      <Pressable
         className="flex-row items-center justify-between w-full bg-black/20 px-0.5 py-1 mb-2"
         onPress={openModal}
       >
@@ -81,7 +81,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
                     }
                     
         </View>
-      </TouchableOpacity>
+      </Pressable>
 
       <Modal
         animationType="none"
@@ -120,7 +120,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
             </View>
             <Text className="mb-4 text-white">{crit.desc}</Text>
             <View className="flex-row">
-            <TouchableOpacity
+            <Pressable
                 className="p-2 mx-1 flex-1 bg-box/80"
                 onPress={() => {
                   setModalVisible(false);
@@ -128,8 +128,8 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
                 }}
               >
                 <Text className="text-white font-bold text-center">Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </Pressable>
+              <Pressable
                 className="p-2 bg-heading3 flex-1 mx-1"
                 onPress={() => {
                   setModalVisible(false);
@@ -144,7 +144,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
                 <Text className="text-white font-bold text-center">
                   Remove
                 </Text>
-              </TouchableOpacity>
+              </Pressable>
             </View>
           </View>
         </View>

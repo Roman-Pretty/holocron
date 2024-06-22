@@ -6,7 +6,7 @@ import {
   Image,
   Modal,
   Text,
-  TouchableOpacity,
+  Pressable,
   View,
   ViewToken,
 } from "react-native";
@@ -197,12 +197,12 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
                 <Text className="text-white text-xl font-[Elektra]">
                   Select Option
                 </Text>
-                <TouchableOpacity
+                <Pressable
                   onPress={() => setModalVisible(!modalVisible)}
                   className="p-4"
                 >
                   <Ionicons name="close" size={24} color="white" />
-                </TouchableOpacity>
+                </Pressable>
               </View>
               <Text className="text-white pb-[4vh]">
                 {species.speciesBonus}

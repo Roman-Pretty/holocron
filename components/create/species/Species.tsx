@@ -1,9 +1,8 @@
 import SpeciesData from "@/constants/SpeciesData";
 import { Species } from "@/types/Types";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View, ViewToken } from "react-native";
+import { ActivityIndicator, FlatList, View } from "react-native";
 import SpeciesItem from "./SpeciesItem";
-import { useSharedValue } from "react-native-reanimated";
 
 interface SpeciesProps {
   selectedSpecies: Species | null;
@@ -21,7 +20,7 @@ const SpeciesElement = ({
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    });
+    }, 1);
   }, []);
 
   if (loading) {
