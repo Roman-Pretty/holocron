@@ -122,6 +122,90 @@ export const GUNNER = {
   ],
 };
 
+export const HOTSHOT = {
+  talents: [
+    { talent: td.shortcut },
+    { talent: td.highGTraining },
+    { talent: td.skilledJockey },
+    { talent: td.grit },
+
+    { talent: td.secondChances },
+    { talent: td.grit },
+    { talent: td.shortcut },
+    { talent: td.highGTraining },
+
+    { talent: td.deadToRights },
+    { talent: td.highGTraining },
+    { talent: td.grit },
+    { talent: td.intensePresence },
+
+    { talent: td.secondChances },
+    { talent: td.corellianSendoff },
+    { talent: td.koiogranTurn },
+    { talent: td.grit },
+
+    { talent: td.deadToRightsImproved },
+    { talent: td.corellianSendoffImproved },
+    { talent: td.dedication },
+    { talent: td.showboat },
+  ],
+  vPath: [
+    [0, 0, 0],
+    [1, 0, 1],
+    [1, 1, 1],
+    [0, 1, 0],
+    [0, 0, 1],
+  ],
+  hPath: [
+    [0, 0, 1, 1],
+    [1, 1, 0, 1],
+    [1, 1, 1, 1],
+    [1, 0, 1, 1],
+  ],
+};
+
+export const PILOT = {
+  talents: [
+    { talent: td.fullThrottle },
+    { talent: td.skilledJockey },
+    { talent: td.galaxyMapper },
+    { talent: td.letsRide },
+
+    { talent: td.skilledJockey },
+    { talent: td.deadToRights },
+    { talent: td.galaxyMapper },
+    { talent: td.rapidRecovery },
+
+    { talent: td.fullThrottleImproved },
+    { talent: td.deadToRightsImproved },
+    { talent: td.grit },
+    { talent: td.naturalPilot },
+
+    { talent: td.grit },
+    { talent: td.fullThrottleSuperior },
+    { talent: td.trickyTarget },
+    { talent: td.defensiveDriving },
+
+    { talent: td.masterPilot },
+    { talent: td.dedication },
+    { talent: td.toughened },
+    { talent: td.brilliantEvasion },
+  ],
+  vPath: [
+    [0, 0, 0],
+    [1, 0, 1],
+    [0, 0, 1],
+    [1, 0, 0],
+    [1, 1, 1],
+  ],
+  hPath: [
+    [1, 1, 1, 1],
+    [1, 1, 0, 0],
+    [1, 1, 1, 1],
+    [1, 1, 1, 1],
+  ],
+};
+
 export const ASSASSIN = {
   talents: [
     { talent: td.grit },

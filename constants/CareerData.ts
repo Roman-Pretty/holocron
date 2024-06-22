@@ -35,6 +35,18 @@ export default [
         skills: ["Discipline", "Gunnery", "Ranged (Heavy)", "Resilience"],
         talents: Tree.GUNNER,
       },
+      {
+        name: "Hotshot",
+        desc: "Naturally gifted, overly aggressive, and great at improvising.",
+        skills: ["Cool", "Coordination", "Piloting (Planetary)", "Piloting (Space)"],
+        talents: Tree.HOTSHOT,
+      },
+      {
+        name: "Pilot",
+        desc: "Specialists in operating starships. A pilot's ship is an extension of themselves.",
+        skills: ["Astrogation", "Gunnery", "Piloting (Planetary)", "Piloting (Space)"],
+        talents: Tree.PILOT,
+      }
     ],
     forceSensitive: false,
   },
