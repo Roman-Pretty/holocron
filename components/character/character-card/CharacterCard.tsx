@@ -6,12 +6,23 @@ import { CharacterContext } from "@/contexts/CharacterContext";
 import { saveCharacter } from "@/storage/CharacterStorage";
 import { useContext, useEffect, useState } from "react";
 import { Image, Text, View } from "react-native";
+import CriticalInjuryElement from "../critical-injury/CriticalInjury";
 
 const CharacterCard = () => {
   const { character } = useContext(CharacterContext);
 
   const [strain, setStrain] = useState(character?.data.strain.current ?? 0);
   const [wounds, setWounds] = useState(character?.data.wound.current ?? 0);
+  const [criticals, setCriticals] = useState(
+    character?.data.criticalInjuries ?? []
+  );
+
+  useEffect(() => {
+    async function setCrits() {
+      setCriticals((await character?.data.criticalInjuries) ?? []);
+    }
+    setCrits();
+  }, [character]);
 
   function saveStrain(value?: number) {
     setStrain(value ?? 0);
@@ -123,25 +134,13 @@ const CharacterCard = () => {
             resizeMode="contain"
             style={{ width: "100%", height: "100%" }}
           />
+
+          <View className="absolute top-0 left-[3.5vw] w-1/5">
+            {criticals.map((crit, index) => (
+              <CriticalInjuryElement key={index} crit={crit}/>
+            ))}
+          </View>
         </View>
-        {/* <View className="flex-row justify-between px-2 -mt-[10vh] mb-[2vh]">
-            <DataDisplay
-            scale={10}
-            borderWidth={1.6}
-            value={character?.data.credits ?? 0}
-            title="CREDITS"
-            />
-            <DataDisplay
-            scale={10}
-            borderWidth={1.6}
-            value={
-              character?.data.experience.available ??
-              0 + " / " + character?.data.experience.total ??
-              0
-            }
-            title="EXPERIENCE"
-            />
-          </View> */}
         <View className="flex-row justify-between items-center px-4 -mb-[4vh]">
           <Stat
             scale={18}

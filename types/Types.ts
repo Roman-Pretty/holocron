@@ -70,6 +70,7 @@ export interface CriticalInjury {
   name: string;
   severity: number;
   desc: string;
+  image: ImageSourcePropType;
 }
 
 export interface Species {

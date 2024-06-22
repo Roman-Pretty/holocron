@@ -34,10 +34,11 @@ const EffectsCard = () => {
     const injuries = Number(character.data.criticalInjuries.length * 2);
     const total = randomNumber + Number(modifier / 5) + injuries;
 
-    updatedCharacter.data.criticalInjuries.push(CriticalInjuries[total-1]);
+    updatedCharacter.data.criticalInjuries.push(CriticalInjuries[Math.min(total-1, CriticalInjuries.length-1)]);
     
     try {
       await saveCharacter(updatedCharacter);
+      setCharacter(updatedCharacter);
       setCriticalHits(updatedCharacter.data.criticalInjuries);
       console.log("Critical injury added successfully!");
     } catch (error) {
@@ -100,8 +101,8 @@ const EffectsCard = () => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View className="flex-1 justify-center items-center mt-6 px-1 bg-black/30">
-          <View className="bg-statblockbackground border-4 border-statblocktextbackground p-2 items-center shadow-md w-full">
+        <View className="flex-1 justify-center items-center mt-6 px-8 bg-black/50">
+          <View className="bg-statblockbackground  border-statblocktextbackground p-2 items-center shadow-md w-full rounded-lg">
             <Text className="text-xl text-center text-white font-[Elektra]">
               Critical Hit!
             </Text>
