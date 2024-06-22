@@ -1,5 +1,5 @@
 import { Career } from "@/types/Types";
-import TalentTreeData from "./TalentTreeData";
+import * as Tree from "./TalentTreeData";
 export default [
   {
     name: "Ace",
@@ -21,19 +21,19 @@ export default [
         name: "Beast Rider",
         desc: "Specialists in riding and caring for animals.",
         skills: ["Athletics", "Xenology", "Pereception", "Survival"],
-        talents: TalentTreeData.BEAST_RIDER,
+        talents: Tree.BEAST_RIDER,
       },
       {
         name: "Driver",
         desc: "Specialists in operating ground vehicles.",
         skills: ["Cool", "Gunnery", "Mechanics", "Piloting (Planetary)"],
-        talents: TalentTreeData.DRIVER,
+        talents: Tree.DRIVER,
       },
       {
         name: "Gunner",
         desc: "Specialists in operating weapons on vehicles and starships.",
         skills: ["Discipline", "Gunnery", "Ranged (Heavy)", "Resilience"],
-        talents: TalentTreeData.GUNNER,
+        talents: Tree.GUNNER,
       },
     ],
     forceSensitive: false,
@@ -59,7 +59,7 @@ export default [
         name: "Assassin",
         desc: "Specializes in terminating targets quietly and efficiently.",
         skills: ["Melee", "Ranged (Heavy)", "Skulduggery", "Stealth"],
-        talents: TalentTreeData.ASSASSIN,
+        talents: Tree.ASSASSIN,
       },
     ],
     forceSensitive: false,
