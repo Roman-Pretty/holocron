@@ -4,6 +4,7 @@ import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
 import * as Progress from "react-native-progress";
 import { Species } from "@/types/Types";
+import { Ionicons } from "@expo/vector-icons";
 
 interface HeaderProps {
   currentIndex: number;
@@ -13,7 +14,13 @@ interface HeaderProps {
   credits: number | null;
 }
 
-const Header = ({ currentIndex, experience, PAGES, species, credits }: HeaderProps) => {
+const Header = ({
+  currentIndex,
+  experience,
+  PAGES,
+  species,
+  credits,
+}: HeaderProps) => {
   const getPageTitle = () => {
     switch (currentIndex) {
       case 0:
@@ -69,9 +76,12 @@ const Header = ({ currentIndex, experience, PAGES, species, credits }: HeaderPro
         </View>
         <View className="w-[20vw] pt-2.5 h-full absolute right-0 top-0 mr-2">
           {experience !== null && species != null && (
-            <Text className="text-heading1 text-right font-[Elektra]">
-              XP: {experience}
-            </Text>
+            <View className="flex-row justify-end items-center">
+              <Ionicons size={16} name="locate" color={Colors.global.heading1} />
+              <Text className="text-heading1 text-right font-[Elektra] pt-0.5">
+                {experience}
+              </Text>
+            </View>
           )}
         </View>
         <View className="w-[20vw] pt-2.5 h-full absolute left-0 top-0 ml-2">

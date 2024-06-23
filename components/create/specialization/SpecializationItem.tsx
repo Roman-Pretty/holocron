@@ -14,7 +14,7 @@ interface SpeciesItemProps {
 
 const SpecializationItem = ({ specialization, selectedSpecialization, setSelectedSpecialization }: SpeciesItemProps) => {
     return (
-        <View className='w-full my-[2vh]'>
+        <View className='w-full mb-2'>
             <View className='flex-row justify-end'>
                 <View className='bg-heading2  w-[100%]'>
                     <Text className='pl-[52px] pt-[8px] text-lg text-white font-[Elektra]'>{specialization.name}</Text>

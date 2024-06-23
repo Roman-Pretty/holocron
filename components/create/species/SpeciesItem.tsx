@@ -1,21 +1,16 @@
+import Characteristic from "@/components/Characteristic";
 import Button from "@/components/form/Button";
+import { Colors } from "@/constants/Colors";
+import { Species } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
   Image,
-  Modal,
-  Text,
-  Pressable,
-  View,
-  ViewToken,
   ImageBackground,
+  Text,
+  View
 } from "react-native";
-import SpeciesCharacteristic from "./SmallCharacteristic";
-import { Species } from "@/types/Types";
-import { Colors } from "@/constants/Colors";
-import TriangleCorner from "@/components/shapes/TriangleCorner";
-import Characteristic from "@/components/Characteristic";
 
 type SpeciesItemProps = {
   species: Species;
