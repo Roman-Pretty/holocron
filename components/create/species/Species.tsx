@@ -43,7 +43,6 @@ const SpeciesElement = ({
           setSelectedSpecies={setSelectedSpecies}
         />
       )}
-      // windowSize={3}
       showsVerticalScrollIndicator={false}
     />
   );

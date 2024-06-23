@@ -4,7 +4,7 @@ import PageContent from "@/components/create/PageContent";
 import Button from "@/components/form/Button";
 import CareerData from "@/constants/CareerData";
 import { Obligation, Duty, Morality } from "@/constants/Motivations";
-import * as Haptics from 'expo-haptics';
+import * as Haptics from "expo-haptics";
 import PortraitSelect from "@/components/form/PortraitSelect";
 import {
   AGILITY,
@@ -25,7 +25,13 @@ import {
 } from "@/types/Types";
 import { loadCharacters, saveCharacter } from "@/storage/CharacterStorage";
 import { router } from "expo-router";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { ImageSourcePropType, KeyboardAvoidingView, View } from "react-native";
 import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
 
@@ -197,7 +203,7 @@ const CreateCharacter = () => {
 
   useEffect(() => {
     function calculateCreds() {
-      let credits = 500;     
+      let credits = 500;
       if (obligation) {
         if (additionalObligation[2]) credits += 1000;
         if (additionalObligation[3]) credits += 2500;
@@ -466,146 +472,149 @@ const CreateCharacter = () => {
                 ? characteristics[0].level + 1
                 : characteristics[0].level,
           },
-          obligation: obligation ? {
-            type: selectedObligation ? selectedObligation.value : "",
-            value: obligationCost,
-          } : undefined,
-          duty: duty ? {
-            type: selectedDuty ? selectedDuty.value : "",
-            value: dutyCost,
-          } : undefined,
-          morality: morality ? {
-            strength: selectedStrength ? selectedStrength.value : "",
-            weakness: selectedWeakness ? selectedWeakness.value : "",
-            value: moralityCost,
-          } : undefined,
+          obligation: obligation
+            ? {
+                type: selectedObligation ? selectedObligation.value : "",
+                value: obligationCost,
+              }
+            : undefined,
+          duty: duty
+            ? {
+                type: selectedDuty ? selectedDuty.value : "",
+                value: dutyCost,
+              }
+            : undefined,
+          morality: morality
+            ? {
+                strength: selectedStrength ? selectedStrength.value : "",
+                weakness: selectedWeakness ? selectedWeakness.value : "",
+                value: moralityCost,
+              }
+            : undefined,
           criticalInjuries: [],
           statusEffects: [],
         },
       };
       saveCharacter(newCharacter);
     }
-    Haptics.notificationAsync(
-      Haptics.NotificationFeedbackType.Success
-    )
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     save();
     router.back();
   };
 
   return (
     <ImageWrapper>
-      <KeyboardAvoidingView
-      behavior="position"
-      >
-      <View className="h-full justify-center px-[2vw] py-1">
-        <Header
-          credits={credits}
-          currentIndex={currentIndex}
-          experience={experience}
-          PAGES={PAGES}
-          species={species}
-        />
-        <PageContent
-          currentIndex={currentIndex}
-          portrait={portrait}
-          setPortrait={setPortrait}
-          name={name}
-          setName={setName}
-          homeworld={homeworld}
-          setHomeworld={setHomeworld}
-          description={description}
-          setDescription={setDescription}
-          species={species}
-          setSelectedSpecies={setSpecies}
-          changeSelectedBonusSkill={setSelectedBonusSkill}
-          career={career}
-          setCareer={setCareer}
-          specialization={specialization}
-          setSpecialization={setSpecialization}
-          skills={skills}
-          setSkills={setSkills}
-          checkedCareerSkills={checkedCareerSkills}
-          setCheckedCareerSkills={setCheckedCareerSkills}
-          checkedSpecializationSkills={checkedSpecializationSkills}
-          setCheckedSpecializationSkills={setCheckedSpecializationSkills}
-          characteristics={characteristics}
-          setCharacteristics={setCharacteristics}
-          selectedBonusSkill={selectedBonusSkill}
-          obligation={obligation}
-          setObligation={setObligation}
-          duty={duty}
-          setDuty={setDuty}
-          morality={morality}
-          setMorality={setMorality}
-          groupSize={groupSize}
-          setGroupSize={setGroupSize}
-          selectedObligation={selectedObligation}
-          setSelectedObligation={setSelectedObligation}
-          selectedDuty={selectedDuty}
-          setSelectedDuty={setSelectedDuty}
-          obligationCost={obligationCost}
-          dutyCost={dutyCost}
-          moralityCost={moralityCost}
-          setObligationCost={setObligationCost}
-          setDutyCost={setDutyCost}
-          setMoralityCost={setMoralityCost}
-          additionalObligation={additionalObligation}
-          setAdditionalObligation={setAdditionalObligation}
-          additionalDuty={additionalDuty}
-          setAdditionalDuty={setAdditionalDuty}
-          selectedStrength={selectedStrength}
-          setSelectedStrength={setSelectedStrength}
-          selectedWeakness={selectedWeakness}
-          setSelectedWeakness={setSelectedWeakness}
-          moralityBonus={moralityBonus}
-          setMoralityBonus={setMoralityBonus}
-          handleSnapPress={handleSnapPress}
-        />
-        <View className="flex flex-row justify-between mt-[2vh] pb-[8vh]">
-          <Button
-            title="Back"
-            onPress={onBackPressed}
-            disabled={currentIndex === 0}
-            cName="mr-2"
-            disabledClassName="mr-2"
+      <KeyboardAvoidingView behavior="position">
+        <View className="h-full justify-center px-2 py-1">
+          <Header
+            credits={credits}
+            currentIndex={currentIndex}
+            experience={experience}
+            PAGES={PAGES}
+            species={species}
           />
-          {currentIndex < PAGES ? (
+          <PageContent
+            currentIndex={currentIndex}
+            portrait={portrait}
+            setPortrait={setPortrait}
+            name={name}
+            setName={setName}
+            homeworld={homeworld}
+            setHomeworld={setHomeworld}
+            description={description}
+            setDescription={setDescription}
+            species={species}
+            setSelectedSpecies={setSpecies}
+            changeSelectedBonusSkill={setSelectedBonusSkill}
+            career={career}
+            setCareer={setCareer}
+            specialization={specialization}
+            setSpecialization={setSpecialization}
+            skills={skills}
+            setSkills={setSkills}
+            checkedCareerSkills={checkedCareerSkills}
+            setCheckedCareerSkills={setCheckedCareerSkills}
+            checkedSpecializationSkills={checkedSpecializationSkills}
+            setCheckedSpecializationSkills={setCheckedSpecializationSkills}
+            characteristics={characteristics}
+            setCharacteristics={setCharacteristics}
+            selectedBonusSkill={selectedBonusSkill}
+            obligation={obligation}
+            setObligation={setObligation}
+            duty={duty}
+            setDuty={setDuty}
+            morality={morality}
+            setMorality={setMorality}
+            groupSize={groupSize}
+            setGroupSize={setGroupSize}
+            selectedObligation={selectedObligation}
+            setSelectedObligation={setSelectedObligation}
+            selectedDuty={selectedDuty}
+            setSelectedDuty={setSelectedDuty}
+            obligationCost={obligationCost}
+            dutyCost={dutyCost}
+            moralityCost={moralityCost}
+            setObligationCost={setObligationCost}
+            setDutyCost={setDutyCost}
+            setMoralityCost={setMoralityCost}
+            additionalObligation={additionalObligation}
+            setAdditionalObligation={setAdditionalObligation}
+            additionalDuty={additionalDuty}
+            setAdditionalDuty={setAdditionalDuty}
+            selectedStrength={selectedStrength}
+            setSelectedStrength={setSelectedStrength}
+            selectedWeakness={selectedWeakness}
+            setSelectedWeakness={setSelectedWeakness}
+            moralityBonus={moralityBonus}
+            setMoralityBonus={setMoralityBonus}
+            handleSnapPress={handleSnapPress}
+          />
+          <View className="flex flex-row justify-between mt-[2vh] pb-[8vh]">
             <Button
-              title="Next"
-              onPress={onNextPressed}
-              disabled={
-                (currentIndex === 1 && species === null) ||
-                (currentIndex === 2 && !obligation && !duty && !morality) ||
-                (obligation && selectedObligation === null) ||
-                (duty && selectedDuty === null) ||
-                (morality && selectedStrength === null) ||
-                (morality && selectedWeakness === null) ||
-                (currentIndex === 3 && career === null) ||
-                (currentIndex === 4 && specialization === null) ||
-                currentIndex === PAGES
-              }
-              cName="ml-2"
-              disabledClassName="ml-2"
+              title="Back"
+              onPress={onBackPressed}
+              disabled={currentIndex === 0}
+              cName="mr-2"
+              disabledClassName="mr-2"
             />
-          ) : (
-            <Button
-              title="Save"
-              onPress={onSavePressed}
-              cName="ml-2"
-              disabledClassName="ml-2"
-            />
-          )}
+            {currentIndex < PAGES ? (
+              <Button
+                title="Next"
+                onPress={onNextPressed}
+                disabled={
+                  (currentIndex === 1 && species === null) ||
+                  (currentIndex === 2 &&
+                    ((!obligation && !duty && !morality) ||
+                      (obligation && selectedObligation === null) ||
+                      (duty && selectedDuty === null) ||
+                      (morality && selectedStrength === null) ||
+                      (morality && selectedWeakness === null))) ||
+                  (currentIndex === 3 && career === null) ||
+                  (currentIndex === 4 && specialization === null) ||
+                  currentIndex === PAGES
+                }
+                cName="ml-2"
+                disabledClassName="ml-2"
+              />
+            ) : (
+              <Button
+                title="Save"
+                onPress={onSavePressed}
+                cName="ml-2"
+                disabledClassName="ml-2"
+              />
+            )}
+          </View>
+          <PortraitSelect
+            handleSnapPress={handleSnapPress}
+            handleClosePress={handleClosePress}
+            handleSelect={setPortrait}
+            handleSheetChange={handleSheetChange}
+            sheetRef={sheetRef}
+            snapPoints={snapPoints}
+          />
         </View>
-    <PortraitSelect
-      handleSnapPress={handleSnapPress}
-      handleClosePress={handleClosePress}
-      handleSelect={setPortrait}
-      handleSheetChange={handleSheetChange}
-      sheetRef={sheetRef}
-      snapPoints={snapPoints}
-    />
-      </View>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
     </ImageWrapper>
   );
 };

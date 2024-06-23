@@ -46,6 +46,12 @@ export default [
         desc: "Specialists in operating starships. A pilot's ship is an extension of themselves.",
         skills: ["Astrogation", "Gunnery", "Piloting (Planetary)", "Piloting (Space)"],
         talents: Tree.PILOT,
+      },
+      {
+        name: "Rigger",
+        desc: "Specialists in modifying and repairing vehicles and starships.",
+        skills: ["Gunnery", "Mechanics", "Resilience", "Underworld"],
+        talents: Tree.RIGGER,
       }
     ],
     forceSensitive: false,
@@ -99,8 +105,8 @@ export default [
         skills: [
           "Cool",
           "Leadership",
-          "Knowledge (Outer Rim)",
-          "Knowledge (Warfare)",
+          "Outer Rim",
+          "Warfare",
         ],
       },
       {

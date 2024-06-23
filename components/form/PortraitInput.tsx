@@ -1,17 +1,13 @@
 import { Colors } from "@/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
 import React, { SetStateAction } from "react";
 import {
-  FlatList,
   Image,
   ImageSourcePropType,
-  Modal,
   Pressable,
   Text,
   View,
 } from "react-native";
 import TriangleCorner from "../shapes/TriangleCorner";
-import PortraitItem from "./PortraitItem";
 
 interface PortraitInputProps {
   portrait: ImageSourcePropType | undefined;

@@ -206,6 +206,48 @@ export const PILOT = {
   ],
 };
 
+export const RIGGER = {
+  talents: [
+    { talent: td.blackMarketContacts },
+    { talent: td.toughened },
+    { talent: td.gearhead },
+    { talent: td.largerProject },
+
+    { talent: td.grit },
+    { talent: td.fancyPaintJob },
+    { talent: td.signatureVehicle },
+    { talent: td.largerProject },
+    
+    { talent: td.blackMarketContacts },
+    { talent: td.overstockedAmmo },
+    { talent: td.tunedManeuveringThrusters },
+    { talent: td.bolsteredArmor },
+    
+    { talent: td.toughened },
+    { talent: td.customizedCoolingUnit },
+    { talent: td.gearhead },
+    { talent: td.fortifiedVacuumSeal },
+    
+    { talent: td.dedication },
+    { talent: td.tunedManeuveringThrusters },
+    { talent: td.notToday },
+    { talent: td.reinforcedFrame },
+  ],
+  vPath: [
+    [0, 0, 0],
+    [0, 1, 0],
+    [0, 1, 1],
+    [0, 1, 0],
+    [0, 0, 0],
+  ],
+  hPath: [
+    [1, 1, 1, 1],
+    [0, 0, 0, 1],
+    [1, 1, 1, 1],
+    [1, 0, 1, 1],
+  ],
+};
+
 export const ASSASSIN = {
   talents: [
     { talent: td.grit },

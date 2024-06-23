@@ -42,8 +42,8 @@ const Header = ({ currentIndex, experience, PAGES, species, credits }: HeaderPro
   };
 
   return (
-    <View className="relative my-[2vh]">
-      <View className="flex flex-row justify-center pb-[2vh]">
+    <View className="relative my-4">
+      <View className="flex flex-row justify-center pb-4">
         <View className="flex-row justify-center">
           <TriangleCorner
             style={{

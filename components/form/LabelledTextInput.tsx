@@ -52,6 +52,8 @@ const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconNam
                     value={text}
                     placeholder={placeholder}
                     multiline={multiLine}
+                    autoCorrect={false}
+                    autoComplete='off'
                 />
                 {maxChar && <Text className='text-black font-semibold pt-0.5'>
                     {text.length}/{maxChar}
