@@ -85,7 +85,6 @@ export interface Species {
   speciesBonus: string;
 
   bonusSkills?: string[];
-  hasOptions?: boolean;
   options?: { type: string; options: string[] };
 }
 

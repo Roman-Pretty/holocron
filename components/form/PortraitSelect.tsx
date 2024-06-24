@@ -26,10 +26,12 @@ const App = ({
   const IMAGES = [
     require("@/assets/images/species/aleena_0.png"),
     require("@/assets/images/species/anx_0.png"),
+    require("@/assets/images/species/anx_1.png"),
     require("@/assets/images/species/aqualish_0.png"),
     require("@/assets/images/species/aqualish_1.png"),
     require("@/assets/images/species/aqualish_2.png"),
     require("@/assets/images/species/arcona_0.png"),
+    require("@/assets/images/species/arcona_1.png"),
     require("@/assets/images/species/arkanian_0.png"),
     require("@/assets/images/species/arkanian_1.png"),
     require("@/assets/images/species/balosar_0.png"),
@@ -39,6 +41,7 @@ const App = ({
     require("@/assets/images/species/bith_0.png"),
     require("@/assets/images/species/bith_1.png"),
     require("@/assets/images/species/bothan_0.png"),
+    require("@/assets/images/species/bothan_1.png"),
     require("@/assets/images/species/caamasi_0.png"),
     require("@/assets/images/species/cerean_0.png"),
     require("@/assets/images/species/chadra-fan_0.png"),
@@ -63,8 +66,44 @@ const App = ({
     require("@/assets/images/species/dathomirian_1.png"),
     require("@/assets/images/species/devaronian_0.png"),
     require("@/assets/images/species/devaronian_1.png"),
-    require("@/assets/images/species/custom_0.png"),
-    require("@/assets/images/species/custom_1.png"),
+    require("@/assets/images/species/dowutin_0.png"),
+    require("@/assets/images/species/drabatan_0.png"),
+    require("@/assets/images/species/drall_0.png"),
+    require("@/assets/images/species/dressellian_0.png"),
+    require("@/assets/images/species/droid_0.png"),
+    require("@/assets/images/species/droid_1.png"),
+    require("@/assets/images/species/droid_3.png"),
+    require("@/assets/images/species/droid_4.png"),
+    require("@/assets/images/species/droid_5.png"),
+    require("@/assets/images/species/droid_6.png"),
+    require("@/assets/images/species/droid_2.png"),
+    require("@/assets/images/species/droid_7.png"),
+    require("@/assets/images/species/droid_8.png"),
+    require("@/assets/images/species/droid_9.png"),
+    require("@/assets/images/species/droid_10.png"),
+    require("@/assets/images/species/droid_11.png"),
+    require("@/assets/images/species/droid_12.png"),
+    require("@/assets/images/species/droid_13.png"),
+    require("@/assets/images/species/droid_14.png"),
+    require("@/assets/images/species/droid_15.png"),
+    require("@/assets/images/species/droid_16.png"),
+    require("@/assets/images/species/droid_17.png"),
+    require("@/assets/images/species/droid_18.png"),
+    require("@/assets/images/species/droid_19.png"),
+    require("@/assets/images/species/droid_20.png"),
+    require("@/assets/images/species/droid_21.png"),
+    require("@/assets/images/species/droid_22.png"),
+    require("@/assets/images/species/droid_23.png"),
+    require("@/assets/images/species/droid_24.png"),
+    require("@/assets/images/species/droid_25.png"),
+    require("@/assets/images/species/droid_26.png"),
+    require("@/assets/images/species/droid_27.png"),
+    require("@/assets/images/species/droid_28.png"),
+    require("@/assets/images/species/droid_29.png"),
+    require("@/assets/images/species/droid_30.png"),
+    require("@/assets/images/species/dug_0.png"),
+    require("@/assets/images/species/duros_0.png"),
+    require("@/assets/images/species/duros_1.png"),
   ];
 
   return (
@@ -75,7 +114,7 @@ const App = ({
         enablePanDownToClose={true}
         style={{ alignItems: "center" }}
         index={-1}
-        backgroundStyle={{ backgroundColor: "#f9fafb" }}
+        backgroundStyle={{ backgroundColor: "#e7e8ea" }}
         >
         <BottomSheetFlatList
           data={IMAGES}

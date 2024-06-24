@@ -196,7 +196,6 @@ const CreateCharacter = () => {
 
   // callbacks
   const handlePortraitSheetChange = useCallback((index: number) => {
-    console.log("handleSheetChange", index);
   }, []);
   const handlePortraitSnapPress = useCallback((index: number) => {
     portraitSheetRef.current?.snapToIndex(index);

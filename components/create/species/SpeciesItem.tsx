@@ -3,6 +3,7 @@ import Button from "@/components/form/Button";
 import { Colors } from "@/constants/Colors";
 import { Species } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
+import SpeciesText from "./SpeciesText";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
@@ -26,9 +27,6 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
 
     function handleSelect() {
       setSelectedSpecies(species);
-      if (species.hasOptions) {
-        setModalVisible(true);
-      }
     }
 
     return (
@@ -143,9 +141,7 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
         </View>
         <View className="px-6 pb-4 w-full items-start bg-slate-900/20 rounded-b-lg">
           <Text className="text-xs text-white font-bold mt-2">BONUS</Text>
-          <Text className="text-xs text-white/80 mt-1">
-            {species.speciesBonus}
-          </Text>
+          <SpeciesText text={species.speciesBonus} />
           {species.specialAbilities[0] &&
             species.specialAbilities[0].name !== "None" && (
               <>
@@ -156,7 +152,8 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
                   {species.specialAbilities.map((ability, index) => (
                     <Text key={index} className="text-xs text-white/80 mt-1">
                       <Text className="font-bold">{ability.name}</Text>:{" "}
-                      {ability.desc}
+                      {/* {ability.desc} */}
+                      <SpeciesText text={ability.desc} />
                     </Text>
                   ))}
                 </View>
