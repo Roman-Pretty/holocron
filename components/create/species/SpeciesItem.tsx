@@ -34,9 +34,42 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
     return (
       <View className={`w-full bg-box mb-2 rounded-lg items-center`}>
         <View className="px-6 py-4 w-full items-center">
+        <View className="absolute top-6 left-6">
+          {species.characteristics[0] >= 3 && (
+            <View className="bg-red-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">BR</Text>
+              </View>
+            )}
+            {species.characteristics[1] >= 3 && (
+            <View className="bg-lime-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">AGI</Text>
+              </View>
+            )}
+            {species.characteristics[2] >= 3 && (
+            <View className="bg-sky-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">INT</Text>
+              </View>
+            )}
+            {species.characteristics[3] >= 3 && (
+            <View className="bg-orange-300 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">CUN</Text>
+              </View>
+            )}
+            {species.characteristics[4] >= 3 && (
+            <View className="bg-pink-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">WIL</Text>
+              </View>
+            )}
+            {species.characteristics[5] >= 3 && (
+            <View className="bg-yellow-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[Elektra] pt-0.5 text-card">PRE</Text>
+              </View>
+            )}
+            </View>
           <View
             className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10`}
           >
+            
             <View className={`overflow-hidden rounded-full`}>
               <ImageBackground
                 source={require("@/assets/images/species_backgrounds/ship.jpeg")}
@@ -46,7 +79,7 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
               >
                 {loading && (
                   <View className="w-full h-full flex items-center justify-center">
-                    <ActivityIndicator size="small" color={Colors.global.box} />
+                    <ActivityIndicator size="small" color={"#fff"} />
                   </View>
                 )}
                 <Image
@@ -108,7 +141,7 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
             />
           )}
         </View>
-        <View className="px-6 pb-4 w-full items-start bg-slate-900/20">
+        <View className="px-6 pb-4 w-full items-start bg-slate-900/20 rounded-b-lg">
           <Text className="text-xs text-white font-bold mt-2">BONUS</Text>
           <Text className="text-xs text-white/80 mt-1">
             {species.speciesBonus}

@@ -45,7 +45,7 @@ export interface Character {
     obligation?: {
       type: string;
       value: number;
-    };
+    }[];
     duty?: {
       type: string;
       value: number;

@@ -40,7 +40,7 @@ const MoralityPicker = ({
   selectedWeakness,
 }: MoralityProps) => {
   return (
-    <View className={`mb-[2vh] p-2 bg-[#4f3035]`}>
+    <View className={`mb-2 rounded-xl p-4 bg-[#4f3035]`}>
       <View className="flex-row justify-between">
         <Text
           className={`text-xl font-[Elektra] ${

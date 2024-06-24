@@ -6,6 +6,7 @@ import CareerData from "@/constants/CareerData";
 import { Obligation, Duty, Morality } from "@/constants/Motivations";
 import * as Haptics from "expo-haptics";
 import PortraitSelect from "@/components/form/PortraitSelect";
+import MotivationSelect from "@/components/create/motivation/MotivationSelect";
 import {
   AGILITY,
   BRAWN,
@@ -156,8 +157,8 @@ const CreateCharacter = () => {
   const [morality, setMorality] = useState(false);
   const [groupSize, setGroupSize] = useState(4);
 
-  const [selectedObligation, setSelectedObligation] =
-    useState<Obligation | null>(null);
+  const [selectedObligations, setSelectedObligations] =
+    useState<Obligation[]>([]);
   const [selectedDuty, setSelectedDuty] = useState<Duty | null>(null);
 
   const [obligationCost, setObligationCost] = useState(10);
@@ -185,20 +186,22 @@ const CreateCharacter = () => {
     null
   );
 
-  const sheetRef = useRef<BottomSheet>(null);
-  sheetRef.current?.close();
 
-  const snapPoints = useMemo(() => ["60%"], []);
+  // Portrait Bottom Sheet
+  const portraitSheetRef = useRef<BottomSheet>(null);
+  portraitSheetRef.current?.close();
+
+  const portraitSnapPoints = useMemo(() => ["60%"], []);
 
   // callbacks
-  const handleSheetChange = useCallback((index: number) => {
+  const handlePortraitSheetChange = useCallback((index: number) => {
     console.log("handleSheetChange", index);
   }, []);
-  const handleSnapPress = useCallback((index: number) => {
-    sheetRef.current?.snapToIndex(index);
+  const handlePortraitSnapPress = useCallback((index: number) => {
+    portraitSheetRef.current?.snapToIndex(index);
   }, []);
-  const handleClosePress = useCallback(() => {
-    sheetRef.current?.close();
+  const handlePortraitClosePress = useCallback(() => {
+    portraitSheetRef.current?.close();
   }, []);
 
   useEffect(() => {
@@ -473,10 +476,9 @@ const CreateCharacter = () => {
                 : characteristics[0].level,
           },
           obligation: obligation
-            ? {
-                type: selectedObligation ? selectedObligation.value : "",
-                value: obligationCost,
-              }
+            ? selectedObligations.map((obligation) => {
+                return { type: obligation.value, value: obligationCost };
+              })
             : undefined,
           duty: duty
             ? {
@@ -547,8 +549,8 @@ const CreateCharacter = () => {
             setMorality={setMorality}
             groupSize={groupSize}
             setGroupSize={setGroupSize}
-            selectedObligation={selectedObligation}
-            setSelectedObligation={setSelectedObligation}
+            selectedObligations={selectedObligations}
+            setSelectedObligations={setSelectedObligations}
             selectedDuty={selectedDuty}
             setSelectedDuty={setSelectedDuty}
             obligationCost={obligationCost}
@@ -567,7 +569,7 @@ const CreateCharacter = () => {
             setSelectedWeakness={setSelectedWeakness}
             moralityBonus={moralityBonus}
             setMoralityBonus={setMoralityBonus}
-            handleSnapPress={handleSnapPress}
+            handleSnapPress={handlePortraitSnapPress}
           />
           <View className="flex flex-row justify-between mt-[2vh] pb-[8vh]">
             <Button
@@ -585,7 +587,7 @@ const CreateCharacter = () => {
                   (currentIndex === 1 && species === null) ||
                   (currentIndex === 2 &&
                     ((!obligation && !duty && !morality) ||
-                      (obligation && selectedObligation === null) ||
+                      (obligation && selectedObligations.length <= 0) ||
                       (duty && selectedDuty === null) ||
                       (morality && selectedStrength === null) ||
                       (morality && selectedWeakness === null))) ||
@@ -606,12 +608,12 @@ const CreateCharacter = () => {
             )}
           </View>
           <PortraitSelect
-            handleSnapPress={handleSnapPress}
-            handleClosePress={handleClosePress}
+            handleSnapPress={handlePortraitSnapPress}
+            handleClosePress={handlePortraitClosePress}
             handleSelect={setPortrait}
-            handleSheetChange={handleSheetChange}
-            sheetRef={sheetRef}
-            snapPoints={snapPoints}
+            handleSheetChange={handlePortraitSheetChange}
+            sheetRef={portraitSheetRef}
+            snapPoints={portraitSnapPoints}
           />
         </View>
       </KeyboardAvoidingView>

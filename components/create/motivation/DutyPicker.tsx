@@ -29,7 +29,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
   dutyCost,
 }) => {
   return (
-    <View className={`mb-[2vh] p-2 bg-[#ad252b]`}>
+    <View className={`mb-2 rounded-xl p-4 bg-[#ad252b]`}>
       <View className="flex-row justify-between">
         <Text
           className={`text-xl font-[Elektra] ${

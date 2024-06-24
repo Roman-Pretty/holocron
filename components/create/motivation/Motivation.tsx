@@ -28,8 +28,8 @@ interface MotivationProps {
   setObligationCost: (value: number) => void;
   dutyCost: number;
   setDutyCost: (value: number) => void;
-  selectedObligation: Obligation | null;
-  setSelectedObligation: (value: Obligation | null) => void;
+  selectedObligations: Obligation[];
+  setSelectedObligations: React.Dispatch<React.SetStateAction<Obligation[]>>;
   selectedDuty: Duty | null;
   setSelectedDuty: (value: Duty | null) => void;
   additionalObligation: boolean[];
@@ -59,8 +59,8 @@ const Motivation = ({
   setObligationCost,
   dutyCost,
   setDutyCost,
-  selectedObligation,
-  setSelectedObligation,
+  selectedObligations,
+  setSelectedObligations,
   selectedDuty,
   setSelectedDuty,
   additionalObligation,
@@ -116,17 +116,14 @@ const Motivation = ({
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Text className={`text-box text-lg text-center font-[Elektra]`}>
+      {/* <Text className={`text-box text-lg text-center font-[Elektra]`}>
         You must select at least an Obligation, Duty, or Morality to continue.
-      </Text>
-      <Text className={`text-box/80 text-md text-center`}>
-        <Ionicons style={{marginTop: 18}} name="checkmark" size={16}/> It is recommended to choose <Text className="font-bold">either</Text> an Obligation or Duty, but you may play with both.,
-      </Text>
+      </Text> */}
       <GroupSizeSlider groupSize={groupSize} setGroupSize={updateGroupSize} />
       <ObligationPicker
         obligations={Obligations}
-        selectedObligation={selectedObligation}
-        setSelectedObligation={setSelectedObligation}
+        selectedObligations={selectedObligations}
+        setSelectedObligations={setSelectedObligations}
         obligation={obligation}
         setObligation={setObligation}
         additionalObligation={additionalObligation}
