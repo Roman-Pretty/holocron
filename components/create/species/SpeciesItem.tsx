@@ -1,73 +1,91 @@
 import Characteristic from "@/components/Characteristic";
 import Button from "@/components/form/Button";
-import { Colors } from "@/constants/Colors";
 import { Species } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
-import SpeciesText from "./SpeciesText";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
   Image,
   ImageBackground,
   Text,
-  View
+  View,
+  ViewToken,
 } from "react-native";
+import Animated, { useAnimatedStyle, withTiming } from "react-native-reanimated";
+import SpeciesText from "./SpeciesText";
 
 type SpeciesItemProps = {
   species: Species;
   selectedSpecies: Species | null;
   setSelectedSpecies: (species: Species) => void;
   setSelectedBonusSkill: (skill: string) => void;
+  viewableItems: Animated.SharedValue<ViewToken[]>;
 };
 
 const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
-  ({ setSelectedBonusSkill, species, selectedSpecies, setSelectedSpecies }) => {
+  ({ setSelectedBonusSkill, species, selectedSpecies, setSelectedSpecies, viewableItems }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [loading, setLoading] = useState(true);
+
+      const rStyle = useAnimatedStyle(() => {
+        const isVisible = Boolean(
+          viewableItems.value
+            .filter((item) => item.isViewable)
+            .find((viewableItem) => viewableItem.item.species === species.species)
+        );
+  
+        return {
+          opacity: withTiming(isVisible ? 1 : 1),
+          transform: [
+            {
+              scale: withTiming(isVisible ? 1 : 0.9),
+            },
+          ],
+        };
+      }, []);
 
     function handleSelect() {
       setSelectedSpecies(species);
     }
 
     return (
-      <View className={`w-full bg-box mb-2 rounded-lg items-center`}>
+      <Animated.View className={`w-full bg-box mb-2 rounded-lg items-center`} style={rStyle}>
         <View className="px-6 py-4 w-full items-center">
-        <View className="absolute top-6 left-6">
-          {species.characteristics[0] >= 3 && (
-            <View className="bg-red-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
+          <View className="absolute top-6 left-6">
+            {species.characteristics[0] >= 3 && (
+              <View className="bg-red-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">BR</Text>
               </View>
             )}
             {species.characteristics[1] >= 3 && (
-            <View className="bg-lime-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
+              <View className="bg-lime-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">AGI</Text>
               </View>
             )}
             {species.characteristics[2] >= 3 && (
-            <View className="bg-sky-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+              <View className="bg-sky-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">INT</Text>
               </View>
             )}
             {species.characteristics[3] >= 3 && (
-            <View className="bg-orange-300 py-1 w-12 items-center justify-center mb-2 rounded-md">
+              <View className="bg-orange-300 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">CUN</Text>
               </View>
             )}
             {species.characteristics[4] >= 3 && (
-            <View className="bg-pink-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+              <View className="bg-pink-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">WIL</Text>
               </View>
             )}
             {species.characteristics[5] >= 3 && (
-            <View className="bg-yellow-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+              <View className="bg-yellow-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
                 <Text className="font-[Elektra] pt-0.5 text-card">PRE</Text>
               </View>
             )}
-            </View>
+          </View>
           <View
             className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10`}
           >
-            
             <View className={`overflow-hidden rounded-full`}>
               <ImageBackground
                 source={require("@/assets/images/species_backgrounds/ship.jpeg")}
@@ -116,25 +134,55 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
             {species.desc}
           </Text>
           <View className="w-full justify-evenly flex-row py-2">
-                <Characteristic title="Brawn" value={species.characteristics[0]} scale={10} borderWidth={1} />
-                <Characteristic title="Agility" value={species.characteristics[1]} scale={10} borderWidth={1} />
-                <Characteristic title="Intellect" value={species.characteristics[2]} scale={10} borderWidth={1} />
-                <Characteristic title="Cunning" value={species.characteristics[3]} scale={10} borderWidth={1} />
-                <Characteristic title="Willpower" value={species.characteristics[4]} scale={10} borderWidth={1} />
-                <Characteristic title="Presence" value={species.characteristics[5]} scale={10} borderWidth={1} />
+            <Characteristic
+              title="Brawn"
+              value={species.characteristics[0]}
+              scale={10}
+              borderWidth={1}
+            />
+            <Characteristic
+              title="Agility"
+              value={species.characteristics[1]}
+              scale={10}
+              borderWidth={1}
+            />
+            <Characteristic
+              title="Intellect"
+              value={species.characteristics[2]}
+              scale={10}
+              borderWidth={1}
+            />
+            <Characteristic
+              title="Cunning"
+              value={species.characteristics[3]}
+              scale={10}
+              borderWidth={1}
+            />
+            <Characteristic
+              title="Willpower"
+              value={species.characteristics[4]}
+              scale={10}
+              borderWidth={1}
+            />
+            <Characteristic
+              title="Presence"
+              value={species.characteristics[5]}
+              scale={10}
+              borderWidth={1}
+            />
           </View>
           {species.species === selectedSpecies?.species ? (
             <Button
               title={`Selected ${species.species}`}
               disabled
-              cName="mt-4 bg-white border border-white w-full items-center justify-center px-0"
+              cName="mt-4 bg-white border border-white w-full items-center justify-center px-0 rounded-sm"
               textClassName="text-center w-full"
             />
           ) : (
             <Button
               title={`Select ${species.species}`}
               onPress={handleSelect}
-              cName="mt-4 bg-transparent border border-white w-full items-center justify-center px-0"
+              cName="mt-4 bg-transparent border border-white w-full items-center justify-center px-0 rounded-sm"
               textClassName="text-center w-full"
             />
           )}
@@ -160,7 +208,7 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
               </>
             )}
         </View>
-      </View>
+      </Animated.View>
     );
   }
 );

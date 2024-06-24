@@ -1,7 +1,8 @@
 import SpeciesData from "@/constants/SpeciesData";
 import { Species } from "@/types/Types";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, View, ViewToken } from "react-native";
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from "react-native-reanimated";
 import SpeciesItem from "./SpeciesItem";
 
 interface SpeciesProps {
@@ -10,18 +11,20 @@ interface SpeciesProps {
   setSelectedBonusSkill: (skill: string) => void;
 }
 
-const SpeciesElement = ({
+export default function SpeciesElement({
   selectedSpecies,
   setSelectedSpecies,
   setSelectedBonusSkill,
-}: SpeciesProps) => {
-  const [loading, setLoading] = useState(false);
+}: SpeciesProps) {
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1);
   }, []);
+
+  const viewableItems = useSharedValue<ViewToken[]>([]);
 
   if (loading) {
     return (
@@ -32,11 +35,16 @@ const SpeciesElement = ({
   }
 
   return (
-    <FlatList
+    <Animated.FlatList
       data={SpeciesData}
       keyExtractor={(item, index) => index.toString()}
+      onViewableItemsChanged={({ viewableItems: vItems }) => {
+        viewableItems.value = vItems;
+      }}
       renderItem={({ item }) => (
         <SpeciesItem
+          key={item.species}
+          viewableItems={viewableItems}
           setSelectedBonusSkill={setSelectedBonusSkill}
           species={item}
           selectedSpecies={selectedSpecies}
@@ -47,5 +55,3 @@ const SpeciesElement = ({
     />
   );
 };
-
-export default SpeciesElement;

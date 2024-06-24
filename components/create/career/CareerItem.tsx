@@ -1,22 +1,41 @@
 import Button from '@/components/form/Button';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { ActivityIndicator, Image, ImageBackground, Text, View } from 'react-native';
+import { ActivityIndicator, Image, ImageBackground, Text, View, ViewToken } from 'react-native';
 import { Colors } from '@/constants/Colors';
 import TriangleCorner from '@/components/shapes/TriangleCorner';
 import { Career } from '@/types/Types';
+import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 
 interface SpeciesItemProps {
     career: Career;
     selectedCareer: Career | null;
     setSelectedCareer: (career: Career) => void;
+    viewableItems: Animated.SharedValue<ViewToken[]>;
 }
 
-const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemProps) => {
+const CareerItem = ({ career, selectedCareer, setSelectedCareer, viewableItems }: SpeciesItemProps) => {
     const [loading, setLoading] = useState(true);
 
+    const rStyle = useAnimatedStyle(() => {
+      const isVisible = Boolean(
+        viewableItems.value
+          .filter((item) => item.isViewable)
+          .find((viewableItem) => viewableItem.item.name === career.name)
+      );
+
+      return {
+        opacity: withTiming(isVisible ? 1 : 1),
+        transform: [
+          {
+            scale: withTiming(isVisible ? 1 : 1),
+          },
+        ],
+      };
+    }, []);
+
     return (
-        <View className={`w-full bg-heading3 mb-2 rounded-lg items-center`}>
+        <Animated.View className={`w-full bg-heading3 mb-2 rounded-lg items-center`} style={rStyle}>
           <View className="px-6 py-4 w-full items-center">
             <View
               className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10`}
@@ -70,7 +89,7 @@ const CareerItem = ({ career, selectedCareer, setSelectedCareer }: SpeciesItemPr
                       </Text>
                     
           </View>
-        </View>
+        </Animated.View>
       );
 
     // return (
