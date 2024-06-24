@@ -49,7 +49,7 @@ export interface Character {
     duty?: {
       type: string;
       value: number;
-    };
+    }[];
     morality?: {
       strength: string;
       weakness: string;

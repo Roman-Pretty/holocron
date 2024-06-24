@@ -65,8 +65,8 @@ interface PageContentProps {
   setDutyCost: (value: number) => void;
   selectedObligations: Obligation[];
   setSelectedObligations: React.Dispatch<React.SetStateAction<Obligation[]>>;
-  selectedDuty: Duty | null;
-  setSelectedDuty: (value: Duty | null) => void;
+  selectedDuties: Duty[];
+  setSelectedDuties: React.Dispatch<React.SetStateAction<Duty[]>>;
   additionalObligation: boolean[];
   setAdditionalObligation: (value: boolean[]) => void;
   additionalDuty: boolean[];
@@ -122,8 +122,8 @@ const PageContent = ({
   setDutyCost,
   selectedObligations,
   setSelectedObligations,
-  selectedDuty,
-  setSelectedDuty,
+  selectedDuties,
+  setSelectedDuties,
   additionalObligation,
   setAdditionalObligation,
   additionalDuty,
@@ -178,8 +178,8 @@ const PageContent = ({
           setDutyCost={setDutyCost}
           selectedObligations={selectedObligations}
           setSelectedObligations={setSelectedObligations}
-          selectedDuty={selectedDuty}
-          setSelectedDuty={setSelectedDuty}
+          selectedDuties={selectedDuties}
+          setSelectedDuties={setSelectedDuties}
           additionalObligation={additionalObligation}
           setAdditionalObligation={setAdditionalObligation}
           additionalDuty={additionalDuty}

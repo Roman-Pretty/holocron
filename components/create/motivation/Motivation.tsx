@@ -30,8 +30,8 @@ interface MotivationProps {
   setDutyCost: (value: number) => void;
   selectedObligations: Obligation[];
   setSelectedObligations: React.Dispatch<React.SetStateAction<Obligation[]>>;
-  selectedDuty: Duty | null;
-  setSelectedDuty: (value: Duty | null) => void;
+  selectedDuties: Duty[];
+  setSelectedDuties:  React.Dispatch<React.SetStateAction<Duty[]>>;
   additionalObligation: boolean[];
   setAdditionalObligation: (value: boolean[]) => void;
   additionalDuty: boolean[];
@@ -61,8 +61,8 @@ const Motivation = ({
   setDutyCost,
   selectedObligations,
   setSelectedObligations,
-  selectedDuty,
-  setSelectedDuty,
+  selectedDuties,
+  setSelectedDuties,
   additionalObligation,
   setAdditionalObligation,
   additionalDuty,
@@ -133,8 +133,8 @@ const Motivation = ({
       />
       <DutyPicker
         duties={Duties}
-        selectedDuty={selectedDuty}
-        setSelectedDuty={setSelectedDuty}
+        selectedDuties={selectedDuties}
+        setSelectedDuties={setSelectedDuties}
         duty={duty}
         setDuty={setDuty}
         additionalDuty={additionalDuty}

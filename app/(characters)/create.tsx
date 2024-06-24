@@ -159,7 +159,8 @@ const CreateCharacter = () => {
 
   const [selectedObligations, setSelectedObligations] =
     useState<Obligation[]>([]);
-  const [selectedDuty, setSelectedDuty] = useState<Duty | null>(null);
+    const [selectedDuties, setSelectedDuties] =
+    useState<Duty[]>([]);
 
   const [obligationCost, setObligationCost] = useState(10);
   const [dutyCost, setDutyCost] = useState(10);
@@ -481,11 +482,10 @@ const CreateCharacter = () => {
               })
             : undefined,
           duty: duty
-            ? {
-                type: selectedDuty ? selectedDuty.value : "",
-                value: dutyCost,
-              }
-            : undefined,
+          ? selectedDuties.map((duty) => {
+              return { type: duty.value, value: dutyCost };
+            })
+          : undefined,
           morality: morality
             ? {
                 strength: selectedStrength ? selectedStrength.value : "",
@@ -551,8 +551,8 @@ const CreateCharacter = () => {
             setGroupSize={setGroupSize}
             selectedObligations={selectedObligations}
             setSelectedObligations={setSelectedObligations}
-            selectedDuty={selectedDuty}
-            setSelectedDuty={setSelectedDuty}
+            selectedDuties={selectedDuties}
+            setSelectedDuties={setSelectedDuties}
             obligationCost={obligationCost}
             dutyCost={dutyCost}
             moralityCost={moralityCost}
@@ -588,7 +588,7 @@ const CreateCharacter = () => {
                   (currentIndex === 2 &&
                     ((!obligation && !duty && !morality) ||
                       (obligation && selectedObligations.length <= 0) ||
-                      (duty && selectedDuty === null) ||
+                      (duty && selectedDuties.length <= 0) ||
                       (morality && selectedStrength === null) ||
                       (morality && selectedWeakness === null))) ||
                   (currentIndex === 3 && career === null) ||
