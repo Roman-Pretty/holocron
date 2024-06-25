@@ -1,68 +1,122 @@
-import { View, Text, FlatList } from 'react-native';
-import React from 'react';
-import SkillItem from './SkillItem';
-import { Ionicons } from '@expo/vector-icons';
-import { Career, Skill, Specialization, Species } from '@/types/Types';
-import { Colors } from '@/constants/Colors';
-import TriangleCorner from '@/components/shapes/TriangleCorner';
+import { View, Text, FlatList } from "react-native";
+import React from "react";
+import SkillItem from "./SkillItem";
+import { Ionicons } from "@expo/vector-icons";
+import { Career, Skill, Specialization, Species } from "@/types/Types";
+import { Colors } from "@/constants/Colors";
+import TriangleCorner from "@/components/shapes/TriangleCorner";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface SkillsProps {
-    skills: Skill[];
-    setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
-    career: Career | null;
-    specialization: Specialization | null;
-    checkedCareerSkills: { [key: string]: boolean };
-    checkedSpecializationSkills: { [key: string]: boolean };
-    species: Species | null;
-    selectedBonusSkill: string | null;
+  skills: Skill[];
+  setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
+  career: Career | null;
+  specialization: Specialization | null;
+  checkedCareerSkills: { [key: string]: boolean };
+  checkedSpecializationSkills: { [key: string]: boolean };
+  species: Species | null;
+  selectedBonusSkill: string | null;
 }
 
-const Skills = ({ selectedBonusSkill, species, skills, setSkills, career, specialization, checkedCareerSkills, checkedSpecializationSkills }: SkillsProps) => {
-    // Function to add title elements to the skills array
-    const skillsWithTitles = (skills: any) => {
-        const updatedSkills = [...skills];
-        // Inserting title elements at desired positions
-        updatedSkills.splice(0, 0, { type: 'title', text: 'Combat Skills' });
-        updatedSkills.splice(7, 0, { type: 'footer' });
-        updatedSkills.splice(8, 0, { type: 'title', text: 'Social Skills' });
-        updatedSkills.splice(14, 0, { type: 'footer' });
-        updatedSkills.splice(15, 0, { type: 'title', text: 'Knowledge Skills' });
-        updatedSkills.splice(23, 0, { type: 'footer' });
-        updatedSkills.splice(24, 0, { type: 'title', text: 'General Skills' });
-        updatedSkills.splice(42, 0, { type: 'footer' });
-        return updatedSkills;
-    };
+const Skills = ({
+  selectedBonusSkill,
+  species,
+  skills,
+  setSkills,
+  career,
+  specialization,
+  checkedCareerSkills,
+  checkedSpecializationSkills,
+}: SkillsProps) => {
+  return (
+    <ScrollView>
+        <View className="p-6 mb-2 bg-box rounded-lg flex-row items-center justify-between">
+        <Ionicons name="information-circle" size={24} color="#fff" />
+        <Text className="text-white font-bold text-xs px-4">
+          Career and Specialization skills are marked with a tick.
+        </Text>
+      </View>
+      <View className="rounded-lg bg-heading3 py-6 mb-2">
+        <Text className="text-xs font-bold text-white ml-6 mb-6">COMBAT SKILLS</Text>
+        {skills.slice(0, 6).map((skill, index) => (
+            <SkillItem
+                skill={skill}
+                skills={skills}
+                setSkills={setSkills}
+                career={career}
+                specialization={specialization}
+                checkedCareerSkills={checkedCareerSkills}
+                checkedSpecializationSkills={checkedSpecializationSkills}
+                index={index}
+                species={species}
+                selectedBonusSkill={selectedBonusSkill}
+                key={index}
+            />
+        ))}
+      </View>
 
-    return (
-        <>
-            <Text className='text-box text-center font-[Elektra] text-xl pb-[4vh]'>
-                Career and Specialization skills are marked with a <View className="pt-2" ><Ionicons name='checkmark' color={Colors.global.box} size={20} /></View>
-            </Text>
+      <View className="rounded-lg bg-neutral-800 py-6 mb-2">
+        <Text className="text-xs font-bold text-white ml-6 mb-6">SOCIAL SKILLS</Text>
+        {skills.slice(6, 11).map((skill, index) => (
+            <SkillItem
+                skill={skill}
+                skills={skills}
+                setSkills={setSkills}
+                career={career}
+                specialization={specialization}
+                checkedCareerSkills={checkedCareerSkills}
+                checkedSpecializationSkills={checkedSpecializationSkills}
+                index={index}
+                species={species}
+                selectedBonusSkill={selectedBonusSkill}
+                key={index}
+            />
+        ))}
+      </View>
 
-            <FlatList
-                data={skillsWithTitles(skills)}
-                keyExtractor={(item, index) => item.type === 'title' ? item.text : index.toString()}
+      <View className="rounded-lg bg-orange-800 py-6 mb-2">
+        <Text className="text-xs font-bold text-white ml-6 mb-6">KNOWLEDGE SKILLS</Text>
+        {skills.slice(11, 17).map((skill, index) => (
+            <SkillItem
+                skill={skill}
+                skills={skills}
+                setSkills={setSkills}
+                career={career}
+                specialization={specialization}
+                checkedCareerSkills={checkedCareerSkills}
+                checkedSpecializationSkills={checkedSpecializationSkills}
+                index={index}
+                species={species}
+                selectedBonusSkill={selectedBonusSkill}
+                key={index}
+            />
+        ))}
+      </View>
+
+      <View className="rounded-lg bg-box py-6 mb-2">
+        <Text className="text-xs font-bold text-white ml-6 mb-6">GENERAL SKILLS</Text>
+        {skills.slice(17).map((skill, index) => (
+            <SkillItem
+                skill={skill}
+                skills={skills}
+                setSkills={setSkills}
+                career={career}
+                specialization={specialization}
+                checkedCareerSkills={checkedCareerSkills}
+                checkedSpecializationSkills={checkedSpecializationSkills}
+                index={index}
+                species={species}
+                selectedBonusSkill={selectedBonusSkill}
+                key={index}
+            />
+        ))}
+      </View>
+
+      {/* <FlatList
+                data={skills}
+                keyExtractor={(item, index) => index.toString()}
                 showsVerticalScrollIndicator={false}
                 renderItem={({ item, index }) => {
-                    if (item.type === 'title') {
-                        return (
-                            <Text className={`bg-box text-white text-xl py-[2vh] pl-[2vh] font-[Elektra] ${index != 0 && 'mt-[4vh]'}`}>
-                                {item.text}
-                            </Text>
-                        );
-                    }
-                    if (item.type === 'footer') {
-                        return (
-                            <View className='flex-row justify-end'>
-                                <View className='bg-box w-[100%]'>
-                                </View>
-                                <TriangleCorner style={{
-                                    transform: [{ rotate: "0deg" }],
-                                    borderTopWidth: '48px', borderRightWidth: '48px', borderTopColor: Colors.global.box,
-                                }} />
-                            </View>
-                        );
-                    }
                     return (
                         <SkillItem
                             skill={item}
@@ -78,10 +132,9 @@ const Skills = ({ selectedBonusSkill, species, skills, setSkills, career, specia
                         />
                     );
                 }}
-            />
-        </>
-
-    );
+            /> */}
+    </ScrollView>
+  );
 };
 
 export default Skills;
