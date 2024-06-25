@@ -44,9 +44,9 @@ const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconNam
                     borderTopWidth: '24px', borderRightWidth: '24px', borderTopColor: Colors.global.heading3,
                 }} />
             </View>
-            <View className={`flex-row justify-between p-2 mb-[1.5vh] w-full ${!multiLine ? 'h-[4.5vh] items-start' : 'h-[14vh] items-end'} border-2 border-heading3 bg-white`}>
+            <View className={`flex-row justify-between pt-2 pr-2 mb-[1.5vh] w-full ${!multiLine ? 'h-10 items-start ' : 'h-[14vh] items-end'} border-2 border-heading3 bg-white`}>
                 <TextInput
-                    className='w-[75%] text-black h-full'
+                    className='w-[75%] text-black h-full pb-2 mb-1 ml-2'
                     placeholderTextColor={'#000'}
                     onChangeText={handleTextChange}
                     value={text}
@@ -55,10 +55,12 @@ const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconNam
                     autoCorrect={false}
                     autoComplete='off'
                 />
-                {maxChar && <Text className='text-black font-semibold pt-0.5'>
+                {maxChar && <Text className='text-black font-semibold pt-0.5 mb-1'>
                     {text.length}/{maxChar}
                 </Text>}
+                <View className='z-10 mb-1'>
                 <Ionicons name={iconName as any} size={22} color="#000" />
+                </View>
             </View>
 
         </>

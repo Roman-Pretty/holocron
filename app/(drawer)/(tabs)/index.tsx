@@ -12,7 +12,7 @@ import React, { useContext } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-const Spacer = () => <View className="h-[1.5vh]" />;
+const Spacer = () => <View className="h-2" />;
 
 const Page = () => {
   const { character } = useContext(CharacterContext);

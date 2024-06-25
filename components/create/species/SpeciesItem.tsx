@@ -2,7 +2,7 @@ import Characteristic from "@/components/Characteristic";
 import Button from "@/components/form/Button";
 import { Species } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   ActivityIndicator,
   Image,
@@ -24,64 +24,53 @@ type SpeciesItemProps = {
 
 const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
   ({ setSelectedBonusSkill, species, selectedSpecies, setSelectedSpecies, viewableItems }) => {
-    const [modalVisible, setModalVisible] = useState(false);
     const [loading, setLoading] = useState(true);
 
-      const rStyle = useAnimatedStyle(() => {
-        const isVisible = Boolean(
-          viewableItems.value
-            .filter((item) => item.isViewable)
-            .find((viewableItem) => viewableItem.item.species === species.species)
-        );
-  
-        return {
-          opacity: withTiming(isVisible ? 1 : 1),
-          transform: [
-            {
-              scale: withTiming(isVisible ? 1 : 0.9),
-            },
-          ],
-        };
-      }, []);
+    const rStyle = useAnimatedStyle(() => {
+      const isVisible = Boolean(
+        viewableItems.value
+          .filter((item) => item.isViewable)
+          .find((viewableItem) => viewableItem.item.species === species.species)
+      );
 
-    function handleSelect() {
+      return {
+        opacity: withTiming(isVisible ? 1 : 0.9),
+        transform: [
+          {
+            scale: withTiming(isVisible ? 1 : 0.9),
+          },
+        ],
+      };
+    }, [viewableItems.value]);
+
+    const handleSelect = useCallback(() => {
       setSelectedSpecies(species);
-    }
+    }, [setSelectedSpecies, species]);
+
+    const renderCharacteristics = useCallback(() => {
+      const characteristics = [
+        { value: species.characteristics[0], label: 'BR', color: 'bg-red-500' },
+        { value: species.characteristics[1], label: 'AGI', color: 'bg-lime-500' },
+        { value: species.characteristics[2], label: 'INT', color: 'bg-sky-400' },
+        { value: species.characteristics[3], label: 'CUN', color: 'bg-orange-300' },
+        { value: species.characteristics[4], label: 'WIL', color: 'bg-pink-400' },
+        { value: species.characteristics[5], label: 'PRE', color: 'bg-yellow-400' },
+      ];
+
+      return characteristics.map((char, index) =>
+        char.value >= 3 ? (
+          <View key={index} className={`${char.color} py-1 w-12 items-center justify-center mb-2 rounded-md`}>
+            <Text className="font-[Elektra] pt-0.5 text-card">{char.label}</Text>
+          </View>
+        ) : null
+      );
+    }, [species.characteristics]);
 
     return (
       <Animated.View className={`w-full bg-box mb-2 rounded-lg items-center`} style={rStyle}>
         <View className="px-6 py-4 w-full items-center">
           <View className="absolute top-6 left-6">
-            {species.characteristics[0] >= 3 && (
-              <View className="bg-red-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">BR</Text>
-              </View>
-            )}
-            {species.characteristics[1] >= 3 && (
-              <View className="bg-lime-500 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">AGI</Text>
-              </View>
-            )}
-            {species.characteristics[2] >= 3 && (
-              <View className="bg-sky-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">INT</Text>
-              </View>
-            )}
-            {species.characteristics[3] >= 3 && (
-              <View className="bg-orange-300 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">CUN</Text>
-              </View>
-            )}
-            {species.characteristics[4] >= 3 && (
-              <View className="bg-pink-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">WIL</Text>
-              </View>
-            )}
-            {species.characteristics[5] >= 3 && (
-              <View className="bg-yellow-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
-                <Text className="font-[Elektra] pt-0.5 text-card">PRE</Text>
-              </View>
-            )}
+            {renderCharacteristics()}
           </View>
           <View
             className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10`}
@@ -134,42 +123,15 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
             {species.desc}
           </Text>
           <View className="w-full justify-evenly flex-row py-2">
-            <Characteristic
-              title="Brawn"
-              value={species.characteristics[0]}
-              scale={10}
-              borderWidth={1}
-            />
-            <Characteristic
-              title="Agility"
-              value={species.characteristics[1]}
-              scale={10}
-              borderWidth={1}
-            />
-            <Characteristic
-              title="Intellect"
-              value={species.characteristics[2]}
-              scale={10}
-              borderWidth={1}
-            />
-            <Characteristic
-              title="Cunning"
-              value={species.characteristics[3]}
-              scale={10}
-              borderWidth={1}
-            />
-            <Characteristic
-              title="Willpower"
-              value={species.characteristics[4]}
-              scale={10}
-              borderWidth={1}
-            />
-            <Characteristic
-              title="Presence"
-              value={species.characteristics[5]}
-              scale={10}
-              borderWidth={1}
-            />
+            {species.characteristics.map((value, index) => (
+              <Characteristic
+                key={index}
+                title={["Brawn", "Agility", "Intellect", "Cunning", "Willpower", "Presence"][index]}
+                value={value}
+                scale={10}
+                borderWidth={1}
+              />
+            ))}
           </View>
           {species.species === selectedSpecies?.species ? (
             <Button
@@ -200,7 +162,6 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
                   {species.specialAbilities.map((ability, index) => (
                     <Text key={index} className="text-xs text-white/80 mt-1">
                       <Text className="font-bold">{ability.name}</Text>:{" "}
-                      {/* {ability.desc} */}
                       <SpeciesText text={ability.desc} />
                     </Text>
                   ))}

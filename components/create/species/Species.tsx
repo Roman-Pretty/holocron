@@ -17,6 +17,7 @@ export default function SpeciesElement({
   setSelectedBonusSkill,
 }: SpeciesProps) {
   const [loading, setLoading] = useState(true);
+  const viewableItems = useSharedValue<ViewToken[]>([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,8 +25,7 @@ export default function SpeciesElement({
     }, 1);
   }, []);
 
-  const viewableItems = useSharedValue<ViewToken[]>([]);
-
+  
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>

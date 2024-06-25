@@ -11,13 +11,27 @@ interface CareerProps {
 }
 
 const CareerElement = ({ selectedCareer, setSelectedCareer }: CareerProps) => {
+  const [loading, setLoading] = useState(true);
   const viewableItems = useSharedValue<ViewToken[]>([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1);
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="small" color="#000" />
+      </View>
+    );
+  }
 
   //TODO: filter out force careers that are not available to Droids
   return (
     <Animated.FlatList
       data={CareerData}
-      showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => index.toString()}
       onViewableItemsChanged={({ viewableItems: vItems }) => {
         viewableItems.value = vItems;
@@ -31,6 +45,7 @@ const CareerElement = ({ selectedCareer, setSelectedCareer }: CareerProps) => {
           setSelectedCareer={setSelectedCareer}
         />
       )}
+      showsVerticalScrollIndicator={false}
     />
   );
 };
