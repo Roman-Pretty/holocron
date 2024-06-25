@@ -4,6 +4,7 @@ import {
   Pressable,
   Image,
   Modal,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { CriticalInjury } from "@/types/Types";
@@ -12,11 +13,12 @@ import { CharacterContext } from "@/contexts/CharacterContext";
 import { useContext } from "react";
 import { saveCharacter } from "@/storage/CharacterStorage";
 import { Ionicons } from "@expo/vector-icons";
+import Button from "@/components/form/Button";
+import { Colors } from "@/constants/Colors";
 
 const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const { character, setCharacter } = useContext(CharacterContext);
-
 
   const openModal = () => {
     setModalVisible(true);
@@ -29,17 +31,17 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
   async function removeCriticalInjury() {
     // Remove a single instance of the critical injury from the character
     if (!character || !character.data.criticalInjuries) return;
-    
+
     const updatedCharacter = { ...character };
     const critInjuries = [...updatedCharacter.data.criticalInjuries];
-    
-    const index = critInjuries.findIndex(c => c.name === crit.name);
+
+    const index = critInjuries.findIndex((c) => c.name === crit.name);
     if (index > -1) {
       critInjuries.splice(index, 1); // Remove the first occurrence
     }
-    
+
     updatedCharacter.data.criticalInjuries = critInjuries;
-    
+
     try {
       await saveCharacter(updatedCharacter);
       setCharacter(updatedCharacter);
@@ -48,8 +50,7 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
       console.log("Error removing critical injury:", error);
     }
   }
-  
-
+  const [loading, setLoading] = useState(true);
 
   return (
     <>
@@ -76,10 +77,9 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
                   d
                 </Text>
               ))}
-              {crit.severity >= 5 &&
-                    <Ionicons name="skull" size={12} color="white" />
-                    }
-                    
+          {crit.severity >= 5 && (
+            <Ionicons name="skull" size={12} color="white" />
+          )}
         </View>
       </Pressable>
 
@@ -89,62 +89,68 @@ const CriticalInjuryElement = ({ crit }: { crit: CriticalInjury }) => {
         visible={modalVisible}
         onRequestClose={closeModal}
       >
-        <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="w-5/6 bg-neutral-800 p-5 rounded-lg shadow-lg items-center">
-            <View className="flex-row items-center justify-start w-full  border-white border-b-2 mb-3 pb-3">
-              <View className="w-[22vw] h-[22vw] mb-2">
+        <View className="flex-1 justify-center items-center bg-black/50 px-2">
+          <View className=" bg-neutral-800 p-6 rounded-lg shadow-lg items-center">
+          <View className="absolute top-6 left-6">
+              <View className="bg-yellow-400 py-1 w-12 items-center justify-center mb-2 rounded-md">
+                <Text className="font-[swrpg] pb-0.5 text-neutral-800 text-center">{crit.severity < 5 &&
+            Array(crit.severity)
+              .fill(null)
+              .map((_, index) => (
+                  "d"
+              ))}
+          {crit.severity >= 5 && (
+            <Ionicons name="skull" size={18} color={Colors.global.neutral800} />
+          )}</Text>
+              </View>
+          </View>
+            <View
+              className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10 mb-2`}
+            >
+              <View
+                className={`overflow-hidden rounded-full items-center justify-center w-full h-full`}
+              >
+                {loading && (
+                  <ActivityIndicator
+                    size="small"
+                    color={Colors.global.heading3}
+                  />
+                )}
                 <Image
                   source={crit.image}
-                  resizeMode="contain"
+                  resizeMode="cover"
                   style={{ width: "100%", height: "100%" }}
+                  onLoad={() => setLoading(false)}
                 />
               </View>
-              <View className="pl-4 h-full items-start">
-                <Text className="text-xl text-white font-[Elektra] ">
-                  {crit.name}
-                </Text>
-                <View className="w-full flex-row">
-                {crit.severity < 5 &&
-                  Array(crit.severity)
-                  .fill(null)
-                  .map((_, index) => (
-                    <Text
-                    key={index}
-                    className="text-white font-[swrpg] text-xl"
-                    >
-                        d
-                      </Text>
-                    ))}
-                    </View>
-              </View>
             </View>
-            <Text className="mb-4 text-white">{crit.desc}</Text>
-            <View className="flex-row">
-            <Pressable
-                className="p-2 mx-1 flex-1 bg-box/80"
+            <Text className="text-xl text-center text-white font-[Elektra] mb-2">
+              {crit.name}
+            </Text>
+            <Text className="text-sm text-center text-white/80 mb-4">
+              {crit.desc}
+            </Text>
+
+            <View className="flex-row mb-10">
+              <Button
+                cName="p-2 mx-1 flex-1 bg-box/80"
                 onPress={() => {
                   setModalVisible(false);
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 }}
-              >
-                <Text className="text-white font-bold text-center">Cancel</Text>
-              </Pressable>
-              <Pressable
-                className="p-2 bg-heading3 flex-1 mx-1"
+                title="Cancel"
+              />
+              <Button
+                cName="p-2 mx-1 flex-1 bg-heading3"
                 onPress={() => {
                   setModalVisible(false);
                   Haptics.notificationAsync(
                     Haptics.NotificationFeedbackType.Success
                   );
                   removeCriticalInjury();
-                  
-
                 }}
-              >
-                <Text className="text-white font-bold text-center">
-                  Remove
-                </Text>
-              </Pressable>
+                title="Remove"
+              />
             </View>
           </View>
         </View>

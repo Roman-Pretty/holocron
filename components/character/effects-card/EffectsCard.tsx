@@ -10,6 +10,7 @@ import { CharacterContext } from "@/contexts/CharacterContext";
 import { useContext } from "react";
 import { saveCharacter } from "@/storage/CharacterStorage";
 import { CriticalInjuries } from "@/constants/CriticalInjuries";
+import Button from "@/components/form/Button";
 
 const EffectsCard = () => {
   const { character, setCharacter } = useContext(CharacterContext);
@@ -34,8 +35,10 @@ const EffectsCard = () => {
     const injuries = Number(character.data.criticalInjuries.length * 2);
     const total = randomNumber + Number(modifier / 5) + injuries;
 
-    updatedCharacter.data.criticalInjuries.push(CriticalInjuries[Math.min(total-1, CriticalInjuries.length-1)]);
-    
+    updatedCharacter.data.criticalInjuries.push(
+      CriticalInjuries[Math.min(total - 1, CriticalInjuries.length - 1)]
+    );
+
     try {
       await saveCharacter(updatedCharacter);
       setCharacter(updatedCharacter);
@@ -101,15 +104,15 @@ const EffectsCard = () => {
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
       >
-        <View className="flex-1 justify-center items-center mt-6 px-8 bg-black/50">
-          <View className="bg-neutral-800  border-statblocktextbackground p-2 items-center shadow-md w-full rounded-lg">
-            <Text className="text-xl text-center text-white font-[Elektra]">
+        <View className="flex-1 justify-center items-center p-2 bg-black/50">
+          <View className="bg-neutral-800 p-6 items-center shadow-md w-full rounded-lg">
+            <Text className="text-xl text-center text-white font-[Elektra] mb-2">
               Critical Hit!
             </Text>
-            <Text className="mb-4 text-center text-white font-semibold">
+            <Text className="mb-4 text-center text-white font-bold text-xs">
               Take a random critical hit, or select a critical hit modifier.
             </Text>
-            <View className="bg-white w-full p-2 mb-4">
+            <View className="bg-white w-full p-2 mb-4 rounded-md">
               <RNPickerSelect
                 onValueChange={(value) => {
                   setSelectedValue(value);
@@ -134,26 +137,23 @@ const EffectsCard = () => {
                 placeholder={{ label: "+0", value: 0 }}
                 disabled={!modalVisible}
                 darkTheme
-                Icon={() => (
-                  <Ionicons name="chevron-down" size={24} color="#6b7280" />
-                )}
               />
             </View>
-            <Text className="mb-4 text-center text-white font-semibold">
+            <Text className="mb-6 text-center text-white font-bold text-xs">
               Modifiers from existing hits are already applied.
             </Text>
-            <View className="flex-row justify-between w-full">
-              <Pressable
-                className="p-2 mx-1 flex-1 bg-box/80"
+            <View className="flex-row justify-between w-full mb-10">
+              <Button
+                title="Cancel"
+                cName="p-2 mr-1 flex-1 bg-box/80"
                 onPress={() => {
                   setModalVisible(false);
                   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                 }}
-              >
-                <Text className="text-white font-bold text-center">Cancel</Text>
-              </Pressable>
-              <Pressable
-                className="p-2 bg-heading3 flex-1 mx-1"
+              />
+              <Button
+                title="Take Hit"
+                cName="p-2 ml-1 flex-1 bg-heading3"
                 onPress={() => {
                   setModalVisible(false);
                   Haptics.notificationAsync(
@@ -162,11 +162,7 @@ const EffectsCard = () => {
                   takeCriticalHit(selectedValue);
                   setSelectedValue(0);
                 }}
-              >
-                <Text className="text-white font-bold text-center">
-                  Take Hit
-                </Text>
-              </Pressable>
+              />
             </View>
           </View>
         </View>

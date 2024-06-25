@@ -1,53 +1,60 @@
+import { Characteristic, Species } from "@/types/Types";
+import CharacteristicElement from "@/components/Characteristic";
+
 import React from "react";
-import { View, Text } from "react-native";
-import { Colors } from "@/constants/Colors";
-import TriangleCorner from "@/components/shapes/TriangleCorner";
-import SpeciesCharacteristic from "@/components/create/species/SmallCharacteristic";
-import { Species, Characteristic } from "@/types/Types";
+import { Text, View } from "react-native";
 
 interface DerivedAttributesProps {
   characteristics: Characteristic[];
   species: Species | null;
 }
 
-const DerivedAttributes = ({ characteristics, species }: DerivedAttributesProps) => {
+const DerivedAttributes = ({
+  characteristics,
+  species,
+}: DerivedAttributesProps) => {
+  const soak =
+    species?.species === "Droid"
+      ? characteristics[0].level + 1
+      : characteristics[0].level;
+
+  const woundThreshold =
+    characteristics[0].level + (species ? species?.woundThreshold : 0);
+  const strainThreshold =
+    characteristics[4].level + (species ? species?.strainThreshold : 0);
+  const encumbrance = characteristics[0].level + 5;
+
   return (
-    <View className="w-full mb-[2vh]">
-      <View className="flex-row justify-end">
-        <View className="bg-heading3 w-[100%]">
-          <Text className="pl-[52px] pt-[8px] text-lg text-white font-[Elektra] capitalize">
-            Derived Attributes
-          </Text>
-        </View>
-        <TriangleCorner
-          style={{
-            transform: [{ rotate: "-90deg" }],
-            borderTopWidth: "40px",
-            borderRightWidth: "40px",
-            borderTopColor: Colors.global.heading3,
-          }}
-        />
-      </View>
-      <View className="bg-heading3 p-3">
-        <View className="flex-row">
-          <View className="w-full flex flex-row justify-evenly items-center flex-wrap border-t-2 border-statblockbackground py-[1.5vh]">
-            <SpeciesCharacteristic
-              title="Wound Threshold"
-              level={characteristics[0].level + (species ? species?.woundThreshold : 0)}
-            />
-            <SpeciesCharacteristic
-              title="Strain Threshold"
-              level={characteristics[4].level + (species ? species?.strainThreshold : 0)}
-            />
-            <SpeciesCharacteristic
-              title="Soak Level"
-              level={species?.species === "Droid" ? characteristics[0].level + 1 : characteristics[0].level}
-            />
-            <SpeciesCharacteristic
-              title="Encum. Level"
-              level={characteristics[0].level + 5}
-            />
-          </View>
+    <View className="w-full mb-2 bg-heading3 p-6 pb-8 rounded-lg">
+      <Text className="font-[Elektra] text-white text-xl w-full text-center mb-6">
+        Derived Attributes
+      </Text>
+      <View className="flex-row">
+        <View className="w-full flex flex-row justify-between items-start flex-wrap mb-4">
+          <CharacteristicElement
+            title="Soak"
+            value={soak}
+            scale={12}
+            borderWidth={1.6}
+          />
+          <CharacteristicElement
+            title="Wound Threshold"
+            value={woundThreshold}
+            scale={12}
+            borderWidth={1.6}
+          />
+          <CharacteristicElement
+            title="Strain Threshold"
+            value={strainThreshold}
+            scale={12}
+            borderWidth={1.6}
+          />
+          <CharacteristicElement
+            title="Encum. Threshold"
+            value={encumbrance}
+            scale={12}
+            borderWidth={1.6}
+          />
         </View>
       </View>
     </View>
