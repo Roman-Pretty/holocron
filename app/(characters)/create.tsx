@@ -157,10 +157,10 @@ const CreateCharacter = () => {
   const [morality, setMorality] = useState(false);
   const [groupSize, setGroupSize] = useState(4);
 
-  const [selectedObligations, setSelectedObligations] =
-    useState<Obligation[]>([]);
-    const [selectedDuties, setSelectedDuties] =
-    useState<Duty[]>([]);
+  const [selectedObligations, setSelectedObligations] = useState<Obligation[]>(
+    []
+  );
+  const [selectedDuties, setSelectedDuties] = useState<Duty[]>([]);
 
   const [obligationCost, setObligationCost] = useState(10);
   const [dutyCost, setDutyCost] = useState(10);
@@ -187,7 +187,6 @@ const CreateCharacter = () => {
     null
   );
 
-
   // Portrait Bottom Sheet
   const portraitSheetRef = useRef<BottomSheet>(null);
   portraitSheetRef.current?.close();
@@ -195,8 +194,7 @@ const CreateCharacter = () => {
   const portraitSnapPoints = useMemo(() => ["60%"], []);
 
   // callbacks
-  const handlePortraitSheetChange = useCallback((index: number) => {
-  }, []);
+  const handlePortraitSheetChange = useCallback((index: number) => {}, []);
   const handlePortraitSnapPress = useCallback((index: number) => {
     portraitSheetRef.current?.snapToIndex(index);
   }, []);
@@ -481,10 +479,10 @@ const CreateCharacter = () => {
               })
             : undefined,
           duty: duty
-          ? selectedDuties.map((duty) => {
-              return { type: duty.value, value: dutyCost };
-            })
-          : undefined,
+            ? selectedDuties.map((duty) => {
+                return { type: duty.value, value: dutyCost };
+              })
+            : undefined,
           morality: morality
             ? {
                 strength: selectedStrength ? selectedStrength.value : "",

@@ -59,16 +59,16 @@ const CareerItem = ({
           className={`w-[30vw] h-[30vw] p-[1vw] overflow-hidden rounded-full border-2 border-white/10`}
         >
           <View
-            className={`overflow-hidden rounded-full bg-white items-center justify-center`}
+            className={`overflow-hidden rounded-full bg-white items-center justify-center w-full h-full`}
           >
             {loading && (
-              <View className="w-full h-full flex items-center justify-center">
-                <ActivityIndicator
-                  size="small"
-                  color={Colors.global.heading3}
-                />
-              </View>
-            )}
+            <View className="flex-row w-full h-full items-center justify-center">
+              <ActivityIndicator
+              size="small"
+              color={Colors.global.heading3}
+              />
+            </View>
+             )}
             <Image
               source={career.image}
               resizeMode="cover"

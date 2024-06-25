@@ -29,7 +29,7 @@ const Skills = ({
   checkedSpecializationSkills,
 }: SkillsProps) => {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
         <View className="p-6 mb-2 bg-box rounded-lg flex-row items-center justify-between">
         <Ionicons name="information-circle" size={24} color="#fff" />
         <Text className="text-white font-bold text-xs px-4">
@@ -76,7 +76,7 @@ const Skills = ({
 
       <View className="rounded-lg bg-orange-800 py-6 mb-2">
         <Text className="text-xs font-bold text-white ml-6 mb-6">KNOWLEDGE SKILLS</Text>
-        {skills.slice(11, 17).map((skill, index) => (
+        {skills.slice(11, 18).map((skill, index) => (
             <SkillItem
                 skill={skill}
                 skills={skills}
@@ -95,7 +95,7 @@ const Skills = ({
 
       <View className="rounded-lg bg-box py-6 mb-2">
         <Text className="text-xs font-bold text-white ml-6 mb-6">GENERAL SKILLS</Text>
-        {skills.slice(17).map((skill, index) => (
+        {skills.slice(18).map((skill, index) => (
             <SkillItem
                 skill={skill}
                 skills={skills}

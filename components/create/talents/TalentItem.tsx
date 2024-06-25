@@ -31,64 +31,6 @@ const TalentItem = ({
   const [purchased, setPurchased] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  function togglePurchased() {
-    talent.purchased = !purchased;
-    if (specialization) {
-      setSpecialization({ ...specialization });
-    }
-    setPurchased(!purchased);
-  }
-
-  function isNodePointedTo(row: number, col: number, visited: Set<string> = new Set()): boolean {
-    if (!specialization) {
-      return false;
-    }
-
-    if (col === 0) {
-      return true;
-    }
-
-    const key = `${row},${col}`;
-    if (visited.has(key)) {
-      // Circular dependency detected
-      return false;
-    }
-
-    visited.add(key);
-
-    if (
-      specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 &&
-      specialization.talents.talents[row + ((col - 1) * 4)].purchased
-    ) {
-      if (isNodePointedTo(row, col - 1, visited)) {
-        return true;
-      }
-    }
-
-    if (
-      row > 0 &&
-      specialization.talents.vPath[col][row - 1] === 1 &&
-      specialization.talents.talents[(row + (col * 4)) - 1].purchased
-    ) {
-      if (isNodePointedTo(row - 1, col, visited)) {
-        return true;
-      }
-    }
-
-    if (
-      row < 3 &&
-      specialization.talents.vPath[col][row] === 1 &&
-      specialization.talents.talents[(row + (col * 4)) + 1].purchased
-    ) {
-      if (isNodePointedTo(row + 1, col, visited)) {
-        return true;
-      }
-    }
-
-    visited.delete(key); // Backtracking
-    return false;
-  }
-
   useEffect(() => {
     if (specialization) {
       if (isNodePointedTo(row, col)) {
@@ -108,6 +50,75 @@ const TalentItem = ({
     }
   }, []);
 
+  function togglePurchased() {
+    if (specialization) {
+      setSpecialization({
+        ...specialization,
+        talents: {
+          ...specialization.talents,
+          talents: specialization.talents.talents.map((t, index) =>
+            index === row + col * 4 ? { ...t, purchased: !t.purchased } : t
+          ),
+        },
+      });
+    }
+    setPurchased(!purchased);
+  }
+
+  function isNodePointedTo(
+    row: number,
+    col: number,
+    visited: Set<string> = new Set()
+  ): boolean {
+    if (!specialization) {
+      return false;
+    }
+
+    if (col === 0) {
+      return true;
+    }
+
+    const key = `${row},${col}`;
+    if (visited.has(key)) {
+      // Circular dependency detected
+      return false;
+    }
+
+    visited.add(key);
+
+    if (
+      specialization.talents.hPath[row][Math.max(col - 1, 0)] === 1 &&
+      specialization.talents.talents[row + (col - 1) * 4].purchased
+    ) {
+      if (isNodePointedTo(row, col - 1, visited)) {
+        return true;
+      }
+    }
+
+    if (
+      row > 0 &&
+      specialization.talents.vPath[col][row - 1] === 1 &&
+      specialization.talents.talents[row + col * 4 - 1].purchased
+    ) {
+      if (isNodePointedTo(row - 1, col, visited)) {
+        return true;
+      }
+    }
+
+    if (
+      row < 3 &&
+      specialization.talents.vPath[col][row] === 1 &&
+      specialization.talents.talents[row + col * 4 + 1].purchased
+    ) {
+      if (isNodePointedTo(row + 1, col, visited)) {
+        return true;
+      }
+    }
+
+    visited.delete(key); // Backtracking
+    return false;
+  }
+
   return (
     <Pressable
       onPressIn={() => setLoading(true)}
@@ -121,8 +132,13 @@ const TalentItem = ({
       <View className={"w-[60vw]"} style={{ opacity: 100 }}>
         <View className="flex-row">
           <View
-            className={`flex-row ${!purchasable ? "bg-gray-400" : talent.talent.active ? " bg-heading3 " : " bg-box "
-              } p-2 items-center flex-1`}
+            className={`flex-row ${
+              !purchasable
+                ? "bg-gray-400"
+                : talent.talent.active
+                ? " bg-heading3 "
+                : " bg-box "
+            } p-2 items-center flex-1`}
             style={{ marginRight: -1 }}
           >
             {loading ? (
@@ -144,19 +160,28 @@ const TalentItem = ({
               </Text>
             </View>
           </View>
-            <TriangleCorner
-              style={{
-                transform: [{ rotate: "-90deg" }],
-                borderTopWidth: talent.talent.name.length < 18 ? 44 : 50,
-                borderRightWidth: talent.talent.name.length < 18 ? 44 : 50,
-                borderTopColor: !purchasable ? "#9ca3af" : talent.talent.active ? Colors.global.heading3 : Colors.global.box,
-                zIndex: -10
-              }}
-            />
+          <TriangleCorner
+            style={{
+              transform: [{ rotate: "-90deg" }],
+              borderTopWidth: talent.talent.name.length < 18 ? 44 : 50,
+              borderRightWidth: talent.talent.name.length < 18 ? 44 : 50,
+              borderTopColor: !purchasable
+                ? "#9ca3af"
+                : talent.talent.active
+                ? Colors.global.heading3
+                : Colors.global.box,
+              zIndex: -10,
+            }}
+          />
         </View>
         <View
-          className={` p-2 bg-white border-2 ${!purchasable ? "border-gray-400" : talent.talent.active ? "border-heading3" : "border-box"
-            } min-h-[8vh] `}
+          className={` p-2 bg-white border-2 ${
+            !purchasable
+              ? "border-gray-400"
+              : talent.talent.active
+              ? "border-heading3"
+              : "border-box"
+          } min-h-[8vh] `}
         >
           <TalentText text={talent.talent.desc} purchasable={purchasable} />
         </View>

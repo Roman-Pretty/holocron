@@ -1,11 +1,8 @@
 import Button from "@/components/form/Button";
-import { Ionicons } from "@expo/vector-icons";
-import React from "react";
-import { Image, Text, View } from "react-native";
-import { Colors } from "@/constants/Colors";
-import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Specialization } from "@/types/Types";
-import Animated, { useAnimatedStyle } from "react-native-reanimated";
+import React from "react";
+import { Text, View } from "react-native";
+import Animated from "react-native-reanimated";
 
 interface SpeciesItemProps {
   specialization: Specialization;
