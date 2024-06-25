@@ -1,45 +1,60 @@
-import Button from '@/components/form/Button';
-import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { Colors } from '@/constants/Colors';
-import TriangleCorner from '@/components/shapes/TriangleCorner';
-import { Specialization } from '@/types/Types';
+import Button from "@/components/form/Button";
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Image, Text, View } from "react-native";
+import { Colors } from "@/constants/Colors";
+import TriangleCorner from "@/components/shapes/TriangleCorner";
+import { Specialization } from "@/types/Types";
+import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
 interface SpeciesItemProps {
-    specialization: Specialization;
-    selectedSpecialization: Specialization | null;
-    setSelectedSpecialization: (specialization: Specialization) => void;
+  specialization: Specialization;
+  selectedSpecialization: Specialization | null;
+  setSelectedSpecialization: (specialization: Specialization) => void;
 }
 
-const SpecializationItem = ({ specialization, selectedSpecialization, setSelectedSpecialization }: SpeciesItemProps) => {
-    return (
-        <View className='w-full mb-2'>
-            <View className='flex-row justify-end'>
-                <View className='bg-heading2  w-[100%]'>
-                    <Text className='pl-[52px] pt-[8px] text-lg text-white font-[Elektra]'>{specialization.name}</Text>
-                </View>
-                <TriangleCorner style={{
-                    transform: [{ rotate: "-90deg" }],
-                    borderTopWidth: '40px', borderRightWidth: '40px', borderTopColor: Colors.global.heading2,
-                }} />
-            </View>
-            <View className='bg-heading2 p-3'>
-                <View className='flex flex-row items-center justify-start max-w-[80vw]'>
-                    <View>
-                        <Text className='text-sm text-white'>{specialization.desc}</Text>
-                    </View>
-                </View>
-                <View className='mt-[2vh] flex-row items-start max-w-[80vw]'>
-                    <Ionicons size={16} name='checkmark-circle-outline' color="white" />
-                    <Text className='text-white text-sm pl-2 max-w-[84vw]'><Text className='font-bold '>Skills:</Text> {specialization.skills.join(', ')}</Text>
-                </View>
-                {selectedSpecialization && selectedSpecialization.name === specialization.name ?
-                    <Button title={`Selected ${specialization.name}`} disabled cName='mt-[3vh] bg-white' /> :
-                    <Button title={`Select ${specialization.name}`} onPress={() => setSelectedSpecialization(specialization)} cName='mt-[3vh] bg-statblockbackground' />}
-            </View>
-        </View>
-    )
-}
+const SpecializationItem = ({
+  specialization,
+  selectedSpecialization,
+  setSelectedSpecialization,
+}: SpeciesItemProps) => {
+  return (
+    <Animated.View
+      className={`w-full bg-neutral-800 mb-2 rounded-lg items-center`}
+    >
+      <View className="px-6 py-4 w-full items-center">
+        <Text className="text-lg text-white font-[Elektra] mt-2">
+          {specialization.name}
+        </Text>
+        <Text className="text-sm text-center text-white/80 mt-2">
+          {specialization.desc}
+        </Text>
+        {specialization.name === selectedSpecialization?.name ? (
+          <Button
+            title={`Selected ${specialization.name}`}
+            disabled
+            cName="mt-4 bg-white border border-white w-full items-center justify-center px-0  rounded-sm"
+            textClassName="text-center w-full"
+          />
+        ) : (
+          <Button
+            title={`Select ${specialization.name}`}
+            onPress={() => {
+              setSelectedSpecialization(specialization);
+            }}
+            cName="mt-4 bg-transparent border border-white w-full items-center justify-center px-0  rounded-sm"
+            textClassName="text-center w-full"
+          />
+        )}
+      </View>
+      <View className="px-6 pb-4 w-full items-start bg-black/20 rounded-b-lg">
+        <Text className="text-xs text-white font-bold mt-2">SKILLS</Text>
+        <Text className="text-xs text-white/80 mt-1">
+          {specialization.skills.map((s) => s).join(", ")}
+        </Text>
+      </View>
+    </Animated.View>
+  );
+};
 
-export default SpecializationItem
+export default SpecializationItem;

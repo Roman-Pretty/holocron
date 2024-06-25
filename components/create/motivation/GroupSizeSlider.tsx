@@ -14,7 +14,7 @@ const GroupSizeSlider: React.FC<GroupSizeSliderProps> = ({
   setGroupSize,
 }) => {
   return (
-    <View className={`mb-2 items-center bg-neutral-800 p-6 py-4 rounded-xl`}>
+    <View className={`mb-2 items-center bg-neutral-800 p-6 rounded-xl`}>
       <Text className="text-xl text-white">
         <Text className="font-bold">
           {groupSize}
@@ -33,9 +33,11 @@ const GroupSizeSlider: React.FC<GroupSizeSliderProps> = ({
         maximumTrackTintColor={Colors.global.boxheading}
         thumbTintColor={"#fff"}
       />
-      <Text className="text-xs font-bold text-white mt-2">
-        You must select at least one Obligation, Duty, or Morality.
+      <Text className="text-xs font-bold text-white mt-2 text-center">
+        Your group size affects your starting obligation and duty. You must select at least one obligation, duty, or morality.
       </Text>
+      {/* <Text className="text-xs font-bold text-white mt-4">
+      </Text> */}
       {/* 
       <Text className={`text-white text-md text-center mb-4`}>
         <Ionicons style={{ marginTop: 18 }} name="checkmark" size={16} /> It is

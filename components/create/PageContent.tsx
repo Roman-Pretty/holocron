@@ -225,6 +225,7 @@ const PageContent = ({
     case 6:
       return (
         <CharacteristicsComponent
+          skills={skills}
           characteristics={characteristics}
           setCharacteristics={setCharacteristics}
           species={species}

@@ -4,6 +4,7 @@ import Checkbox from "expo-checkbox";
 import React, { useEffect, useState } from "react";
 import { Pressable, Switch, Text, View } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
+import Animated, { FadeIn, SlideInDown, SlideInUp } from "react-native-reanimated";
 
 interface ObligationPickerProps {
   obligations: Obligation[];

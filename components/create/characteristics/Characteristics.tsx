@@ -1,4 +1,4 @@
-import { Characteristic, Species } from "@/types/Types";
+import { Characteristic, Skill, Species } from "@/types/Types";
 import React from "react";
 import { FlatList } from "react-native";
 import CharacteristicItem from "./CharacteristicItem";
@@ -7,12 +7,14 @@ interface CharacteristicsProps {
   characteristics: Characteristic[];
   setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
   species: Species | null;
+  skills: Skill[];
 }
 
 const CharacteristicsElement = ({
   characteristics,
   setCharacteristics,
   species,
+  skills,
 }: CharacteristicsProps) => {
 
   return (
@@ -22,6 +24,7 @@ const CharacteristicsElement = ({
       showsVerticalScrollIndicator={false}
       renderItem={({ item, index }) => (
         <CharacteristicItem
+          skills={skills}
           index={index}
           setCharacteristics={setCharacteristics}
           characteristic={item}
