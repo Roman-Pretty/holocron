@@ -1,34 +1,28 @@
-import { Characteristic, Skill, Species } from "@/types/Types";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 import React from "react";
 import { FlatList } from "react-native";
 import CharacteristicItem from "./CharacteristicItem";
 
 interface CharacteristicsProps {
-  characteristics: Characteristic[];
-  setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
-  species: Species | null;
-  skills: Skill[];
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
 }
 
 const CharacteristicsElement = ({
-  characteristics,
-  setCharacteristics,
-  species,
-  skills,
+  state,
+  setState
 }: CharacteristicsProps) => {
 
   return (
     <FlatList
-      data={characteristics}
+      data={state.characteristics}
       keyExtractor={(item, index) => index.toString()}
       showsVerticalScrollIndicator={false}
       renderItem={({ item, index }) => (
         <CharacteristicItem
-          skills={skills}
           index={index}
-          setCharacteristics={setCharacteristics}
-          characteristic={item}
-          species={species}
+          state={state}
+          setState={setState}
         />
       )}
     />

@@ -1,40 +1,29 @@
-import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
-import React from "react";
-import { Pressable, Text, View, ScrollView } from "react-native";
-import { Career, Skill, Species, Specialization } from "@/types/Types";
 import { Colors } from "@/constants/Colors";
-import TriangleCorner from "@/components/shapes/TriangleCorner";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
+import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Pressable, ScrollView, Text, View } from "react-native";
 
 interface FreeSkillsProps {
-  species: Species | null;
-  selectedCareer: Career | null;
-  selectedSpecialization: Specialization | null;
-  checkedCareerSkills: { [key: string]: boolean };
-  setCheckedCareerSkills: React.Dispatch<
-    React.SetStateAction<{ [key: string]: boolean }>
-  >;
-  checkedSpecializationSkills: { [key: string]: boolean };
-  setCheckedSpecializationSkills: React.Dispatch<
-    React.SetStateAction<{ [key: string]: boolean }>
-  >;
-  skills: Skill[];
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
 }
 
 const FreeSkills = ({
-  species,
-  selectedCareer,
-  selectedSpecialization,
-  checkedCareerSkills,
-  setCheckedCareerSkills,
-  checkedSpecializationSkills,
-  setCheckedSpecializationSkills,
-  skills,
+  setState,
+  state: {
+    species,
+    career,
+    specialization,
+    checkedCareerSkills,
+    checkedSpecializationSkills,
+    skills,
+  },
 }: FreeSkillsProps) => {
   const maxCareerSkills =
     species && species.species === "Droid"
       ? 6
-      : selectedCareer && selectedCareer.forceSensitive
+      : career && career.forceSensitive
       ? 3
       : 4;
   const maxSpecializationSkills =
@@ -47,53 +36,73 @@ const FreeSkills = ({
   ).filter(Boolean).length;
 
   const handleCareerCheckboxChange = (s: string) => {
-    setCheckedCareerSkills((prevState) => {
-      if (prevState[s]) {
-        const skill = skills.find((skill) => skill.name === s);
-        if (skill) {
-          skill.level -= 1;
-        }
-        return {
-          ...prevState,
-          [s]: false,
-        };
-      } else if (careerSkillCount < maxCareerSkills) {
-        const skill = skills.find((skill) => skill.name === s);
-        if (skill) {
-          skill.level += 1;
-        }
-        return {
-          ...prevState,
-          [s]: true,
-        };
-      }
-      return prevState;
-    });
+    if (
+      careerSkillCount >= maxCareerSkills &&
+      !checkedCareerSkills[s]
+    ) {
+      return;
+    }
+    // First, update the checkedCareerSkills
+    function calculateNewCareerSkills() {
+      const updatedCheckedCareerSkills = {
+        ...checkedCareerSkills,
+        [s]: !checkedCareerSkills[s],
+      };
+
+      console.log(updatedCheckedCareerSkills);
+      return updatedCheckedCareerSkills;
+    }
+    setState("checkedCareerSkills", calculateNewCareerSkills());
+
+    // Next, update the skills based on the new checkedCareerSkills state
+    function updateSkills() {
+        return skills.map((skill) => {
+          if (skill.name === s) {
+            return {
+              ...skill,
+              level: checkedCareerSkills[s] ? skill.level - 1 : skill.level + 1,
+            };
+          }
+          return skill;
+        });
+    }
+    setState("skills", updateSkills()); 
   };
+  
+  
 
   const handleSpecializationCheckboxChange = (s: string) => {
-    setCheckedSpecializationSkills((prevState) => {
-      if (prevState[s]) {
-        const skill = skills.find((skill) => skill.name === s);
-        if (skill) {
-          skill.level -= 1;
-        }
-        return {
-          ...prevState,
-          [s]: false,
-        };
-      } else if (specializationSkillCount < maxSpecializationSkills) {
-        const skill = skills.find((skill) => skill.name === s);
-        if (skill) {
-          skill.level += 1;
-        }
-        return {
-          ...prevState,
-          [s]: true,
-        };
-      }
-      return prevState;
-    });
+    if (
+      specializationSkillCount >= maxSpecializationSkills &&
+      !checkedSpecializationSkills[s]
+    ) {
+      return;
+    }
+    // First, update the checkedSpecializationSkills
+    function calculateNewSpecializationSkills() {
+      const updatedCheckedSpecializationSkills = {
+        ...checkedSpecializationSkills,
+        [s]: !checkedSpecializationSkills[s],
+      };
+
+      console.log(updatedCheckedSpecializationSkills);
+      return updatedCheckedSpecializationSkills;
+    }
+    setState("checkedSpecializationSkills", calculateNewSpecializationSkills());
+
+    // Next, update the skills based on the new checkedSpecializationSkills state
+    function updateSkills() {
+        return skills.map((skill) => {
+          if (skill.name === s) {
+            return {
+              ...skill,
+              level: checkedSpecializationSkills[s] ? skill.level - 1 : skill.level + 1,
+            };
+          }
+          return skill;
+        });
+    }
+    setState("skills", updateSkills()); 
   };
 
   return (
@@ -120,8 +129,8 @@ const FreeSkills = ({
             </Text>
           </View>
 
-          {selectedCareer &&
-            selectedCareer.skills.map((skill, index) => {
+          {career &&
+            career.skills.map((skill, index) => {
               if (
                 skills.find((s) => s.name === skill)?.level === 2 &&
                 !checkedCareerSkills[skill]
@@ -176,8 +185,8 @@ const FreeSkills = ({
             </Text>
           </View>
 
-          {selectedSpecialization &&
-            selectedSpecialization.skills.map((skill, index) => {
+          {specialization &&
+            specialization.skills.map((skill, index) => {
               if (
                 skills.find((s) => s.name === skill)?.level === 2 &&
                 !checkedSpecializationSkills[skill]

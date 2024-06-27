@@ -71,12 +71,12 @@ const createcharacter = () => {
           <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
-            <Text className="text-xl text-heading3 font-[Elektra] text-center pb-[2vh] pt-[36vh]">
+            <Text className="text-lg text-heading3 text-center font-[Elektra] pt-[36vh] pb-4">
               You do not have any characters yet.
             </Text>
             <Button
               title="Create Character"
-              className="px-4 "
+              cName="px-8"
               onPress={() => router.push("create" as never)}
             />
           </View>

@@ -1,60 +1,54 @@
 import LabelledTextInput from "@/components/form/LabelledTextInput";
 import React, { SetStateAction } from "react";
-import {
-    ImageSourcePropType,
-    ScrollView
-} from "react-native";
+import { ImageSourcePropType, ScrollView } from "react-native";
 import PortraitInput from "../form/PortraitInput";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 
 interface DescriptionProps {
-  name: string;
-  setName: (name: string) => void;
-  homeworld: string;
-  setHomeworld: (homeworld: string) => void;
-  description: string;
-  setDescription: (description: string) => void;
-  portrait: ImageSourcePropType | undefined;
-  setPortrait: React.Dispatch<SetStateAction<ImageSourcePropType>>;
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
   handleSnapPress: (index: number) => void;
 }
 
 const Description = ({
-  name,
-  setName,
-  homeworld,
-  setHomeworld,
-  description,
-  setDescription,
-  portrait,
-  setPortrait,
+  state: { portrait, name, homeworld, description },
+  setState,
   handleSnapPress,
 }: DescriptionProps) => {
   return (
-      <ScrollView>
-        <PortraitInput portrait={portrait} setPortrait={setPortrait} handleSnapPress={handleSnapPress} />
-        <LabelledTextInput
-          title="Name"
-          setText={setName}
-          text={name}
-          maxChar={25}
-          iconName="person"
-        />
-        <LabelledTextInput
-          title="Homeworld"
-          setText={setHomeworld}
-          text={homeworld}
-          maxChar={25}
-          iconName="planet"
-        />
-        <LabelledTextInput
-          title="Description"
-          multiLine
-          setText={setDescription}
-          text={description}
-          maxChar={250}
-          iconName="information"
-        />
-      </ScrollView>
+    <ScrollView>
+      <PortraitInput
+        portrait={portrait}
+        setPortrait={(portrait: SetStateAction<ImageSourcePropType>) =>
+          setState("portrait", portrait)
+        }
+        handleSnapPress={handleSnapPress}
+      />
+      <LabelledTextInput
+        title="Name"
+        setText={(text: SetStateAction<string>) => setState("name", text)}
+        text={name}
+        maxChar={25}
+        iconName="person"
+      />
+      <LabelledTextInput
+        title="Homeworld"
+        setText={(text: SetStateAction<string>) => setState("homeworld", text)}
+        text={homeworld}
+        maxChar={25}
+        iconName="planet"
+      />
+      <LabelledTextInput
+        title="Description"
+        multiLine
+        setText={(text: SetStateAction<string>) =>
+          setState("description", text)
+        }
+        text={description}
+        maxChar={250}
+        iconName="information"
+      />
+    </ScrollView>
   );
 };
 

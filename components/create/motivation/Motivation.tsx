@@ -14,85 +14,49 @@ import {
   Obligation,
 } from "@/constants/Motivations";
 import { Ionicons } from "@expo/vector-icons";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 
 interface MotivationProps {
-  obligation: boolean;
-  duty: boolean;
-  morality: boolean;
-  setObligation: (value: boolean) => void;
-  setDuty: (value: boolean) => void;
-  setMorality: (value: boolean) => void;
-  groupSize: number;
-  setGroupSize: (value: number) => void;
-  obligationCost: number;
-  setObligationCost: (value: number) => void;
-  dutyCost: number;
-  setDutyCost: (value: number) => void;
-  selectedObligations: Obligation[];
-  setSelectedObligations: React.Dispatch<React.SetStateAction<Obligation[]>>;
-  selectedDuties: Duty[];
-  setSelectedDuties:  React.Dispatch<React.SetStateAction<Duty[]>>;
-  additionalObligation: boolean[];
-  setAdditionalObligation: (value: boolean[]) => void;
-  additionalDuty: boolean[];
-  setAdditionalDuty: (value: boolean[]) => void;
-  selectedStrength: Morality | null;
-  setSelectedStrength: (value: Morality | null) => void;
-  selectedWeakness: Morality | null;
-  setSelectedWeakness: (value: Morality | null) => void;
-  moralityCost: number;
-  setMoralityCost: (value: number) => void;
-  moralityBonus: number;
-  setMoralityBonus: (value: number) => void;
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
 }
 
 const Motivation = ({
-  obligation,
-  duty,
-  morality,
-  setObligation,
-  setDuty,
-  setMorality,
-  groupSize,
-  setGroupSize,
-  obligationCost,
-  setObligationCost,
-  dutyCost,
-  setDutyCost,
-  selectedObligations,
-  setSelectedObligations,
-  selectedDuties,
-  setSelectedDuties,
-  additionalObligation,
-  setAdditionalObligation,
-  additionalDuty,
-  setAdditionalDuty,
-  selectedStrength,
-  setSelectedStrength,
-  selectedWeakness,
-  setSelectedWeakness,
-  moralityCost,
-  setMoralityCost,
-  moralityBonus,
-  setMoralityBonus,
+  setState,
+  state: {
+    groupSize,
+    obligation,
+    duty,
+    morality,
+    selectedObligations,
+    selectedDuties,
+    additionalObligation,
+    additionalDuty,
+    obligationCost,
+    dutyCost,
+    moralityCost,
+    moralityBonus,
+    selectedStrength,
+    selectedWeakness,
+  },
 }: MotivationProps) => {
   function updateGroupSize(index: number) {
     async function changeGroupSize(index: number) {
-      await setGroupSize(index);
+      await setState("groupSize", index);
     }
     changeGroupSize(index);
     if (index <= 2) {
-      setObligationCost(20);
-      setDutyCost(20);
+      setState("obligationCost", 20);
+      setState("dutyCost", 20);
     } else if (index === 3) {
-      setObligationCost(15);
-      setDutyCost(15);
+      setState("obligationCost", 15);
+      setState("dutyCost", 15);
     } else if (index === 4 || index === 5) {
-      setObligationCost(10);
-      setDutyCost(10);
+      setState("obligationCost", 10);
+      setState("dutyCost", 10);
     } else if (index >= 6) {
-      setObligationCost(5);
-      setDutyCost(5);
+      setState("obligationCost", 5);
+      setState("dutyCost", 5);
     }
   }
 
@@ -116,45 +80,42 @@ const Motivation = ({
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      {/* <Text className={`text-box text-lg text-center font-[Elektra]`}>
-        You must select at least an Obligation, Duty, or Morality to continue.
-      </Text> */}
       <GroupSizeSlider groupSize={groupSize} setGroupSize={updateGroupSize} />
       <ObligationPicker
         obligations={Obligations}
         selectedObligations={selectedObligations}
-        setSelectedObligations={setSelectedObligations}
+        setSelectedObligations={(obligations) => setState("selectedObligations", obligations)}
         obligation={obligation}
-        setObligation={setObligation}
+        setObligation={(obligation) => setState("obligation", obligation)}
         additionalObligation={additionalObligation}
-        setAdditionalObligation={setAdditionalObligation}
+        setAdditionalObligation={(additionalObligation) => setState("additionalObligation", additionalObligation)}
         calculateObligationCost={calculateObligationCost}
         obligationCost={obligationCost}
       />
       <DutyPicker
         duties={Duties}
         selectedDuties={selectedDuties}
-        setSelectedDuties={setSelectedDuties}
+        setSelectedDuties={(duties) => setState("selectedDuties", duties)}
         duty={duty}
-        setDuty={setDuty}
+        setDuty={(duty) => setState("duty", duty)}
         additionalDuty={additionalDuty}
-        setAdditionalDuty={setAdditionalDuty}
+        setAdditionalDuty={(additionalDuty) => setState("additionalDuty", additionalDuty)}
         calculateDutyCost={calculateDutyCost}
         dutyCost={dutyCost}
       />
       <MoralityPicker
         morality={morality}
-        setMorality={setMorality}
+        setMorality={(morality) => setState("morality", morality)}
         strengths={MoralityStrengths}
-        setSelectedStrength={setSelectedStrength}
+        setSelectedStrength={(selectedStrength) => setState("selectedStrength", selectedStrength)}
         weaknesses={MoralityWeaknesses}
-        setSelectedWeakness={setSelectedWeakness}
+        setSelectedWeakness={(selectedWeakness) => setState("selectedWeakness", selectedWeakness)}
         moralityCost={moralityCost}
-        setMoralityCost={setMoralityCost}
+        setMoralityCost={(moralityCost) => setState("moralityCost", moralityCost)}
         obligation={obligation}
         duty={duty}
         moralityBonus={moralityBonus}
-        setMoralityBonus={setMoralityBonus}
+        setMoralityBonus={(moralityBonus) => setState("moralityBonus", moralityBonus)}
         selectedStrength={selectedStrength}
         selectedWeakness={selectedWeakness}
       />

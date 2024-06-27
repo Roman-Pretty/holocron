@@ -55,6 +55,7 @@ export interface Character {
       weakness: string;
       value: number;
     };
+    talents: Talent[];
     criticalInjuries: CriticalInjury[]
     statusEffects: StatusEffect[];
   };
@@ -85,6 +86,7 @@ export interface Species {
   speciesBonus: string;
 
   bonusSkills?: string[];
+  bonusTalents?: Talent[];
   options?: { type: string; options: string[] };
 }
 

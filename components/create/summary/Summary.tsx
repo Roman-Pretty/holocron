@@ -12,29 +12,23 @@ import DerivedAttributes from "./DerivedAttibutes";
 import IdentityCard from "./IdentityCard";
 import ImprovedSkills from "./ImprovedSkills";
 import PurchasedTalents from "./PurchasedTalents";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 
 interface SummaryProps {
-  name: string;
-  homeworld: string;
-  description: string;
-  species: Species | null;
-  career: Career | null;
-  specialization: Specialization | null;
-  characteristics: Characteristic[];
-  skills: Skill[];
-  portrait: ImageSourcePropType;
+  state: InitialPlayerStateInterface
 }
 
 const Summary = ({
-  name,
-  homeworld,
-  description,
-  species,
-  career,
-  specialization,
-  characteristics,
-  skills,
-  portrait,
+  state: {
+    name,
+    homeworld,
+    species,
+    portrait,
+    career,
+    specialization,
+    characteristics,
+    skills,
+  },
 }: SummaryProps) => {
   const screenWidth = Dimensions.get("window").width;
 

@@ -1,3 +1,4 @@
+import * as Talents from "@/constants/TalentData";
 export default [
   {
     species: "Aleena",
@@ -13,6 +14,7 @@ export default [
     speciesBonus:
       "Aleena begin the game with one rank in Coordination and Durable 1.",
     bonusSkills: ["Coordination"],
+    bonusTalents: [Talents.durable],
   },
   {
     species: "Anx",
@@ -30,6 +32,7 @@ export default [
     ],
     speciesBonus:
       "Anx begin the game with the talents Kill With Kindness 1 and Lethal Blows 1.",
+      bonusTalents: [Talents.killWithKindness, Talents.lethalBlows],
   },
   {
     species: "Aqualish",
@@ -173,6 +176,7 @@ export default [
     speciesBonus:
       "Bothans start with one rank in Streetwise, and Convincing Demeanor 1.",
     bonusSkills: ["Streetwise"],
+    bonusTalets: [Talents.convincingDemeanor],
   },
   {
     species: "Caamasi",
@@ -244,6 +248,7 @@ export default [
     speciesBonus:
       "Chagrians start with Knowledge Specialization 1 and one rank in Resilience.",
     bonusSkills: ["Resilience"],
+    bonusTalents: [Talents.knowledgeSpecialization],
   },
   {
     species: "Chevin",
@@ -261,6 +266,7 @@ export default [
     ],
     speciesBonus: "Chevin start with Durable 1 and one rank in Negotiation.",
     bonusSkills: ["Negotiation"],
+    bonusTalents: [Talents.durable],
   },
   {
     species: "Chiss",
@@ -296,6 +302,7 @@ export default [
     speciesBonus:
       "Clawdites start with Indistinguishable 1 and one rank in Resilience.",
     bonusSkills: ["Resilience"],
+    bonusTalents: [Talents.indistinguishable],
   },
   {
     species: "Clone",
@@ -311,6 +318,7 @@ export default [
     speciesBonus:
       "Clones start with Physical Training 1 and one rank in both Warfare and Resilience.",
     bonusSkills: ["Warfare", "Resilience"],
+    bonusTalets: [Talents.physicalTraining],
   },
   {
     species: "Corellian Human",
@@ -361,6 +369,7 @@ export default [
     speciesBonus:
       "Dathominians start with Outdoorsman 1 and one rank in both Coercion and Survival.",
     bonusSkills: ["Coercion", "Survival"],
+    bonusTalets: [Talents.outdoorsman],
   },
   {
     species: "Devaronian",
@@ -473,10 +482,6 @@ export default [
     startingXP: 175,
     specialAbilities: [
       {
-        name: "Additional Career Skills",
-        desc: "May train in two additional career skills and one additional specialization skills",
-      },
-      {
         name: "Feature",
         desc: "Droids do not need to eat, sleep, or breath, and are unaffected by vacuum, toxins, and poisons.",
       },
@@ -488,12 +493,9 @@ export default [
         name: "Mechanical Being",
         desc: "Droids cannot become Force sensitive, cannot acquire a Force Rating or Force powers, and are not affected by mind-altering Force powers.",
       },
-      {
-        name: "Cybernetics",
-        desc: "Droids have a cybernetics implant cap of 6.",
-      },
     ],
-    speciesBonus: "Droids start with Enduring 1.",
+    speciesBonus: "Droids start with Enduring 1, have a cybernetics implant cap of 6 and may train in two additional career skills and one additional specialization skills.",
+    bonusTalents: [Talents.enduring],
   },
   {
     species: "Dug",
@@ -509,8 +511,10 @@ export default [
         desc: "Dugs have no special abilities.",
       },
     ],
-    speciesBonus: "Dugs start with one rank in Brawl and with Defensive Driving 1.",
+    speciesBonus:
+      "Dugs start with one rank in Brawl and with Defensive Driving 1.",
     bonusSkills: ["Brawl"],
+    bonusTalent: [Talents.defensiveDriving],
   },
   {
     species: "Duros",
@@ -528,5 +532,5 @@ export default [
     ],
     speciesBonus: "Duros start with one rank in Piloting (Space).",
     bonusSkills: ["Piloting (Space)"],
-  }
+  },
 ];

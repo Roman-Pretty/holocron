@@ -1,36 +1,32 @@
 import Button from "@/components/form/Button";
-import { Characteristic, Skill, Species } from "@/types/Types";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 import React from "react";
 import { Text, View } from "react-native";
 import Animated from "react-native-reanimated";
 
 interface CharacteristicItemProps {
-  characteristic: Characteristic;
-  setCharacteristics: React.Dispatch<React.SetStateAction<Characteristic[]>>;
-  species: Species | null;
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
   index: number;
-  skills: Skill[];
 }
 
 const CharacteristicItem = ({
-  characteristic,
-  species,
-  index,
-  skills,
-  setCharacteristics,
+  state: {characteristics, skills, species},
+  setState,
+  index
 }: CharacteristicItemProps) => {
-  const [level, setLevel] = React.useState(characteristic.level);
+  const [level, setLevel] = React.useState(characteristics[index].level);
 
   function increaseLevel() {
     setLevel(level + 1);
-    characteristic.level += 1;
-    setCharacteristics((prev) => [...prev]);
+    characteristics[index].level += 1;
+    setState("characteristics", [...characteristics]);
   }
 
   function decreaseLevel() {
     setLevel(level - 1);
-    characteristic.level -= 1;
-    setCharacteristics((prev) => [...prev]);
+    characteristics[index].level -= 1;
+    setState("characteristics", [...characteristics]);
   }
 
   return (
@@ -45,15 +41,15 @@ const CharacteristicItem = ({
             className={`overflow-hidden rounded-full bg-white/20 items-center justify-center w-full h-full`}
           >
             <Text className="font-[Elektra] text-white text-5xl pt-1.5">
-              {characteristic.level}
+              {characteristics[index].level}
             </Text>
           </View>
         </View>
         <Text className="text-lg text-white font-[Elektra] mt-2 capitalize">
-          {characteristic.name}
+          {characteristics[index].name}
         </Text>
         <Text className="text-sm text-center text-white/80 mt-2">
-          {characteristic.desc}
+          {characteristics[index].desc}
         </Text>
 
         {/* Buttons */}
@@ -61,7 +57,7 @@ const CharacteristicItem = ({
           <Button
             title="Decrease"
             disabled={
-              species && characteristic.level <= species.characteristics[index]
+              species && characteristics[index].level <= species.characteristics[index]
                 ? true
                 : false
             }
@@ -70,7 +66,7 @@ const CharacteristicItem = ({
             textClassName={
               (
                 species &&
-                characteristic.level <= species.characteristics[index]
+                characteristics[index].level <= species.characteristics[index]
                   ? true
                   : false
               )
@@ -81,11 +77,11 @@ const CharacteristicItem = ({
           />
           <Button
             title="Increase"
-            disabled={characteristic.level >= 6}
+            disabled={characteristics[index].level >= 6}
             cName="ml-1 bg-transparent border-2 border-white rounded-sm"
             disabledClassName="border-white/20"
             textClassName={
-              characteristic.level >= 6 ? "text-white/20" : "text-white"
+              characteristics[index].level >= 6 ? "text-white/20" : "text-white"
             }
             onPress={increaseLevel}
           />
@@ -97,7 +93,7 @@ const CharacteristicItem = ({
           <Text key={index} className="capitalize">
             {skills
               .filter(
-                (skill) => skill.characteristic.name === characteristic.name
+                (skill) => skill.characteristic.name === characteristics[index].name
               )
               .map((skill) => skill.name)
               .join(", ")}

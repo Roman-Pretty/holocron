@@ -1,25 +1,21 @@
-import React from "react";
-import { View, Text } from "react-native";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
-import * as Progress from "react-native-progress";
-import { Species } from "@/types/Types";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 import { Ionicons } from "@expo/vector-icons";
+import React from "react";
+import { Text, View } from "react-native";
+import * as Progress from "react-native-progress";
 
 interface HeaderProps {
   currentIndex: number;
-  experience: number | null;
   PAGES: number;
-  species: Species | null;
-  credits: number | null;
+  state: InitialPlayerStateInterface
 }
 
 const Header = ({
   currentIndex,
-  experience,
   PAGES,
-  species,
-  credits,
+  state: { experience, species, credits }
 }: HeaderProps) => {
   const getPageTitle = () => {
     switch (currentIndex) {
@@ -55,8 +51,8 @@ const Header = ({
           <TriangleCorner
             style={{
               transform: [{ rotate: "90deg" }],
-              borderTopWidth: "34px",
-              borderRightWidth: "34px",
+              borderTopWidth: 34,
+              borderRightWidth: 34,
               borderTopColor: Colors.global.heading1,
             }}
           />
@@ -68,8 +64,8 @@ const Header = ({
           <TriangleCorner
             style={{
               transform: [{ rotate: "0deg" }],
-              borderTopWidth: "34px",
-              borderRightWidth: "34px",
+              borderTopWidth: 34,
+              borderRightWidth: 34,
               borderTopColor: Colors.global.heading1,
             }}
           />

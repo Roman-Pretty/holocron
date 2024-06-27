@@ -15,8 +15,8 @@ const Button = ({ cName, textClassName, disabledClassName, title, onPress, disab
     if (disabled) {
         return (
             <View style={{ flex: 1, padding: 0.5 }}>
-                <View className={twMerge("bg-heading3 p-2 flex flex-row items-center justify-center min-h-[4vh]", cName, disabledClassName)}>
-                    <Text className={twMerge("text-md text-black text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
+                <View className={twMerge("bg-heading3 p-2 flex flex-row items-center justify-center min-h-[4vh] rounded-sm", cName, disabledClassName)}>
+                    <Text className={twMerge("text-md text-black text-center font-bold uppercase", textClassName)}>{title}</Text>
                 </View>
             </View>
         );
@@ -28,9 +28,10 @@ const Button = ({ cName, textClassName, disabledClassName, title, onPress, disab
             style={({ pressed }) => [
                 { flex: 1, padding: 0.5, opacity: pressed ? 0.5 : 1 },
             ]}
+            hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}  
         >
-            <View className={twMerge("bg-heading1 p-2 flex flex-row items-center justify-center min-h-[4vh]", cName)}>
-                <Text className={twMerge("text-md text-white text-center uppercase font-[Elektra]", textClassName)}>{title}</Text>
+            <View className={twMerge("bg-heading1 p-2 flex flex-row items-center justify-center min-h-[4vh] rounded-sm", cName)}>
+                <Text className={twMerge("text-md text-white text-center font-bold uppercase", textClassName)}>{title}</Text>
             </View>
         </Pressable>
     );

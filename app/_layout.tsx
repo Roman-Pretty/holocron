@@ -30,7 +30,7 @@ export default function RootLayout() {
     Elektra: require("../assets/fonts/Elektra.otf"),
     ITC: require("../assets/fonts/ITC.otf"),
     swrpg: require("../assets/fonts/swrpg.otf"),
-    teuton: require("../assets/fonts/Teuton Mager Bold Italic.otf"),
+    teuton: require("../assets/fonts/Teuton Mager Regular.otf"),
     aurebesh: require("../assets/fonts/Aurebesh.otf"),
   });
 

@@ -29,8 +29,8 @@ const PortraitInput = ({
         <TriangleCorner
           style={{
             transform: [{ rotate: "-90deg" }],
-            borderTopWidth: "24px",
-            borderRightWidth: "24px",
+            borderTopWidth: 28,
+            borderRightWidth: 28,
             borderTopColor: Colors.global.heading3,
           }}
         />

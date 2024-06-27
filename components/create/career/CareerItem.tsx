@@ -79,14 +79,14 @@ const CareerItem: React.FC<CareerItemProps> = React.memo(
               title={`Selected ${career.name}`}
               disabled
               cName="mt-4 bg-white border border-white w-full items-center justify-center px-0  rounded-sm"
-              textClassName="text-center w-full"
+              textClassName="text-center w-full uppercase"
             />
           ) : (
             <Button
               title={`Select ${career.name}`}
               onPress={handleSelect}
               cName="mt-4 bg-transparent border border-white w-full items-center justify-center px-0  rounded-sm"
-              textClassName="text-center w-full"
+              textClassName="text-center w-full uppercase"
             />
           )}
         </View>

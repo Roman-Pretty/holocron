@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, Platform } from "react-native";
 import React from "react";
 import TriangleCorner from "@/components/shapes/TriangleCorner";
 import { Colors } from "@/constants/Colors";
@@ -104,7 +104,7 @@ const Stat = ({
         />
         <Text
           className="absolute font-[Elektra] text-slate-800 w-full text-center z-10"
-          style={{ left: 0, top: scale * 0.9, fontSize: scale * 2.8}}
+          style={{ left: 0, top: Platform.OS === 'ios' ? scale * 0.8 : scale * 0.5, fontSize: scale * 2.8}}
         >
           {value}
         </Text>

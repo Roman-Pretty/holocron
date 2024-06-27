@@ -3,44 +3,33 @@ import React from "react";
 import Button from "@/components/form/Button";
 import { Ionicons } from "@expo/vector-icons";
 import { Career, Skill, Specialization, Species } from "@/types/Types";
+import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
 
 interface SkillItemProps {
+  state: InitialPlayerStateInterface;
+  setState: (key: string, value: any) => void;
   skill: Skill;
-  career: Career | null;
-  specialization: Specialization | null;
-  checkedCareerSkills: { [key: string]: boolean };
-  checkedSpecializationSkills: { [key: string]: boolean };
   index: number;
-  skills: Skill[];
-  setSkills: React.Dispatch<React.SetStateAction<Skill[]>>;
-  species: Species | null;
-  selectedBonusSkill: string | null;
 }
 
 const SkillItem = ({
-  selectedBonusSkill,
-  species,
+  state: { skills, checkedCareerSkills, checkedSpecializationSkills, species, selectedBonusSkill },
+  setState,
   index,
   skill,
-  career,
-  specialization,
-  checkedCareerSkills,
-  checkedSpecializationSkills,
-  skills,
-  setSkills,
 }: SkillItemProps) => {
   const [level, setLevel] = React.useState(skill.level);
 
   function increaseLevel() {
     setLevel(level + 1);
     skill.level += 1;
-    setSkills((prev) => [...prev]);
+    setState("skills", [...skills]);
   }
 
   function decreaseLevel() {
     setLevel(level - 1);
     skill.level -= 1;
-    setSkills((prev) => [...prev]);
+    setState("skills", [...skills]);
   }
 
   function downDisabled() {
