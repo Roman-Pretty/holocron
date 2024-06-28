@@ -23,7 +23,7 @@ const CombatSkills = () => {
         elevation: 9,
       }}
     >
-      <View className=" mt-1 flex-row">
+      <View className="-mt-24 flex-row">
         <TriangleCorner
           style={{
             transform: [{ rotate: "180deg" }],

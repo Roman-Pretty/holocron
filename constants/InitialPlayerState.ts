@@ -22,7 +22,6 @@ interface InitialPlayerStateInterface {
   checkedCareerSkills: { [key: string]: boolean };
   checkedSpecializationSkills: { [key: string]: boolean };
   portrait: ImageSourcePropType;
-  selectedBonusSkill: string;
   characteristics: Characteristic[];
   skills: Skill[];
   obligation: boolean;
@@ -39,6 +38,7 @@ interface InitialPlayerStateInterface {
   moralityBonus: number;
   selectedStrength: Morality | null;
   selectedWeakness: Morality | null;
+  selectedSpeciesOption: string | null;
 }
 
 const InitialPlayerState: InitialPlayerStateInterface = {
@@ -53,7 +53,6 @@ const InitialPlayerState: InitialPlayerStateInterface = {
   checkedCareerSkills: {},
   checkedSpecializationSkills: {},
   portrait: require("@/assets/images/species/aqualish_0.png") as ImageSourcePropType,
-  selectedBonusSkill: "",
   characteristics: [
     { name: "brawn", level: 0, desc: "Brute power, strength, and overall toughness." },
     { name: "agility", level: 0, desc: "Manual dexterity, hand-eye coordination, and body control." },
@@ -113,6 +112,7 @@ const InitialPlayerState: InitialPlayerStateInterface = {
   moralityBonus: 0,
   selectedStrength: null,
   selectedWeakness: null,
+  selectedSpeciesOption: null,
 };
 
 export default InitialPlayerState;

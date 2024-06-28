@@ -41,9 +41,9 @@ const Page = () => {
         <Spacer />
         <Spacer />
         <Title title="Skills" />
+        <GeneralSkills />
         <CombatSkills />
         <SocialSkills />
-        <GeneralSkills />
         <KnowledgeSkills />
       </ScrollView>
       </KeyboardAvoidingView>

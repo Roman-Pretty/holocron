@@ -25,7 +25,7 @@ interface SpeciesListItem {
 }
 
 const SpeciesElement: React.FC<SpeciesProps> = ({
-  state: { species, selectedBonusSkill },
+  state: { species, selectedSpeciesOption },
   setState,
 }) => {
   const [loading, setLoading] = useState(true);
@@ -127,8 +127,8 @@ const SpeciesElement: React.FC<SpeciesProps> = ({
               key={speciesItem.species.species} // Ensure a unique key
               index={index}
               viewableItems={viewableItems}
-              setSelectedBonusSkill={(bonusSkill) =>
-                setState("selectedBonusSkill", bonusSkill)
+              setSelectedSpeciesOption={(selectedSpeciesOption) =>
+                setState("selectedSpeciesOption", selectedSpeciesOption)
               }
               species={speciesItem.species}
               selectedSpecies={species}

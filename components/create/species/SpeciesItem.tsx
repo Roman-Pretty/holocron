@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Image,
   ImageBackground,
   Text,
@@ -21,14 +22,14 @@ type SpeciesItemProps = {
   species: Species;
   selectedSpecies: Species | null;
   setSelectedSpecies: (species: Species) => void;
-  setSelectedBonusSkill: (skill: string) => void;
+  setSelectedSpeciesOption: (option: string) => void;
   viewableItems: Animated.SharedValue<ViewToken[]>;
   index: number;
 };
 
 const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
   ({
-    setSelectedBonusSkill,
+    setSelectedSpeciesOption,
     species,
     selectedSpecies,
     setSelectedSpecies,
@@ -101,6 +102,23 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
       );
     }, [species.characteristics]);
 
+    const showSubspeciesAlert = (species: any, setSelectedSpeciesOption: any) => {
+      const optionsArray = species?.options?.options || [];
+      const alertOptions = optionsArray.map((option: string, index: number) => ({
+        text: option,
+        style: "default",
+        onPress: () => {
+          setSelectedSpeciesOption(option);
+        },
+      }));
+    
+      Alert.alert(
+        "Subspecies",
+        "Please select a subspecies",
+        alertOptions,
+        { cancelable: true }
+      );
+    };
     return (
       <Animated.View
         className={`w-full bg-box mb-2 rounded-lg items-center`}
@@ -190,7 +208,43 @@ const SpeciesItem: React.FC<SpeciesItemProps> = React.memo(
           ) : (
             <Button
               title={`Select ${species.species}`}
-              onPress={handleSelect}
+              onPress={() => {
+                if (species.options) {
+                  if (species.options.type === "skill") {
+                    Alert.alert(
+                      "Bonus Skill",
+                      `Please select a skill to gain 1 rank in.`,
+                      [
+                        {
+                          text: species.options.options[0],
+                          style: "default",
+                          onPress: () => {
+                            if (species?.options) {
+                              setSelectedSpeciesOption(
+                                species?.options?.options[0]
+                              );
+                            }
+                          },
+                        },
+                        {
+                          text: species.options.options[1],
+                          style: "default",
+                          onPress: () => {
+                            if (species?.options) {
+                              setSelectedSpeciesOption(
+                                species?.options?.options[1]
+                              );
+                            }
+                          },
+                        },
+                      ]
+                    );
+                  } else if (species.options.type === "subspecies") {
+                    showSubspeciesAlert(species, setSelectedSpeciesOption);
+                  }
+                }
+                handleSelect();
+              }}
               cName="mt-4 bg-transparent border border-white w-full items-center justify-center px-0 rounded-sm"
               textClassName="text-center w-full uppercase"
             />

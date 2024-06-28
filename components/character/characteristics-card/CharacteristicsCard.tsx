@@ -28,11 +28,11 @@ const CombatSkills = () => {
             transform: [{ rotate: "180deg" }],
             borderTopWidth: 20,
             borderRightWidth: 20,
-            borderTopColor: Colors.global.box,
+            borderTopColor: Colors.global.neutral800,
           }}
         />
         <View
-          className="bg-box flex-1
+          className="bg-neutral-800 flex-1
       "
         />
         <TriangleCorner
@@ -40,12 +40,12 @@ const CombatSkills = () => {
             transform: [{ rotate: "-90deg" }],
             borderTopWidth: 20,
             borderRightWidth: 20,
-            borderTopColor: Colors.global.box,
+            borderTopColor: Colors.global.neutral800,
           }}
         />
       </View>
 
-      <View className="bg-box  pb-3 flex-row justify-evenly">
+      <View className="bg-neutral-800  pb-3 flex-row justify-evenly">
         <Characteristic
           borderWidth={1.6}
           title="Brawn"
@@ -89,16 +89,16 @@ const CombatSkills = () => {
             transform: [{ rotate: "90deg" }],
             borderTopWidth: 20,
             borderRightWidth: 20,
-            borderTopColor: Colors.global.box,
+            borderTopColor: Colors.global.neutral800,
           }}
         />
-        <View className="bg-box flex-1 flex-row items-center justify-start pl-2" />
+        <View className="bg-neutral-800 flex-1 flex-row items-center justify-start pl-2" />
         <TriangleCorner
           style={{
             transform: [{ rotate: "0deg" }],
             borderTopWidth: 20,
             borderRightWidth: 20,
-            borderTopColor: Colors.global.box,
+            borderTopColor: Colors.global.neutral800,
           }}
         />
       </View>

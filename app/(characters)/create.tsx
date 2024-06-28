@@ -80,6 +80,7 @@ const CreateCharacter = () => {
       const startingXP = state.species ? state.species.startingXP : 0;
       let xp = startingXP;
       if (state.species) {
+        if(state.species.species === "Dressellian" && state.selectedSpeciesOption === "Non-Primitive [5 Experience]") xp -= 5;
         for (const characteristic of state.characteristics) {
           switch (characteristic.name) {
             case "brawn":
@@ -151,7 +152,7 @@ const CreateCharacter = () => {
               ? 1
               : 0;
             let bonusSkillOption =
-              state.selectedBonusSkill === skill.name ? 1 : 0;
+              state.selectedSpeciesOption === skill.name ? 1 : 0;
             if (skill.career) {
               for (
                 let i = checked + 1 + bonusSkills + bonusSkillOption;
@@ -199,7 +200,7 @@ const CreateCharacter = () => {
     state.characteristics,
     state.checkedCareerSkills,
     state.checkedSpecializationSkills,
-    state.selectedBonusSkill,
+    state.selectedSpeciesOption,
     state.additionalObligation,
     state.additionalDuty,
     state.moralityBonus,
@@ -280,6 +281,23 @@ const CreateCharacter = () => {
     }
   };
 
+  const calculateTotalXp = () => {
+    let xp = state.species ? state.species.startingXP : 0;
+    if (state.obligation) {
+      if (state.additionalObligation[0]) xp += 5;
+      if (state.additionalObligation[1]) xp += 10;
+    }
+    if (state.duty) {
+      if (state.additionalDuty[0]) xp += 5;
+      if (state.additionalDuty[1]) xp += 10;
+    }
+    if (state.morality && !state.duty && !state.obligation) {
+      if (state.moralityBonus === 0) xp += 10;
+      if (state.moralityBonus === 2) xp += 5;
+    }
+    return xp;
+  }
+
   const onSavePressed = () => {
     async function save() {
       const newCharacter: Character = {
@@ -290,7 +308,7 @@ const CreateCharacter = () => {
           description: state.description,
           species: state.species ? state.species : SpeciesData[0],
           experience: {
-            total: state.species?.startingXP ?? 0,
+            total: calculateTotalXp(),
             available: state.experience,
           },
           career: state.career ? state.career : CareerData[0],

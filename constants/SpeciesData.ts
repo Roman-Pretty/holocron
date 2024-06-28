@@ -466,10 +466,9 @@ export default [
     ],
     speciesBonus: "Dressellians start with one rank in Survival.",
     bonusSkills: ["Survival"],
-    //TODO: Implement XP Cost
     options: {
       type: "subspecies",
-      options: ["Primitive", "Non-Primitive"],
+      options: ["Primitive", "Non-Primitive [5 Experience]"],
     },
   },
   {
