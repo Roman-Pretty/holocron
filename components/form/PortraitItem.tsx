@@ -4,9 +4,10 @@ import { Image, View, Pressable, ImageSourcePropType } from 'react-native';
 interface PortraitItemProps {
     image: any;
     handleSelect: (image: ImageSourcePropType) => void;
+    handleLongPress?: (image: ImageSourcePropType) => void;
 }
 
-const PortraitItem = ({ image, handleSelect }: PortraitItemProps) => {
+const PortraitItem = ({ image, handleSelect, handleLongPress }: PortraitItemProps) => {
     return (
         <Pressable
             onPress={() => handleSelect(image)}
@@ -15,6 +16,7 @@ const PortraitItem = ({ image, handleSelect }: PortraitItemProps) => {
                     opacity: pressed ? 0.5 : 1,
                 },
             ]}
+            onLongPress={() => handleLongPress && handleLongPress(image)}
         >
             <View className='rounded-lg bg-white shadow-black shadow-sm  m-1'>
                 <View className='w-[24vw] h-[24vw] overflow-hidden rounded-lg'>

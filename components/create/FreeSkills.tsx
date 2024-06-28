@@ -49,7 +49,6 @@ const FreeSkills = ({
         [s]: !checkedCareerSkills[s],
       };
 
-      console.log(updatedCheckedCareerSkills);
       return updatedCheckedCareerSkills;
     }
     setState("checkedCareerSkills", calculateNewCareerSkills());
@@ -85,7 +84,6 @@ const FreeSkills = ({
         [s]: !checkedSpecializationSkills[s],
       };
 
-      console.log(updatedCheckedSpecializationSkills);
       return updatedCheckedSpecializationSkills;
     }
     setState("checkedSpecializationSkills", calculateNewSpecializationSkills());

@@ -43,8 +43,8 @@ const Page = () => {
         <Title title="Skills" />
         <CombatSkills />
         <SocialSkills />
-        <KnowledgeSkills />
         <GeneralSkills />
+        <KnowledgeSkills />
       </ScrollView>
       </KeyboardAvoidingView>
     </ImageWrapper>

@@ -69,6 +69,7 @@ const ObligationPicker: React.FC<ObligationPickerProps> = ({
             className={`text-xl font-[Elektra] pt-0.5 ${
               obligation ? "text-white" : "text-gray-300"
             }`}
+            style={{verticalAlign: 'middle'}}
           >
             Obligation
           </Text>

@@ -44,7 +44,7 @@ const LabelledTextInput = ({ title, placeholder, setText, text, maxChar, iconNam
                     borderTopWidth: 28, borderRightWidth: 28, borderTopColor: Colors.global.heading3,
                 }} />
             </View>
-            <View className={`flex-row justify-between pt-2 pr-2 mb-[1.5vh] w-full ${!multiLine ? 'h-10 items-start ' : 'h-[14vh] items-end'} border-2 border-heading3 bg-white`}>
+            <View className={`flex-row justify-between pt-2 pr-2 mb-[1.5vh] w-full ${!multiLine ? 'h-10 items-start ' : 'h-24 items-end'} border-2 border-heading3 bg-white`}>
                 <TextInput
                     className='w-[75%] text-black h-full pb-2 mb-1 ml-2'
                     placeholderTextColor={'#000'}

@@ -29,17 +29,6 @@ const IdentityCard = ({
     <>
       <View
         className="w-full border-t-2 border-x-2 border-heading3 p-2 bg-sky-300/20"
-        style={{
-          shadowColor: Colors.global.heading3,
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 3.84,
-
-          elevation: 5,
-        }}
       >
         <View className="flex-row h-[28vw]">
           <View className="w-[28vw]  overflow-hidden border-2 border-heading3">
@@ -89,17 +78,6 @@ const IdentityCard = ({
       <View className="flex-row bg-sky-300/20">
         <View
           className="border-l-2 border-heading3 px-2 pb-2 flex-1"
-          style={{
-            shadowColor: Colors.global.heading3,
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-
-            elevation: 5,
-          }}
         >
           <View className="flex-row h-[14vw]">
             <View className="w-[14vw]  overflow-hidden border-2 border-heading3 p-2">

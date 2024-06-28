@@ -46,7 +46,7 @@ const GeneralSkills = () => {
           }}
         />
       </View>
-      <View className="bg-box  pt-2">
+      <View className="bg-box pb-20  pt-2">
       <View className="w-full p-2 flex-row">
           <Text className="text-white text-base font-[Elektra] text-start capitalize] w-5/12">
             Skill

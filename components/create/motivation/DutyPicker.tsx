@@ -69,6 +69,7 @@ const DutyPicker: React.FC<DutyPickerProps> = ({
             className={`text-xl font-[Elektra] pt-0.5 ${
               duty ? "text-white" : "text-gray-300"
             }`}
+            style={{verticalAlign: 'middle'}}
           >
             Duty
           </Text>
