@@ -1,7 +1,7 @@
 import { Career, Characteristic, Skill, Specialization } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Platform } from "react-native";
 
 interface SkillItemProps {
   index: number;
@@ -67,14 +67,14 @@ const DicePool = ({
     diePool[1] = level - characteristicLevel;
   }
   return (
-    <>
-      <Text className="font-[swrpg] text-yellow-300 text-xs" style={{verticalAlign: 'bottom'}}>
-        {Array.from({ length: diePool[0] }).map((_, i) => "c")}
-      </Text>
-      <Text className="font-[swrpg] text-green-600 text-xs" style={{verticalAlign: 'bottom'}}>
-        {Array.from({ length: diePool[1] }).map((_, i) => "d")}
-      </Text>
-    </>
+    <Text style={{ fontFamily: 'swrpg', fontSize: 13 }}>
+    <Text style={{ color: 'yellow' }}>
+      {Array.from({ length: diePool[0] }).map((_, i) => "c")}
+    </Text>
+    <Text className="text-green-600">
+      {Array.from({ length: diePool[1] }).map((_, i) => "d")}
+    </Text>
+  </Text>
   );
 };
 
@@ -90,16 +90,27 @@ const SkillItem = ({
   return (
     <View className={`${index % 2 === 1 ? " " : "bg-black/20"} px-2 flex-row`}>
       <View className="flex flex-row justify-between w-full items-center">
-        <Text className="text-white text-sm font-semibold capitalize] w-5/12" style={{verticalAlign: 'middle'}}>
-          {skill.name === "Piloting (Planetary)" ? "Piloting (Planet)" : skill.name}{" "}
+        <Text
+          className="text-white text-sm font-semibold capitalize] w-5/12"
+          style={{ verticalAlign: "middle" }}
+        >
+          {skill.name === "Piloting (Planetary)"
+            ? "Piloting (Planet)"
+            : skill.name}{" "}
           <Text className="font-light capitalize">
             ({skill.characteristic.name.substring(0, 3)})
           </Text>
         </Text>
-        <Text className="text-white text-xl text-center w-3/12" style={{verticalAlign: 'bottom'}}>
+        <Text
+          className="text-white text-xl text-center w-3/12"
+          style={{ verticalAlign: "bottom" }}
+        >
           <DicePool skill={skill} characteristics={characteristics} />
         </Text>
-        <Text className="text-white text-base text-center font-semibold w-2/12" style={{verticalAlign: 'middle'}}>
+        <Text
+          className="text-white text-base text-center font-semibold w-2/12"
+          style={{ verticalAlign: "middle" }}
+        >
           {level === 0 ? "-" : level}
         </Text>
         <View className="w-2/12 items-center justify-center">

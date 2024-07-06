@@ -22,7 +22,6 @@ const SkillItem = ({
   const [level, setLevel] = React.useState(skill.level);
 
   function increaseLevel() {
-    console.log(character?.data.skills.find((s)=>(s.name===skill.name))?.level ?? 0)
     setLevel(level + 1);
     newSkills[index].level += 1;
     setNewSkills([...newSkills]);
@@ -35,7 +34,10 @@ const SkillItem = ({
   }
 
   function downDisabled() {
-    return skill.level <= (character?.data.skills.find((s)=>(s.name===skill.name))?.level ?? 0); // add null check and default value of 0
+    return (
+      skill.level <=
+      (character?.data.skills.find((s) => s.name === skill.name)?.level ?? 0)
+    ); // add null check and default value of 0
   }
 
   return (
