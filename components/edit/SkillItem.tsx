@@ -1,57 +1,41 @@
-import { View, Text } from "react-native";
-import React from "react";
 import Button from "@/components/form/Button";
+import { CharacterContext } from "@/contexts/CharacterContext";
+import { Skill } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
-import { Career, Skill, Specialization, Species } from "@/types/Types";
-import { InitialPlayerStateInterface } from "@/constants/InitialPlayerState";
+import React from "react";
+import { Text, View } from "react-native";
 
 interface SkillItemProps {
-  state: InitialPlayerStateInterface;
-  setState: (key: string, value: any) => void;
+  setNewSkills: (skills: Skill[]) => void;
+  newSkills: Skill[];
   skill: Skill;
   index: number;
 }
 
 const SkillItem = ({
-  state: { skills, checkedCareerSkills, checkedSpecializationSkills, species, selectedSpeciesOption },
-  setState,
+  setNewSkills,
+  newSkills,
   index,
   skill,
 }: SkillItemProps) => {
+  const { character, setCharacter } = React.useContext(CharacterContext);
   const [level, setLevel] = React.useState(skill.level);
 
   function increaseLevel() {
+    console.log(character?.data.skills.find((s)=>(s.name===skill.name))?.level ?? 0)
     setLevel(level + 1);
-    skill.level += 1;
-    setState("skills", [...skills]);
+    newSkills[index].level += 1;
+    setNewSkills([...newSkills]);
   }
 
   function decreaseLevel() {
     setLevel(level - 1);
-    skill.level -= 1;
-    setState("skills", [...skills]);
+    newSkills[index].level -= 1;
+    setNewSkills([...newSkills]);
   }
 
   function downDisabled() {
-    return (checkedCareerSkills[skill.name] ||
-      checkedSpecializationSkills[skill.name] ||
-      (species &&
-        species.bonusSkills &&
-        species.bonusSkills.includes(skill.name)) ||
-        selectedSpeciesOption === skill.name) &&
-      skill.level <=
-        (checkedCareerSkills[skill.name] ? 1 : 0) +
-          (checkedSpecializationSkills[skill.name] ? 1 : 0) +
-          (species &&
-          species.bonusSkills &&
-          species.bonusSkills.includes(skill.name)
-            ? 1
-            : 0) +
-          (selectedSpeciesOption === skill.name ? 1 : 0)
-      ? true
-      : skill.level <= 0
-      ? true
-      : false;
+    return skill.level <= (character?.data.skills.find((s)=>(s.name===skill.name))?.level ?? 0); // add null check and default value of 0
   }
 
   return (
@@ -80,9 +64,9 @@ const SkillItem = ({
           title="+"
           cName="ml-1 border-white border-2 bg-transparent rounded-sm w-10 h-10 items-center justify-center"
           onPress={increaseLevel}
-          textClassName={skill.level >= 2 ? "text-white/20" : "text-white"}
+          textClassName={skill.level >= 6 ? "text-white/20" : "text-white"}
           disabledClassName="border-white/20"
-          disabled={skill.level >= 2}
+          disabled={skill.level >= 6}
         />
       </View>
     </View>

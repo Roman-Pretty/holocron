@@ -1,7 +1,7 @@
 import { Feather } from "@expo/vector-icons";
 import { router, Stack } from "expo-router";
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { Colors } from "@/constants/Colors";
 
 export default function TabLayout() {
@@ -19,7 +19,11 @@ export default function TabLayout() {
             backgroundColor: Colors.global.box,
           },
           headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
+            <TouchableOpacity
+            onPress={() => 
+              router.back()
+            }
+            >
               <Feather name="chevron-left" size={32} color="white" />
             </TouchableOpacity>
           ),
