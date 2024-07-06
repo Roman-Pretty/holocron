@@ -183,6 +183,11 @@ const App = ({
     require("@/assets/images/species/dug_0.png"),
     require("@/assets/images/species/duros_0.png"),
     require("@/assets/images/species/duros_1.png"),
+    require("@/assets/images/species/elom_0.png"),
+    require("@/assets/images/species/elomin_0.png"),
+    require("@/assets/images/species/falleen_0.png"),
+    require("@/assets/images/species/gand_0.png"),
+    require("@/assets/images/species/gand_1.png"),
   ];
 
   // Combine initial images and uploaded images

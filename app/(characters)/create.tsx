@@ -81,6 +81,7 @@ const CreateCharacter = () => {
       let xp = startingXP;
       if (state.species) {
         if(state.species.species === "Dressellian" && state.selectedSpeciesOption === "Non-Primitive [5 Experience]") xp -= 5;
+        if(state.species.species === "Gand" && state.selectedSpeciesOption === "Has Lungs [+10 Experience]") xp += 10;
         for (const characteristic of state.characteristics) {
           switch (characteristic.name) {
             case "brawn":

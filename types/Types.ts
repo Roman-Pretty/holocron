@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from "react-native";
+import { Item } from "./ItemTypes";
 
 export interface Character {
   key: number;
@@ -88,6 +89,7 @@ export interface Species {
   bonusSkills?: string[];
   bonusTalents?: Talent[];
   options?: { type: string; options: string[] };
+  items?: Item[];
 }
 
 export interface Career {

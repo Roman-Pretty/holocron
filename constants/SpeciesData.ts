@@ -1,4 +1,5 @@
 import * as Talents from "@/constants/TalentData";
+import * as Items from "@/constants/Items";
 export default [
   {
     species: "Aleena",
@@ -32,7 +33,7 @@ export default [
     ],
     speciesBonus:
       "Anx begin the game with the talents Kill With Kindness 1 and Lethal Blows 1.",
-      bonusTalents: [Talents.killWithKindness, Talents.lethalBlows],
+    bonusTalents: [Talents.killWithKindness, Talents.lethalBlows],
   },
   {
     species: "Aqualish",
@@ -493,7 +494,8 @@ export default [
         desc: "Droids cannot become Force sensitive, cannot acquire a Force Rating or Force powers, and are not affected by mind-altering Force powers.",
       },
     ],
-    speciesBonus: "Droids start with Enduring 1, have a cybernetics implant cap of 6 and may train in two additional career skills and one additional specialization skills.",
+    speciesBonus:
+      "Droids start with Enduring 1, have a cybernetics implant cap of 6 and may train in two additional career skills and one additional specialization skills.",
     bonusTalents: [Talents.enduring],
   },
   {
@@ -531,5 +533,78 @@ export default [
     ],
     speciesBonus: "Duros start with one rank in Piloting (Space).",
     bonusSkills: ["Piloting (Space)"],
+  },
+  {
+    species: "Elom",
+    image: require("@/assets/images/species/elom_0.png"),
+    desc: "Eloms are stocky and covered in fur, and have a large head with widespread eyes",
+    characteristics: [3, 2, 2, 2, 2, 1],
+    woundThreshold: 10,
+    strainThreshold: 9,
+    startingXP: 100,
+    specialAbilities: [
+      {
+        name: "Digging Claws",
+        desc: "Elom may use a move maneuver to travel through loose soil or similar terrain. Can result in low, narrow tunnel that others can use, at GM's discretion.",
+      },
+    ],
+    speciesBonus: "Eloms start with one rank in Resilience.",
+    bonusSkills: ["Resilience"],
+  },
+  {
+    species: "Elomin",
+    image: require("@/assets/images/species/elomin_0.png"),
+    desc: "The Elomin are tall humanoids with thin heads crowned by four distinctive horns.",
+    characteristics: [2, 2, 3, 2, 1, 2],
+    woundThreshold: 9,
+    strainThreshold: 10,
+    startingXP: 105,
+    specialAbilities: [
+      {
+        name: "None",
+        desc: "Elomin have no special abilities.",
+      },
+    ],
+    speciesBonus: "Elomin start with one rank in both Charm and Education.",
+    bonusSkills: ["Charm", "Education"],
+  },
+  {
+    species: "Falleen",
+    image: require("@/assets/images/species/falleen_0.png"),
+    desc: "Alluring reptilian humanoids with skin of supple scales in tones ranging from deep green to a dull gray-green hue.",
+    characteristics: [1, 2, 2, 2, 2, 3],
+    woundThreshold: 10,
+    strainThreshold: 12,
+    startingXP: 90,
+    specialAbilities: [
+      {
+        name: "Beguiling Pheromones",
+        desc: "Once per check as an incidental, may suffer 2 strain to upgrade ability of Charm, Deception, or Negotiation check against living, sentient being within short range. No effect if wearing breath mask or having no respiratory system.",
+      },
+    ],
+    speciesBonus: "Falleen start with one rank in Charm.",
+    bonusSkills: ["Charm"],
+  },
+  {
+    species: "Gand",
+    image: require("@/assets/images/species/gand_0.png"),
+    desc: "Gands are a species with a unique respiratory system that requires them to wear a breath mask.",
+    characteristics: [2, 2, 2, 2, 3, 1],
+    woundThreshold: 10,
+    strainThreshold: 10,
+    startingXP: 100,
+    specialAbilities: [
+      {
+        name: "Atmospheric Independence",
+        desc: "Lungless Gands do not need to breathe, and are immune to inhaled toxins, poisons and suffocation.",
+      },
+    ],
+    speciesBonus: "Gands start with one rank in Discpline.",
+    bonusSkills: ["Discipline"],
+    options: {
+      type: "subspecies",
+      options: ["Lungless", "Has Lungs [+10 Experience]"],
+    },
+    items: [Items.BreathMask],
   },
 ];
