@@ -1,10 +1,11 @@
 import CharacterCard from "@/components/CharacterCard";
 import ImageWrapper from "@/components/ImageWrapper";
 import Button from "@/components/form/Button";
+import { Colors } from "@/constants/Colors";
+import { loadCharacters } from "@/storage/CharacterStorage";
 import { Character } from "@/types/Types";
-import { loadCharacters, deleteAllCharacters } from "@/storage/CharacterStorage";
 import { router, useFocusEffect } from "expo-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   ActivityIndicator,
   Dimensions,
@@ -13,7 +14,6 @@ import {
   Text,
   View
 } from "react-native";
-import { Colors } from "@/constants/Colors";
 
 const createcharacter = () => {
   const screenWidth = Dimensions.get("window").width;

@@ -63,6 +63,30 @@ const DrawerComponent = (props: DrawerContentComponentProps) => {
             router.replace("(characters)");
           }}
         />
+          <DrawerItem
+            label={"Edit Character"}
+            icon={({ color, size }) => (
+              <Ionicons name="create" size={size} color={"#fff"} />
+            )}
+            labelStyle={{
+              color: "#fff",
+              fontFamily: "Elektra",
+            }}
+            onPress={() => {
+              router.push("(edit)");
+            }}
+          />
+        <DrawerItem
+          label={"Award Experience"}
+          icon={({ color, size }) => (
+            <Ionicons name="arrow-up-circle" size={size} color={"#fff"} />
+          )}
+          labelStyle={{
+            color: "#fff",
+            fontFamily: "Elektra",
+          }}
+          onPress={() => {}}
+        />
       </View>
       <SafeAreaView>
         <DrawerItem
