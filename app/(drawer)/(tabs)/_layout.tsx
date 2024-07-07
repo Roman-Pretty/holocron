@@ -61,9 +61,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="obligation"
+        name="motivation"
         options={{
-          title: "OBLIGATION",
+          title: "MOTIVATION",
           tabBarIcon: ({ color }) => (
             <Ionicons size={28} name="dice" color={color} />
           ),

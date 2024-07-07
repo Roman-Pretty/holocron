@@ -1,7 +1,7 @@
-import { Career, Characteristic, Skill, Specialization } from "@/types/Types";
+import { Career, Skill, Specialization } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Text, View, Platform } from "react-native";
+import { Text, View } from "react-native";
 
 interface SkillItemProps {
   index: number;
@@ -67,26 +67,22 @@ const DicePool = ({
     diePool[1] = level - characteristicLevel;
   }
   return (
-    <Text style={{ fontFamily: 'swrpg', fontSize: 13 }}>
-    <Text style={{ color: 'yellow' }}>
-      {Array.from({ length: diePool[0] }).map((_, i) => "c")}
+    <Text style={{ fontFamily: "swrpg", fontSize: 13 }}>
+      <Text style={{ color: "yellow" }}>
+        {Array.from({ length: diePool[0] }).map((_, i) => "c")}
+      </Text>
+      <Text className="text-green-600">
+        {Array.from({ length: diePool[1] }).map((_, i) => "d")}
+      </Text>
     </Text>
-    <Text className="text-green-600">
-      {Array.from({ length: diePool[1] }).map((_, i) => "d")}
-    </Text>
-  </Text>
   );
 };
 
 const SkillItem = ({
   skill,
-  career,
-  specializations,
   index,
   characteristics,
 }: SkillItemProps) => {
-  const [level, setLevel] = React.useState(skill.level);
-
   return (
     <View className={`${index % 2 === 1 ? " " : "bg-black/20"} px-2 flex-row`}>
       <View className="flex flex-row justify-between w-full items-center">
@@ -111,7 +107,7 @@ const SkillItem = ({
           className="text-white text-base text-center font-semibold w-2/12"
           style={{ verticalAlign: "middle" }}
         >
-          {level === 0 ? "-" : level}
+          {skill.level === 0 ? "-" : skill.level}
         </Text>
         <View className="w-2/12 items-center justify-center">
           {skill.career && (

@@ -94,7 +94,7 @@ export default function PaginationDotsExample() {
 
         // Update the state with the new character object
         setCharacter(updatedCharacter);
-        await saveCharacter(character);
+        saveCharacter(updatedCharacter);
       }
     }
 
@@ -122,6 +122,7 @@ export default function PaginationDotsExample() {
   const [newSkills, setNewSkills] = useState(
     JSON.parse(JSON.stringify(character?.data.skills ?? []))
   );
+  const [newSpecializations, setNewSpecializations] = useState([]);
 
   function calculateExperience() {
     let total = character?.data.experience.available ?? 0;
@@ -228,7 +229,7 @@ export default function PaginationDotsExample() {
               {key === "1" && (
                 <Skills setNewSkills={setNewSkills} newSkills={newSkills} />
               )}
-              {key === "2" && <Specializations />}
+              {key === "2" && <Specializations newSpecializations={newSpecializations} setNewSpecializations={setNewSpecializations} />}
             </View>
           ))}
         </AnimatedPagerView>
