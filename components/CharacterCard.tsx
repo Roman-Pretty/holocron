@@ -31,7 +31,7 @@ const CharacterCard: React.FC<CharacterCardProps> = ({
   useEffect(() => {
     if (navigate) {
       setTimeout(() => {
-        router.push("(tabs)" as never);
+        router.replace("(tabs)" as never);
         setCharacter(char);
         setNavigate(false);
         setBorderSize(4);

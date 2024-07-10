@@ -10,13 +10,17 @@ export default function TabLayout() {
       <Stack.Screen
         name="index"
         options={{
+          headerShadowVisible: false,
           headerShown: true,
           title: "Edit Character",
           headerTitleStyle: {
             fontFamily: "Elektra",
+            color: "white",
           },
           headerStyle: {
             backgroundColor: Colors.global.box,
+            //@ts-ignore
+            borderBottomWidth: 0,
           },
           headerLeft: () => (
             <TouchableOpacity

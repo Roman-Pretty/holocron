@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
-import React, { useState } from "react";
+import { Colors } from "@/constants/Colors";
+import { CharacterContext } from "@/contexts/CharacterContext";
 import { Career, Specialization } from "@/types/Types";
 import { Ionicons } from "@expo/vector-icons";
-import { CharacterContext } from "@/contexts/CharacterContext";
-import { Colors } from "@/constants/Colors";
+import React, { useEffect, useState } from "react";
+import { Pressable, Text, View } from "react-native";
 
 const CareerDropdown = ({
   newSpecializations,
@@ -42,27 +42,6 @@ const CareerDropdown = ({
     return newSpecializations.some((s) => s.name === spec.name);
   }
 
-  function calculateCost(spec: Specialization) {
-    if (
-      character &&
-      character.data.specializations.some((s) => s.name === spec.name)
-    )
-      return (character.data.specializations.indexOf(spec) + 1) * 10;
-    if (isSpecializationSelected(spec))
-      return (
-        (newSpecializations.indexOf(spec) +
-          (character?.data?.specializations.length ?? 0) +
-          1) *
-        10
-      );
-    return (
-      10 *
-      (newSpecializations.length +
-        (character?.data?.specializations.length ?? 0) +
-        1)
-    );
-  }
-
   const { character, setCharacter } = React.useContext(CharacterContext);
 
   return (
@@ -81,7 +60,7 @@ const CareerDropdown = ({
         hitSlop={{ top: 16, bottom: 16, left: 16, right: 16 }}
         onPress={toggleExpand}
       >
-        <Text className="text-xl text-white font-[Elektra]">
+        <Text className="text-xs uppercase text-white font-bold">
           {career.name}{" "}
           {character?.data.career.name === career.name && "(Career)"}
         </Text>
@@ -122,16 +101,6 @@ const CareerDropdown = ({
                 (s: Specialization) => s.name === spec.name
               ) ? (
                 <>
-                  <View className="flex-row items-center opacity-50">
-                    <Ionicons
-                      size={16}
-                      name="locate"
-                      color={Colors.global.boxheading}
-                    />
-                    <Text className="text-boxheading font-bold text-right pl-1">
-                      {calculateCost(spec)}
-                    </Text>
-                  </View>
                   <Ionicons
                     size={24}
                     name="checkbox"
@@ -140,26 +109,10 @@ const CareerDropdown = ({
                 </>
               ) : isSpecializationSelected(spec) ? (
                 <>
-                  <View className="flex-row items-center opacity-50">
-                    <Ionicons
-                      size={16}
-                      name="locate"
-                      color={Colors.global.boxheading}
-                    />
-                    <Text className="text-boxheading font-bold text-right pl-1">
-                      {calculateCost(spec)}
-                    </Text>
-                  </View>
                   <Ionicons size={24} name="checkbox" color="#fff" />
                 </>
               ) : (
                 <>
-                  <View className="flex-row items-center">
-                    <Ionicons size={16} name="locate" color="#fff" />
-                    <Text className="text-white font-bold text-right pl-1">
-                      {calculateCost(spec)}
-                    </Text>
-                  </View>
                   <Ionicons size={24} name="square-outline" color="#fff" />
                 </>
               )}

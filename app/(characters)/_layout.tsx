@@ -14,6 +14,7 @@ export default function TabLayout() {
           title: "Select Character",
           headerTitleStyle: {
             fontFamily: "Elektra",
+            color: "white",
           },
           headerStyle: {
             backgroundColor: Colors.global.heading1,
@@ -32,6 +33,7 @@ export default function TabLayout() {
           title: "Create Character",
           headerTitleStyle: {
             fontFamily: "Elektra",
+            color: "white",
           },
           headerStyle: {
             backgroundColor: Colors.global.heading2,

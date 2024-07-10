@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import {
   Alert,
   Animated,
@@ -7,20 +7,18 @@ import {
   Text,
   View,
 } from "react-native";
-import PagerView, {
-  PagerViewOnPageScrollEventData,
-} from "react-native-pager-view";
-
+import PagerView from "react-native-pager-view";
 import ImageWrapper from "@/components/ImageWrapper";
 import Skills from "@/components/edit/Skills";
 import Specializations from "@/components/edit/Specializations";
-import TriangleCorner from "@/components/shapes/TriangleCorner";
-import { Colors } from "@/constants/Colors";
-import { CharacterContext } from "@/contexts/CharacterContext";
+import Talents from "@/components/edit/talents/Talents";
 import { Ionicons } from "@expo/vector-icons";
 import { ScalingDot } from "react-native-animated-pagination-dots";
-import { router, useNavigation } from "expo-router";
+import { Colors } from "@/constants/Colors";
+import { CharacterContext } from "@/contexts/CharacterContext";
 import { saveCharacter } from "@/storage/CharacterStorage";
+import { Specialization } from "@/types/Types";
+import { useNavigation } from "expo-router";
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
@@ -41,9 +39,9 @@ let INTRO_DATA = [
 
 export default function PaginationDotsExample() {
   const width = Dimensions.get("window").width;
-  const ref = React.useRef<PagerView>(null);
-  const scrollOffsetAnimatedValue = React.useRef(new Animated.Value(0)).current;
-  const positionAnimatedValue = React.useRef(new Animated.Value(0)).current;
+  const ref = useRef<PagerView>(null);
+  const scrollOffsetAnimatedValue = useRef(new Animated.Value(0)).current;
+  const positionAnimatedValue = useRef(new Animated.Value(0)).current;
   const inputRange = [0, INTRO_DATA.length];
   const scrollX = Animated.add(
     scrollOffsetAnimatedValue,
@@ -55,7 +53,7 @@ export default function PaginationDotsExample() {
 
   const onPageScroll = React.useMemo(
     () =>
-      Animated.event<PagerViewOnPageScrollEventData>(
+      Animated.event(
         [
           {
             nativeEvent: {
@@ -72,59 +70,28 @@ export default function PaginationDotsExample() {
   );
 
   const navigation = useNavigation();
+  const { character, setCharacter } = useContext(CharacterContext);
 
-  // Effect
-  useEffect(() => {
-    async function save() {
-      if (character) {
-        const updatedExperience = calculateExperience();
-
-        // Create a new character object with updated skills and experience
-        const updatedCharacter = {
-          ...character,
-          data: {
-            ...character.data,
-            skills: [...newSkills], // Create a new array for skills
-            experience: {
-              ...character.data.experience,
-              available: updatedExperience,
-            },
-          },
-        };
-
-        // Update the state with the new character object
-        setCharacter(updatedCharacter);
-        saveCharacter(updatedCharacter);
-      }
-    }
-
-    navigation.addListener("beforeRemove", (e) => {
-      e.preventDefault();
-      Alert.alert("Save Changes", "Do you want to save changes?", [
-        {
-          text: "No",
-          style: "destructive",
-          onPress: () => {},
-        },
-        {
-          text: "Yes",
-          onPress: () => {
-            console.log("Changes saved");
-            save();
-          },
-        },
-      ]);
-      navigation.dispatch(e.data.action);
-    });
-  }, []);
-
-  const { character, setCharacter } = React.useContext(CharacterContext);
   const [newSkills, setNewSkills] = useState(
     JSON.parse(JSON.stringify(character?.data.skills ?? []))
   );
-  const [newSpecializations, setNewSpecializations] = useState([]);
+  const [newSpecializations, setNewSpecializations] = useState<
+    Specialization[]
+  >([]);
+  const [allSpecializations, setAllSpecializations] = useState<
+    Specialization[]
+  >([]);
 
-  function calculateExperience() {
+  useEffect(() => {
+    if (character) {
+      setAllSpecializations([
+        ...character.data.specializations,
+        ...newSpecializations,
+      ]);
+    }
+  }, [newSpecializations, character]);
+
+  const calculateExperience = () => {
     let total = character?.data.experience.available ?? 0;
     for (const skill of newSkills) {
       if (
@@ -142,22 +109,66 @@ export default function PaginationDotsExample() {
         }
       }
     }
+    for (let i = 0; i < newSpecializations.length; i++) {
+      total -= (i + 2) * ((character?.data.specializations.length ?? 1) * 10);
+    }
     return total;
-  }
+  };
+
+  const save = async () => {
+    if (character) {
+      const updatedExperience = calculateExperience();
+
+      // Create a new character object with updated skills and experience
+      const updatedCharacter = {
+        ...character,
+        data: {
+          ...character.data,
+          skills: [...newSkills], // Create a new array for skills
+          experience: {
+            ...character.data.experience,
+            available: updatedExperience,
+          },
+          specializations: [
+            ...character.data.specializations,
+            ...newSpecializations,
+          ], // Append newSpecializations array to the end
+        },
+      };
+
+      // Update the state with the new character object
+      setCharacter(updatedCharacter);
+      saveCharacter(updatedCharacter);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+      Alert.alert("Save Changes", "Do you want to save changes?", [
+        {
+          text: "No",
+          style: "destructive",
+          onPress: () => navigation.dispatch(e.data.action),
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            save();
+            navigation.dispatch(e.data.action);
+          },
+        },
+      ]);
+    });
+
+    return unsubscribe;
+  }, [navigation, character, newSkills, newSpecializations]);
 
   return (
     <ImageWrapper>
       <SafeAreaView style={{ flex: 1 }}>
-        <View className="flex-row justify-center mx-2 mt-2 mb-1">
-          <TriangleCorner
-            style={{
-              transform: [{ rotate: "180deg" }],
-              borderTopWidth: 34,
-              borderRightWidth: 34,
-              borderTopColor: Colors.global.box,
-            }}
-          />
-          <View className=" flex-1 bg-box flex-row items-center justify-evenly py-2">
+        <View className="flex-row justify-center">
+          <View className="flex-1 bg-box flex-row items-center justify-between py-2 pb-4 px-6">
             <View className="flex-row justify-center items-center">
               <Ionicons size={16} name="locate" color="#fff" />
               <Text className="font-bold font-xs text-white pl-1">
@@ -186,14 +197,6 @@ export default function PaginationDotsExample() {
               </Text>
             </View>
           </View>
-          <TriangleCorner
-            style={{
-              transform: [{ rotate: "-90deg" }],
-              borderTopWidth: 34,
-              borderRightWidth: 34,
-              borderTopColor: Colors.global.box,
-            }}
-          />
         </View>
         <AnimatedPagerView
           initialPage={0}
@@ -203,33 +206,28 @@ export default function PaginationDotsExample() {
         >
           {INTRO_DATA.map(({ key, title }) => (
             <View key={key} className="flex-1 justify-center items-center">
-              <View className="flex-row justify-center mx-2">
-                <TriangleCorner
-                  style={{
-                    transform: [{ rotate: "90deg" }],
-                    borderTopWidth: 34,
-                    borderRightWidth: 34,
-                    borderTopColor: Colors.global.box,
-                  }}
-                />
-                <View className="bg-box flex-1 mb-2">
-                  <Text className="text-2xl text-white font-[Elektra] text-center pt-0.5">
+              <View className="flex-row justify-center bg-box mb-2">
+                <View className="bg-black/30 flex-1">
+                  <Text className="text-lg text-white font-[Elektra] text-center pt-0.5">
                     {title}
                   </Text>
                 </View>
-                <TriangleCorner
-                  style={{
-                    transform: [{ rotate: "0deg" }],
-                    borderTopWidth: 34,
-                    borderRightWidth: 34,
-                    borderTopColor: Colors.global.box,
-                  }}
-                />
               </View>
               {key === "1" && (
                 <Skills setNewSkills={setNewSkills} newSkills={newSkills} />
               )}
-              {key === "2" && <Specializations newSpecializations={newSpecializations} setNewSpecializations={setNewSpecializations} />}
+              {key === "2" && (
+                <Specializations
+                  newSpecializations={newSpecializations}
+                  setNewSpecializations={setNewSpecializations}
+                />
+              )}
+              {key === "3" && (
+                <Talents
+                  newSpecializations={newSpecializations}
+                  setNewSpecializations={setNewSpecializations}
+                />
+              )}
             </View>
           ))}
         </AnimatedPagerView>

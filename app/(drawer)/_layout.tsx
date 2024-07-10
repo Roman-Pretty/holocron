@@ -76,6 +76,18 @@ const DrawerComponent = (props: DrawerContentComponentProps) => {
               router.push("(edit)");
             }}
           />
+          <DrawerItem
+            label={"Item Store"}
+            icon={({ color, size }) => (
+              <Ionicons name="storefront" size={size} color={"#fff"} />
+            )}
+            labelStyle={{
+              color: "#fff",
+              fontFamily: "Elektra",
+            }}
+            onPress={() => {
+            }}
+          />
         <DrawerItem
           label={"Award Experience"}
           icon={({ color, size }) => (
