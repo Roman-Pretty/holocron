@@ -31,12 +31,15 @@ export default function TabLayout() {
         options={{
           headerShown: true,
           title: "Create Character",
+          headerShadowVisible: false,
           headerTitleStyle: {
             fontFamily: "Elektra",
             color: "white",
           },
           headerStyle: {
             backgroundColor: Colors.global.heading2,
+            //@ts-ignore
+            borderBottomWidth: 0,
           },
           headerBackButtonMenuEnabled: true,
           headerBackTitleVisible: false,

@@ -80,8 +80,16 @@ const CreateCharacter = () => {
       const startingXP = state.species ? state.species.startingXP : 0;
       let xp = startingXP;
       if (state.species) {
-        if(state.species.species === "Dressellian" && state.selectedSpeciesOption === "Non-Primitive [5 Experience]") xp -= 5;
-        if(state.species.species === "Gand" && state.selectedSpeciesOption === "Has Lungs [+10 Experience]") xp += 10;
+        if (
+          state.species.species === "Dressellian" &&
+          state.selectedSpeciesOption === "Non-Primitive [5 Experience]"
+        )
+          xp -= 5;
+        if (
+          state.species.species === "Gand" &&
+          state.selectedSpeciesOption === "Has Lungs [+10 Experience]"
+        )
+          xp += 10;
         for (const characteristic of state.characteristics) {
           switch (characteristic.name) {
             case "brawn":
@@ -297,7 +305,7 @@ const CreateCharacter = () => {
       if (state.moralityBonus === 2) xp += 5;
     }
     return xp;
-  }
+  };
 
   const onSavePressed = () => {
     async function save() {
@@ -392,27 +400,28 @@ const CreateCharacter = () => {
   return (
     <ImageWrapper>
       <KeyboardAvoidingView behavior="position">
-        <View className="h-full justify-center px-2 py-1">
-          <Header state={state} currentIndex={currentIndex} PAGES={PAGES} />
-          <PageContent
-            currentIndex={currentIndex}
-            state={state}
-            setState={handleStateChange}
-            handleSnapPress={handlePortraitSnapPress}
-          />
-          <View className="flex flex-row justify-between mt-[2vh] pb-[8vh]">
+        <Header state={state} currentIndex={currentIndex} PAGES={PAGES} />
+        <View className="justify-center h-[93%]">
+          <View className="px-2 flex-1">
+            <PageContent
+              currentIndex={currentIndex}
+              state={state}
+              setState={handleStateChange}
+              handleSnapPress={handlePortraitSnapPress}
+            />
+          </View>
+          <View className="flex flex-row justify-between mt-2 px-4 pt-4 pb-[8vh] -mb-[2vh] bg-heading2 rounded-t-lg">
             <Button
               title="Back"
               onPress={onBackPressed}
               disabled={currentIndex === 0}
-              cName="mr-2"
-              textClassName=" font-bold uppercase"
-              disabledClassName="mr-2"
+              cName="mr-2 bg-transparent border border-white"
+              textClassName={currentIndex === 0 ? "text-gray-400" : ""}
+              disabledClassName="mr-2 bg-transparent border border-gray-400"
             />
             {currentIndex < PAGES ? (
               <Button
                 title="Next"
-                textClassName=" font-bold uppercase"
                 onPress={onNextPressed}
                 disabled={
                   (currentIndex === 1 && state.species === null) ||
@@ -427,16 +436,31 @@ const CreateCharacter = () => {
                   (currentIndex === 4 && state.specialization === null) ||
                   currentIndex === PAGES
                 }
-                cName="ml-2"
-                disabledClassName="ml-2"
+                cName="ml-2 bg-transparent border border-white"
+                textClassName={
+                  (currentIndex === 1 && state.species === null) ||
+                  (currentIndex === 2 &&
+                    ((!state.obligation && !state.duty && !state.morality) ||
+                      (state.obligation &&
+                        state.selectedObligations.length <= 0) ||
+                      (state.duty && state.selectedDuties.length <= 0) ||
+                      (state.morality && state.selectedStrength === null) ||
+                      (state.morality && state.selectedWeakness === null))) ||
+                  (currentIndex === 3 && state.career === null) ||
+                  (currentIndex === 4 && state.specialization === null) ||
+                  currentIndex === PAGES
+                    ? "text-gray-400"
+                    : ""
+                }
+                disabledClassName="ml-2 bg-transparent border border-gray-400"
               />
             ) : (
               <Button
                 title="Save"
-                textClassName=" font-bold uppercase"
                 onPress={onSavePressed}
-                cName="ml-2"
-                disabledClassName="ml-2"
+                cName="ml-2 bg-transparent border border-white"
+                textClassName={currentIndex === 0 ? "text-gray-400" : ""}
+                disabledClassName="ml-2 bg-transparent border border-gray-400"
               />
             )}
           </View>

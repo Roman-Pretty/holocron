@@ -16,7 +16,7 @@ const Description = ({
   handleSnapPress,
 }: DescriptionProps) => {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ paddingTop: 8 }}>
       <PortraitInput
         portrait={portrait}
         setPortrait={(portrait: SetStateAction<ImageSourcePropType>) =>

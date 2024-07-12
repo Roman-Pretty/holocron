@@ -79,16 +79,23 @@ const Motivation = ({
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ paddingTop: 8 }}
+    >
       <GroupSizeSlider groupSize={groupSize} setGroupSize={updateGroupSize} />
       <ObligationPicker
         obligations={Obligations}
         selectedObligations={selectedObligations}
-        setSelectedObligations={(obligations) => setState("selectedObligations", obligations)}
+        setSelectedObligations={(obligations) =>
+          setState("selectedObligations", obligations)
+        }
         obligation={obligation}
         setObligation={(obligation) => setState("obligation", obligation)}
         additionalObligation={additionalObligation}
-        setAdditionalObligation={(additionalObligation) => setState("additionalObligation", additionalObligation)}
+        setAdditionalObligation={(additionalObligation) =>
+          setState("additionalObligation", additionalObligation)
+        }
         calculateObligationCost={calculateObligationCost}
         obligationCost={obligationCost}
       />
@@ -99,7 +106,9 @@ const Motivation = ({
         duty={duty}
         setDuty={(duty) => setState("duty", duty)}
         additionalDuty={additionalDuty}
-        setAdditionalDuty={(additionalDuty) => setState("additionalDuty", additionalDuty)}
+        setAdditionalDuty={(additionalDuty) =>
+          setState("additionalDuty", additionalDuty)
+        }
         calculateDutyCost={calculateDutyCost}
         dutyCost={dutyCost}
       />
@@ -107,15 +116,23 @@ const Motivation = ({
         morality={morality}
         setMorality={(morality) => setState("morality", morality)}
         strengths={MoralityStrengths}
-        setSelectedStrength={(selectedStrength) => setState("selectedStrength", selectedStrength)}
+        setSelectedStrength={(selectedStrength) =>
+          setState("selectedStrength", selectedStrength)
+        }
         weaknesses={MoralityWeaknesses}
-        setSelectedWeakness={(selectedWeakness) => setState("selectedWeakness", selectedWeakness)}
+        setSelectedWeakness={(selectedWeakness) =>
+          setState("selectedWeakness", selectedWeakness)
+        }
         moralityCost={moralityCost}
-        setMoralityCost={(moralityCost) => setState("moralityCost", moralityCost)}
+        setMoralityCost={(moralityCost) =>
+          setState("moralityCost", moralityCost)
+        }
         obligation={obligation}
         duty={duty}
         moralityBonus={moralityBonus}
-        setMoralityBonus={(moralityBonus) => setState("moralityBonus", moralityBonus)}
+        setMoralityBonus={(moralityBonus) =>
+          setState("moralityBonus", moralityBonus)
+        }
         selectedStrength={selectedStrength}
         selectedWeakness={selectedWeakness}
       />

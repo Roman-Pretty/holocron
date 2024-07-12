@@ -45,36 +45,20 @@ const Header = ({
   };
 
   return (
-    <View className="relative my-4">
-      <View className="flex flex-row justify-center pb-4">
+    <View className="relative bg-heading2 pb-4 px-2">
+      <View className="flex flex-row justify-center">
         <View className="flex-row justify-center">
-          <TriangleCorner
-            style={{
-              transform: [{ rotate: "90deg" }],
-              borderTopWidth: 34,
-              borderRightWidth: 34,
-              borderTopColor: Colors.global.heading1,
-            }}
-          />
-          <View className="bg-heading1 px-2">
-            <Text className="text-2xl text-white font-[Elektra] text-center pt-0.5">
+          <View className=" w-full">
+            <Text className="text-lg text-white font-[Elektra] text-center pt-0.5">
               {getPageTitle()}
             </Text>
           </View>
-          <TriangleCorner
-            style={{
-              transform: [{ rotate: "0deg" }],
-              borderTopWidth: 34,
-              borderRightWidth: 34,
-              borderTopColor: Colors.global.heading1,
-            }}
-          />
         </View>
         <View className="w-[20vw] pt-2.5 h-full absolute right-0 top-0 mr-2">
           {experience !== null && species != null && (
             <View className="flex-row justify-end items-center">
-              <Ionicons size={16} name="locate" color={Colors.global.heading1} />
-              <Text className="text-heading1 text-right font-[Elektra] pt-0.5">
+              <Ionicons size={16} name="locate" color="#fff" />
+              <Text className="text-white text-right font-[Elektra] pt-0.5">
                 {experience}
               </Text>
             </View>
@@ -82,7 +66,7 @@ const Header = ({
         </View>
         <View className="w-[20vw] pt-2.5 h-full absolute left-0 top-0 ml-2">
           {experience !== null && species != null && (
-            <Text className="text-heading1 text-left">
+            <Text className="text-white text-left">
               <Text className="font-[aurebesh]">$</Text>
               <Text className="font-[Elektra]"> {credits}</Text>
             </Text>
@@ -92,7 +76,7 @@ const Header = ({
       <Progress.Bar
         progress={(currentIndex + 1) / (PAGES + 1)}
         animated
-        color={Colors.global.heading1}
+        color="#fff"
         width={null}
       />
     </View>

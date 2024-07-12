@@ -15,6 +15,7 @@ const CharacteristicsElement = ({
 
   return (
     <FlatList
+    contentContainerStyle={{ paddingTop: 8 }}
       data={state.characteristics}
       keyExtractor={(item, index) => index.toString()}
       showsVerticalScrollIndicator={false}

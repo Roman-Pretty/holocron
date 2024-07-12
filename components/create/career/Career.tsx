@@ -36,6 +36,7 @@ const CareerElement = ({ selectedCareer, setSelectedCareer }: CareerProps) => {
       onViewableItemsChanged={({ viewableItems: vItems }) => {
         viewableItems.value = vItems;
       }}
+      contentContainerStyle={{ paddingTop: 8 }}
       renderItem={({ item }) => (
         <CareerItem
           key={item.name}

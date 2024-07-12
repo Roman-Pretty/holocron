@@ -22,13 +22,13 @@ const SpeciesFilter: React.FC<SpeciesFilterProps> = ({
     <Animated.ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      className="pb-4"
+      className="py-2"
     >
       {tags.map((tag, index) => (
         <View key={index}>
           {isSelected(tag) && (
             <Button
-              cName={`rounded-full mr-2 border-2 font-bold  ${
+              cName={`rounded-full mr-2 border-2 font-bold py-1  ${
                 tag === "Neutral"
                   ? "bg-neutral-800 border-neutral-800"
                   : tag === "Brawn"
@@ -42,7 +42,7 @@ const SpeciesFilter: React.FC<SpeciesFilterProps> = ({
                   : "bg-yellow-400 border-yellow-400"
               }`}
               onPress={() => onSelectTag(tag)}
-              textClassName="px-4 text-white font-bold font-serif capitalize"
+              textClassName=" text-xs px-4 text-white font-bold font-serif capitalize"
               title={tag}
             />
           )}
@@ -52,9 +52,9 @@ const SpeciesFilter: React.FC<SpeciesFilterProps> = ({
         <View key={index} className="">
           {!isSelected(tag) && (
             <Button
-              cName="border-2 border-box rounded-full mr-2 bg-transparent"
+              cName="border-2 border-box rounded-full mr-2 bg-transparent py-1"
               onPress={() => onSelectTag(tag)}
-              textClassName=" px-4 text-box font-bold capitalize"
+              textClassName="text-xs px-4 text-box font-bold capitalize"
               title={tag}
             />
           )}

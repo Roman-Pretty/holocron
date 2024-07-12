@@ -16,6 +16,7 @@ const SpecializationComponent = ({
 }: SpecializationProps) => {
   return (
     <FlatList
+    contentContainerStyle={{ paddingTop: 8 }}
       showsVerticalScrollIndicator={false}
       data={selectedCareer ? selectedCareer.specializations : null}
       keyExtractor={(item, index) => index.toString()}

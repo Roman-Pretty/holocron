@@ -17,7 +17,7 @@ import { ScalingDot } from "react-native-animated-pagination-dots";
 import { Colors } from "@/constants/Colors";
 import { CharacterContext } from "@/contexts/CharacterContext";
 import { saveCharacter } from "@/storage/CharacterStorage";
-import { Specialization } from "@/types/Types";
+import { Skill, Specialization } from "@/types/Types";
 import { useNavigation } from "expo-router";
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
@@ -25,14 +25,18 @@ const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 let INTRO_DATA = [
   {
     key: "1",
-    title: "Skills",
+    title: "Description",
   },
   {
     key: "2",
-    title: "Specializations",
+    title: "Skills",
   },
   {
     key: "3",
+    title: "Specializations",
+  },
+  {
+    key: "4",
     title: "Talents",
   },
 ];
@@ -81,6 +85,19 @@ export default function PaginationDotsExample() {
   const [allSpecializations, setAllSpecializations] = useState<
     Specialization[]
   >([]);
+  const [exp, setExp] = useState<number>(0);
+  const [clonedSpecializations, setClonedSpecializations] = useState<
+    Specialization[]
+  >(JSON.parse(JSON.stringify(character?.data.specializations ?? [])));
+
+  useEffect(() => {
+    setExp(calculateExperience());
+  }, [
+    newSkills,
+    newSpecializations,
+    allSpecializations,
+    clonedSpecializations,
+  ]);
 
   useEffect(() => {
     if (character) {
@@ -90,31 +107,50 @@ export default function PaginationDotsExample() {
       ]);
     }
   }, [newSpecializations, character]);
-
   const calculateExperience = () => {
     let total = character?.data.experience.available ?? 0;
-    for (const skill of newSkills) {
+  
+    // Calculate experience cost for skills
+    newSkills.forEach((newSkill: Skill) => {
+      const existingSkill = character?.data.skills.find(
+        (s) => s.name === newSkill.name
+      );
+  
       if (
-        skill.level >
-        (character?.data.skills.find((s) => s.name === skill.name)?.level ?? 0)
+        existingSkill &&
+        newSkill.level > existingSkill.level
       ) {
-        if (skill.career) {
-          for (let i = 1; i <= skill.level; i++) {
-            total -= i * 5;
-          }
-        } else {
-          for (let i = 1; i <= skill.level; i++) {
-            total -= i * 5 + 5;
-          }
+        for (let i = existingSkill.level + 1; i <= newSkill.level; i++) {
+          total -= newSkill.career ? i * 5 : i * 5 + 5;
+        }
+      } else if (!existingSkill) {
+        for (let i = 1; i <= newSkill.level; i++) {
+          total -= newSkill.career ? i * 5 : i * 5 + 5;
         }
       }
-    }
+    });
+  
+    // Calculate experience cost for specializations
     for (let i = 0; i < newSpecializations.length; i++) {
       total -= (i + 2) * ((character?.data.specializations.length ?? 1) * 10);
     }
+  
+    // Calculate experience cost for talents
+    clonedSpecializations.forEach((spec, index) => {
+      spec.talents.talents.forEach((talent, i) => {
+        if (
+          talent.purchased &&
+          (character?.data.specializations[index]?.talents?.talents[i]?.purchased === false ||
+            character?.data.specializations[index]?.talents?.talents[i]?.purchased === undefined)
+        ) {
+          total -= talent.cost ?? Math.ceil((i + 1) / 4) * 5;
+        }
+      });
+    });
+  
     return total;
   };
-
+  
   const save = async () => {
     if (character) {
       const updatedExperience = calculateExperience();
@@ -142,6 +178,7 @@ export default function PaginationDotsExample() {
     }
   };
 
+  // TODO: Add a listener to prompt before leaving the screen instead
   useEffect(() => {
     const unsubscribe = navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();
@@ -162,7 +199,13 @@ export default function PaginationDotsExample() {
     });
 
     return unsubscribe;
-  }, [navigation, character, newSkills, newSpecializations]);
+  }, [
+    navigation,
+    character,
+    newSkills,
+    newSpecializations,
+    clonedSpecializations,
+  ]);
 
   return (
     <ImageWrapper>
@@ -172,7 +215,7 @@ export default function PaginationDotsExample() {
             <View className="flex-row justify-center items-center">
               <Ionicons size={16} name="locate" color="#fff" />
               <Text className="font-bold font-xs text-white pl-1">
-                {calculateExperience()}{" "}
+                {exp}{" "}
                 <Text className="opacity-60">
                   / {character?.data.experience.total}
                 </Text>
@@ -214,18 +257,23 @@ export default function PaginationDotsExample() {
                 </View>
               </View>
               {key === "1" && (
-                <Skills setNewSkills={setNewSkills} newSkills={newSkills} />
+                <View className="flex-1 justify-center items-center">
+                  <Text className="text-white">Description</Text>
+                </View>
               )}
               {key === "2" && (
+                <Skills setNewSkills={setNewSkills} newSkills={newSkills} />
+              )}
+              {key === "3" && (
                 <Specializations
                   newSpecializations={newSpecializations}
                   setNewSpecializations={setNewSpecializations}
                 />
               )}
-              {key === "3" && (
+              {key === "4" && (
                 <Talents
-                  newSpecializations={newSpecializations}
-                  setNewSpecializations={setNewSpecializations}
+                  clonedSpecializations={clonedSpecializations}
+                  setClonedSpecializations={setClonedSpecializations}
                 />
               )}
             </View>
