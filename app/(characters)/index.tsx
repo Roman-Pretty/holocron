@@ -102,6 +102,7 @@ const createcharacter = () => {
           ))}
         </ScrollView>
       </SafeAreaView>
+      <View className="bg-heading1 h-[8vh] rounded-t-lg"/>
     </ImageWrapper>
   );
 };

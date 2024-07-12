@@ -16,7 +16,7 @@ export interface Character {
       available: number;
     }
     credits: number;
-    inventory: string[];
+    inventory: Item[];
     characteristics: {
       brawn: number;
       agility: number;

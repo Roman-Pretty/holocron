@@ -25,24 +25,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="talents"
-        options={{
-          title: "TALENTS",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={28} name="sparkles" color={color} />
-          ),
-          headerShown: false,
-          tabBarStyle: {
-            backgroundColor: Colors.global.heading3,
-            borderTopWidth: 0,
-          },
-          tabBarActiveTintColor: "#fff",
-          tabBarInactiveTintColor: Colors.global.boxheading,
-
-          tabBarLabelStyle: { fontFamily: "Elektra" },
-        }}
-      />
-      <Tabs.Screen
         name="inventory"
         options={{
           title: "INVENTORY",

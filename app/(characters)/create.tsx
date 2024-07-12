@@ -20,6 +20,7 @@ import React, {
   useState,
 } from "react";
 import { KeyboardAvoidingView, View } from "react-native";
+import * as Items from "@/constants/Items";
 
 const CreateCharacter = () => {
   const PAGES = 9;
@@ -333,7 +334,24 @@ const CreateCharacter = () => {
           },
           image: state.portrait,
           credits: state.credits,
-          inventory: [],
+          inventory: [
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+            Items.None,
+          ],
           encumbrance: {
             current: 0,
             threshold:

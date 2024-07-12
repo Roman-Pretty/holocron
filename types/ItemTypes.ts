@@ -1,5 +1,9 @@
+import { ImageSourcePropType } from "react-native";
+
 export interface Item {
   name: string;
+  image?: ImageSourcePropType;
+  weight?: number;
   price?: number;
 }
 
