@@ -87,9 +87,6 @@ const createcharacter = () => {
 
   return (
     <ImageWrapper>
-      <SafeAreaView
-        style={{ backgroundColor: "Colors.global.slate900", flex: 1 }}
-      >
         <ScrollView>
           {characters.map((char, index) => (
             <CharacterCard
@@ -101,8 +98,6 @@ const createcharacter = () => {
             />
           ))}
         </ScrollView>
-      </SafeAreaView>
-      <View className="bg-heading1 h-[8vh] rounded-t-lg"/>
     </ImageWrapper>
   );
 };

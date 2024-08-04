@@ -11,7 +11,7 @@ import TriangleCorner from "../shapes/TriangleCorner";
 
 interface PortraitInputProps {
   portrait: ImageSourcePropType | undefined;
-  setPortrait: React.Dispatch<SetStateAction<ImageSourcePropType>>;
+  setPortrait:(image: ImageSourcePropType) => void;
   handleSnapPress: (index: number) => void;
 }
 

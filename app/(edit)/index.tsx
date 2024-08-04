@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext, useRef, useMemo, useCallback } from "react";
 import {
   Alert,
   Animated,
   Dimensions,
+  ImageSourcePropType,
   SafeAreaView,
   Text,
   View,
@@ -12,6 +13,7 @@ import ImageWrapper from "@/components/ImageWrapper";
 import Skills from "@/components/edit/Skills";
 import Specializations from "@/components/edit/Specializations";
 import Talents from "@/components/edit/talents/Talents";
+import Description from "@/components/edit/Description";
 import { Ionicons } from "@expo/vector-icons";
 import { ScalingDot } from "react-native-animated-pagination-dots";
 import { Colors } from "@/constants/Colors";
@@ -19,6 +21,8 @@ import { CharacterContext } from "@/contexts/CharacterContext";
 import { saveCharacter } from "@/storage/CharacterStorage";
 import { Skill, Specialization } from "@/types/Types";
 import { useNavigation } from "expo-router";
+import PortraitSelect from "@/components/form/PortraitSelect";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
 
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
@@ -90,6 +94,17 @@ export default function PaginationDotsExample() {
     Specialization[]
   >(JSON.parse(JSON.stringify(character?.data.specializations ?? [])));
 
+  const [newName, setNewName] = useState<string>(character?.data.name ?? "");
+  const [newHomeworld, setNewHomeworld] = useState<string>(
+    character?.data.homeworld ?? ""
+  );
+  const [newDescription, setNewDescription] = useState<string>(
+    character?.data.description ?? ""
+  );
+  const [newPortrait, setNewPortrait] = useState<ImageSourcePropType>(
+    character?.data.image ?? require("@/assets/images/species/aqualish_0.png")
+  );
+
   useEffect(() => {
     setExp(calculateExperience());
   }, [
@@ -150,6 +165,21 @@ export default function PaginationDotsExample() {
   
     return total;
   };
+
+  // Portrait Bottom Sheet
+  const portraitSheetRef = useRef<BottomSheet>(null);
+  portraitSheetRef.current?.close();
+
+  const portraitSnapPoints = useMemo(() => ["60%"], []);
+
+  // callbacks
+  const handlePortraitSheetChange = useCallback((index: number) => {}, []);
+  const handlePortraitSnapPress = useCallback((index: number) => {
+    portraitSheetRef.current?.snapToIndex(index);
+  }, []);
+  const handlePortraitClosePress = useCallback(() => {
+    portraitSheetRef.current?.close();
+  }, []);
   
   const save = async () => {
     if (character) {
@@ -161,6 +191,10 @@ export default function PaginationDotsExample() {
         data: {
           ...character.data,
           skills: [...newSkills], // Create a new array for skills
+          name: newName,
+          homeworld: newHomeworld,
+          description: newDescription,
+          image: newPortrait,
           experience: {
             ...character.data.experience,
             available: updatedExperience,
@@ -177,35 +211,6 @@ export default function PaginationDotsExample() {
       saveCharacter(updatedCharacter);
     }
   };
-
-  // TODO: Add a listener to prompt before leaving the screen instead
-  useEffect(() => {
-    const unsubscribe = navigation.addListener("beforeRemove", (e) => {
-      e.preventDefault();
-      Alert.alert("Save Changes", "Do you want to save changes?", [
-        {
-          text: "No",
-          style: "destructive",
-          onPress: () => navigation.dispatch(e.data.action),
-        },
-        {
-          text: "Yes",
-          onPress: () => {
-            save();
-            navigation.dispatch(e.data.action);
-          },
-        },
-      ]);
-    });
-
-    return unsubscribe;
-  }, [
-    navigation,
-    character,
-    newSkills,
-    newSpecializations,
-    clonedSpecializations,
-  ]);
 
   return (
     <ImageWrapper>
@@ -257,9 +262,18 @@ export default function PaginationDotsExample() {
                 </View>
               </View>
               {key === "1" && (
-                <View className="flex-1 justify-center items-center">
-                  <Text className="text-white">Description</Text>
-                </View>
+                <Description 
+                newName={newName}
+                setNewName={setNewName}
+                newHomeworld={newHomeworld}
+                setNewHomeworld={setNewHomeworld}
+                newDescription={newDescription}
+                setNewDescription={setNewDescription}
+                newPortrait={newPortrait}
+                setNewPortrait={setNewPortrait}
+                handleSnapPress={handlePortraitSnapPress}
+                
+                />
               )}
               {key === "2" && (
                 <Skills setNewSkills={setNewSkills} newSkills={newSkills} />
@@ -291,6 +305,14 @@ export default function PaginationDotsExample() {
             inActiveDotColor={Colors.global.box}
           />
         </View>
+        <PortraitSelect
+            handleSnapPress={handlePortraitSnapPress}
+            handleClosePress={handlePortraitClosePress}
+            handleSelect={(portrait) => setNewPortrait(portrait)}
+            handleSheetChange={handlePortraitSheetChange}
+            sheetRef={portraitSheetRef}
+            snapPoints={portraitSnapPoints}
+          />
       </SafeAreaView>
     </ImageWrapper>
   );
